@@ -1,0 +1,17 @@
+<% content_for :user_actions do -%>
+  <% if logged_in? -%>
+    | <%= link_to( "#{user_name} (logout)" ) %>
+  <% else -%>
+    | <%= link_to( 'register' ) -%>
+    | <%= link_to( 'login' ) -%>
+  <% end %>
+<% end %>
+<div id="logo" class="grid_3">
+  <%= link_to( image_tag( '/images/logo.gif' ), root_path ) %>
+</div>
+<div id="top_navigation" class="grid_13 ta_right">
+  <%= link_to( 'reading list' ) -%> |
+  <%= link_to( 'help' ) -%> |
+  <%= link_to( 'settings' ) -%>
+  <%= yield :user_actions -%>
+</div>
