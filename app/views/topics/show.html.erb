@@ -1,0 +1,13 @@
+<div class='news_group'>
+  <div class='news_block'>
+    <h2>
+      <%= @topic.name -%>
+    </h2>
+    <% @topic.stories.each do |story| %>
+    <div class='headline'>
+      <%= render_story_preview( story ) %>
+    </div>
+    <% end %>
+  </div>
+</div>
+<%= render_pagination( @topic ) %>

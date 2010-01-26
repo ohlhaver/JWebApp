@@ -1,0 +1,89 @@
+de:
+  datetime:
+    distance_in_words:
+      half_a_minute: 'vor eine halbe Minute'
+      less_than_x_seconds:
+        zero: 'vor weniger als 1 Sekunde'
+        one: 'vor 1 Sekunde'
+        other: 'vor {{count}} Sekunden'
+      x_seconds:
+        one: 'vor 1 Sekunde'
+        other: 'vor {{count}} Sekunden'
+      less_than_x_minutes:
+        zero: 'vor weniger als 1 Minute'
+        one: 'vor einer Minute'
+        other: 'vor {{count}} Minuten'
+      x_minutes:
+        one: 'vor 1 Minute'
+        other: 'vor {{count}} Minuten'
+      about_x_hours:
+        one: 'vor etwa 1 Stunde'
+        other: 'vor {{count}} Stunden'
+      x_days:
+        one: 'vor 1 Tag'
+        other: 'vor {{count}} Tagen'
+      about_x_months:
+        one: 'vor etwa 1 Monat'
+        other: 'vor {{count}} Monaten'
+      x_months:
+        one: 'vor 1 Monat'
+        other: 'vor {{count}} Monaten'
+      about_x_years:
+        one: 'vor etwa 1 Jahr'
+        other: 'vor {{count}} Jahren'
+      over_x_years:
+        one: 'mehr als 1 Jahr'
+        other: 'vor {{count}} Jahren'
+  cluster:
+    all:
+      headlines: "Alle {{count}} Artikel"
+      videos: "{{count}} Video"
+      stories: "Ähnliche Artikel"
+  edition:
+    other: "Andere Nachrichtenausgaben"
+  navigation:
+    bottom:
+      about: "über"
+      feedback: "feedback"
+      imprint: "impressum"
+      privacy: "datenschutz"
+    main:
+      add_section: "Neue Rubrik"
+      add_topic: "Neues Thema"
+      business: "Wirtschaft"
+      culture: "Feuilleton"
+      mixed: "Vermischtes"
+      my_authors: "Meine Autoren"
+      my_topics: "Meine Themen"
+      opinions: "Meinungen"
+      politics: "Politik"
+      sections: "Rubriken"
+      science: "Wissen"
+      sport: "Sport"
+      technology: "Technik"
+      top_stories: "Schlagzeilen"
+      top_authors: "Top Autoren"
+    top:
+      help: "hilfe"
+      login: "einloggen"
+      logout: "{{name}} (ausloggen)"
+      reading_list: "leseliste"
+      register: "registrieren"
+      settings: "einstellungen"
+  pagination:
+    previous: "zurück"
+    next: "vorwärts"
+  search:
+    simple: "Suche Nachrichten"
+    advance: "Erweiterte Suche"
+  seo:
+    page:
+      default_title: "Jurnalo - die wichtigsten Nachrichten des Tages"
+      title:
+        author: "Artikel von {{name}} - Jurnalo"
+        cluster_group: "{{name}} - Jurnalo"
+        my_author: "Meine Autoren - Jurnalo"
+        opinions: "Meinungen zu {{query}} - Jurnalo"
+        reading_list: "Leseliste - Jurnalo"
+        search: "{{query}} - Jurnalo"
+        videos: "Videos zu {{query}} - Jurnalo"

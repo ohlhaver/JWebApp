@@ -1,14 +1,18 @@
+<% content_for :custom_javascript do %>
+  <%= observe_field( "edition", :function => "$('change_edition').submit();" ) %>
+<% end %>
 <div id="search_bar" class="grid_8 suffix_4">
   <% form_tag do -%>
     <input type="text" title="Search News" autocomplete="off" tabindex="1" value="" name="q" maxlength="2048" size="30" class="searchField" />
-    <input type="submit" value="Search News" tabindex="2"/>
+    <input type="submit" value="<%= t( 'search.simple' ) -%>" tabindex="2"/>
     <div class='search-box-links'>
-      <%= link_to 'Advance News Search' %>
+      <%= link_to( t( 'search.advance' ) ) %>
     </div>
   <% end -%>
 </div>
-<div id="edition_bar" class="grid_4 ta_right">
-  <% form_tag do -%>
-    <%= select_tag( 'edition', options_for_select([ 'International', 'German', 'Swiss', 'Austrian' ]) ) %>
+<div id="edition_bar" class="grid_4">
+  <% form_tag( root_path, :id => 'change_edition' ) do -%>
+    <%= link_to 'Home', root_path %> &nbsp;
+    <%= select_tag( 'edition', options_for_select( edition_options, session[:edition] ), :title => t( 'edition.other' ) ) %>
   <% end -%>
 </div>

@@ -1,3 +1,59 @@
+/* Eric Meyers Reset CSS 
+----------------------------------------------------------------------------------------------------*/
+/* v1.0 | 20080212 */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
 /* Containers
 ----------------------------------------------------------------------------------------------------*/
 .container_16 {
@@ -331,22 +387,86 @@
 	display: block;
 }
 
+/* Application Defaults
+----------------------------------------------------------------------------------------------------*/
 .ta_right{
   text-align: right;
 }
-
 .ta_center{
   text-align: center;
 }
-
-a img {
-  border:none; 
+.fs80 {
+  font-size: 80%;
+}
+.fs120 {
+  font-size: 120%;
 }
 
-/* Search Bar */
+/* Header Elements
+----------------------------------------------------------------------------------------------------*/
+a img {
+  border:none;
+  text-decoration:none;
+}
+
+div#top_navigation {
+  line-height:2.0em;
+}
+
+/* Main Navigation
+----------------------------------------------------------------------------------------------------*/
+.nav_block{
+  padding-top:10px;
+}
+
+/* Search Bar 
+----------------------------------------------------------------------------------------------------*/
 .search-box-links {
   float:right;
   font-size:80%;
   line-height:1.25em;
   margin-right:10px;
+}
+
+/* Main Content
+----------------------------------------------------------------------------------------------------*/
+.news_block{
+  padding-top: 10px;
+}
+.news_block h2 {
+  line-height: 2em;
+  background-color: rgb(233,233,233);
+  border-top:1pt solid black;
+  border-bottom:1pt solid black;
+  margin-bottom: 10px;
+}
+.news_block h2 a {
+  color: black;
+  text-decoration:none;
+}
+.news_block div {
+  padding-bottom: 10px;
+}
+.headline .title {
+  display:block;
+  font-size: 120%;
+  padding-bottom: 10px;
+  line-height: 1.2em;
+  font-weight: bold;
+}
+.headline .title a {
+  color: black;
+  text-decoration:none;
+}
+.headline span.first{
+  display:none;
+}
+.news_block li.story {
+  padding-bottom: 5px;
+}
+.news_block li.info{
+  padding-top: 5px;
+}
+.pagination{
+  padding-bottom: 10px;
 }

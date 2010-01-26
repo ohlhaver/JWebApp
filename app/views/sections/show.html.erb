@@ -1,0 +1,13 @@
+<div class='news_group'>
+  <div class='news_block'>
+    <h2><%= t("navigation.main.#{@section.name}")%></h2>
+    <% @section.clusters.each do |cluster| %>
+      <%= render_cluster_preview( cluster ) %>
+    <% end %>
+    <% if @section.clusters.empty? %>
+      <em>No stories found.</em>
+    <% end %>
+  </div>
+</div>
+<%= render_pagination( @section ) %>
+

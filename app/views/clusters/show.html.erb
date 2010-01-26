@@ -1,0 +1,14 @@
+<div class='news_group'>
+  <div class='news_block'>
+    <h2>
+      <%= t("cluster.all.stories") -%>
+      (<%= links_to_keywords( *(@cluster.top_keywords) ).join(' - ') %>)
+    </h2>
+    <% @cluster.stories.each do |story| %>
+    <div class='headline'>
+      <%= render_story_preview( story ) %>
+    </div>
+    <% end %>
+  </div>
+</div>
+<%= render_pagination( @cluster ) %>

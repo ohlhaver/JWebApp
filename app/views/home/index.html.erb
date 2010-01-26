@@ -1,0 +1,8 @@
+<% @story_blocks.each do | group_type, blocks | %>
+  <div class='news_group'>
+    <% partial = "blocks/#{group_type}" %>
+    <% blocks.each do |block| %>
+      <%= render :partial => partial, :locals => { :block => block } %>
+    <% end %>
+  </div>
+<% end %>

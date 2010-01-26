@@ -1,5 +1,89 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
-  hello: "Hello world"
+  datetime:
+    distance_in_words:
+      half_a_minute: 'half a minute ago'
+      less_than_x_seconds:
+        zero: 'less than 1 second ago'
+        one: '1 second ago'
+        other: '{{count}} seconds ago'
+      x_seconds:
+        one: '1 second ago'
+        other: '{{count}} seconds ago'
+      less_than_x_minutes:
+        zero: 'less than a minute ago'
+        one: '1 minute ago'
+        other: '{{count}} minutes ago'
+      x_minutes:
+        one: '1 minute ago'
+        other: '{{count}} minutes ago'
+      about_x_hours:
+        one: 'about 1 hour ago'
+        other: '{{count}} hours ago'
+      x_days:
+        one: '1 day ago'
+        other: '{{count}} days ago'
+      about_x_months:
+        one: 'about 1 month ago'
+        other: '{{count}} months ago'
+      x_months:
+        one: '1 month ago'
+        other: '{{count}} months ago'
+      about_x_years:
+        one: 'about 1 year ago'
+        other: '{{count}} years ago'
+      over_x_years:
+        one: 'over 1 year ago'
+        other: '{{count}} years ago'
+  cluster:
+    all:
+      headlines: "All {{count}} headlines"
+      videos: "{{count}} Video"
+      stories: "Related Stories"
+  edition:
+    other: "Other News Edition"
+  navigation:
+    bottom:
+      about: "about"
+      feedback: "feedback"
+      imprint: "imprint"
+      privacy: "privacy"
+    main:
+      add_section: "Add Section"
+      add_topic: "Add Topic"
+      business: "Business"
+      culture: "Culture"
+      mixed: "Mixed"
+      my_authors: "My Authors"
+      my_topics: "My Topics"
+      opinions: "Opinions"
+      politics: "Politics"
+      sections: "Sections"
+      science: "Science"
+      sport: "Sport"
+      technology: "Technology"
+      top_stories: "Top Stories"
+      top_authors: "Top Authors"
+    top:
+      help: "help"
+      login: "login"
+      logout: "{{name}} (logout)"
+      reading_list: "reading list"
+      register: "register"
+      settings: "settings"
+  pagination:
+    previous: "prev"
+    next: "next"
+  search:
+    simple: "Search News"
+    advance: "Advance Search"
+  seo:
+    page:
+      default_title: "Jurnalo - today's most important news"
+      title:
+        author: "Articles by {{name}} - Jurnalo"
+        cluster_group: "{{name}} - Jurnalo"
+        my_author: "My Authors - Jurnalo"
+        opinions: "Opinions on {{query}} - Jurnalo"
+        reading_list: "Reading list - Jurnalo"
+        search: "{{query}} - Jurnalo"
+        videos: "Videos on {{query}} - Jurnalo"

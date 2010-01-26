@@ -1,0 +1,50 @@
+<% navigation_links = current_user.navigation_links( news_edition ) %>
+
+<% # Topic Block %>
+<% topics_block = capture( navigation_links ) do | link_hash | %>
+<ul class='nav_block'>
+  <% link = link_hash[:my_topics] %>
+  <li><%= link_to( link.name, link.to_url_hash) %></li>
+  <% link_hash[ :topics ].each do |link| %>
+  <li><%= link_to( link.name, link.to_url_hash) %> </li>
+  <% end %>
+  <% link = link_hash[:add_topic] %>
+  <li><%= link_to( link.name, link.to_url_hash ) %>
+</ul>
+<% end %>
+
+<% # Section Block %>
+<% sections_block = capture( navigation_links ) do | link_hash | %>
+<ul class='nav_block'>
+  <% link_hash[ :sections ].each do |link| %>
+  <li><%= link_to( link.name, link.to_url_hash ) %></li>
+  <% end %>
+  <% link = link_hash[:add_section] %>
+  <li><%= link_to( link.name, link.to_url_hash ) %></li>
+</ul>
+<% end %>
+
+<% # Top Stories Block %>
+<% top_stories_block = capture( navigation_links[:top_stories] ) do | link | %>
+<ul class='nav_block'>
+  <li><%= link_to( link.name, link.to_url_hash ) %></li>
+</ul>
+<% end %>
+
+<% # Top Authors Block %>
+<% top_authors_block = capture( navigation_links[:top_authors] ) do |link| %>
+<ul class='nav_block'>
+  <li><%= link_to( link.name, link.to_url_hash ) %></li>
+</ul>
+<% end %>
+
+<% # My Authors Block %>
+<% my_authors_block = capture( navigation_links[:my_authors] ) do |link| %>
+<ul class='nav_block'>
+  <li><%= link_to( link.name, link.to_url_hash ) %></li>
+</ul>
+<% end %>
+
+<% navigation_links.keys.each do |key| %>
+  <%= eval("#{key}_block") rescue nil %>
+<% end %>

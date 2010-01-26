@@ -1,0 +1,13 @@
+<span class='title'><%= link_to( story.title, story.url )%></span>
+<span class='separator first'>-</span>
+<% if story.source %>
+  <span class='source fs80'><%= story.source.name %></span>
+  <span class='separator'>-</span>
+<% end %>
+<% if story.authors.any? %>
+  <% story.authors.each do |author| %>
+    <span class='author fs80'><%= link_to( author.name, author_path( author ) ) -%></span>
+    <span class='separator'>-</span>
+  <% end %>
+<% end %>
+<span class='age fs80'><%= time_ago_in_words( story.created_at ) -%></span>
