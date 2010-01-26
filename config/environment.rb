@@ -16,7 +16,7 @@ Rails::Initializer.run do |config|
 
   # Specify gems that this application depends on and have them installed with rake gems:install
   # config.gem "bj"
-  #config.gem "japi", :version => '>=1.0.0'
+  config.gem "japi", :version => '>=1.0.0'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -37,6 +37,6 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 end
-require RAILS_ROOT + '/../JAPI/lib/JAPI'
+#require RAILS_ROOT + '/../JAPI/lib/JAPI'
 
 JAPI.rails_init( RAILS_ENV, RAILS_ROOT, ActiveRecord::Base.logger.level, '/config/japi.yml' )
