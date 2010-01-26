@@ -11,7 +11,7 @@ connect:
     log_file: /log/cas.log
 client:
   development:
-    base_url: http://localhost:3000
+    base_url: http://localhost:3000/api
     access_key: PMFhEMs_IOuoj3Fy2bJ5
   production:
     base_url: http://api.jurnalo.com
