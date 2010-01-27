@@ -11,6 +11,6 @@ class ApplicationController < ActionController::Base
   
   layout 'default'
   
-  after_filter :log_session_info
+  #after_filter :log_session_info
   
 end
