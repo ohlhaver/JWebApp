@@ -12,7 +12,7 @@ Rails::Initializer.run do |config|
   require 'JAPI'
   
   JAPI.rails_init( RAILS_ENV, RAILS_ROOT, 0, '/config/japi.yml' )
-  
+  #
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
@@ -43,10 +43,13 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 end
-#require RAILS_ROOT + '/../JAPI/lib/JAPI'
+
+Rails.logger.info( "Rails Initialized" )
+
 if defined?(PhusionPassenger)
   PhusionPassenger.on_event(:starting_worker_process) do |forked|
     if forked
+      Rails.logger.info( 'Passenger Forked' )
       JAPI::Model::Base.client = JAPI::Client.new( JAPI::Config[:client] )
     end
   end
