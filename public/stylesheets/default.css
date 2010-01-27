@@ -392,14 +392,25 @@ table {
 .ta_right{
   text-align: right;
 }
+
 .ta_center{
   text-align: center;
 }
+
 .fs80 {
   font-size: 80%;
 }
+
 .fs120 {
   font-size: 120%;
+}
+
+.right {
+  float:right;
+}
+
+.left {
+  float:left;
 }
 
 /* Header Elements

@@ -1,15 +1,10 @@
-<div id='cluster_<%= cluster.id -%>' class='cluster'>
-  <div class='headline'><%= render_story_preview( headline ) %></div>
-  <ul>
-    <% cluster.stories.each do |story| %>
-      <li class='story'><%= render_story_preview( story ) %></li>
-    <% end %>
-    <li class='info fs80'> 
-      <%= link_to( t( 'cluster.all.headlines', :count => cluster.story_count ), cluster_path( cluster ) ) %>
-      <% if cluster.video_count > 0 %>
-        - <%= link_to( t( 'cluster.all.videos', :count => cluster.video_count ), cluster_path( :id => cluster, :video => '1' ) ) %>
-      <% end %>
-    </li>
-    <li class='keywords fs80'><%= links_to_keywords( *(cluster.top_keywords) ).join(' - ') %></li>
-  </ul>
-</div>
+<div class='headline'><%= render_story_preview( headline ) %></div>
+<ul>
+  <% cluster.stories.each do |story| %>
+    <li class='story'><%= render_story_preview( story ) %></li>
+  <% end %>
+  <li class='info fs80'> 
+    <%= render_cluster_info( cluster ) %>
+  </li>
+  <li class='keywords fs80'><%= links_to_keywords( *(cluster.top_keywords) ).join(' - ') %></li>
+</ul>

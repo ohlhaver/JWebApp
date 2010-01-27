@@ -1,6 +1,8 @@
 <div class='news_block'>
   <h2><%= link_to  t("navigation.main.#{block.name}"), section_path( block.id ) %></h2>
   <% block.clusters.each do |cluster| %>
-    <%= render_cluster_preview( cluster ) %>
+    <div id='cluster_<%= cluster.id -%>' class='cluster'>
+      <%= render_cluster_preview( cluster ) %>
+    </div>
   <% end %>
 </div>

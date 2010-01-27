@@ -74,6 +74,12 @@ en:
     previous: "prev"
     next: "next"
   search:
+    page:
+      title: "Search Results For: {{query}}"
+    results:
+      per_page: "Show {{count}} results per page"
+    topic:
+      add: "Add to My Topics"
     simple: "Search News"
     advance: "Advance Search"
   seo:

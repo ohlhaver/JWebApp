@@ -1,12 +1,16 @@
 <div class='news_group'>
   <div class='news_block'>
     <h2>
-      <%= @topic.name -%>
+      <%= t('navigation.main.my_topics' )%>: <%= @topic.name -%>
     </h2>
     <% @topic.stories.each do |story| %>
-    <div class='headline'>
-      <%= render_story_preview( story ) %>
-    </div>
+      <div class='story'>
+        <% if story.cluster && story.cluster.stories.any? %>
+          <%= render_cluster_preview( story.cluster, story ) %>
+        <% else %>
+          <%= render_story_search_preview( story ) %>
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>

@@ -74,6 +74,12 @@ de:
     previous: "zurück"
     next: "vorwärts"
   search:
+    results:
+      per_page: "Zeigen Sie {{count}} Ergebnisse pro Seite"
+    page:
+      title: "Suchergebnisse für: {{query}}"
+    topic:
+      add: "Machen Meine Thema"
     simple: "Suche Nachrichten"
     advance: "Erweiterte Suche"
   seo:

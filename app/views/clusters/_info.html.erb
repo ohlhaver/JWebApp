@@ -1,0 +1,10 @@
+<%= link_to( t( 'cluster.all.headlines', :count => cluster.story_count ), cluster_path( cluster ) ) %>
+<% if cluster.video_count > 0 %>
+  - <%= link_to( t( 'cluster.all.videos', :count => cluster.video_count ), cluster_path( :id => cluster, :video => '1' ) ) %>
+<% end %>
+<% if cluster.blog_count > 0 %>
+  - <%= link_to( t( 'cluster.all.blogs', :count => cluster.blog_count ), cluster_path( :id => cluster, :blog => '1' ) ) %>
+<% end %>
+<% if cluster.opinion_count > 0 %>
+  - <%= link_to( t( 'cluster.all.opinions', :count => cluster.opinion_count ), cluster_path( :id => cluster, :opinion => '1' ) ) %>
+<% end %>

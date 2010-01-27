@@ -1,0 +1,8 @@
+<div class='headline'><%= render_story_preview( story ) %></div>
+<% if story.cluster -%>
+<ul>
+  <li class='info fs80'> 
+    <%= render_cluster_info( story.cluster ) %>
+  </li>
+</ul>
+<% end -%>

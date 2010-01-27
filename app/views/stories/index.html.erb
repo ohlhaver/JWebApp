@@ -1,2 +1,18 @@
-<h1>Stories#index</h1>
-<p>Find me in app/views/stories/index.html.erb</p>
+<div class='news_group'>
+  <div class='news_block'>
+    <h2>
+      <span><%= t('search.page.title', :query => "<em>'#{params[:q]}'</em>" ) -%></span>
+      <span class='right'><%= link_to t('search.topic.add'), '#' %></span>
+    </h2>
+    <% @stories.each do |story| %>
+      <div class='story'>
+        <% if story.cluster && story.cluster.stories.any? %>
+          <%= render_cluster_preview( story.cluster, story ) %>
+        <% else %>
+          <%= render_story_search_preview( story ) %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= render_pagination( @stories ) %>
