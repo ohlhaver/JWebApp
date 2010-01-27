@@ -7,6 +7,10 @@ RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
+  
+  gem( "japi", :version => '>=1.2.0' )
+  require 'JAPI'
+  JAPI.rails_init( RAILS_ENV, RAILS_ROOT, :info, '/config/japi.yml' )
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
@@ -16,8 +20,8 @@ Rails::Initializer.run do |config|
 
   # Specify gems that this application depends on and have them installed with rake gems:install
   # config.gem "bj"
-  config.gem "japi", :version => '>=1.2.0', :lib => 'JAPI'
-  JAPI.rails_init( RAILS_ENV, RAILS_ROOT, config.log_level || :info, '/config/japi.yml' )
+  
+  
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
