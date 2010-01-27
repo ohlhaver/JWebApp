@@ -10,7 +10,15 @@ Rails::Initializer.run do |config|
   
   gem( "japi", :version => '>=1.2.0' )
   require 'JAPI'
-  JAPI.rails_init( RAILS_ENV, RAILS_ROOT, 0, '/config/japi.yml' )
+  
+  if defined?(PhusionPassenger)
+    PhusionPassenger.on_event(:starting_worker_process) do |forked|
+      JAPI.rails_init( RAILS_ENV, RAILS_ROOT, 0, '/config/japi.yml' )
+    end
+  else
+    JAPI.rails_init( RAILS_ENV, RAILS_ROOT, 0, '/config/japi.yml' )
+  end
+  
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
   # -- all .rb files in that directory are automatically loaded.
