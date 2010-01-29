@@ -458,6 +458,11 @@ div#top_navigation {
 .news_block div {
   padding-bottom: 10px;
 }
+.news_block h2 .links a {
+  color: blue;
+  text-decoration: underline;
+  font-size: 80%;
+}
 .headline .title {
   display:block;
   font-size: 120%;
@@ -480,4 +485,7 @@ div#top_navigation {
 }
 .pagination{
   padding-bottom: 10px;
+}
+#search_preference{
+ display: inline; 
 }

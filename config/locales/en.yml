@@ -76,6 +76,17 @@ en:
   pagination:
     previous: "prev"
     next: "next"
+  prefs:
+    sort:
+      relevance: "By Relevance"
+      time: "By Time"
+      cluster: 
+        relevance: "By Relevance Clustered"
+        time: "By Time Clustered"
+    subscription:
+      all: "All Articles"
+      free: "Only Free Articles"
+      no_login: "Only Login Free Articles"
   search:
     page:
       title: "Search Results For: {{query}}"

@@ -76,6 +76,17 @@ de:
   pagination:
     previous: "zurück"
     next: "vorwärts"
+  prefs:
+    sort:
+      relevance: "By Relevance"
+      time: "By Time"
+      cluster: 
+        relevance: "By Relevance Clustered"
+        time: "By Time Clustered"
+    subscription:
+      all: "All"
+      free: "Free"
+      no_login: "Login Free"
   search:
     results:
       per_page: "Zeigen Sie {{count}} Ergebnisse pro Seite"

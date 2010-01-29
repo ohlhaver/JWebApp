@@ -3,7 +3,7 @@
 <% end %>
 <div id="search_bar" class="grid_8 suffix_4">
   <% form_tag( stories_path, :id => 'search_form', :method => :get ) do -%>
-    <input type="text" title="Search News" autocomplete="off" tabindex="1" value="" name="q" maxlength="2048" size="30" class="searchField" value="<%= params[:q] -%>" />
+    <input type="text" title="Search News" autocomplete="off" tabindex="1" name="q" maxlength="2048" size="30" class="searchField" value="<%= params[:q] -%>" />
     <input type="submit" value="<%= t( 'search.simple' ) -%>" tabindex="2"/>
     <div class='search-box-links'>
       <%= link_to( t( 'search.advance' ) ) %>
