@@ -3,6 +3,7 @@
     <h2>
       <%= t("cluster.all.stories") -%>
       (<%= links_to_keywords( *(@cluster.top_keywords) ).join(' - ') %>)
+      <%= render_filter_links( @cluster, cluster_path( @cluster ) ) -%>
     </h2>
     <% @cluster.stories.each do |story| %>
     <div class='story'>

@@ -36,9 +36,12 @@ de:
         other: 'vor {{count}} Jahren'
   cluster:
     all:
+      blogs: "{{count}} Kommentar"
       headlines: "Alle {{count}} Artikel"
-      videos: "{{count}} Video"
+      opinions: "{{count}} Meinungen"
       stories: "Ähnliche Artikel"
+      videos: "{{count}} Video"
+      label: "Alle"
   edition:
     other: "Andere Nachrichtenausgaben"
   navigation:

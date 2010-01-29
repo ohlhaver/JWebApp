@@ -36,9 +36,12 @@ en:
         other: '{{count}} years ago'
   cluster:
     all:
+      blogs: "{{count}} Blog"
       headlines: "All {{count}} headlines"
-      videos: "{{count}} Video"
+      opinions: "{{count}} Opinion"
       stories: "Related Stories"
+      videos: "{{count}} Video"
+      label: "All"
   edition:
     other: "Other News Edition"
   navigation:

@@ -9,8 +9,13 @@ class ApplicationController < ActionController::Base
   
   include JAPI::Connect
   
+  before_filter :set_filter_var
   layout 'default'
   
   #after_filter :log_session_info
+  protected
   
+  def set_filter_var
+    @filter = ( params.keys.select{ |x| ['blog', 'video', 'opinion' ].include?( x ) }.first || 'all' ).to_sym
+  end
 end

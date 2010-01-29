@@ -2,6 +2,7 @@
   <div class='news_block'>
     <h2>
       <span><%= t('search.page.title', :query => "<em>'#{params[:q]}'</em>" ) -%></span>
+      <%= render_filter_links( @stories.facets, stories_path( :q => params[:q] ) ) %>
       <span class='right'><%= link_to t('search.topic.add'), '#' %></span>
     </h2>
     <% @stories.each do |story| %>

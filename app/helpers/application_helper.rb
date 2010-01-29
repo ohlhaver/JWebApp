@@ -27,7 +27,7 @@ module ApplicationHelper
   end
   
   def link_to_page( title, page )
-    page_url = controller.request.url.gsub(/(\?|\&)page\=\d+&?/, "")
+    page_url = controller.request.url.gsub(/(\?|\&)page\=\d+&?/){ $1 }
     page_url << "?" unless page_url.match(/\?/)
     page_url << "&" unless page_url.match(/(\?|\&)$/)
     page ? link_to( title, "#{page_url}page=#{page}&") : title
@@ -35,6 +35,20 @@ module ApplicationHelper
   
   def links_to_keywords( *keywords )
     keywords.collect{ |keyword| link_to( keyword, stories_path( :q => keyword ) ) }
+  end
+  
+  def render_filter_links( facets, base_url )
+    render :partial => 'shared/filters', :locals => { :facets => facets, :base_url => base_url }
+  end
+  
+  def render_filter_link( filter, name, url, count )
+    return unless count > 0
+    if @filter == filter
+      content_tag( :span, t( name, :count => count ) )
+    else
+      url = url + "&#{filter}=1" unless filter == :all
+      link_to( t( name, :count => count ), url )
+    end
   end
   
   def per_page
