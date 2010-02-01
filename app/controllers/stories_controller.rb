@@ -10,5 +10,5 @@ class StoriesController < ApplicationController
     params_options[:subscription_type] = subscription_type
     @stories = JAPI::Story.find( :all, :params => params_options )
   end
-
+  
 end

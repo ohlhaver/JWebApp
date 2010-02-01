@@ -4,7 +4,7 @@
   <span class='source fs80'><%= link_to( story.source.name, source_path( story.source ) ) %></span>
   <span class='separator'>-</span>
 <% end %>
-<% if story.authors.any? %>
+<% if story.authors.any? && !hide_authors %>
   <% story.authors.each do |author| %>
     <span class='author fs80'><%= link_to( author.name, author_path( author ) ) -%></span>
     <span class='separator'>-</span>

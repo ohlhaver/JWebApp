@@ -34,6 +34,9 @@ de:
       over_x_years:
         one: 'mehr als 1 Jahr'
         other: 'vor {{count}} Jahren'
+  author:
+    not:
+      found: "Autor nicht gefunden"
   cluster:
     all:
       blogs: "{{count}} Kommentar"
@@ -42,6 +45,8 @@ de:
       stories: "Ähnliche Artikel"
       videos: "{{count}} Video"
       label: "Alle"
+    not:
+      found: "Haufen nicht gefunden"
   edition:
     other: "Andere Nachrichtenausgaben"
   navigation:
@@ -77,6 +82,15 @@ de:
     previous: "zurück"
     next: "vorwärts"
   prefs:
+    category:
+      politics: 'Politik'
+      business: 'Wirtschaft'
+      culture: 'Feuilleton'
+      science: 'Wissen'
+      technology: 'Technik'
+      sport: 'Sport'
+      mixed: 'Vermischtes'
+      opinions: 'Meinungen'
     sort:
       relevance: "By Relevance"
       time: "By Time"
@@ -96,6 +110,12 @@ de:
       add: "Machen Meine Thema"
     simple: "Suche Nachrichten"
     advance: "Erweiterte Suche"
+  source:
+    not:
+      found: "Quelle nicht gefunden"
+  stories:
+    not:
+      found: "Artikel nicht gefunden"
   seo:
     page:
       default_title: "Jurnalo - die wichtigsten Nachrichten des Tages"

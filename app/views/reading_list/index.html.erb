@@ -1,11 +1,8 @@
 <div class='news_group'>
   <div class='news_block'>
     <h2>
-      <%= @source.name %>
+      <%= t( 'navigation.top.reading_list' ).capitalize %>
     </h2>
-    <h4>
-      <%= render_category_links( @categories, source_path( @source ) ) %>
-    </h4>
     <% @stories.each do |story| %>
       <div class='story'>
         <div class='headline'><%= render_story_preview( story ) %></div>

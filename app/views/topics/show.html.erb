@@ -13,7 +13,7 @@
       </div>
     <% end %>
     <% if @topic.stories.empty? %>
-      <em>No stories found.</em>
+      <em><%= t( 'stories.not.found' ) %></em>
     <% end %>
   </div>
 </div>

@@ -14,8 +14,10 @@ module ApplicationHelper
     render :partial => 'clusters/info', :locals => { :cluster => cluster }
   end
   
-  def render_story_preview( story )
-    render :partial => 'stories/preview', :locals => { :story => story }
+  def render_story_preview( story, options = nil )
+    ( options ||= {} ).reverse_merge( :without => [] )
+    options[:without] = Array( options[:without] )
+    render :partial => 'stories/preview', :locals => { :story => story, :hide_authors => options[:without].include?( :authors ) }
   end
   
   def render_story_search_preview( story )
@@ -45,13 +47,27 @@ module ApplicationHelper
     JAPI::PreferenceOption.send( "#{attribute}_options" ).collect{ |option| [ t(option.name), option.id ] }
   end
   
+  def render_category_links( categories, base_url )
+    render :partial => 'sources/categories', :locals => { :categories => categories, :base_url => base_url }
+  end
+  
+  def render_category_link( name, url, category_id )
+    if @category_id == category_id
+      content_tag( :span, t( name ) )
+    else
+      url = url + "?" unless url.match(/\?/)
+      url = url + "&ctid=#{category_id}" unless category_id == :all
+      link_to( t( name ), url )
+    end
+  end
+  
   def render_filter_links( facets, base_url )
     render :partial => 'shared/filters', :locals => { :facets => facets, :base_url => base_url }
   end
   
   def render_filter_link( filter, name, url, count )
     return unless count > 0
-    string = content_tag( :span, '-', :class => 'separator' )
+    string = ( filter == :all ) ? '' : content_tag( :span, '-', :class => 'separator' )
     if @filter == filter
       string << content_tag( :span, t( name, :count => count ) )
     else

@@ -9,13 +9,17 @@ class ApplicationController < ActionController::Base
   
   include JAPI::Connect
   
-  before_filter :set_filter_var
+  before_filter :set_filter_var, :set_category_id_var
   layout 'default'
   
   helper_method :sort_criteria, :subscription_type
   
   #after_filter :log_session_info
   protected
+  
+  def set_category_id_var
+    @category_id = params[:ctid].to_i == 0 ? :all : params[:ctid].to_i
+  end
   
   def set_filter_var
     @filter = ( params.keys.select{ |x| ['blog', 'video', 'opinion' ].include?( x ) }.first || 'all' ).to_sym

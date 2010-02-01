@@ -1,13 +1,17 @@
 <div class='news_group'>
   <div class='news_block'>
     <h2>
-      <%= t("cluster.all.stories") -%>
-      <span class='links'>
-      (<%= links_to_keywords( *(@cluster.top_keywords) ).join(' - ') %>)
-      </span>
-      <span class='links'>
-      ( <%= render_filter_links( @cluster, cluster_path( @cluster ) ) -%> )
-      </span>
+      <% if @cluster.stories.empty? %>
+        <%= t('cluster.not.found') %>
+      <% else %>
+        <%= t("cluster.all.stories") -%>
+        <span class='links'>
+          (<%= links_to_keywords( *(@cluster.top_keywords) ).join(' - ') %>)
+        </span>
+        <span class='links'>
+          <%= render_filter_links( @cluster, cluster_path( @cluster ) ) -%>
+        </span>
+      <% end %>
     </h2>
     <% @cluster.stories.each do |story| %>
     <div class='story'>
@@ -15,6 +19,9 @@
       <%= render_story_preview( story ) %>
     </div>
     </div>
+    <% end %>
+    <% if @cluster.stories.empty? %>
+      <em><%= t( 'stories.not.found' ) %></em>
     <% end %>
   </div>
 </div>

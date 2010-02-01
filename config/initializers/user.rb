@@ -39,6 +39,12 @@ JAPI::Cluster.class_eval do
   
 end
 
+JAPI::PaginatedCollection.class_eval do
+  
+  attr_writer :pagination
+  
+end
+
 JAPI::PreferenceOption.class_eval do
   
   def language_options

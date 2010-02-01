@@ -34,6 +34,9 @@ en:
       over_x_years:
         one: 'over 1 year ago'
         other: '{{count}} years ago'
+  author:
+    not:
+      found: "Author not found"
   cluster:
     all:
       blogs: "{{count}} Blog"
@@ -42,6 +45,8 @@ en:
       stories: "Related Stories"
       videos: "{{count}} Video"
       label: "All"
+    not:
+      found: "Cluster not found"
   edition:
     other: "Other News Edition"
   navigation:
@@ -77,6 +82,15 @@ en:
     previous: "prev"
     next: "next"
   prefs:
+    category:
+      politics: 'Politics'
+      business: 'Business'
+      culture: 'Culture'
+      science: 'Science'
+      technology: 'Technology'
+      sport: 'Sport'
+      mixed: 'Mixed'
+      opinions: 'Opinions'
     sort:
       relevance: "By Relevance"
       time: "By Time"
@@ -96,6 +110,12 @@ en:
       add: "Add to My Topics"
     simple: "Search News"
     advance: "Advance Search"
+  source:
+    not:
+      found: "Source not found"
+  stories:
+    not:
+      found: "No stories found"
   seo:
     page:
       default_title: "Jurnalo - today's most important news"

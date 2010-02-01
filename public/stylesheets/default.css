@@ -441,6 +441,12 @@ div#top_navigation {
 
 /* Main Content
 ----------------------------------------------------------------------------------------------------*/
+h2 {
+  line-height: 2em;
+  margin-top: 10px ;
+  border-top:1pt solid black;
+  border-bottom:1pt solid black;
+}
 .news_block{
   padding-top: 10px;
 }
@@ -449,6 +455,10 @@ div#top_navigation {
   background-color: rgb(233,233,233);
   border-top:1pt solid black;
   border-bottom:1pt solid black;
+  margin-bottom: 10px;
+}
+.news_block h4 {
+  line-height: 1.5em;
   margin-bottom: 10px;
 }
 .news_block h2 a {
@@ -461,6 +471,10 @@ div#top_navigation {
 .news_block h2 .links a {
   color: blue;
   text-decoration: underline;
+  font-size: 80%;
+}
+.news_block h2 .links span {
+  color: blue;
   font-size: 80%;
 }
 .headline .title {
