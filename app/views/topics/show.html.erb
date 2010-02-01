@@ -12,6 +12,9 @@
         <% end %>
       </div>
     <% end %>
+    <% if @topic.stories.empty? %>
+      <em>No stories found.</em>
+    <% end %>
   </div>
 </div>
 <%= render_pagination( @topic ) %>

@@ -8,6 +8,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :stories
   map.resources :topics
   map.resources :authors
+  map.resources :sources
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end

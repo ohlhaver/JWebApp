@@ -1,7 +1,7 @@
 <span class='title'><%= link_to( story.title, story.url )%></span>
 <span class='separator first'>-</span>
 <% if story.source %>
-  <span class='source fs80'><%= story.source.name %></span>
+  <span class='source fs80'><%= link_to( story.source.name, source_path( story.source ) ) %></span>
   <span class='separator'>-</span>
 <% end %>
 <% if story.authors.any? %>
