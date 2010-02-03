@@ -2,6 +2,8 @@
   <div class='news_block'>
     <h2>
       <%= t('navigation.main.my_topics' )%>: <%= @topic.name -%>
+      <span class='links'><%= render_filter_links( @topic.facets, topic_path( @topic ) ) %></span>
+      <span class='links'><%= render_search_preference_form( :sort_criteria, :subscription_type  ) %></span>
     </h2>
     <% @topic.stories.each do |story| %>
       <div class='story'>

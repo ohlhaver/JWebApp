@@ -500,6 +500,9 @@ h2 {
 .pagination{
   padding-bottom: 10px;
 }
+.inline_form{
+  display: inline;
+}
 #search_preference{
  display: inline; 
 }

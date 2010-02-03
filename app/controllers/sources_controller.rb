@@ -4,11 +4,23 @@ class SourcesController < ApplicationController
   
   def show
     @source = JAPI::Source.find( params[:id] ) || JAPI::Source.new( :name => I18n.t( 'source.not.found' ) )
+    @source_preference = JAPI::SourcePreference.find( nil, :params => { :source_id => params[:id],  :user_id => current_user.id } ) unless current_user.new_record?
+    @source_preference ||= JAPI::SourcePreference.new( :source_id => params[:id], :preference => nil )
     @stories = JAPI::Story.find( :all, :params => { :source_id => params[:id], :category_id => ( @category_id == :all ? nil : @category_id ) }, :from => :sources )
     @categories = JAPI::PreferenceOption.find( :all, :params => { :preference_id => 'category_id' } )
-    unless current_user.new_record?
-      # get the source preference for the source
-    end
   end
-
+  
+  def rate
+    pref = ( JAPI::SourcePreference.find( nil, :params => { :source_id => params[:id],  :user_id => current_user.id } ) || 
+        JAPI::SourcePreference.new( :source_id => params[:id] ) )
+    pref.prefix_options = { :user_id => current_user.id }
+    pref.preference = ( Integer( params[:rating] ) rescue nil )
+    if pref.save
+      flash[:notice] = 'Success'
+    else
+      flash[:error] = 'Error'
+    end
+    redirect_to request.referer || { :action => :show, :id => params[:id] }
+  end
+  
 end

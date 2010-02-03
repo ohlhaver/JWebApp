@@ -2,8 +2,13 @@
   <div class='news_block'>
     <h2>
       <%= @author.name %>
+      <span class='links'>
+        <%= render_author_subscription( @author_preference, @author ) %>
+      </span>
+      <span class='links'>
+        <%= render_author_rating_form( @author_preference, @author ) %>
+      </span>
     </h2>
-    <% # render_category_navigation( source_path( @source ) ) %>
     <% @stories.each do |story| %>
       <div class='story'>
         <div class='headline'><%= render_story_preview( story, :without => [ :authors ] ) %></div>

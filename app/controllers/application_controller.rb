@@ -29,8 +29,16 @@ class ApplicationController < ActionController::Base
     Integer( params[:sc] || current_user.preference.sort_criteria || '1' ) rescue 1
   end
   
+  def sort_criteria=( value )
+    params[:sc] = value
+  end
+  
   def subscription_type
     Integer( params[:st] || current_user.preference.subscription_type || '0' ) rescue 0
+  end
+  
+  def subscription_type=( value )
+    params[:st] = value
   end
   
 end

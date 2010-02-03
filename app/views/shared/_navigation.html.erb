@@ -31,13 +31,6 @@
 </ul>
 <% end %>
 
-<% # Top Authors Block %>
-<% top_authors_block = capture( navigation_links[:top_authors] ) do |link| %>
-<ul class='nav_block'>
-  <li><%= link_to( link.name, link.to_url_hash ) %></li>
-</ul>
-<% end %>
-
 <% # My Authors Block %>
 <% my_authors_block = capture( navigation_links[:my_authors] ) do |link| %>
 <ul class='nav_block'>

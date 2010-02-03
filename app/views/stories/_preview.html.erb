@@ -11,3 +11,6 @@
   <% end %>
 <% end %>
 <span class='age fs80'><%= time_ago_in_words( story.created_at ) -%></span>
+<% if !hide_add_to_reading_list %>
+  <span class='fs80'><%= link_to( t('prefs.label.add_to_reading_list'), { :controller => '/reading_list', :action => :create, :id => story.id }, :method => :post ) %>
+<% end %>

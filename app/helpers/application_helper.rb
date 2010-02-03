@@ -17,7 +17,9 @@ module ApplicationHelper
   def render_story_preview( story, options = nil )
     ( options ||= {} ).reverse_merge( :without => [] )
     options[:without] = Array( options[:without] )
-    render :partial => 'stories/preview', :locals => { :story => story, :hide_authors => options[:without].include?( :authors ) }
+    render :partial => 'stories/preview', :locals => { :story => story, 
+      :hide_authors => options[:without].include?( :authors ),
+      :hide_add_to_reading_list => options[:without].include?( :add_to_reading_list ) }
   end
   
   def render_story_search_preview( story )
@@ -77,6 +79,43 @@ module ApplicationHelper
     return string
   end
   
+  def render_author_preview( author )
+    render :partial => 'authors/preview', :locals => { :author => author }
+  end
+  
+  def render_author_subscription( author_preference, author )
+    render :partial => 'authors/subscription', :locals => { :author => author, :author_preference => author_preference }
+  end
+  
+  def render_author_rating_form( author_preference, author )
+    render :partial => 'authors/rating_form', :locals => { :author => author, :author_preference => author_preference }
+  end
+  
+  def render_source_rating_form( source_preference, source )
+    render :partial => 'sources/rating_form', :locals => { :source => source, :source_preference => source_preference }
+  end
+  
+  def render_my_author_link( name, link_type, url )
+    if ( params[:list] == '1' && link_type == :authors ) || ( params[:list] != '1' && link_type == :stories )
+      content_tag( :span, t(name) )
+    else
+      link_to( t(name), url )
+    end
+  end
+  
+  def render_author_filter_links( base_url )
+    [ :all, :subscribed, :rated ].collect{ |x| render_author_filter_link( x, base_url ) }.join( " #{content_tag(:span, '-', :class => 'separation' ) } " )
+  end
+  
+  def render_author_filter_link( filter, url )
+    if @author_filter == filter
+      content_tag( :span, t( "author.filter.#{filter}" ) )
+    else
+      url = url + "&#{filter}=1" unless filter == :all
+      link_to( t( "author.filter.#{filter}" ), url )
+    end
+  end
+  
   def per_page
     Integer( params[:per_page] || ( current_user.per_page rescue 10 ) || 10 )
   end
@@ -91,7 +130,7 @@ module ApplicationHelper
   end
   
   def page_params( options = {} )
-    exclude = Array( options[:exclude] ) + ['controller', 'action', 'ticket', 'locale', 'edition']
+    exclude = Array( options[:exclude] ) + ['controller', 'action', 'ticket', 'locale', 'edition', 'id']
     params.keys.select{ |x| !exclude.include?( x ) }
   end
   

@@ -35,8 +35,22 @@ en:
         one: 'over 1 year ago'
         other: '{{count}} years ago'
   author:
+    action:
+      subscribe: 'subscribe'
+      unsubscribe: 'unsubscribe'
     not:
       found: "Author not found"
+    stories:
+      label: "Headlines"
+    list:
+      label: "List of Authors"
+    filter:
+      all: 'All'
+      subscribed: 'Subscribed'
+      rated: 'Rated'
+  authors:
+    not:
+      found: "No authors found"
   cluster:
     all:
       blogs: "{{count}} Blog"
@@ -82,6 +96,15 @@ en:
     previous: "prev"
     next: "next"
   prefs:
+    val:
+      nil: 'none'
+      ban: 'ban'
+      low: 'low'
+      medium: 'medium'
+      high: 'high'
+    label:
+      remove: 'Remove'
+      add_to_reading_list: 'Add to Reading List'
     category:
       politics: 'Politics'
       business: 'Business'

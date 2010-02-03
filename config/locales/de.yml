@@ -35,8 +35,22 @@ de:
         one: 'mehr als 1 Jahr'
         other: 'vor {{count}} Jahren'
   author:
+    action:
+      subscribe: 'abonnieren'
+      unsubscribe: 'abbestellen'
     not:
       found: "Autor nicht gefunden"
+    stories:
+      label: "Artikel"
+    list:
+      label: "Liste der Autoren"
+    filter:
+      all: 'Alle'
+      subscribed: 'Gezeichneten'
+      rated: 'Bewertet'
+  authors:
+    not:
+      found: "Nicht autoren found"
   cluster:
     all:
       blogs: "{{count}} Kommentar"
@@ -82,6 +96,15 @@ de:
     previous: "zurück"
     next: "vorwärts"
   prefs:
+    val:
+      nil: 'none'
+      ban: 'ban'
+      low: 'low'
+      medium: 'medium'
+      high: 'high'
+    label:
+      remove: 'Entfernen'
+      add_to_reading_list: 'zur Leseliste hinzufügen'
     category:
       politics: 'Politik'
       business: 'Wirtschaft'

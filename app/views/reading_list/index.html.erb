@@ -5,7 +5,9 @@
     </h2>
     <% @stories.each do |story| %>
       <div class='story'>
-        <div class='headline'><%= render_story_preview( story ) %></div>
+        <div class='headline'><%= render_story_preview( story, :without => [ :add_to_reading_list ] ) %>
+          <span class='fs80'><%= link_to( t('prefs.label.remove'), { :action => 'destroy', :id => story.id }, :method => :delete, :confirm => 'Are you sure?' ) -%></span>
+        </div>
       </div>
     <% end %>
     <% if @stories.empty? %>

@@ -7,8 +7,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :clusters
   map.resources :stories
   map.resources :topics
-  map.resources :authors
-  map.resources :sources
+  map.resources :authors, :member => [ :subscribe, :unsubscribe, :rate ]
+  map.resources :sources, :member => [ :rate ]
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end
