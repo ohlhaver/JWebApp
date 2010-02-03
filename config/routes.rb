@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'home', :action => 'index'
   map.resources :sections
   map.resources :clusters
-  map.resources :stories
+  map.resources :stories, :collection => [ :advanced, :search_results ]
   map.resources :topics
   map.resources :authors, :member => [ :subscribe, :unsubscribe, :rate ]
   map.resources :sources, :member => [ :rate ]

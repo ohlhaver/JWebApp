@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_filter_var, :set_category_id_var
   layout 'default'
   
-  helper_method :sort_criteria, :subscription_type
+  helper_method :sort_criteria, :subscription_type, :time_span, :video_pref, :blog_pref, :opinion_pref
   
   #after_filter :log_session_info
   protected
@@ -23,6 +23,22 @@ class ApplicationController < ActionController::Base
   
   def set_filter_var
     @filter = ( params.keys.select{ |x| ['blog', 'video', 'opinion' ].include?( x ) }.first || 'all' ).to_sym
+  end
+  
+  def time_span
+    Integer( params[:ts] || current_user.preference.default_timespan || JAPI::PreferenceOption.time_span_options.last.id ) rescue JAPI::PreferenceOption.time_span_options.last.id
+  end
+  
+  def video_pref
+    Integer( params[:vp] || current_user.preference.video || 2 ) rescue 2
+  end
+  
+  def opinion_pref
+    Integer( params[:op] || current_user.preference.opinion || 2 ) rescue 2
+  end
+  
+  def blog_pref
+    Integer( params[:bp] || current_user.preference.blog || 2 ) rescue 2
   end
   
   def sort_criteria

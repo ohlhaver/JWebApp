@@ -96,12 +96,20 @@ en:
     previous: "prev"
     next: "next"
   prefs:
+    country:
+      int: 'Global'
+      de: 'Germany'
+      at: 'Austria'
+      ch: 'Switzerland'
     val:
       nil: 'none'
+      none: 'none'
       ban: 'ban'
       low: 'low'
       medium: 'medium'
+      neutral: 'neutral'
       high: 'high'
+      only: 'only'
     label:
       remove: 'Remove'
       add_to_reading_list: 'Add to Reading List'
@@ -124,6 +132,11 @@ en:
       all: "All Articles"
       free: "Only Free Articles"
       no_login: "Only Login Free Articles"
+    time_span:
+      last_hour: 'Last Hour'
+      last_day: 'Last Day'
+      last_week: 'Last Week'
+      last_month: 'Last Month'
   search:
     page:
       title: "Search Results For: {{query}}"
@@ -150,3 +163,10 @@ en:
         reading_list: "Reading list - Jurnalo"
         search: "{{query}} - Jurnalo"
         videos: "Videos on {{query}} - Jurnalo"
+  topic:
+    label:
+      new: 'New Topic'
+    action:
+      add: 'Add Topic'
+      test: 'Test'
+      advance: 'Advance'

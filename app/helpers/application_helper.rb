@@ -30,6 +30,10 @@ module ApplicationHelper
     render( :partial => 'shared/pagination', :locals => { :pagination => collection.pagination } ) if collection.pagination.total_pages > 1
   end
   
+  def render_search_pagination( collection, options = {} )
+    render( :partial => 'stories/pagination', :locals => options.merge( :pagination => collection.pagination ) ) if collection.pagination.total_pages > 1
+  end
+  
   def link_to_page( title, page )
     page_url = controller.request.url.gsub(/(\?|\&)page\=\d+&?/){ $1 }
     page_url << "?" unless page_url.match(/\?/)
@@ -37,16 +41,23 @@ module ApplicationHelper
     page ? link_to( title, "#{page_url}page=#{page}&") : title
   end
   
+  def link_to_page_function( title, page )
+    page ? link_to_function( title, "pagination_page_click(#{page})" ) : title
+  end
+  
   def links_to_keywords( *keywords )
     keywords.collect{ |keyword| link_to( keyword, stories_path( :q => keyword ) ) }
   end
   
   def render_search_preference_form( *attributes )
-    render :partial => 'stories/preferences', :locals => { :attributes => attributes }
+    options = attributes.extract_options!
+    render :partial => 'stories/preferences', :locals => options.merge( :attributes => attributes )
   end
   
-  def preference_options( attribute )
-    JAPI::PreferenceOption.send( "#{attribute}_options" ).collect{ |option| [ t(option.name), option.id ] }
+  def preference_options( attribute, options = {} )
+    select_options = JAPI::PreferenceOption.send( "#{attribute}_options" ).collect{ |option| [ t(option.name), option.id ] }
+    select_options.unshift( [ '', nil ] ) if options[:include_blank]
+    select_options
   end
   
   def render_category_links( categories, base_url )
@@ -73,6 +84,7 @@ module ApplicationHelper
     if @filter == filter
       string << content_tag( :span, t( name, :count => count ) )
     else
+      url << "?" unless url.match(/\?/)
       url = url + "&#{filter}=1" unless filter == :all
       string << link_to( t( name, :count => count ), url )
     end

@@ -96,12 +96,20 @@ de:
     previous: "zurück"
     next: "vorwärts"
   prefs:
+    country:
+      int: 'Global'
+      de: 'Deutschland'
+      at: 'Österreich'
+      ch: 'Schweiz'
     val:
       nil: 'none'
+      none: 'none'
       ban: 'ban'
       low: 'low'
       medium: 'medium'
+      neutral: 'neutral'
       high: 'high'
+      only: 'only'
     label:
       remove: 'Entfernen'
       add_to_reading_list: 'zur Leseliste hinzufügen'
@@ -124,6 +132,11 @@ de:
       all: "All"
       free: "Free"
       no_login: "Login Free"
+    time_span:
+      last_hour: 'Last Hour'
+      last_day: 'Last Day'
+      last_week: 'Last Week'
+      last_month: 'Last Month'
   search:
     results:
       per_page: "Zeigen Sie {{count}} Ergebnisse pro Seite"
@@ -150,3 +163,10 @@ de:
         reading_list: "Leseliste - Jurnalo"
         search: "{{query}} - Jurnalo"
         videos: "Videos zu {{query}} - Jurnalo"
+  topic:
+    label:
+      new: 'Neues Thema'
+    action:
+      add: 'Thema hinzufügen'
+      test: 'Test'
+      advance: 'Erweiterte'

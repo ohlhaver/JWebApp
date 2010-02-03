@@ -2,7 +2,7 @@
   <%= observe_field( "sc", :function => "$('search_preference').submit();" ) %>
   <%= observe_field( "st", :function => "$('search_preference').submit();" ) %>
 <% end %>
-<% form_tag( base_url, :method => :get, :id => 'search_preference' ) do %>
+<% form_tag( form_url, :method => form_method, :id => 'search_preference' ) do %>
   <% page_params( :exclude => [ 'page', 'sc', 'st' ] ).each do | param | %>
     <%= hidden_field_tag( param, params[ param ] ) %>
   <% end %> &nbsp;

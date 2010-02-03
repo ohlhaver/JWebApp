@@ -21,6 +21,18 @@ class TopicsController < ApplicationController
   end
 
   def new
+    @topic = JAPI::TopicPreference.new
+  end
+  
+  def create
+    @topic = JAPI::TopicPreference.new( params[:japi_topic_preference] ).tap{ |t| t.prefix_options = { :user_id => current_user.id } }
+    if @topic.save
+      flash[:notice] = 'Success'
+      redirect_to topic_path( @topic )
+    else
+      flash[:error] = @topic.errors.full_messages.join('\n')
+      render :action => :new
+    end
   end
 
   def edit

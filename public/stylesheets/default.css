@@ -506,3 +506,7 @@ h2 {
 #search_preference{
  display: inline; 
 }
+legend {
+  font-weight:bold;
+  padding-bottom:10px;
+}

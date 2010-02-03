@@ -6,7 +6,7 @@
     <input type="text" title="Search News" autocomplete="off" tabindex="1" name="q" maxlength="2048" size="30" class="searchField" value="<%= params[:q] -%>" />
     <input type="submit" value="<%= t( 'search.simple' ) -%>" tabindex="2"/>
     <div class='search-box-links'>
-      <%= link_to( t( 'search.advance' ) ) %>
+      <%= link_to( t( 'search.advance' ), advanced_stories_path ) %>
     </div>
   <% end -%>
 </div>
