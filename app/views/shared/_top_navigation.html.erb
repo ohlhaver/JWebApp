@@ -5,11 +5,8 @@
     | <%= link_to( t( 'navigation.top.login' ), login_path ) -%>
   <% end %>
 <% end %>
-<div id="logo" class="grid_3">
-  <%= link_to( image_tag( '/images/logo.gif' ), root_path ) %>
-</div>
-<div id="top_navigation" class="grid_13 ta_right">
+
+
   <%= link_to( t( 'navigation.top.reading_list' ), :controller => '/reading_list', :action => 'index' ) -%> |
   <%= link_to( t( 'navigation.top.settings' ), account_path ) -%>
   <%= yield :user_actions -%>
-</div>

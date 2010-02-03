@@ -8,23 +8,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="verify-v1" content="uktXEFRkC4oLS3pjPi7ZkolIVksbOF8D7PRiyCDs+fM=" />
-    <%= stylesheet_link_tag 'default' %>
+    <%= stylesheet_link_tag 'simple' %>
   </head>
   <body>
-    <div id="header" class="container_16 clearfix">
-      <%= render :partial => 'shared/header' %>
+	
+<div id= "logo">
+	  <%= link_to( image_tag( 'logo.gif'), root_path ) %>
+</div>
+
+	<div id="search_bar">
+	  <% form_tag( stories_path, :id => 'search_form', :method => :get ) do -%>
+	    <input type="text" title="Search News" autocomplete="off" tabindex="1" name="q" id = 'searchfield' class ="text"  value="<%= params[:q] -%>" />
+	    <input type="submit" value="<%= t( 'search.simple' ) -%>" tabindex="2" id = 'searchbutton' class ="button"/>
+	    <div class='search-box-links'>
+	      <%= link_to( t( 'search.advance' ), advanced_stories_path ) %>
+	    </div>
+	  <% end -%>
+	</div>
+	
+    <div id="top_navigation" class="container_16 clearfix">
+      <%= render :partial => 'shared/top_navigation' %>
     </div>
-    <div id="search" class="container_16 clearfix">
-      <%= render :partial => 'shared/search' %>
+
+<div id='home_link'>
+ <%= link_to 'Home', root_path %> &nbsp;
+</div>
+
+    <div id="edition">
+      <%= render :partial => 'shared/edition' %>
     </div>
+
+    <div id="#navigation" class="grid_4 ">
+      <%= render :partial => 'shared/navigation' %>
+    </div>
+
     <div id="content" class="container_16 clearfix">
       <div id="#main" class="grid_12 ">
         <%= yield %>
         <div>&nbsp;</div>
       </div>
-      <div id="#navigation" class="grid_4 ">
-        <%= render :partial => 'shared/navigation' %>
-      </div>
+
     </div>
     <div id="footer" class="container_16 clearfix">
       <%= render :partial => 'shared/footer' %>
