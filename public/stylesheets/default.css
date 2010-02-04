@@ -510,3 +510,29 @@ legend {
   font-weight:bold;
   padding-bottom:10px;
 }
+#errorExplanation {
+  border: 1px solid red;
+  background-color: #f0f0f0;
+  margin-bottom: 10px;
+}
+
+#errorExplanation h2 {
+  border:none;
+  padding:none;
+  text-align: left;
+  font-weight: bold;
+  font-size: 12px;
+  background-color: #c00;
+  color: #fff;
+  margin-top:-1px;
+  margin-bottom:0px;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+}
+
+#errorExplanation ul li {
+  font-size: 10px;
+}

@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
   end
   
   def time_span
-    Integer( params[:ts] || current_user.preference.default_timespan || JAPI::PreferenceOption.time_span_options.last.id ) rescue JAPI::PreferenceOption.time_span_options.last.id
+    Integer( params[:ts] || current_user.preference.default_time_span || JAPI::PreferenceOption.time_span_options.last.id ) rescue JAPI::PreferenceOption.time_span_options.last.id
   end
   
   def video_pref

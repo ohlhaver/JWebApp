@@ -21,7 +21,15 @@ class TopicsController < ApplicationController
   end
 
   def new
-    @topic = JAPI::TopicPreference.new
+    @topic = JAPI::TopicPreference.new( params[:japi_topic_preference] || {} )
+    if params[:advance] == '1'
+      @topic.sort_criteria ||= sort_criteria
+      @topic.blog ||= blog_pref
+      @topic.video ||= video_pref
+      @topic.opinion ||= opinion_pref
+      @topic.time_span ||= time_span
+      @topic.subscription_type ||= subscription_type
+    end
   end
   
   def create

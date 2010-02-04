@@ -4,11 +4,10 @@
 <div class='news_group'>
   <div class='news_block'>
     <h2><%= t('topic.label.new') %></h2>
-    <% form_for( @topic, :url => topics_path, :html => { :id => 'simple_topic_form' }, :method => :post ) do |f| %>
-      <%= f.text_field( :search_any ) %> <%= submit_tag( t('topic.action.add') ) %><br/>
-      <br/>
-      <%= link_to_function( t('topic.action.advance'), "advance_topic( 'simple_topic_form' )" ) %> | 
-      <%= link_to_function( t('topic.action.test'), "test_topic( 'simple_topic_form' )"  ) %>
+    <% if params[:advance] == '1' %>
+      <%= render :partial => 'advance_form' %>
+    <% else %>
+      <%= render :partial => 'simple_form' %>
     <% end %>
   </div>
 </div>

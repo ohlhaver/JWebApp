@@ -18,8 +18,12 @@ class StoriesController < ApplicationController
   
   def search_results
     @advanced = true
-    @query =  [ params[:q], params[:qa], params[:qe], params[:qn] ].join(' ')
+    if params[:japi_topic_preference]
+      @topic_params = params.delete( :japi_topic_preference )
+      params.merge!( @topic_params )
+    end
     JAPI::TopicPreference.normalize!( params )
+    @query =  [ params[:q], params[:qa], params[:qe], params[:qn] ].select{ |x| !x.blank? }.join(' ')
     params_options = JAPI::TopicPreference.extract( params )
     params_options[:sort_criteria] = sort_criteria
     params_options[:subscription_type] = subscription_type

@@ -1,0 +1,20 @@
+<% form_for( @topic, :url => topics_path, :html => { :id => 'simple_topic_form' }, :method => :post ) do |f| %>
+  <%= f.error_messages %>
+  <fieldset>
+    <% if @topic.errors.any? %>
+    <div>
+      <span class='grid_5'>Name</span>
+      <span><%= f.text_field(:name) %></span>
+    </div>
+    <% end %>
+    <div>
+      <span class='grid_5'>Query</span>
+      <span><%= f.text_field( :search_any ) %></span>
+    </div>
+  </fieldset>
+  <%= submit_tag( t('topic.action.add') ) %><br/>
+  <%= hidden_field_tag( :advance, nil, :id => 'advance_topic_field' ) %>
+  <br/>
+  <%= link_to_function( t('topic.action.advance'), "advance_topic( 'simple_topic_form' )" ) %> | 
+  <%= link_to_function( t('topic.action.test'), "test_topic( 'simple_topic_form' )"  ) %>
+<% end %>

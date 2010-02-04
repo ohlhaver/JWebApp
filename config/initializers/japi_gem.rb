@@ -8,6 +8,39 @@ JAPI::Model::Base.class_eval do
     end
   end
   
+  protected
+  
+  def update
+    prefix_options.symbolize_keys!
+    result = client.api_call( self.class.element_update_path, { self.class.element_name.to_sym => self.to_hash, :id => self.to_param }.reverse_merge( prefix_options ) )
+    populate_errors( result )
+    !result[:error]
+  end
+  
+  def create
+    prefix_options.symbolize_keys!
+    result = client.api_call( self.class.element_create_path, { self.class.element_name.to_sym => self.to_hash }.reverse_merge( prefix_options ) )
+    populate_errors( result )
+    attributes[:id] = result[:data] unless result[:error]
+    !result[:error]
+  end
+  
+  def populate_errors( result )
+    if result[:error]
+      errs = Array( { 'attribute' => result[:data], 'type' => result[:message] } )
+      errs = Array( result[:data]['error'] || result[:data]['errors'] ) if result[:data].is_a?(Hash)
+      errs.each do |err| 
+        message = case( err['type'] ) when Symbol:
+          I18n.t( "activeresource.errors.models.attribute.#{err['type']}", :raise => true) rescue nil
+        when String:
+          I18n.t( err['type'], :raise => true) rescue nil
+        end
+        message ||= err['message'] || err['type']
+        errors.add( err['attribute'], message )
+      end
+    end
+  end
+  
 end
 
 JAPI::PreferenceOption.class_eval do

@@ -1,9 +1,11 @@
+<% form_url = topic_path( @topic ) %>
+<% form_method = :get %>
 <div class='news_group'>
   <div class='news_block'>
     <h2>
       <%= t('navigation.main.my_topics' )%>: <%= @topic.name -%>
-      <span class='links'><%= render_filter_links( @topic.facets, topic_path( @topic ) ) %></span>
-      <span class='links'><%= render_search_preference_form( :sort_criteria, :subscription_type  ) %></span>
+      <span class='links'><%= render_filter_links( @topic.facets, form_url, form_method ) %></span>
+      <span class='links'><%= render_search_preference_form( :sort_criteria, :subscription_type, :form_url => form_url, :form_method => form_method  ) %></span>
     </h2>
     <% @topic.stories.each do |story| %>
       <div class='story'>

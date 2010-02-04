@@ -9,7 +9,7 @@
     }
   </script>
 <% end %>
-<% form_tag form_url, :method => form_method, :id => 'filter_form' do %>
+<% form_tag form_url, :method => form_method, :id => 'filter_form', :class => 'inline_form' do %>
     <%= page_params( :exclude => [ 'page', 'blog', 'video', 'opinion' ] ).collect{ |param| hidden_field_tag( param, params[param] ) }.join('') %>
     <%= hidden_field_tag( :blog, nil, :id => 'filter_form_field_blog' ) %>
     <%= hidden_field_tag( :video, nil, :id => 'filter_form_field_video' ) %>

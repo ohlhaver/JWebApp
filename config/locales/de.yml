@@ -1,4 +1,35 @@
 de:
+  activerecord:
+    errors:
+      template:
+        header: "Oops! Das hat nicht ganz geklappt!"
+        body: "Bitte überprüfe die folgenden Felder:"
+  activeresource:
+    errors:
+      models:
+        attribute:
+          required: "muss gegeben sein"
+          blank: "muss gegeben sein"
+          accepted: "muss akzeptiert werden"
+          confirmation: "stimmt nicht mit der Bestätigung überein"
+          empty: "muss gegeben sein"
+          equal_to: "muss gleich sein mit {{count}}"
+          even: "muss gerade sein"
+          exclusion: "ist nicht verfügbar"
+          greater_than: "muss größer sein als {{count}}"
+          greater_than_or_equal_to: "muss größer sein als oder gleich sein mith {{count}}"
+          inclusion: "ist nicht Bestandteil der Liste"
+          invalid: "ist ungültig"
+          invalid_login: "ist leider nicht gültig. Bitte verwende nur Buchstaben, Zahlen und Unterstrich für Deinen Usernamen. Sorry!"
+          invalid_url: "ungültige URL; bitte im Format http://www.website.de eingeben"
+          less_than: "muss kleiner sein als {{count}}"
+          less_than_or_equal_to: "muss kleiner sein als oder gleich sein mit {{count}}"
+          not_a_number: "ist keine Zahl"
+          odd: "muss ungerade sein"
+          taken: "ist nicht verfügbar"
+          too_long: "ist zu lang (nicht mehr als {{count}} Zeichen)"
+          too_short: "ist zu kurz (nicht weniger als {{count}} Zeichen)"
+          wrong_length: "hat nicht die richtige Länge (muss {{count}} Zeichen haben)"          
   datetime:
     distance_in_words:
       half_a_minute: 'vor eine halbe Minute'
@@ -170,3 +201,4 @@ de:
       add: 'Thema hinzufügen'
       test: 'Test'
       advance: 'Erweiterte'
+      simple: 'Einfältig'
