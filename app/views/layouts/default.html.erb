@@ -8,51 +8,63 @@
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="verify-v1" content="uktXEFRkC4oLS3pjPi7ZkolIVksbOF8D7PRiyCDs+fM=" />
-    <%= stylesheet_link_tag 'simple' %>
+	<%= stylesheet_link_tag 'reset' %>    
+	<%= stylesheet_link_tag 'grid' %>
+	<%= stylesheet_link_tag 'simple' %>
   </head>
-  <body>
-	
-<div id= "logo">
-	  <%= link_to( image_tag( 'logo.gif'), root_path ) %>
-</div>
+	<body>
 
-	<div id="search_bar">
-	  <% form_tag( stories_path, :id => 'search_form', :method => :get ) do -%>
+		<div class="container_6">
+
+	
+			<div id= "top_frame" class = "grid_4">
+
+	<%= link_to( image_tag( 'logo.gif'), root_path ) %>
+
+
+
+	  <% form_tag( stories_path, :id => 'search_form', :method => :get, :class => 'inline_form' ) do -%>
 	    <input type="text" title="Search News" autocomplete="off" tabindex="1" name="q" id = 'searchfield' class ="text"  value="<%= params[:q] -%>" />
 	    <input type="submit" value="<%= t( 'search.simple' ) -%>" tabindex="2" id = 'searchbutton' class ="button"/>
-	    <div class='search-box-links'>
+	    <div class='search-box-link'>
 	      <%= link_to( t( 'search.advance' ), advanced_stories_path ) %>
 	    </div>
 	  <% end -%>
-	</div>
+
+</div>
 	
-    <div id="top_navigation" class="container_16 clearfix">
+    		<div id="top_navigation" class="grid_1">
       <%= render :partial => 'shared/top_navigation' %>
     </div>
 
-<div id='home_link'>
- <%= link_to 'Home', root_path %> &nbsp;
-</div>
-
-    <div id="edition">
+    		<div id="edition" class="grid_1">
       <%= render :partial => 'shared/edition' %>
     </div>
 
-    <div id="#navigation" class="grid_4 ">
-      <%= render :partial => 'shared/navigation' %>
-    </div>
+			<div id="content" class="grid_4">
+		  <%= yield %>
+	      <div>&nbsp;</div>
 
-    <div id="content" class="container_16 clearfix">
-      <div id="#main" class="grid_12 ">
-        <%= yield %>
-        <div>&nbsp;</div>
-      </div>
+	</div>
+	
+			<div id="module" class="grid_2"></div>
 
-    </div>
-    <div id="footer" class="container_16 clearfix">
+			<div id='home_link' class= "grid_2">
+	 <%= link_to 'Home', root_path %> &nbsp;
+	</div>
+		
+			<div id="navigation" class="grid_2 ">
+	      <%= render :partial => 'shared/navigation' %>
+	    </div>
+
+    		<div id="footer" class = "grid_6">
       <%= render :partial => 'shared/footer' %>
     </div>
-    <%= javascript_include_tag 'prototype' %>
-    <%= yield :custom_javascript %>
-  </body>
+   
+
+ 	<%= javascript_include_tag 'prototype' %>
+    	<%= yield :custom_javascript %>
+  		</div>
+
+	</body>
 </html>

@@ -1,43 +1,52 @@
+a:link {
+	text-decoration: none;
+	color: #333333;
+}
+
+a:visited {
+	text-decoration: none;
+	color: #333333;
+}
+
+a:hover {
+	text-decoration: none;
+	color:  #0000b6;
+}
+
+
+
 img {
 	border:none;
 }
 
-body {
-	margin-left: auto;
-	margin-right: auto;
-	padding-left: 20px;
-	padding-right: 20px;
-	width: 980px;
+.inline_form { 
+ display:inline;
 }
 
-#logo {
-
+#top_frame {
+	margin-top: 8px;
 }
 
-#search_bar {
-	padding-left:107px;
-	margin-top: -39px;
-	}
+
 #searchfield {
+	margin-left :12px;
+	margin-top : -20px;
 	font-family: Georgia;
-	font-size: 19px;
-	line-height: 27px;
-	height: 27px;
+
+	height: 34px;
 	color: #333333;
-	width: 264px;
+	width: 270px;
 	border: 1px solid #999999;
 
 	vertical-align: middle;
-	padding-left: 6px;
-	padding-top:6px;
+	
 
-}
-.search-box-links a:link {
-	text-decoration: none;
+
 }
 
 #searchbutton {
 margin-left: 2px;
+margin-top : -20px;
 font-family: Georgia;
 font-weight: normal;
 text-decoration:none;
@@ -53,12 +62,227 @@ width: 163;
 border: 0px;
 }
 
-.search-box-links {
+.search-box-link {
+	margin-top: 5px;
+	margin-left: 106px;
 	font-family: arial;
 	font-size: 13px;
 	line-height: 21px;
 	text-decoration:none;
 }
+
+#top_navigation {
+margin-top: 8px;
+font-size: 13px;
+line-height: 21px;
+font-family: arial;
+}
+
+#edition {
+	margin-top: 5px;
+	font-size: 13px;
+	line-height: 21px;
+	font-family: arial;
+	color: #0000b6;
+}
+
+#module {
+	border-top: 5px solid #99CCFF;
+	padding-top: 7px;
+
+	margin-top: 55px;
+}
+
+#content {
+
+
+	margin-top: 55px;
+}
+
+
+#navigation_module {
+	border-top: 1px solid #CCCCCC;
+margin-top: 15px;
+margin-bottom: 3px;
+}
+
+#navigation {
+	font-size: 14px;
+	line-height: 21px;
+	font-family: arial;
+}
+
+#home_link {
+	font-size: 14px;
+	line-height: 21px;
+	font-family: arial;
+}
+
+
+
+#main_area {
+	margin-top: 100px;
+	
+}
+
+.nav_block {
+	border-top: 1px solid #CCCCCC;
+	margin-top: 15px;	
+}
+
+#footer {
+	font-size: 13px;
+	line-height: 21px;
+	font-family: arial;	
+}
+
+.grey {
+	color: #999999;
+}
+
+.grey a:link {
+	text-decoration: none;
+	color: #999999;
+}
+.grey a:visited {
+	text-decoration: none;
+	color: #999999;
+}
+.grey a:hover {
+	text-decoration: none;
+	color: #0000b6;
+}
+
+.news_group {
+
+
+	
+}
+
+.news_block {
+	border-top: 5px solid #99CCFF;
+		
+
+	
+}
+
+.news_block h2 {
+  	font-family: georgia;
+ 	font-weight: normal;
+  	text-decoration: none;
+  	font-size: 16px;
+	line-height: 19px;
+}
+
+.news_block h2 a:visited {
+  	font-family: georgia;
+ 	font-weight: normal;
+  	text-decoration: none;
+  	font-size: 16px;
+	line-height: 19px;
+}
+
+.news_block h2 a:link {
+  	font-family: georgia;
+ 	font-weight: normal;
+  	text-decoration: none;
+  	font-size: 16px;
+	line-height: 19px;
+}
+
+.cluster {
+	margin-top: 20px;
+	margin-bottom: 20px;	
+}
+
+.headline .title {
+	font-family: georgia;
+ 	font-weight: normal;
+  	text-decoration: none;
+  	font-size: 24px;
+	line-height: 32px;
+}
+
+.age {
+	font-family: georgia;
+ 	font-weight: normal;
+  	text-decoration: none;
+  	font-size: 16px;
+	line-height: 20px;
+	color: #999999;
+}
+
+.source a:visited {
+	font-family: georgia;
+ 	font-weight: normal;
+  	text-decoration: none;
+  	font-size: 16px;
+	line-height: 20px;
+	color: #999999;	
+}
+
+.source a:link {
+	font-family: georgia;
+ 	font-weight: normal;
+  	text-decoration: none;
+  	font-size: 16px;
+	line-height: 20px;
+	color: #999999;	
+}
+
+.source a:visited {
+	font-family: georgia;
+ 	font-weight: normal;
+  	text-decoration: none;
+  	font-size: 16px;
+	line-height: 20px;
+	color: #999999;	
+}
+
+.source a:hover {
+	color: #0000b6;
+}
+
+.author a:visited {
+	font-family: georgia;
+ 	font-weight: normal;
+  	text-decoration: none;
+  	font-size: 16px;
+	line-height: 20px;
+	color: #999999;	
+}
+
+.author a:link {
+	font-family: georgia;
+ 	font-weight: normal;
+  	text-decoration: none;
+  	font-size: 16px;
+	line-height: 20px;
+	color: #999999;	
+}
+
+.author a:hover {
+	color: #0000b6;
+}
+
+.story {
+	margin-top: 6px;
+	font-size: 16px;
+	line-height: 20px;
+}
+
+.info {
+	margin-top: 6px;
+	font-size: 16px;
+	line-height: 20px;
+}
+
+.keywords {
+	margin-top: 6px;
+	font-size: 16px;
+	line-height: 20px;
+}
+
 
 
 

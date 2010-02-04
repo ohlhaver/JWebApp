@@ -6,7 +6,7 @@
       <span class='links'><%= render_search_preference_form( :sort_criteria, :subscription_type  ) %></span>
     </h2>
     <% @topic.stories.each do |story| %>
-      <div class='story'>
+      <div class='cluster'>
         <% if story.cluster && story.cluster.stories.any? %>
           <%= render_cluster_preview( story.cluster, story ) %>
         <% else %>

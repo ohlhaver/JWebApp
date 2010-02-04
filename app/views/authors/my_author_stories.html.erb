@@ -7,8 +7,8 @@
     </h2>
     <% # render_category_navigation( source_path( @source ) ) %>
     <% @stories.each do |story| %>
-      <div class='story'>
-        <div class='headline'><%= render_story_preview( story ) %></div>
+      <div class='cluster'>
+        <div class='headline'><%= render_headline_preview( story ) %></div>
       </div>
     <% end %>
     <% if @stories.empty? %>

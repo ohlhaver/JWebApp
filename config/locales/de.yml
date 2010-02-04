@@ -46,11 +46,11 @@ de:
       label: "Liste der Autoren"
     filter:
       all: 'Alle'
-      subscribed: 'Gezeichneten'
-      rated: 'Bewertet'
+      subscribed: 'abonniert'
+      rated: 'bewertet'
   authors:
     not:
-      found: "Nicht autoren found"
+      found: "Autor nicht gefunden"
   cluster:
     all:
       blogs: "{{count}} Kommentar"
@@ -60,7 +60,7 @@ de:
       videos: "{{count}} Video"
       label: "Alle"
     not:
-      found: "Haufen nicht gefunden"
+      found: "Cluster nicht gefunden"
   edition:
     other: "Andere Nachrichtenausgaben"
   navigation:
@@ -102,17 +102,17 @@ de:
       at: 'Österreich'
       ch: 'Schweiz'
     val:
-      nil: 'none'
-      none: 'none'
-      ban: 'ban'
-      low: 'low'
-      medium: 'medium'
+      nil: 'keines'
+      none: 'keines'
+      ban: 'verbannen'
+      low: 'niedrig'
+      medium: 'mittel'
       neutral: 'neutral'
-      high: 'high'
-      only: 'only'
+      high: 'hoch'
+      only: 'nur'
     label:
       remove: 'Entfernen'
-      add_to_reading_list: 'zur Leseliste hinzufügen'
+      add_to_reading_list: ' '
     category:
       politics: 'Politik'
       business: 'Wirtschaft'
@@ -123,8 +123,8 @@ de:
       mixed: 'Vermischtes'
       opinions: 'Meinungen'
     sort:
-      relevance: "By Relevance"
-      time: "By Time"
+      relevance: "nach Relevanz"
+      time: "nach Zeit"
       cluster: 
         relevance: "By Relevance Clustered"
         time: "By Time Clustered"
