@@ -74,19 +74,17 @@ module ApplicationHelper
     end
   end
   
-  def render_filter_links( facets, base_url )
-    render :partial => 'shared/filters', :locals => { :facets => facets, :base_url => base_url }
+  def render_filter_links( facets, form_url, form_method )
+    render :partial => 'shared/filters', :locals => { :facets => facets, :form_url => form_url, :form_method => form_method }
   end
   
-  def render_filter_link( filter, name, url, count )
+  def render_filter_link( filter, name, count )
     return unless count > 0
     string = ( filter == :all ) ? '' : content_tag( :span, '-', :class => 'separator' )
     if @filter == filter
-      string << content_tag( :span, t( name, :count => count ) )
+      string << " " << content_tag( :span, t( name, :count => count ) )
     else
-      url << "?" unless url.match(/\?/)
-      url = url + "&#{filter}=1" unless filter == :all
-      string << link_to( t( name, :count => count ), url )
+      string << " " << link_to_function( t( name, :count => count ), "filter_click('#{filter}')")
     end
     return string
   end

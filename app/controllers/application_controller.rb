@@ -22,7 +22,10 @@ class ApplicationController < ActionController::Base
   end
   
   def set_filter_var
-    @filter = ( params.keys.select{ |x| ['blog', 'video', 'opinion' ].include?( x ) }.first || 'all' ).to_sym
+    @filter = :all
+    @filter = :blog if params[:blog] == '1'
+    @filter = :video if params[:video] == '1'
+    @filter = :opinion if params[:opinion] == '1'
   end
   
   def time_span

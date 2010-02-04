@@ -4,7 +4,7 @@
   <div class='news_block'>
     <h2>
       <span><%= t('search.page.title', :query => "<em>'#{ truncate( @query, 20 ) }'</em>" ) -%></span>
-      <span class='links'><%= render_filter_links( @stories.facets, stories_path( :q => params[:q] ) ) %></span>
+      <span class='links'><%= render_filter_links( @stories.facets, form_url, form_method ) %></span>
       <span class='links'><%= render_search_preference_form( :sort_criteria, :subscription_type, :form_url => form_url, :form_method => form_method ) %></span>
       <span class='links'><%= link_to t('search.topic.add'), '#' %></span>
     </h2>
