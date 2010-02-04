@@ -9,7 +9,7 @@
       <span class='links'><%= link_to t('search.topic.add'), '#' %></span>
     </h2>
     <% @stories.each do |story| %>
-      <div class='story'>
+      <div class='cluster'>
         <% if story.cluster && story.cluster.stories.any? %>
           <%= render_cluster_preview( story.cluster, story ) %>
         <% else %>

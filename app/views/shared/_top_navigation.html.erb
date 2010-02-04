@@ -1,0 +1,12 @@
+<% content_for :user_actions do -%>
+  <% if logged_in? -%>
+    <br> <%= link_to( t( 'navigation.top.logout', :name => current_user.name ), logout_path ) %>
+  <% else -%>
+    <br> <%= link_to( t( 'navigation.top.login' ), login_path ) -%>
+  <% end %>
+<% end %>
+
+
+  <%= link_to( t( 'navigation.top.reading_list' ), :controller => '/reading_list', :action => 'index' ) -%> <br>
+  <%= link_to( t( 'navigation.top.settings' ), account_path ) -%>
+  <%= yield :user_actions -%>

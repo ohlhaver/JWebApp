@@ -22,6 +22,14 @@ module ApplicationHelper
       :hide_add_to_reading_list => options[:without].include?( :add_to_reading_list ) }
   end
   
+  def render_headline_preview( story, options = nil )
+    ( options ||= {} ).reverse_merge( :without => [] )
+    options[:without] = Array( options[:without] )
+    render :partial => 'stories/headline_preview', :locals => { :story => story, 
+      :hide_authors => options[:without].include?( :authors ),
+      :hide_add_to_reading_list => options[:without].include?( :add_to_reading_list ) }
+  end
+  
   def render_story_search_preview( story )
     render :partial => 'stories/search_preview', :locals => { :story => story }
   end

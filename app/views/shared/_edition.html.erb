@@ -1,0 +1,9 @@
+<% content_for :custom_javascript do %>
+  <%= observe_field( "edition", :function => "$('change_edition').submit();" ) %>
+<% end %>
+
+
+  <% form_tag( root_path, :id => 'change_edition', :method => :get ) do -%>
+   
+    <%= select_tag( 'edition', options_for_select( edition_options, session[:edition] ), :title => t( 'edition.other' ) ) %>
+  <% end -%>
