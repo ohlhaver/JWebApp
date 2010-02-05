@@ -37,7 +37,7 @@
           <legend>Filters</legend>
           <div>
             <span class='grid_5'>Region</span>
-            <span><%= select_tag(:rid, options_for_select( preference_options(:region, :include_blank => true), news_edition.region_id ) ) %></span>
+            <span><%= select_tag(:rid, options_for_select( preference_options(:region, :include_blank => true) ) ) %></span>
           </div>
           <div>
             <span class='grid_5'>Source</span>

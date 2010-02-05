@@ -8,7 +8,8 @@
   <% link = link_hash[:my_topics] %>
   <li><%= link_to( link.name, link.to_url_hash) %></li>
   <% link_hash[ :topics ].each do |link| %>
-  <li><%= link_to( link.name, link.to_url_hash) %> </li>
+    <% name = link.base > 0 ? "#{link.name} (#{link.base})" : link.name %>
+  <li><%= link_to( name, link.to_url_hash) %> </li>
   <% end %>
 
   <% link = link_hash[:add_topic] %> 

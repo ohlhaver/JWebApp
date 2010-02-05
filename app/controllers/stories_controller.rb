@@ -5,11 +5,13 @@ class StoriesController < ApplicationController
   def index
     @advanced = false
     @query = params[:q]
-    params_options = { :q => params[:q], :page => params[:page], :per_page => params[:per_page], @filter => 4 }
-    params_options[:user_id] = current_user.id unless current_user.new_record?
-    params_options[:language_id] = news_edition.language_id if current_user.new_record?
+    params_options = { :q => params[:q] }
     params_options[:sort_criteria] = sort_criteria
     params_options[:subscription_type] = subscription_type
+    @topic_params = JAPI::TopicPreference.extract( params_options )
+    params_options.merge!( :page => params[:page], :per_page => params[:per_page], @filter => 4 )
+    params_options[:user_id] = current_user.id unless current_user.new_record?
+    params_options[:language_id] = news_edition.language_id if current_user.new_record?
     @stories = JAPI::Story.find( :all, :params => params_options )
   end
   
@@ -27,6 +29,7 @@ class StoriesController < ApplicationController
     params_options = JAPI::TopicPreference.extract( params )
     params_options[:sort_criteria] = sort_criteria
     params_options[:subscription_type] = subscription_type
+    @topic_params = params_options.dup
     params_options.merge!( :page => params[:page], :per_page => params[:per_page] )
     params_options[@filter] = 4 unless @filter == :all
     params_options[:user_id] = current_user.id unless current_user.new_record?

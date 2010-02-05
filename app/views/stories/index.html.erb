@@ -6,7 +6,7 @@
       <span><%= t('search.page.title', :query => "<em>'#{ truncate( @query, 20 ) }'</em>" ) -%></span>
       <span class='links'><%= render_filter_links( @stories.facets, form_url, form_method ) %></span>
       <span class='links'><%= render_search_preference_form( :sort_criteria, :subscription_type, :form_url => form_url, :form_method => form_method ) %></span>
-      <span class='links'><%= link_to t('search.topic.add'), '#' %></span>
+      <span class='links'><%= render :partial => 'topic_form' %></span>
     </h2>
     <% @stories.each do |story| %>
       <div class='cluster'>

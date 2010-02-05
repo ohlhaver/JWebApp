@@ -1,4 +1,4 @@
-<span class='title'><%= link_to( story.title, story.url )%></span>
+<span class='title'><%= link_to( story.title, story.url, :target => '_BLANK' )%></span>
 <span class='separator first'>-</span>
 <% if story.source %>
   <span class='source fs80'><%= link_to( story.source.name, source_path( story.source ) ) %></span>
