@@ -6,9 +6,11 @@
         <%= render_source_rating_form( @source_preference, @source) %>
       </span>
     </h2>
+    <% if @categories.any? %>
     <h4>
       <%= render_category_links( @categories, source_path( @source ) ) %>
     </h4>
+    <% end %>
     <% @stories.each do |story| %>
       <div class='story'>
         <div class='headline'><%= render_story_preview( story ) %></div>

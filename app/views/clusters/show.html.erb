@@ -9,7 +9,7 @@
           (<%= links_to_keywords( *(@cluster.top_keywords) ).join(' - ') %>)
         </span>
         <span class='links'>
-          <%= render_filter_links( @cluster, cluster_path( @cluster ) ) -%>
+          <%= render_filter_links( @cluster, cluster_path( @cluster ), :get ) -%>
         </span>
       <% end %>
     </h2>
