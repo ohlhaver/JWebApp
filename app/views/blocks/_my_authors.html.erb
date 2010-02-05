@@ -2,7 +2,7 @@
 <div class='news_block'>
   <h2><%= link_to t('navigation.main.my_authors'), my_authors_path %></h2>
   <% block.each do |story| %>
-    <div class='headline'><%= render_story_preview( story ) %></div>
+    <div class='cluster'><%= render_story_search_preview( story )%></div>
   <% end %>
 </div>
 <% end %>

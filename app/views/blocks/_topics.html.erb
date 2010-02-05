@@ -2,7 +2,7 @@
 <div class='news_block'>
   <h2><%= link_to block.name, topic_path( block.id ) %></h2>
   <% block.stories.each do |story| %>
-    <div class='story'>
+    <div class='cluster'>
       <% if story.cluster && story.cluster.stories.any? %>
         <%= render_cluster_preview( story.cluster, story ) %>
       <% else %>

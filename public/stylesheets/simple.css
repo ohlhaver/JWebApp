@@ -31,23 +31,25 @@ img {
 #searchfield {
 	margin-left :12px;
 	margin-top : -20px;
-	font-family: Georgia;
-
-	height: 34px;
+	font-family: Georgia,"Times New Roman",Times,serif;
+	font-weight: normal;
+	text-decoration:none;
+	font-size: 18px;
+	line-height: 21px;
 	color: #333333;
-	width: 270px;
+	height: 28px;
+	width: 258px;
 	border: 1px solid #999999;
-
+	padding: 7px 5px 0;
 	vertical-align: middle;
-	
 
-
+		
 }
 
 #searchbutton {
 margin-left: 2px;
 margin-top : -20px;
-font-family: Georgia;
+font-family: Georgia,"Times New Roman",Times,serif;
 font-weight: normal;
 text-decoration:none;
 
@@ -65,7 +67,7 @@ border: 0px;
 .search-box-link {
 	margin-top: 5px;
 	margin-left: 106px;
-	font-family: arial;
+	font-family: Arial,Helvetica,sans-serif;
 	font-size: 13px;
 	line-height: 21px;
 	text-decoration:none;
@@ -75,16 +77,22 @@ border: 0px;
 margin-top: 8px;
 font-size: 13px;
 line-height: 21px;
-font-family: arial;
+font-family: Arial,Helvetica,sans-serif;
 }
 
 #edition {
 	margin-top: 5px;
 	font-size: 13px;
 	line-height: 21px;
-	font-family: arial;
+	font-family: Arial,Helvetica,sans-serif;
 	color: #0000b6;
 }
+
+#edition_field {
+
+	color: #0000b6;
+}
+
 
 #module {
 	border-top: 5px solid #99CCFF;
@@ -102,20 +110,23 @@ font-family: arial;
 
 #navigation_module {
 	border-top: 1px solid #CCCCCC;
-margin-top: 15px;
-margin-bottom: 3px;
+	margin-top: 15px;
+	margin-bottom: 3px;
 }
+
+
+
 
 #navigation {
 	font-size: 14px;
 	line-height: 21px;
-	font-family: arial;
+	font-family: Arial,Helvetica,sans-serif;
 }
 
 #home_link {
 	font-size: 14px;
 	line-height: 21px;
-	font-family: arial;
+	font-family: Arial,Helvetica,sans-serif;
 }
 
 
@@ -133,7 +144,7 @@ margin-bottom: 3px;
 #footer {
 	font-size: 13px;
 	line-height: 21px;
-	font-family: arial;	
+	font-family: Arial,Helvetica,sans-serif;	
 }
 
 .grey {
@@ -166,16 +177,18 @@ margin-bottom: 3px;
 	
 }
 
-.news_block h2 {
-  	font-family: georgia;
+ h2 {
+  	margin-top: 2px;
+	font-family: Georgia,"Times New Roman",Times,serif;
  	font-weight: normal;
   	text-decoration: none;
   	font-size: 16px;
 	line-height: 19px;
+	color: #333333;
 }
 
 .news_block h2 a:visited {
-  	font-family: georgia;
+  	font-family: Georgia,"Times New Roman",Times,serif;
  	font-weight: normal;
   	text-decoration: none;
   	font-size: 16px;
@@ -183,7 +196,7 @@ margin-bottom: 3px;
 }
 
 .news_block h2 a:link {
-  	font-family: georgia;
+  	font-family: Georgia,"Times New Roman",Times,serif;
  	font-weight: normal;
   	text-decoration: none;
   	font-size: 16px;
@@ -196,7 +209,7 @@ margin-bottom: 3px;
 }
 
 .headline .title {
-	font-family: georgia;
+	font-family: Georgia,"Times New Roman",Times,serif;
  	font-weight: normal;
   	text-decoration: none;
   	font-size: 24px;
@@ -204,7 +217,35 @@ margin-bottom: 3px;
 }
 
 .age {
-	font-family: georgia;
+	font-family: Georgia,"Times New Roman",Times,serif;
+ 	font-weight: normal;
+  	text-decoration: none;
+  	font-size: 16px;
+	line-height: 30px;
+	color: #999999;
+}
+
+.info {
+	margin-top: 10px;
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 12px;
+	line-height: 17px;
+	color: #333333;
+}
+
+
+
+.keywords {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 12px;
+	line-height: 17px;
+	color: #333333;
+}
+
+
+.author {
+
+	font-family: Georgia,"Times New Roman",Times,serif;
  	font-weight: normal;
   	text-decoration: none;
   	font-size: 16px;
@@ -212,77 +253,101 @@ margin-bottom: 3px;
 	color: #999999;
 }
 
-.source a:visited {
-	font-family: georgia;
+.source {
+
+	font-family: Georgia,"Times New Roman",Times,serif;
  	font-weight: normal;
   	text-decoration: none;
   	font-size: 16px;
 	line-height: 20px;
-	color: #999999;	
+	color: #999999;
 }
 
 .source a:link {
-	font-family: georgia;
- 	font-weight: normal;
-  	text-decoration: none;
-  	font-size: 16px;
-	line-height: 20px;
-	color: #999999;	
+	color: #999999;
 }
 
 .source a:visited {
-	font-family: georgia;
- 	font-weight: normal;
-  	text-decoration: none;
-  	font-size: 16px;
-	line-height: 20px;
-	color: #999999;	
+	color: #999999;
 }
 
 .source a:hover {
 	color: #0000b6;
 }
 
-.author a:visited {
-	font-family: georgia;
- 	font-weight: normal;
-  	text-decoration: none;
-  	font-size: 16px;
-	line-height: 20px;
-	color: #999999;	
+.author a:link {
+	color: #999999;
 }
 
-.author a:link {
-	font-family: georgia;
- 	font-weight: normal;
-  	text-decoration: none;
-  	font-size: 16px;
-	line-height: 20px;
-	color: #999999;	
+.author a:visited {
+	color: #999999;
 }
 
 .author a:hover {
 	color: #0000b6;
 }
 
+
 .story {
 	margin-top: 6px;
+	margin-bottom: 6px;
 	font-size: 16px;
 	line-height: 20px;
 }
 
-.info {
-	margin-top: 6px;
-	font-size: 16px;
-	line-height: 20px;
+.separator {
+	color: #999999;
 }
 
-.keywords {
-	margin-top: 6px;
-	font-size: 16px;
-	line-height: 20px;
+.pagination {
+	font-family: Georgia,"Times New Roman",Times,serif;
+	font-size: 18px;
+	line-height: 30px;
+	color: #333333;
+	margin-bottom: 30px;
 }
 
+
+
+
+.current_page { 
+	color: #FFFFFF;
+	background-color: #0000b6;
+	padding: 3px;
+	}
+
+
+.prev {
+	color: #999999;
+}
+
+.next {
+	color: #999999;
+}
+
+.pagination_module {
+	border-top: 1px solid #CCCCCC;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.footer_module {
+	border-top: 1px solid #CCCCCC;
+	margin-top: 20px;
+	margin-bottom: 3px;
+}
+
+
+#per_page_form {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 13px;
+	color: #333333;
+	
+}
+
+#per_page {
+	color: #0000b6;;
+}
 
 
 

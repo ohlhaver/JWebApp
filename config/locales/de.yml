@@ -133,8 +133,8 @@ de:
       at: 'Österreich'
       ch: 'Schweiz'
     val:
-      nil: 'keines'
-      none: 'keines'
+      nil: 'keine Bewertung'
+      none: 'keine Bewertung'
       ban: 'verbannen'
       low: 'niedrig'
       medium: 'mittel'
@@ -170,7 +170,7 @@ de:
       last_month: 'Last Month'
   search:
     results:
-      per_page: "Zeigen Sie {{count}} Ergebnisse pro Seite"
+      per_page: "{{count}} Ergebnisse pro Seite"
     page:
       title: "Suchergebnisse für: {{query}}"
     topic:
