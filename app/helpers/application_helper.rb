@@ -134,6 +134,10 @@ module ApplicationHelper
     end
   end
   
+  def display_only_story_search_results?
+    controller.action_name != 'index'
+  end
+  
   def per_page
     Integer( params[:per_page] || ( current_user.per_page rescue 10 ) || 10 )
   end
