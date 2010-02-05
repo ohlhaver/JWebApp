@@ -46,8 +46,8 @@
 
 <% my_authors_block = capture( navigation_links[:my_authors] ) do |link| %>
 <ul class='nav_block'>
-
-  <li><%= link_to( link.name, link.to_url_hash ) %></li>
+  <% name = link.base > 0 ? "#{link.name} (#{link.base})" : link.name %>
+  <li><%= link_to( name, link.to_url_hash ) %></li>
 </ul>
 <% end %>
 
