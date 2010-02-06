@@ -1,6 +1,8 @@
+<div class='news_block'>
 <h2><%= t("navigation.main.my_topics") %></h2>
 <div class='news_group'>
   <% @topics.each do |topic| %>
     <%= render :partial => "blocks/topics", :locals => { :block => topic } %>
   <% end %>
+</div>
 </div>

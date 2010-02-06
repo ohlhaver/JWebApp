@@ -2,36 +2,40 @@
 <% form_method = @advanced ? :post : :get %>
 <div class='news_group'>
   <div class='news_block'>
-    <h2>
-      <span><%= t('search.page.title', :query => "<a>'#{ truncate( @query, 20 ) }'</a>" ) -%></span>
-	  <div class='add_topic_link'><%= render :partial => 'topic_form' %></div>  
-      <span class='links'><%= render_search_preference_form( :sort_criteria, :subscription_type, :form_url => form_url, :form_method => form_method ) %></span>
-      <div class='result_filter'><%= render_filter_links( @stories.facets, form_url, form_method ) %></span>
-    </h2>
-
-<div class = "results_module"></div>
-
-    <% unless display_only_story_search_results? %>
+	<div class ='author_source_results'>
+   	<% unless display_only_story_search_results? %>
       <% if @authors.any? %>
-        <h4>Authors</h4>
+      
         <div class='cluster'>
         <% @authors.each_with_index do |author, index| %>
           <%= link_to author.name, author_path( author ) -%><%= ', ' unless index == @authors.size - 1  %>
-        <% end %>
+      	<% end %>
         </div>
-      <% end %>
+		<div class = "story_results_module"></div>
+ 	  <% end %>
       <% if @sources.any? %>
-        <h4>Sources</h4>
+       
         <div class='cluster'>
           <% @sources.each_with_index do |source, index| %>
             <%= link_to source.name, source_path( source ) -%><%= ', ' unless index == @sources.size - 1 %>
           <% end %>
         </div>
+		<div class = "story_results_module"></div>
       <% end %>
-      <% if @authors.any? || @sources.any? %>
-        <h4>Stories</h4>
-      <% end %>
+		
     <% end %>
+	</div>
+
+ 	<h2>
+      <span><%= t('search.page.title', :query => "<a>'#{ truncate( @query, 20 ) }'</a>" ) -%></span>
+	  <div class='add_topic_link'><%= render :partial => 'topic_form' %></div>  
+      <span class='links'><%= render_search_preference_form( :sort_criteria, :subscription_type, :form_url => form_url, :form_method => form_method ) %></span>
+      <div class='result_filter'><%= render_filter_links( @stories.facets, form_url, form_method ) %></div>
+    </h2>
+
+<div class = "results_module"></div>
+
+
     <% @stories.each do |story| %>
       <div class='cluster'>
         <% if story.cluster && story.cluster.stories.any? %>
@@ -41,9 +45,9 @@
         <% end %>
       </div>
     <% end %>
-    <% if @stories.empty? %>
+	<% if @stories.empty? %>
       <em><%= t( 'stories.not.found' ) %></em>
-    <% end %>
+	<% end %>
   </div>
 </div>
 <%= render_search_pagination( @stories, :form_url => form_url, :form_method => form_method ) %>

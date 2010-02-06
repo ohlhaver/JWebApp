@@ -2,9 +2,6 @@
   <div class='news_block'>
     <h2>
       <%= @author.name %>
-
-    
- 
       <div class='rater'>
 	    <%= render_author_subscription( @author_preference, @author ) %>
         <%= render_author_rating_form( @author_preference, @author ) %>
