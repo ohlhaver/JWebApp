@@ -2,12 +2,13 @@
   <div class='news_block'>
     <h2>
       <%= @author.name %>
-      <span class='links'>
-        <%= render_author_subscription( @author_preference, @author ) %>
-      </span>
-      <span class='links'>
+
+    
+ 
+      <div class='rater'>
+	    <%= render_author_subscription( @author_preference, @author ) %>
         <%= render_author_rating_form( @author_preference, @author ) %>
-      </span>
+      </div>
     </h2>
     <% @stories.each do |story| %>
       <div class='cluster'>

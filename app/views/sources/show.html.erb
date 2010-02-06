@@ -2,15 +2,18 @@
   <div class='news_block'>
     <h2>
       <%= @source.name %>
-      <span class='links'>
+
         <%= render_source_rating_form( @source_preference, @source) %>
-      </span>
+
     </h2>
     <% if @categories.any? %>
-    <h4>
+    <div class ='result_filter'>
       <%= render_category_links( @categories, source_path( @source ) ) %>
-    </h4>
+    </div>
     <% end %>
+
+<div class = "results_module"></div>
+
     <% @stories.each do |story| %>
       <div class='cluster'>
         <div class='headline'><%= render_headline_preview( story ) %></div>

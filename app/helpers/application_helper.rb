@@ -88,7 +88,7 @@ module ApplicationHelper
   
   def render_filter_link( filter, name, count )
     return unless count > 0
-    string = ( filter == :all ) ? '' : content_tag( :span, '-', :class => 'separator' )
+    string = ( filter == :all ) ? '' : " "
     if @filter == filter
       string << " " << content_tag( :span, t( name, :count => count ) )
     else

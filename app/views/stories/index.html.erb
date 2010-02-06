@@ -3,11 +3,14 @@
 <div class='news_group'>
   <div class='news_block'>
     <h2>
-      <span><%= t('search.page.title', :query => "<em>'#{ truncate( @query, 20 ) }'</em>" ) -%></span>
-      <span class='links'><%= render_filter_links( @stories.facets, form_url, form_method ) %></span>
+      <span><%= t('search.page.title', :query => "<a>'#{ truncate( @query, 20 ) }'</a>" ) -%></span>
+	  <div class='add_topic_link'><%= render :partial => 'topic_form' %></div>  
       <span class='links'><%= render_search_preference_form( :sort_criteria, :subscription_type, :form_url => form_url, :form_method => form_method ) %></span>
-      <span class='links'><%= render :partial => 'topic_form' %></span>
+      <div class='result_filter'><%= render_filter_links( @stories.facets, form_url, form_method ) %></span>
     </h2>
+
+<div class = "results_module"></div>
+
     <% unless display_only_story_search_results? %>
       <% if @authors.any? %>
         <h4>Authors</h4>
