@@ -254,7 +254,6 @@ h2 a {
 	color: #333333;
 }
 
-
 .author {
 
 	font-family: Georgia,"Times New Roman",Times,serif;
@@ -395,9 +394,21 @@ h2 a {
 
 .add_topic_link {
 float: right;
-
 display: inline;
 }
+
+.add_topic_link a:link {
+	color: #999999;
+}
+
+.add_topic_link a:hover {
+	color: #0000b6;
+}
+
+.add_topic_link a:visited {
+	color: #999999;
+}
+
 
 .result_filter {
 	margin-top: 30px;

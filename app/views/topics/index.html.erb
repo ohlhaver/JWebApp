@@ -2,7 +2,7 @@
 <h2><%= t("navigation.main.my_topics") %></h2>
 <div class='news_group'>
   <% @topics.each do |topic| %>
-    <%= render :partial => "blocks/topics", :locals => { :block => topic } %>
+    <%= render :partial => "blocks/topic_page_topics", :locals => { :block => topic } %>
   <% end %>
 </div>
 </div>
