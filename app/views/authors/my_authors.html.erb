@@ -2,25 +2,30 @@
   <div class='news_block'>
     <h2>
       <span> <%= t('navigation.main.my_authors') %> </span>
-      <span class='links'> <%= render_my_author_link( 'author.stories.label', :stories, my_authors_path ) %> - 
-        <%= render_my_author_link( 'author.list.label', :authors, my_authors_path( :list => 1 ) ) %> </span>
+      <div class='my_authors_links'> <%= render_my_author_link( 'author.stories.label', :stories, my_authors_path ) %> - 
+        <%= render_my_author_link( 'author.list.label', :authors, my_authors_path( :list => 1 ) ) %> </div>
     </h2>
     <h4>
-      <%= render_author_filter_links( my_authors_path( :list => 1 ) ) %>
+      <div class = "result_filter">
+		<%= render_author_filter_links( my_authors_path( :list => 1 ) ) %>
+		</div>
     </h4>
-    <% @author_prefs.each do |author_pref| %>
-      <div class='story'>
-        <div class='headline'>
+	 <div class = "my_authors_block"></div>
+ 
+ <% @author_prefs.each do |author_pref| %>
+		<h2>
+	
           <%= render_author_preview( author_pref.author ) %>
-          <span class='links'> 
+	
+          <div class='rater'> 
             <%= render_author_subscription( author_pref, author_pref.author ) %>
-          </span>
-          <span class='links'>
+          
             <%= render_author_rating_form( author_pref, author_pref.author ) %>
-          </span>
-        </div>
-      </div>
+          </div>
+		</h2>
+		 <div class = "my_authors_block"></div>
     <% end %>
+	
     <% if @author_prefs.empty? %>
       <em><%= t( 'authors.not.found' ) %></em>
     <% end %>

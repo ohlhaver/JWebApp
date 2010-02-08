@@ -1,12 +1,13 @@
 <div class='news_group'>
   <div class='news_block'>
     <h2>
-      <span> <%= t('navigation.main.my_authors') %> </span>
-      <span class='links'> <%= render_my_author_link( 'author.stories.label', :stories, my_authors_path ) %> - 
-        <%= render_my_author_link( 'author.list.label', :authors, my_authors_path( :list => 1 ) ) %> </span>
+      <span> <%= t('navigation.main.my_authors') %> </span> 
+      <div class='my_authors_links'> <%= render_my_author_link( 'author.stories.label', :stories, my_authors_path ) %> - 
+        <%= render_my_author_link( 'author.list.label', :authors, my_authors_path( :list => 1 ) ) %> </div>
     </h2>
     <% # render_category_navigation( source_path( @source ) ) %>
-    <% @stories.each do |story| %>
+    <div class = "my_authors_block"></div>
+	<% @stories.each do |story| %>
       <div class='cluster'>
         <div class='headline'><%= render_headline_preview( story ) %></div>
       </div>

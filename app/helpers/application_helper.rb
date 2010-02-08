@@ -122,7 +122,7 @@ module ApplicationHelper
   end
   
   def render_author_filter_links( base_url )
-    [ :all, :subscribed, :rated ].collect{ |x| render_author_filter_link( x, base_url ) }.join( " #{content_tag(:span, '-', :class => 'separation' ) } " )
+    [ :all, :subscribed, :rated ].collect{ |x| render_author_filter_link( x, base_url ) }.join( " " )
   end
   
   def render_author_filter_link( filter, url )
