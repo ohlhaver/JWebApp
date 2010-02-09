@@ -1,78 +1,106 @@
-<% form_for( @topic, :url => topics_path, :html => { :id => 'advance_topic_form' }, :method => :post ) do |f| %>
-  <%= f.error_messages %>
-  <fieldset>
-    <legend>Name</legend>
-    <span class='grid_5'>Name</span>
-    <span><%= f.text_field(:name) %></span>
-  </fieldset>
-  <fieldset>
-    <legend>Find results</legend>
-    <div>
-      <span class='grid_5'>with at least one of the words</span>
-      <span><%= f.text_field(:search_any) %></span>
-    </div>
-    <div>
-      <span class='grid_5'>with all the words</span>
-      <span><%= f.text_field(:search_all) %></span>
-    </div>
-    <div>
-      <span class='grid_5'>with the exact phrase</span>
-      <span><%= f.text_field(:search_exact_phrase) %></span>
-    </div>
-    <div>
-      <span class='grid_5'>without the words</span>
-      <span><%= f.text_field(:search_except) %></span>
-    </div>
-    <br/>
-    <div>
-      <span class='grid_5'>Sort Criteria</span>
-      <span><%= f.select( :sort_criteria, preference_options(:sort_criteria) ) %></span>
-    </div>
-    <div>
-      <span class='grid_5'>Time Span</span>
-      <span><%= f.select( :time_span, preference_options(:time_span) ) %></span>
-    </div>
-  </fieldset>
-  <fieldset>
-    <legend>Filters</legend>
-    <div>
-      <span class='grid_5'>Region</span>
-      <span><%= f.select( :region_id, preference_options(:region, :include_blank => true) ) %></span>
-    </div>
-    <div>
-      <span class='grid_5'>Source</span>
-      <span><%= f.text_field(:source_id, :disabled => true ) %></span>
-    </div>
-    <div>
-      <span class='grid_5'>Author</span>
-      <span><%= f.text_field(:author_id, :disabled => true ) %></span>
-    </div>
-    <div>
-      <span class='grid_5'>Category</span>
-      <span><%= f.select(:category_id, preference_options(:category, :include_blank => true ) ) %></span>
-    </div>
-    <div>
-      <span class='grid_5'>Subscription Type</span>
-      <span><%= f.select( :subscription_type, preference_options(:subscription_type) ) %></span>
-    </div>
-  </fieldset>
-  <fieldset>
-    <legend>Preferences</legend>
-    <div>
-      <span class='grid_5'>Video preference</span>
-      <span><%= f.select(:video, preference_options(:video_pref) ) %></span>
-    </div>
-    <div>
-      <span class='grid_5'>Opinion preference</span>
-      <span><%= f.select(:opinion, preference_options(:opinion_pref) ) %></span>
-    </div>
-    <div>
-      <span class='grid_5'>Blog preference</span>
-      <span><%= f.select(:blog, preference_options(:blog_pref) ) %></span>
-    </div>
-  </fieldset>
-  <%= submit_tag( t('topic.action.add') ) %><br/>
-  <%= hidden_field_tag( :advance, 1, :id => 'advance_topic_field' ) %><br/>
-  <%= link_to_function( t('topic.action.simple'), "simple_topic( 'advance_topic_form' )" ) %> | 
-  <%= link_to_function( t('topic.action.test'), "test_topic( 'advance_topic_form' )"  ) %>
-<% end %>
+	<div class = "results_module"></div>
+ 
+   <div class= 'adv_search_lines'>
+     	<% form_for( @topic, :url => topics_path, :html => { :id => 'advance_topic_form' }, :method => :post ) do |f| %>
+		  <%= f.error_messages %>
+		
+		<div id = "topic_label"> 
+				<span><%= t('topic.name') -%> </span> 
+		    <span><%= f.text_field(:name, :id => "adv_searchfield" ) %></span>
+	
+       </div>
+
+		<div class = "results_module"></div>
+
+         <%= t('search.advance.find.label') -%>
+          
+			<div>
+            <span><%= t('search.advance.find.at_least') -%></span>
+            <span><%= f.text_field(:search_any, :id => "adv_searchfield") %></span>
+            </div>
+          <div>
+            <span ><%= t('search.advance.find.all') -%></span>
+            <span><%= f.text_field(:search_all, :id => "adv_searchfield") %></span>
+          </div>
+          <div>
+            <span><%= t('search.advance.find.exact') -%></span>
+            <span><%= f.text_field(:search_exact_phrase, :id => "adv_searchfield") %></span>
+          </div>
+          <div>
+            <span><%= t('search.advance.find.without') -%></span>
+            <span><%= f.text_field(:search_except, :id => "adv_searchfield") %></span>
+          </div>
+         
+       
+
+		<div class = 'form_area'>
+          <div> 
+			<%= t('search.advance.sorting') -%>		
+			<span class='adv_search_menu'>
+           <%= f.select( :sort_criteria, preference_options(:sort_criteria) ) %></span>
+          </div>
+          <div>
+           	<%= t('search.advance.timespan') -%>	<span class='adv_search_menu'>
+            <%= f.select( :time_span, preference_options(:time_span) ) %></span>
+          </div>
+		</div>
+	
+       
+	  <div class = "results_module"></div>
+         <%= t('search.advance.filter.label') -%>
+          <div>
+            <%= t('search.advance.filter.source') -%>
+            <%= f.text_field(:source_id, :disabled => true, :id => "adv_filter_searchfield" ) %></span>
+          </div>
+        <div>
+            <%= t('search.advance.filter.author') -%>
+            <%= f.text_field(:author_id, :disabled => true, :id => "adv_filter_searchfield" ) %></span>
+          </div>
+	<div class = 'form_area'>
+          <div>
+            <%= t('search.advance.filter.region') -%><span class='adv_search_menu'>
+            <%= f.select( :region_id, preference_options(:region, :include_blank => true) ) %></span>
+          </div>
+          <div>
+          <%= t('search.advance.filter.category') -%><span class='adv_search_menu'>
+            <%= f.select(:category_id, preference_options(:category, :include_blank => true ) ) %></span>
+          </div>
+          <div>
+            <%= t('search.advance.filter.subscription') -%><span class='adv_search_menu'>
+            <%= f.select( :subscription_type, preference_options(:subscription_type) ) %></span>
+          </div>
+		</div>
+       <div class = "results_module"></div>
+          <%= t('search.advance.preferences.label') -%>
+		<div class = 'form_area'>
+          <div>
+            <%= t('search.advance.preferences.video') -%>
+            <span><%= f.select(:video, preference_options(:video_pref) ) %></span>
+          </div>
+          <div>
+            <%= t('search.advance.preferences.opinion') -%>
+            <span><%= f.select(:opinion, preference_options(:opinion_pref) ) %></span>
+          </div>
+          <div>
+            <%= t('search.advance.preferences.blog') -%>
+            <span><%= f.select(:blog, preference_options(:blog_pref) ) %></span>
+          </div>
+		</div>
+
+
+       
+		
+		<%= submit_tag( t('topic.action.add'), :class => "adv_searchbutton" ) %><br>
+		  <%= hidden_field_tag( :advance, 1, :id => 'advance_topic_field' ) %>
+		  <%= link_to_function( t('topic.action.simple'), "simple_topic( 'advance_topic_form' )" ) %> | 
+		  <%= link_to_function( t('topic.action.test'), "test_topic( 'advance_topic_form' )"  ) %>
+
+
+      <% end %>
+	</div>
+
+
+
+
+
+

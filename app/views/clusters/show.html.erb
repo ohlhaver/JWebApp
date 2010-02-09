@@ -8,10 +8,12 @@
         <span class='links'>
           (<%= links_to_keywords( *(@cluster.top_keywords) ).join(' - ') %>)
         </span>
-        <span class='links'>
+        <div class='result_filter'>
           <%= render_filter_links( @cluster, cluster_path( @cluster ), :get ) -%>
-        </span>
+        </div>
+		<div class = "results_module"></div>
       <% end %>
+	
     </h2>
     <% @cluster.stories.each do |story| %>
     <div class='cluster'>

@@ -1,77 +1,90 @@
 <div class='news_group'>
   <div class='news_block'>
     <h2>
-      <span><%= t('search.advance') -%></span>
+      <span><%= t('search.advance.label') -%></span>
     </h2>
-    <div>
+	<div class = "results_module"></div>
+ 
+	<div class= 'adv_search_lines'>
       <% form_tag search_results_stories_path do %>
-        <fieldset>
-          <legend>Find results</legend>
+       
+         <%= t('search.advance.find.label') -%>
+          
+			<div>
+            <span><%= t('search.advance.find.at_least') -%></span>
+            <span><%= text_field_tag("q", params[:q], :id => "adv_searchfield") %></span>
+            </div>
           <div>
-            <span class='grid_5'>with at least one of the words</span>
-            <span><%= text_field_tag(:q) %></span>
+            <span ><%= t('search.advance.find.all') -%></span>
+            <span><%= text_field_tag("qa", params[:qa], :id => "adv_searchfield") %></span>
           </div>
           <div>
-            <span class='grid_5'>with all the words</span>
-            <span><%= text_field_tag(:qa) %></span>
+            <span><%= t('search.advance.find.exact') -%></span>
+            <span><%= text_field_tag("qe", params[:qe], :id => "adv_searchfield") %></span>
           </div>
           <div>
-            <span class='grid_5'>with the exact phrase</span>
-            <span><%= text_field_tag(:qe) %></span>
+            <span><%= t('search.advance.find.without') -%></span>
+            <span><%= text_field_tag("qn", params[:qn], :id => "adv_searchfield") %></span>
+          </div>
+         
+       
+
+		<div class = 'form_area'>
+          <div> 
+			<%= t('search.advance.sorting') -%>		
+			<span class='adv_search_menu'>
+           <%= select_tag( 'sc', options_for_select(  preference_options(:sort_criteria), sort_criteria ) ) %></span>
           </div>
           <div>
-            <span class='grid_5'>without the words</span>
-            <span><%= text_field_tag(:qn) %></span>
+           	<%= t('search.advance.timespan') -%>	<span class='adv_search_menu'>
+            <%= select_tag(:ts, options_for_select( preference_options(:time_span), time_span ) ) %></span>
           </div>
-          <br/>
+		</div>
+	
+       
+	  <div class = "results_module"></div>
+         <%= t('search.advance.filter.label') -%>
           <div>
-            <span class='grid_5'>Sort Criteria</span>
-            <span><%= select_tag( 'sc', options_for_select(  preference_options(:sort_criteria), sort_criteria ) ) %></span>
+            <%= t('search.advance.filter.source') -%>
+            <%= text_field_tag(:source, nil, :disabled => true, :id => "adv_filter_searchfield" ) %></span>
           </div>
-          <div>
-            <span class='grid_5'>Time Span</span>
-            <span><%= select_tag(:ts, options_for_select( preference_options(:time_span), time_span ) ) %></span>
+        <div>
+            <%= t('search.advance.filter.author') -%>
+            <%= text_field_tag(:author, nil, :disabled => true, :id => "adv_filter_searchfield" ) %></span>
           </div>
-        </fieldset>
-        <fieldset>
-          <legend>Filters</legend>
+	<div class = 'form_area'>
           <div>
-            <span class='grid_5'>Region</span>
-            <span><%= select_tag(:rid, options_for_select( preference_options(:region, :include_blank => true) ) ) %></span>
-          </div>
-          <div>
-            <span class='grid_5'>Source</span>
-            <span><%= text_field_tag(:source, nil, :disabled => true ) %></span>
+            <%= t('search.advance.filter.region') -%><span class='adv_search_menu'>
+            <%= select_tag(:rid, options_for_select( preference_options(:region, :include_blank => true) ) ) %></span>
           </div>
           <div>
-            <span class='grid_5'>Author</span>
-            <span><%= text_field_tag(:author, nil, :disabled => true ) %></span>
+          <%= t('search.advance.filter.category') -%><span class='adv_search_menu'>
+            <%= select_tag(:cid, options_for_select( preference_options(:category, :include_blank => true ), params[:cid].to_i ) ) %></span>
           </div>
           <div>
-            <span class='grid_5'>Category</span>
-            <span><%= select_tag(:cid, options_for_select( preference_options(:category, :include_blank => true ), params[:cid].to_i ) ) %></span>
+            <%= t('search.advance.filter.subscription') -%><span class='adv_search_menu'>
+            <%= select_tag( 'st', options_for_select(  preference_options(:subscription_type), subscription_type ) ) %></span>
           </div>
+		</div>
+<div class = "results_module"></div>
+          <%= t('search.advance.preferences.label') -%>
+		<div class = 'form_area'>
           <div>
-            <span class='grid_5'>Subscription Type</span>
-            <span><%= select_tag( 'st', options_for_select(  preference_options(:subscription_type), subscription_type ) ) %></span>
-          </div>
-        </fieldset>
-        <fieldset>
-          <legend>Preferences</legend>
-          <div>
-            <span class='grid_5'>Video preference</span>
+            <%= t('search.advance.preferences.video') -%>
             <span><%= select_tag(:vp, options_for_select( preference_options(:video_pref), video_pref ) ) %></span>
           </div>
           <div>
-            <span class='grid_5'>Opinion preference</span>
+            <%= t('search.advance.preferences.opinion') -%>
             <span><%= select_tag(:op, options_for_select( preference_options(:opinion_pref), opinion_pref ) ) %></span>
           </div>
           <div>
-            <span class='grid_5'>Blog preference</span>
+            <%= t('search.advance.preferences.blog') -%>
             <span><%= select_tag(:bp, options_for_select( preference_options(:blog_pref), blog_pref ) ) %></span>
           </div>
-        </fieldset>
-        <%= submit_tag t('search.simple') %>
+		</div>
+
+
+        <%= submit_tag t('search.simple'), :class => "adv_searchbutton" %>
       <% end %>
     </div>
   </div>

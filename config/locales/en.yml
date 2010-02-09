@@ -2,7 +2,7 @@ en:
   activerecord:
     errors:
       template:
-        header: "Oops! That did not worked!"
+        header: "Oops! That did not work!"
         body: "There were errors submitting your form:"
   activeresource:
     errors:
@@ -70,7 +70,7 @@ en:
       subscribe: 'subscribe'
       unsubscribe: 'unsubscribe'
     not:
-      found: "Author not found"
+      found: "Author not found."
     stories:
       label: "Headlines"
     list:
@@ -78,28 +78,28 @@ en:
     filter:
       all: 'All'
       subscribed: 'Subscribed'
-      rated: 'Rated'
+      rated: 'Weighted'
   authors:
     not:
       found: "No authors found"
   cluster:
     all:
-      blogs: "{{count}} Blog"
-      headlines: "All {{count}} headlines"
-      opinions: "{{count}} Opinion"
-      stories: "Related Stories"
-      videos: "{{count}} Video"
-      label: "All"
+      blogs: "{{count}} blog(s)"
+      headlines: "all {{count}} headlines"
+      opinions: "{{count}} opinion(s)"
+      stories: "Related stories"
+      videos: "{{count}} video(s)"
+      label: "all"
     not:
-      found: "Cluster not found"
+      found: "Group not found."
   edition:
-    other: "Other News Edition"
+    other: "other news edition"
   navigation:
     bottom:
-      about: "about"
-      feedback: "feedback"
-      imprint: "imprint"
-      privacy: "privacy"
+      about: "About Jurnalo"
+      feedback: "Feedback"
+      imprint: "Imprint"
+      privacy: "Privacy"
     main:
       add_section: "Add Section"
       add_topic: "Add Topic"
@@ -117,14 +117,14 @@ en:
       top_stories: "Top Stories"
       top_authors: "Top Authors"
     top:
-      help: "help"
-      login: "login"
+      help: "Help"
+      login: "Login"
       logout: "{{name}} (logout)"
-      reading_list: "reading list"
-      register: "register"
-      settings: "settings"
+      reading_list: "Reading list"
+      register: "Register"
+      settings: "Settings"
   pagination:
-    previous: "prev"
+    previous: "previous"
     next: "next"
   prefs:
     country:
@@ -133,16 +133,16 @@ en:
       at: 'Austria'
       ch: 'Switzerland'
     val:
-      nil: 'none'
-      none: 'none'
-      ban: 'ban'
+      nil: 'not weighted'
+      none: 'ignore'
+      ban: 'ignore'
       low: 'low'
       medium: 'medium'
       neutral: 'neutral'
       high: 'high'
       only: 'only'
     label:
-      remove: 'Remove'
+      remove: 'remove'
       add_to_reading_list: ' '
     category:
       politics: 'Politics'
@@ -154,38 +154,59 @@ en:
       mixed: 'Mixed'
       opinions: 'Opinions'
     sort:
-      relevance: "By Relevance"
-      time: "By Time"
+      relevance: "relevance"
+      time: "time"
       cluster: 
-        relevance: "By Relevance Clustered"
-        time: "By Time Clustered"
+        relevance: "relevance as groups"
+        time: "time as groups"
     subscription:
-      all: "All Articles"
-      free: "Only Free Articles"
-      no_login: "Only Login Free Articles"
+      all: "all articles"
+      free: "only free articles"
+      no_login: "only login-free articles"
     time_span:
-      last_hour: 'Last Hour'
-      last_day: 'Last Day'
-      last_week: 'Last Week'
-      last_month: 'Last Month'
+      last_hour: 'last hour'
+      last_day: 'last day'
+      last_week: 'last week'
+      last_month: 'last month'
   search:
     page:
-      title: "Search Results For: {{query}}"
+      title: "Search results For: {{query}}"
     results:
-      per_page: "Show {{count}} results per page"
+      per_page: "show {{count}} results per page"
     topic:
-      add: "Add to My Topics"
-    simple: "Search News"
-    advance: "Advance Search"
+      add: "add to My Topics"
+    simple: "search news"
+    advance: 
+      label: "Advanced search"
+      find: 
+        label: "Find results"
+        at_least: "with at least one of these words:"
+        all: "with all these words:"
+        exact: "with the exact phrase:"
+        without: "without these words:"
+      sorting: "Sort by:"
+      timespan: "Timespan:"
+      filter: 
+        label: "Filter"
+        source: "Publication:"
+        author: "Author:"
+        region: "Region:"
+        category: "Section:"
+        subscription: "Subscription:"
+      preferences: 
+        label: "Preferences"
+        video: "Videos:"
+        opinion: "Opinions:"
+        blog: "Blogs:"
   source:
     not:
-      found: "Source not found"
+      found: "Source not found."
   stories:
     not:
-      found: "No stories found"
+      found: "No stories found."
   seo:
     page:
-      default_title: "Jurnalo - today's most important news"
+      default_title: "Jurnalo - the latest and most important news on any topic"
       title:
         author: "Articles by {{name}} - Jurnalo"
         cluster_group: "{{name}} - Jurnalo"
@@ -199,6 +220,8 @@ en:
       new: 'New Topic'
     action:
       add: 'Add Topic'
-      test: 'Test'
-      advance: 'Advance'
+      test: 'test'
+      advance: 'Advanced'
       simple: 'Simple'
+    name: 'Topic label:'
+    query: 'Search query:'

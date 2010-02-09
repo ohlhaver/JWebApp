@@ -32,7 +32,7 @@ de:
           wrong_length: "hat nicht die richtige Länge (muss {{count}} Zeichen haben)"          
   datetime:
     distance_in_words:
-      half_a_minute: 'vor eine halbe Minute'
+      half_a_minute: 'vor einer halbe Minute'
       less_than_x_seconds:
         zero: 'vor weniger als 1 Sekunde'
         one: 'vor 1 Sekunde'
@@ -42,7 +42,7 @@ de:
         other: 'vor {{count}} Sekunden'
       less_than_x_minutes:
         zero: 'vor weniger als 1 Minute'
-        one: 'vor einer Minute'
+        one: 'vor 1 Minute'
         other: 'vor {{count}} Minuten'
       x_minutes:
         one: 'vor 1 Minute'
@@ -78,28 +78,28 @@ de:
     filter:
       all: 'Alle'
       subscribed: 'abonniert'
-      rated: 'bewertet'
+      rated: 'gewichted'
   authors:
     not:
-      found: "Autor nicht gefunden"
+      found: "Autor nicht gefunden."
   cluster:
     all:
-      blogs: "{{count}} Kommentar"
-      headlines: "Alle {{count}} Artikel"
-      opinions: "{{count}} Meinungen"
+      blogs: "{{count}} Blog(s)"
+      headlines: "alle {{count}} Artikel"
+      opinions: "{{count}} Meinung(en)"
       stories: "Ähnliche Artikel"
-      videos: "{{count}} Video"
+      videos: "{{count}} Video(s)"
       label: "Alle"
     not:
-      found: "Cluster nicht gefunden"
+      found: "Gruppe nicht gefunden."
   edition:
     other: "Andere Nachrichtenausgaben"
   navigation:
     bottom:
-      about: "über"
-      feedback: "feedback"
-      imprint: "impressum"
-      privacy: "datenschutz"
+      about: "Über Jurnalo"
+      feedback: "Feedback"
+      imprint: "Impressum"
+      privacy: "Datenschutz"
     main:
       add_section: "Neue Rubrik"
       add_topic: "Neues Thema"
@@ -117,12 +117,12 @@ de:
       top_stories: "Schlagzeilen"
       top_authors: "Top Autoren"
     top:
-      help: "hilfe"
-      login: "einloggen"
+      help: "Hilfe"
+      login: "Einloggen"
       logout: "{{name}} (ausloggen)"
-      reading_list: "leseliste"
-      register: "registrieren"
-      settings: "einstellungen"
+      reading_list: "Leseliste"
+      register: "Registrieren"
+      settings: "Einstellungen"
   pagination:
     previous: "zurück"
     next: "vorwärts"
@@ -133,16 +133,16 @@ de:
       at: 'Österreich'
       ch: 'Schweiz'
     val:
-      nil: 'keine Bewertung'
-      none: 'keine Bewertung'
-      ban: 'verbannen'
+      nil: 'nicht gewichtet'
+      none: 'ignorieren'
+      ban: 'ignorieren'
       low: 'niedrig'
       medium: 'mittel'
       neutral: 'neutral'
       high: 'hoch'
       only: 'nur'
     label:
-      remove: 'Entfernen'
+      remove: 'entfernen'
       add_to_reading_list: ' '
     category:
       politics: 'Politik'
@@ -154,38 +154,59 @@ de:
       mixed: 'Vermischtes'
       opinions: 'Meinungen'
     sort:
-      relevance: "nach Relevanz"
-      time: "nach Zeit"
+      relevance: "Relevanz"
+      time: "Zeit"
       cluster: 
-        relevance: "By Relevance Clustered"
-        time: "By Time Clustered"
+        relevance: "Relevanz in Gruppen"
+        time: "Zeit in Gruppen"
     subscription:
-      all: "All"
-      free: "Free"
-      no_login: "Login Free"
+      all: "alle"
+      free: "gratis"
+      no_login: "ohne Login"
     time_span:
-      last_hour: 'Last Hour'
-      last_day: 'Last Day'
-      last_week: 'Last Week'
-      last_month: 'Last Month'
+      last_hour: 'letzte Stunde'
+      last_day: 'letzter Tag'
+      last_week: 'letzte Woche'
+      last_month: 'letzter Monat'
   search:
     results:
       per_page: "{{count}} Ergebnisse pro Seite"
     page:
       title: "Suchergebnisse für: {{query}}"
     topic:
-      add: "Machen Meine Thema"
-    simple: "Suche Nachrichten"
-    advance: "Erweiterte Suche"
+      add: "zu meinem Thema machen"
+    simple: "suche Nachrichten"
+    advance: 
+      label: "Erweiterte Suche"
+      find: 
+        label: "Ergebnisse finden"
+        at_least: "mit mindestens einem dieser Wörter:"
+        all: "mit all diesen Wörtern:"
+        exact: "mit genau dieser Wortfolge:"
+        without: "ohne diese Wörter:"
+      sorting: "Sortieren nach:"
+      timespan: "Zeitraum:"
+      filter: 
+        label: "Filter"
+        source: "Publikation:"
+        author: "Autor:"
+        region: "Region:"
+        category: "Rubrik:"
+        subscription: "Abonnement:"
+      preferences: 
+        label: "Gewichtungen"
+        video: "Videos:"
+        opinion: "Meinungen:"
+        blog: "Blogs:"
   source:
     not:
-      found: "Quelle nicht gefunden"
+      found: "Quelle nicht gefunden."
   stories:
     not:
-      found: "Artikel nicht gefunden"
+      found: "Artikel nicht gefunden."
   seo:
     page:
-      default_title: "Jurnalo - die wichtigsten Nachrichten des Tages"
+      default_title: "Jurnalo - die neuesten und wichtigsten Nachrichten zu jedem Thema"
       title:
         author: "Artikel von {{name}} - Jurnalo"
         cluster_group: "{{name}} - Jurnalo"
@@ -199,6 +220,12 @@ de:
       new: 'Neues Thema'
     action:
       add: 'Thema hinzufügen'
-      test: 'Test'
-      advance: 'Erweiterte'
-      simple: 'Einfältig'
+      test: 'testen'
+      advance: 'Erweitert'
+      simple: 'Einfach'
+    name: 'Name des Themas:'
+    query: 'Suchbegriff:'
+    
+      
+      
+      

@@ -3,8 +3,8 @@
   <% cluster.stories.each do |story| %>
     <li class='story'><%= render_story_preview( story ) %></li>
   <% end %>
-  <li class='info fs80'> 
+  <li class='info'> 
     <%= render_cluster_info( cluster ) %>
   </li>
-  <li class='keywords fs80'><%= links_to_keywords( *(cluster.top_keywords) ).join(' - ') %></li>
+  <li class='story'><%= links_to_keywords( *(cluster.top_keywords) ).join(' - ') %></li>
 </ul>

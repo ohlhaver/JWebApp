@@ -1,20 +1,29 @@
-<% form_for( @topic, :url => topics_path, :html => { :id => 'simple_topic_form' }, :method => :post ) do |f| %>
-  <%= f.error_messages %>
-  <fieldset>
-    <% if @topic.errors.any? %>
-    <div>
-      <span class='grid_5'>Name</span>
-      <span><%= f.text_field(:name) %></span>
+<div class= 'adv_search_lines'>
+  	<% form_for( @topic, :url => topics_path, :html => { :id => 'simple_topic_form' }, :method => :post ) do |f| %>
+	  <%= f.error_messages %>
+		<% if @topic.errors.any? %>
+		<div id = "topic_label"> 
+				<span><%= t('topic.name') -%> </span> 
+		    <span><%= f.text_field(:name, :id => "adv_searchfield" ) %></span>
+	
     </div>
-    <% end %>
-    <div>
-      <span class='grid_5'>Query</span>
-      <span><%= f.text_field( :search_any ) %></span>
-    </div>
-  </fieldset>
-  <%= submit_tag( t('topic.action.add') ) %><br/>
-  <%= hidden_field_tag( :advance, nil, :id => 'advance_topic_field' ) %>
-  <br/>
-  <%= link_to_function( t('topic.action.advance'), "advance_topic( 'simple_topic_form' )" ) %> | 
-  <%= link_to_function( t('topic.action.test'), "test_topic( 'simple_topic_form' )"  ) %>
-<% end %>
+		<div class = "results_module"></div>
+	    <% end %>
+
+
+		<div id = "topic_label"> 
+         <span><%= t('topic.query') -%></span>
+         <span><%= f.text_field(:search_any, :id => "adv_filter_searchfield") %></span>
+         </div>
+  
+
+    
+		
+		<%= submit_tag( t('topic.action.add'), :class => "adv_searchbutton" ) %><br>
+		  <%= hidden_field_tag( :advance, 1, :id => 'advance_topic_field' ) %>
+		  <%= link_to_function( t('topic.action.advance'), "advance_topic( 'simple_topic_form' )" ) %> |
+		  <%= link_to_function( t('topic.action.test'), "test_topic( 'simple_topic_form' )"  ) %>
+
+
+   <% end %>
+	</div>
