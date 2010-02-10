@@ -22,6 +22,7 @@
     </div>
     </div>
     <% end %>
+	<% if @cluster.stories.empty? %>
     	<br>
        <h2><span><%= t('stories.not.found')%></span></h2>
     <% end %>
