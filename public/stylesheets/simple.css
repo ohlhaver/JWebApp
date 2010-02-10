@@ -559,25 +559,21 @@ width: 163;
 border: 0px;
 }
 
-.topic_button {
-margin-top: 30px;
-margin-bottom: 1px;
-font-family: Georgia,"Times New Roman",Times,serif;
-font-weight: normal;
-text-decoration:none;
-font-size: 16px;
-line-height: 21px;
-color: #FFFFFF;
-background-color: #0000b6;
-vertical-align: middle;
-height: 32px;
-width: 163;
-border: 0px;
-}
+
 
 
 #topic_label {
 	margin-top: 35px;
 }
 
+.about {
+	margin-top: 20px;
+	font-family: Georgia,"Times New Roman",Times,serif;
+ 	font-weight: normal;
+  	text-decoration: none;
+  	font-size: 16px;
+	line-height: 19px;
+	color: #333333;
+
+}
 

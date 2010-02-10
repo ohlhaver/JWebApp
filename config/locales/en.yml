@@ -203,7 +203,8 @@ en:
       found: "Source not found."
   stories:
     not:
-      found: "No stories found."
+        found: "No articles found."
+        found_for_query: "No articles found for {{query}}."
   seo:
     page:
       default_title: "Jurnalo - the latest and most important news on any topic"

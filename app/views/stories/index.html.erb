@@ -25,7 +25,10 @@
 		
     <% end %>
 	</div>
-
+	
+	<% if @stories.empty? %> 
+	<h2><span><%= t('stories.not.found_for_query', :query => "<a>'#{ truncate( @query, 20 ) }'</a>" )%></span></h2>
+	<%else%>
  	<h2>
       <span><%= t('search.page.title', :query => "<a>'#{ truncate( @query, 20 ) }'</a>" ) -%></span>
 	  <div class='add_topic_link'><%= render :partial => 'topic_form' %></div>  
@@ -45,8 +48,7 @@
         <% end %>
       </div>
     <% end %>
-	<% if @stories.empty? %>
-      <em><%= t( 'stories.not.found' ) %></em>
+	
 	<% end %>
   </div>
 </div>

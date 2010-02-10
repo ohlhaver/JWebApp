@@ -78,7 +78,7 @@ de:
     filter:
       all: 'Alle'
       subscribed: 'abonniert'
-      rated: 'gewichted'
+      rated: 'gewichtet'
   authors:
     not:
       found: "Autor nicht gefunden."
@@ -203,7 +203,8 @@ de:
       found: "Quelle nicht gefunden."
   stories:
     not:
-      found: "Artikel nicht gefunden."
+      found: "Keine Artikel gefunden."
+      found_for_query: "Keine Artikel zu {{query}} gefunden."
   seo:
     page:
       default_title: "Jurnalo - die neuesten und wichtigsten Nachrichten zu jedem Thema"

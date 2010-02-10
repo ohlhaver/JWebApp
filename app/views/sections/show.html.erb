@@ -7,7 +7,8 @@
 	</div>
     <% end %>
     <% if @section.clusters.empty? %>
-      <em>No stories found.</em>
+		<br>
+       <h2><span><%= t('stories.not.found')%></span></h2>
     <% end %>
   </div>
 </div>

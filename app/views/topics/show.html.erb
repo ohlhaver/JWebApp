@@ -2,6 +2,9 @@
 <% form_method = :get %>
 <div class='news_group'>
   <div class='news_block'>
+	<% if @topic.stories.empty? %>
+      <h2><span><%= t('stories.not.found_for_query', :query => "<a>'#{ truncate( @topic.name, 20 ) }'</a>" )%></span></h2>
+	<%else%>
     <h2>
       <%= t('navigation.main.my_topics' )%>: <%= @topic.name -%>
       <span class='links'><%= render_filter_links( @topic.facets, form_url, form_method ) %></span>
@@ -16,8 +19,7 @@
         <% end %>
       </div>
     <% end %>
-    <% if @topic.stories.empty? %>
-      <em><%= t( 'stories.not.found' ) %></em>
+
     <% end %>
   </div>
 </div>

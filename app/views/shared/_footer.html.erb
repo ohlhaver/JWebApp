@@ -1,9 +1,8 @@
 <div class="footer_module" class="grid_6"></div>
 
-  <%= link_to t( 'navigation.bottom.about' ) %> -
-  <%= link_to t( 'navigation.top.help' )  %> -
-  <%= link_to t( 'navigation.bottom.privacy' ) %> -
-  <%= link_to t( 'navigation.bottom.imprint' ) %> -
-  <%= link_to t( 'navigation.bottom.feedback' ) %>
+  <%= link_to t( 'navigation.bottom.about' ), :controller=>"about", :action=>"about" %> -
+  <%= link_to t( 'navigation.bottom.privacy' ), :controller=>"about", :action=>"privacy" %> -
+  <%= link_to t( 'navigation.bottom.imprint'), :controller=>"about", :action=>"imprint" %>
+
 <br>
   <span class= "grey">&copy; 2010</span>

@@ -1,14 +1,14 @@
 <div class= 'adv_search_lines'>
   	<% form_for( @topic, :url => topics_path, :html => { :id => 'simple_topic_form' }, :method => :post ) do |f| %>
 	  <%= f.error_messages %>
-		<% if @topic.errors.any? %>
+		
 		<div id = "topic_label"> 
 				<span><%= t('topic.name') -%> </span> 
 		    <span><%= f.text_field(:name, :id => "adv_searchfield" ) %></span>
 	
     </div>
 		<div class = "results_module"></div>
-	    <% end %>
+	    
 
 
 		<div id = "topic_label"> 
