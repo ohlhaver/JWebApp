@@ -33,31 +33,42 @@
 
 </div>
 	
-    		<div id="top_navigation" class="grid_1">
+    <div id="top_navigation" class="grid_1">
       <%= render :partial => 'shared/top_navigation' %>
     </div>
 
-    		<div id="edition" class="grid_1">
-      <%= render :partial => 'shared/edition' %>
+    <div id="edition" class="grid_1">
+      <%= render :partial => 'shared/edition' %>		
     </div>
 
-			<div id="content" class="grid_4">
+	<div id="content" class="grid_4">
 		  <%= yield %>
 	      <div>&nbsp;</div>
+		  <div class="pagination_module" class="grid_4">	</div>
+		  <%= render :partial => 'shared/lrec' %>
 
 	</div>
 	
-			<div id="module" class="grid_2"></div>
+	<div id="module" class="grid_1">
 
-			<div id='home_link' class= "grid_2">
+	<div id='home_link' >
 	 <%= link_to 'Home', root_path %> &nbsp;
 	</div>
 		
-			<div id="navigation" class="grid_2 ">
+	<div id="navigation" >
 	      <%= render :partial => 'shared/navigation' %>
 	    </div>
+	</div>
+	
+	<div id="skyscraper" class ="grid_1">
+		<%= render :partial => 'shared/skyscraper' %>
+	</div>
+	
 
-    		<div id="footer" class = "grid_6">
+
+    
+	<div id="footer" class = "grid_6">
+	
       <%= render :partial => 'shared/footer' %>
     </div>
    
