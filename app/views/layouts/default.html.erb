@@ -14,10 +14,10 @@
   </head>
 	<body>
 
-		<div class="container_6">
+		<div class="container_4">
 
 	
-			<div id= "top_frame" class = "grid_4">
+			<div id= "top_frame" class = "grid_3">
 
 	<%= link_to( image_tag( 'logo.gif'), root_path ) %>
 
@@ -41,15 +41,15 @@
       <%= render :partial => 'shared/edition' %>		
     </div>
 
-	<div id="content" class="grid_4">
+	<div id="content" class="grid_3">
 		  <%= yield %>
 	      <div>&nbsp;</div>
-		  <div class="pagination_module" class="grid_4">	</div>
+		  <div class="pagination_module" class="grid_3">	</div>
 		  <%= render :partial => 'shared/lrec' %>
 
 	</div>
 	
-	<div id="module" class="grid_2">
+	<div id="module" class="grid_1">
 
 	<div id='home_link' >
 	 <%= link_to_navigation_item 'Home', root_path %> &nbsp;
@@ -65,7 +65,7 @@
 
 
     
-	<div id="footer" class = "grid_6">
+	<div id="footer" class = "grid_4">
     <%= render :partial => 'shared/footer' %>
   </div>
   <%= javascript_include_tag 'prototype' %>
