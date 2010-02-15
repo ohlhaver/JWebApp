@@ -68,14 +68,18 @@
 
     
 	<div id="footer" class = "grid_6">
-	
-      <%= render :partial => 'shared/footer' %>
-    </div>
-   
-
- 	<%= javascript_include_tag 'prototype' %>
-    	<%= yield :custom_javascript %>
-  		</div>
-
-	</body>
+    <%= render :partial => 'shared/footer' %>
+  </div>
+  <%= javascript_include_tag 'prototype' %>
+  <%= javascript_include_tag 'application' %>
+  <script>
+    var elements = $$('div.news_group');
+    elements.each( function(element) {
+      Event.observe(element, 'mouseover', showMouseOvers);
+      Event.observe(element, 'mouseout', hideMouseOvers);
+    });
+  </script>
+  <%= yield :custom_javascript %>
+</div>
+</body>
 </html>

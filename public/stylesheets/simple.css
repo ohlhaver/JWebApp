@@ -588,3 +588,39 @@ border: 0px;
 	color: #333333;
 
 }
+
+/* MouseOvers */
+.actionsBox {
+  border: 1px solid #99CCFF; 
+  padding: 10px 7px 0px 7px; 
+  background: #FFFFFF; 
+  color:#333333;
+  width: 168px; 
+  line-height: 17px; 
+  font-size: 12px;
+  font-family:Arial,Helvetica,sans-serif;
+  top: 0;
+  left: 0;
+}
+.actionsBox a:link {
+  color : #333333;
+  text-decoration: none;
+  margin: 0 2px;
+}
+.actionsBox a:visited {
+  color : #333333;
+  text-decoration: none;
+}
+.actionsBox a:hover {
+  color: #0000CC;
+  text-decoration: none;
+}
+span.mo_icon {
+  display: none;
+  position:absolute;
+  background-color:white;
+}
+div.mo_menu {
+  display: none;
+  margin-top:-4px;
+}

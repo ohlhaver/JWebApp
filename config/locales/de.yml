@@ -174,7 +174,7 @@ de:
       only: 'nur'
     label:
       remove: 'entfernen'
-      add_to_reading_list: ' '
+      add_to_reading_list: 'Add to Reading List'
     category:
       politics: 'Politik'
       business: 'Wirtschaft'

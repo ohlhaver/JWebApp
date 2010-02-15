@@ -1,4 +1,24 @@
-<span class='title'><%= link_to( story.title, story.url )%></span>
+<% if hide_add_to_reading_list %>
+  <span class='title'>
+    <%= link_to( story.title, story.url, :target => '_BLANK' ) %>
+  </span>
+<% else %>
+<% mouse_over( :icon ) do |iconEventClass, iconItemClass| %>
+  <span class="title <%= iconEventClass -%>">
+    <%= link_to( story.title, story.url, :target => '_BLANK' ) %>
+    <% mouse_over( :menu ) do |menuEventClass, menuItemClass| %>
+      <span class='<%= iconItemClass -%> <%= menuEventClass -%>'>
+        <%= image_tag('plus.gif') %>
+        <div class='<%= menuItemClass -%> actionsBox'>
+          <div style='margin-bottom:10px;'>
+            <%= link_to( t('prefs.label.add_to_reading_list'), { :controller => '/reading_list', :action => :create, :id => story.id }, :method => :post ) %>
+          </div>
+        </div>
+      </span>
+    <% end -%>
+  </span>
+<% end %>
+<% end %>
 <br>
 <% if story.source %>
   <span class='source fs80'><%= link_to( story.source.name, source_path( story.source ) ) %></span>
@@ -11,7 +31,3 @@
   <% end %>
 <% end %>
 <span class='age fs80'><%= time_ago_in_words( story.created_at ) -%></span>
-<% if !hide_add_to_reading_list %>
- <span class='separator'> </span>
-  <span class='fs80'><%= link_to( t('prefs.label.add_to_reading_list'), { :controller => '/reading_list', :action => :create, :id => story.id }, :method => :post ) %>
-<% end %>

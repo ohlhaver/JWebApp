@@ -5,6 +5,29 @@ module ApplicationHelper
     [ ['Global', 'int-en'], [ 'Deutschland', 'de-de'], [ 'Schweiz', 'ch-de'], [ 'Österreich', 'at-de' ] ]
   end
   
+  def mouse_over( event_target, &block )
+    @parent_block_called_from_erb = @current_block_called_from_erb
+    @current_block_called_from_erb ||= block_called_from_erb?( block )
+    content = block.call( "mo_#{event_target}_event_src", "mo_#{event_target}" )
+    if !@parent_block_called_from_erb && block_called_from_erb?( block )
+      @parent_block_called_from_erb = nil
+      @current_block_called_from_erb = nil
+      return concat( content )
+    end
+    content
+  end
+  
+  # def mouse_over_menu( &block )
+  #    mouse_over_content_tag( block_called_from_erb?(block), 'mo_menu', &block )
+  #  end
+  #  
+  #  def mouse_over_content_tag( concat, class_name, &block )
+  #    content = content_tag( :span, :class => "#{class_name}_event_src" ) do
+  #      block.call( class_name )
+  #    end
+  #    concat ? concat( content ) : content
+  #  end
+  
   def render_cluster_preview( cluster, headline = nil )
     headline ||= cluster.stories.shift
     render :partial => 'clusters/preview', :locals => { :headline => headline, :cluster => cluster }
