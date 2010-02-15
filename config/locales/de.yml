@@ -65,6 +65,36 @@ de:
       over_x_years:
         one: 'mehr als 1 Jahr'
         other: 'vor {{count}} Jahren'
+  jurnalo:
+    about:
+      label: "Über Jurnalo"
+      you_can: "Mit Jurnalo können Sie"
+      browse_news: "in den Nachrichten blättern"
+      search_news: "Nachrichten suchen"
+      subscribe_author: "Autoren abonnieren"
+      create_topic: "eigene Themen erschaffen"
+      add_to_reading_list: "interessante Artikel zu Ihrer Leseliste speichern"
+      ranking: "Jurnalos Sortierung von Artikeln geschieht vollkommen automatisch und basiert auf Relevanz, Qualität und Zeit."
+      selection: "Für die Auswahl und Gewichtung der Quellen ist die journalistische Qualität das ausschließliche Kriterium."
+      credits: "Dank gilt insbesondere den folgenden Personen, ohne deren open-source Beiträge diese Seite nicht möglich wäre"
+      search_tech: "Suchtechnologie"
+    imprint:
+      label: 'Impressum'
+      tel: 'Telefon'
+      md: "Vertretungsberechtigt: Justus Ohlhaver (Anschrift wie oben)"
+      rstv: "Inhaltlich Verantwortlicher gemäß § 55 Abs. 2 RStV: Justus Ohlhaver (Anschrift wie oben) "
+      registry: "Handelsregister"
+      ust_id: "Umsatzsteueridentifikationsnummer"
+      disclaimer: "Haftungshinweis: <br> Wir übernehmen keine Haftung für die Inhalte externer Links.<br> Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich."
+    privacy:
+      label: "Datenschutz"
+      collects: "Jurnalo sammelt persönliche Informationen, wenn Sie sich registrieren oder anderweitig derartige Informationen freiwillig bereitstellen."
+      cookies: "Wir verwenden Cookies und andere Technologien, um zu erfahren, wie Sie Jurnalo nutzen."
+      accesses: "Jurnalo erfasst Informationen automatisch, wenn Sie unsere Website aufrufen. Diese Informationen umfassen unter anderem URL, IP-Adresse, Browserart, Sprache sowie das Datum und die Uhrzeit Ihrer Anfrage."
+      dont_passes: "Wir geben keine persönlichen Informationen an Dritte weiter."
+      summarizes: "Nur zusammengefasste entpersonalisierte Informationen werden an Dritte weitergegeben."
+      uses: "Die persönlichen Informationen werden für die Bereitstellung von gewünschten Dienstleistungen, einschließlich der Dienstleistungen mit angepassten Inhalten, verwendet."
+      researches: "Wir nutzen Ihre persönlichen Informationen ausserdem für interne Auswertungen, um Ihre Onlineerfahrung sowie unsere Technologien und Dienstleistungen zu verbessern."
   author:
     action:
       subscribe: 'abonnieren'

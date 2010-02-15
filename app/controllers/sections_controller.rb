@@ -9,7 +9,17 @@ class SectionsController < ApplicationController
       :cluster_group_id => params[:id], :per_page => params[:per_page] } )
   end
   
-  def new
+  def create
+    @section = JAPI::HomeClusterPreference.new( :value => params[:preference_id] ).tap do |x| 
+      x.prefix_options = { :region_id => news_edition.region_id, :language_id => news_edition.language_id, :user_id => current_user.id }
+    end
+    if @section.save
+      flash[:notice] = 'Section Created Successfully.'
+      redirect_to request.referer || { :action => :show, :id => @section.id }
+    else
+      flash[:error] = 'Error while creating section.'
+      redirect_to request.referer || { :action => :index, :controller => :home }
+    end
   end
-
+  
 end

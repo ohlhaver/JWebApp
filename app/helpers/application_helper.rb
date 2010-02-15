@@ -63,7 +63,9 @@ module ApplicationHelper
   end
   
   def preference_options( attribute, options = {} )
-    select_options = JAPI::PreferenceOption.send( "#{attribute}_options" ).collect{ |option| [ t(option.name), option.id ] }
+    options[:args] = Array( options[:args] )
+    args = [ "#{attribute}_options" ] + options[:args]
+    select_options = JAPI::PreferenceOption.send( *args ).collect{ |option| [ t(option.name), option.id ] }
     select_options.unshift( [ '', nil ] ) if options[:include_blank]
     select_options
   end

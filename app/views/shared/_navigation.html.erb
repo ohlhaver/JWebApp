@@ -28,7 +28,13 @@
   <% end %>
 
   <% link = link_hash[:add_section] %>
-  <li class="grey"><%= link_to( link.name, link.to_url_hash ) %></li>
+  <li class="grey">
+    <span id='add_section_link'><%= link_to_function( link.name, 'Element.show("add_section_form");Element.hide("add_section_link")' ) %></span>
+    <span id='add_section_form' style='display:none;'>
+      <%= render :partial => 'sections/form' %>
+      <%= link_to_function( 'Hide', 'Element.show("add_section_link");Element.hide("add_section_form")' ) %>
+    </span>
+  </li>
 
 </ul>
 <% end %>

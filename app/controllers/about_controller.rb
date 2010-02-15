@@ -1,6 +1,7 @@
 class AboutController < ApplicationController
- japi_connect_login_optional
- 
+  
+  japi_connect_login_optional
+  
   def imprint
   end
   

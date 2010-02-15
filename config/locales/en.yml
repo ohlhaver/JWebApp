@@ -65,6 +65,36 @@ en:
       over_x_years:
         one: 'over 1 year ago'
         other: '{{count}} years ago'
+  jurnalo:
+    about:
+      label: "About Jurnalo"
+      you_can: "With Jurnalo you can"
+      browse_news: "browse the news"
+      search_news: "search the news"
+      subscribe_author: "subscribe to any author"
+      create_topic: "create your own topics"
+      add_to_reading_list: "save interesting articles to your reading list"
+      ranking: "Jurnalo ranks and sorts articles fully automatically based on relevance, quality and time."
+      selection: "The selection and weighting of sources is based on the sole criteria of journalistic quality."
+      credits: "Special thanks go out to the following people without whose open-source contributions this application would not have been possible"
+      search_tech: "search technology"
+    imprint:
+      label: 'Imprint'
+      tel: 'Telephone'
+      md: "Managing director: Justus Ohlhaver (same address as above)"
+      rstv: "Justus Ohlhaver (same address as above) is responsible for the content in accordance with § 55 - 2 RStV."
+      registry: "Registry"
+      ust_id: "Ust-ID-Nr."
+      disclaimer: "Disclaimer: <br> We are not responsible for the content of any external links.<br> The responsiblity for any of the content of any of the pages we are linking to belongs exclusively to the owners of the pages we are linking to."
+    privacy:
+      label: "Privacy policy"
+      collects: "Jurnalo collects personal information when you register or when you provide such information voluntarily."
+      cookies: "We use cookies and other technologies to find out how you use Jurnalo."
+      accesses: "Jurnalo accesses information automatically when you visit our site. This information includes URL, IP-address, browser-type, language as well as date and time of your visit."
+      dont_passes: "We don't pass on personal information to any third party without your explicit approval."
+      summarizes: "Only summarized de-personalized information is provided to third parties."
+      uses: "Personal information is used for providing services requested by the user including services with personalized content."
+      researches: "Additionally, we use your personal information for internal research in order to improve your online experience as well as our technologies and services."
   author:
     action:
       subscribe: 'subscribe'
