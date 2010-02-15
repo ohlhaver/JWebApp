@@ -42,6 +42,17 @@ module ApplicationHelper
     render( :partial => 'stories/pagination', :locals => options.merge( :pagination => collection.pagination ) ) if collection.pagination.total_pages > 1
   end
   
+  def link_to_navigation_item( *args, &block )
+    original_args = args.dup
+    args.shift if block.nil?
+    url_path = url_for( args.first )
+    if base_url?( url_path ) then
+      content_tag( :span, block ? block.call : original_args.first, :class => 'current' )
+    else
+      link_to( *original_args, &block )
+    end
+  end
+  
   def link_to_page( title, page )
     page_url = controller.request.url.gsub(/(\?|\&)page\=\d+&?/){ $1 }
     page_url << "?" unless page_url.match(/\?/)
@@ -151,6 +162,12 @@ module ApplicationHelper
   def base_url( url = nil )
     url ||= controller.request.url
     url.gsub(/\?.*/, '')
+  end
+  
+  # Matches whether the current request == navigational url
+  def base_url?( url_path )
+    @base_url ||= base_url.gsub(/http\:\/\/[^\/]+/, '')
+    @base_url == url_path
   end
   
   def page_params( options = {} )
