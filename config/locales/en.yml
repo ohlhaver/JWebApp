@@ -72,6 +72,7 @@ en:
       browse_news: "browse the news"
       search_news: "search the news"
       subscribe_author: "subscribe to any author"
+      weight: "weight authors and sources"
       create_topic: "create your own topics"
       add_to_reading_list: "save interesting articles to your reading list"
       ranking: "Jurnalo ranks and sorts articles fully automatically based on relevance, quality and time."
