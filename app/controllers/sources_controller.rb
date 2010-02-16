@@ -14,7 +14,7 @@ class SourcesController < ApplicationController
     pref = ( JAPI::SourcePreference.find( nil, :params => { :source_id => params[:id],  :user_id => current_user.id } ) || 
         JAPI::SourcePreference.new( :source_id => params[:id] ) )
     pref.prefix_options = { :user_id => current_user.id }
-    pref.preference = ( Integer( params[:rating] ) rescue nil )
+    pref.preference = ( Integer( params[:rating] || "" ) rescue nil )
     if pref.save
       flash[:notice] = 'Success'
     else

@@ -17,6 +17,18 @@ module ApplicationHelper
     content
   end
   
+  def source_rating_links( source )
+    preference_options( :source_rating ).collect{ |option|
+      link_to( option.first, rate_source_path( :id => source, :rating => option.last ) )
+    }
+  end
+  
+  def author_rating_links( author )
+    preference_options( :author_rating ).collect{ |option| 
+      link_to( option.first, rate_author_path( :id => author, :rating => option.last ) )
+    }
+  end
+  
   # def mouse_over_menu( &block )
   #    mouse_over_content_tag( block_called_from_erb?(block), 'mo_menu', &block )
   #  end

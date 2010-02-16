@@ -10,11 +10,11 @@ ActionController::Routing::Routes.draw do |map|
   map.my_authors '/authors/my', :controller => 'authors', :action => 'my'
   map.logout '/logout', :controller => 'application', :action => 'logout'
   map.root :controller => 'home', :action => 'index'
-  map.resources :sections
+  map.resources :sections, :member => [ :up, :down, :hide ]
   map.resources :clusters
   map.resources :stories, :collection => [ :advanced, :search_results ]
-  map.resources :topics
-  map.resources :authors, :member => [ :subscribe, :unsubscribe, :rate ]
+  map.resources :topics, :member => [ :hide, :up, :down ]
+  map.resources :authors, :member => [ :subscribe, :unsubscribe, :rate ], :collection => [ :hide, :up, :down ]
   map.resources :sources, :member => [ :rate ]
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

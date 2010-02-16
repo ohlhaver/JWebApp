@@ -1,8 +1,17 @@
 <% if block.any? %>
-<div class='news_block'>
-  <h2><%= link_to t('navigation.main.my_authors'), my_authors_path %></h2>
-  <% block.each do |story| %>
-    <div class='cluster'><%= render_story_search_preview( story )%></div>
+  <% mouse_over( :dialog ) do |dialogEventClass, dialogItemClass| %>
+  <div class='news_block <%= dialogEventClass -%>'>
+    <h2>
+      <%= link_to t('navigation.main.my_authors'), my_authors_path %>
+      <span class='dialogBox <%= dialogItemClass -%>'>
+         <%= link_to( t( 'prefs.home_action.hide' ), hide_authors_path ) %> | 
+         <%= link_to( t( 'prefs.home_action.up' ), up_authors_path ) %> | 
+         <%= link_to( t( 'prefs.home_action.down' ), down_authors_path ) %>
+      </span>
+    </h2>
+    <% block.each do |story| %>
+      <div class='cluster'><%= render_story_search_preview( story )%></div>
+    <% end %>
+  </div>
   <% end %>
-</div>
 <% end %>

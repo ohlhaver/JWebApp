@@ -22,4 +22,108 @@ class SectionsController < ApplicationController
     end
   end
   
+  def destroy
+    @section = JAPI::HomeClusterPreference.new( :id => params[:id] ).tap do |t|
+      t.prefix_options = { 
+        :user_id => current_user.id, 
+        :region_id => news_edition.region_id, 
+        :language_id => news_edition.language_id, 
+        :cluster_group_id => params[:id]  }
+    end
+    if @section.destroy
+      flash[:notice] = 'Success'
+    else
+      flash[:error] = 'Failure'
+    end
+    redirect_to request.referer || { :action => :index, :controller => :home }
+  end
+  
+  def hide
+    top_stories_id = params[:id] == 'top' ? JAPI::PreferenceOption.homepage_display_id(:top_stories_cluster_group) : -1
+    @top_section = JAPI::HomeDisplayPreference.new( :id => params[:id] ).tap do |t|
+      t.prefix_options = {
+        :user_id => current_user.id,
+        :homepage_box_id => top_stories_id
+      }
+    end
+    if @top_section.destroy
+      flash[:notice] = 'Success'
+    else
+      flash[:error] = 'Failure'
+    end
+    redirect_to request.referer || { :action => :index, :controller => :home }
+  end
+  
+  def top_section_up
+    top_stories_id = JAPI::PreferenceOption.homepage_display_id(:top_stories_cluster_group)
+    @top_section = JAPI::HomeDisplayPreference.new( :id => params[:id] ).tap do |t|
+      t.prefix_options = {
+        :user_id => current_user.id,
+        :homepage_box_id => top_stories_id,
+        :reorder => :up
+      }
+    end
+    if @top_section.save
+      flash[:notice] = 'Success'
+    else
+      flash[:error] = 'Failure'
+    end
+    redirect_to request.referer || { :action => :index, :controller => :home }
+  end
+  
+  def top_section_down
+    top_stories_id = JAPI::PreferenceOption.homepage_display_id(:top_stories_cluster_group)
+    @top_section = JAPI::HomeDisplayPreference.new( :id => params[:id] ).tap do |t|
+      t.prefix_options = {
+        :user_id => current_user.id,
+        :homepage_box_id => top_stories_id,
+        :reorder => :down
+      }
+    end
+    if @top_section.save
+      flash[:notice] = 'Success'
+    else
+      flash[:error] = 'Failure'
+    end
+    redirect_to request.referer || { :action => :index, :controller => :home }
+  end
+  
+  def up
+    return top_section_up if params[:id] == 'top'
+    @section = JAPI::HomeClusterPreference.new( :id => params[:id] ).tap do |t|
+      t.prefix_options = { 
+        :user_id => current_user.id, 
+        :reorder => :up,
+        :region_id => news_edition.region_id, 
+        :language_id => news_edition.language_id, 
+        :cluster_group_id => params[:id]
+      }
+    end
+    if @section.save
+      flash[:notice] = 'Success'
+    else
+      flash[:error] = 'Error'
+    end
+    redirect_to request.referer || { :action => :show, :id => @section.id }
+  end
+  
+  def down
+    return top_section_down if params[:id] == 'top'
+    @section = JAPI::HomeClusterPreference.new( :id => params[:id] ).tap do |t|
+      t.prefix_options = { 
+        :user_id => current_user.id, 
+        :reorder => :down,
+        :region_id => news_edition.region_id, 
+        :language_id => news_edition.language_id, 
+        :cluster_group_id => params[:id] 
+      }
+    end
+    if @section.save
+      flash[:notice] = 'Success'
+    else
+      flash[:error] = 'Error'
+    end
+    redirect_to request.referer || { :action => :show, :id => @section.id }
+  end
+  
 end

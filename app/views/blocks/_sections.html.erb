@@ -1,8 +1,17 @@
-<div class='news_block'>
-  <h2><%= link_to  t("navigation.main.#{block.name}"), section_path( block.id ) %></h2>
+<% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
+<div class='news_block <%= dialogEventClass -%>'>
+  <h2>
+    <%= link_to  t("navigation.main.#{block.name}"), section_path( block.id ) %>
+    <span class='dialogBox <%= dialogItemClass%>'>
+      <%= link_to( t('prefs.home_action.delete'), section_path( :id => block.id ), :method => :delete, :confirm => 'Are you sure?' ) %> |
+      <%= link_to( t('prefs.home_action.up'), up_section_path( :id => block.id ) ) %> |
+      <%= link_to( t('prefs.home_action.down'), down_section_path( :id => block.id ) ) %>
+    </span>
+  </h2>
   <% block.clusters.each do |cluster| %>
     <div id='cluster_<%= cluster.id -%>' class='cluster'>
       <%= render_cluster_preview( cluster ) %>
     </div>
   <% end %>
 </div>
+<% end %>

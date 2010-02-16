@@ -159,6 +159,12 @@ en:
     previous: "previous"
     next: "next"
   prefs:
+    home_action:
+      show: 'show'
+      hide: 'hide'
+      delete: 'delete'
+      up: 'up'
+      down: 'down'
     country:
       int: 'Global'
       de: 'Germany'

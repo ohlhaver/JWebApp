@@ -159,6 +159,12 @@ de:
     previous: "zurück"
     next: "vorwärts"
   prefs:
+    home_action:
+      show: 'show'
+      hide: 'hide'
+      delete: 'delete'
+      up: 'up'
+      down: 'down'
     country:
       int: 'Global'
       de: 'Deutschland'

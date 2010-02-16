@@ -47,8 +47,57 @@ class TopicsController < ApplicationController
       render :action => :new
     end
   end
-
+  
   def edit
   end
-
+  
+  def destroy
+    @topic = JAPI::TopicPreference.new( :id => params[:id] ).tap do |t|
+      t.prefix_options = { :user_id => current_user.id }
+    end
+    if @topic.destroy
+      flash[:notice] = 'Success'
+    else
+      flash[:error] = 'Failure'
+    end
+    redirect_to request.referer || { :action => :index }
+  end
+  
+  def hide
+    @topic = JAPI::TopicPreference.new( :id => params[:id] ).tap do |t|
+      t.prefix_options = { :user_id => current_user.id }
+      t.home_group = false
+    end
+    if @topic.save
+      flash[:notice] = 'Success'
+    else
+      flash[:error] = 'Failure'
+    end
+    redirect_to request.referer || { :action => :show, :id => @topic }
+  end
+  
+  def up
+    @topic = JAPI::TopicPreference.new( :id => params[:id] ).tap do |t|
+      t.prefix_options = { :user_id => current_user.id, :reorder => :up }
+    end
+    if @topic.save
+      flash[:notice] = 'Success'
+    else
+      flash[:error] = 'Failure'
+    end
+    redirect_to request.referer || { :action => :show, :id => @topic }
+  end
+  
+  def down
+    @topic = JAPI::TopicPreference.new( :id => params[:id] ).tap do |t|
+      t.prefix_options = { :user_id => current_user.id, :reorder => :down }
+    end
+    if @topic.save
+      flash[:notice] = 'Success'
+    else
+      flash[:error] = 'Failure'
+    end
+    redirect_to request.referer || { :action => :show, :id => @topic }
+  end
+  
 end

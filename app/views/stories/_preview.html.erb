@@ -21,12 +21,41 @@
 <% end %>
 <span class='separator first'>-</span>
 <% if story.source %>
-  <span class='source fs80'><%= link_to( story.source.name, source_path( story.source ) ) %></span>
+  <% mouse_over( :icon ) do | iconEventClass, iconItemClass | %>
+    <span class='source fs80 <%= iconEventClass %>'>
+      <%= link_to( story.source.name, source_path( story.source ) ) %>
+      <% mouse_over( :menu ) do |menuEventClass, menuItemClass| %>
+        <span class='<%= iconItemClass %> <%= menuEventClass -%>'>
+          <%= image_tag('plus.gif') %>
+          <div class='<%= menuItemClass -%> actionsBox'>
+            <div>
+              <%= source_rating_links( story.source ).join("<br/>") %>
+            </div>
+          </div>
+        </span>
+      <% end %>
+    </span>
+  <% end %>
 <% end %>
 <% if story.authors.any? && !hide_authors %>
 <span class='separator'>-</span>
   <% story.authors.each do |author| %>
-    <span class='author fs80'><%= link_to( author.name, author_path( author ) ) -%></span>
+    <% mouse_over(:icon) do | iconEventClass, iconItemClass | %>
+      <span class='author fs80 <%= iconEventClass -%>'>
+        <%= link_to( author.name, author_path( author ) ) -%>
+        <% mouse_over(:menu) do | menuEventClass, menuItemClass | %>
+          <span class='<%= iconItemClass -%> <%= menuEventClass -%>'>
+            <%= image_tag('plus.gif') %>
+            <div class='<%= menuItemClass -%> actionsBox'>
+              <div>
+                <%= author_rating_links( author ).join("<br/>") %><br/>
+                <%= link_to t('author.action.subscribe'), subscribe_author_path( author ), :method => :put  %>
+              </div>
+            </div>
+          </span>
+        <% end %>
+      </span>
+    <% end -%>
     <span class='separator'> </span>
   <% end %>
 <% end %>

@@ -590,6 +590,13 @@ border: 0px;
 }
 
 /* MouseOvers */
+.dialogBox{
+  float:right;
+  font-size:10px;
+}
+.news_block h2 .dialogBox a {
+  font-size:10px;
+}
 .actionsBox {
   border: 1px solid #99CCFF; 
   padding: 10px 7px 0px 7px; 
@@ -607,6 +614,9 @@ border: 0px;
   text-decoration: none;
   margin: 0 2px;
 }
+.actionsBox div {
+  margin-bottom: 10px;
+}
 .actionsBox a:visited {
   color : #333333;
   text-decoration: none;
@@ -623,4 +633,10 @@ span.mo_icon {
 div.mo_menu {
   display: none;
   margin-top:-4px;
+}
+span.mo_dialog{
+  display:none;
+}
+.pdt6px {
+  padding-top:6px;
 }
