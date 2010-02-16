@@ -11,8 +11,8 @@
     <li class='<%= dialogEventClass -%>'>
       <%= link_to_navigation_item( link.name, link.to_url_hash) %>
       <span class='navDialogBox <%= dialogItemClass -%>'>
-        <%= link_to t('prefs.home_action.up'),  up_topic_path('my') %> |
-        <%= link_to t('prefs.home_action.down'), down_topic_path('my') %>
+        <%= link_to image_tag('up.gif'),  up_topic_path('my') %>
+        <%= link_to image_tag('down.gif'), down_topic_path('my') %>
       </span>
     </li>
   <% end %>
@@ -20,15 +20,10 @@
   <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass| %>
     <li class='<%= dialogEventClass -%>'>
       <%= link_to_navigation_item( link.base.name_with_count, link.to_url_hash) %>
-      <span class='navDialogBox <%= dialogItemClass -%>'>
-        <% if link.base.home_group != true %>
-          <%= link_to t('prefs.home_action.show'), unhide_topic_path( link.id ) %>
-        <% else %>
-          <%= link_to t('prefs.home_action.hide'), hide_topic_path( link.id ) %>
-        <% end %> |
-        <%= link_to t('prefs.home_action.delete'), topic_path( link.id ), :method => :delete, :confirm => 'Are you sure?' %> |
-        <%= link_to t('prefs.home_action.up'),  up_topic_path( link.id ) %> |
-        <%= link_to t('prefs.home_action.down'), down_topic_path( link.id ) %>
+      <span class='navDialogBox <%= dialogItemClass -%>'>           
+        <%= link_to image_tag('up.gif'),  up_topic_path( link.id ) %>
+        <%= link_to image_tag('down.gif'), down_topic_path( link.id ) %>
+		<%= link_to image_tag('close.gif'), topic_path( link.id ), :method => :delete, :confirm => 'Are you sure?' %>
       </span>
     </li>
   <% end %>
@@ -48,10 +43,10 @@
 <ul class='nav_block'>
   <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
     <li class='<%= dialogEventClass %>'>
-      <span><%= t('navigation.main.sections') %></span>
+      <span class="nav_sections_label"><%= t('navigation.main.sections') %></span>
       <span class='navDialogBox <%= dialogItemClass -%>'>
-        <%= link_to t('prefs.home_action.up'),  up_section_path( 'all' ) %> |
-        <%= link_to t('prefs.home_action.down'), down_section_path( 'all' ) %>
+        <%= link_to image_tag('up.gif'),  up_section_path( 'all' ) %>
+        <%= link_to image_tag('down.gif'), down_section_path( 'all' ) %>
       </span>
     </li>
   <% end %>
@@ -59,10 +54,10 @@
     <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass| %>
       <li class='<%= dialogEventClass -%>'>
         <%= link_to_navigation_item( link.name, link.to_url_hash ) %>
-        <span class='navDialogBox <%= dialogItemClass %>'>
-          <%= link_to t('prefs.home_action.delete'), section_path( link.id ), :method => :delete, :confirm => 'Are you sure?' %> |
-          <%= link_to t('prefs.home_action.up'), up_section_path( link.id ) %> |
-          <%= link_to t('prefs.home_action.down'), down_section_path( link.id ) %>
+        <span class='navDialogBox <%= dialogItemClass %>'>       
+          <%= link_to image_tag('up.gif'), up_section_path( link.id ) %>
+          <%= link_to image_tag('down.gif'), down_section_path( link.id ) %>
+		  <%= link_to image_tag('close.gif'), section_path( link.id ), :method => :delete, :confirm => 'Are you sure?' %>
         </span>
       </li>
     <% end %>
@@ -90,8 +85,8 @@
     <li class='<%= dialogEventClass -%>'>
       <%= link_to_navigation_item( link.name, link.to_url_hash ) %>
       <span class='navDialogBox <%= dialogItemClass -%>'>
-        <%= link_to t('prefs.home_action.up'), up_section_path( 'top' ) %> |
-        <%= link_to t('prefs.home_action.down'), down_section_path( 'down' ) %>
+        <%= link_to image_tag('up.gif'), up_section_path( 'top' ) %>
+        <%= link_to image_tag('down.gif'), down_section_path( 'down' ) %>
       </span>
     </li>
   <% end %>
@@ -109,8 +104,8 @@
     <li class='<%= dialogEventClass %>'>
       <%= link_to_navigation_item( name, link.to_url_hash ) %>
       <span class='navDialogBox <%= dialogItemClass -%>'>
-        <%= link_to t('prefs.home_action.up'), up_authors_path %> |
-        <%= link_to t('prefs.home_action.down'), down_authors_path %>
+        <%= link_to image_tag('up.gif'), up_authors_path %>
+        <%= link_to image_tag('down.gif'), down_authors_path %>
       </span>
     </li>
   <% end %>

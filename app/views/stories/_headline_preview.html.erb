@@ -5,7 +5,7 @@
 <% else %>
 <% mouse_over( :icon ) do |iconEventClass, iconItemClass| %>
   <span class="title <%= iconEventClass -%>">
-    <%= link_to( story.title, story.url, :target => '_BLANK' ) %>
+    <%= link_to( story.title, story.url, :target => '_BLANK' ) %>&nbsp;
     <% mouse_over( :menu ) do |menuEventClass, menuItemClass| %>
       <span class='<%= iconItemClass -%> <%= menuEventClass -%>'>
         <%= image_tag('plus.gif') %>
@@ -24,16 +24,6 @@
   <% mouse_over( :icon ) do | iconEventClass, iconItemClass | %>
     <span class='source fs80 <%= iconEventClass %>'>
       <%= link_to( story.source.name, source_path( story.source ) ) %>
-      <% mouse_over( :menu ) do |menuEventClass, menuItemClass| %>
-        <span class='<%= iconItemClass %> <%= menuEventClass -%> pdt6px'>
-          <%= image_tag('plus.gif') %>
-          <div class='<%= menuItemClass -%> actionsBox'>
-            <div>
-              <%= source_rating_links( story.source ).join("<br/>") %>
-            </div>
-          </div>
-        </span>
-      <% end %>
     </span>
   <% end %>  
   <span class='separator'>-</span>
@@ -48,7 +38,6 @@
             <%= image_tag('plus.gif') %>
             <div class='<%= menuItemClass -%> actionsBox'>
               <div>
-                <%= author_rating_links( author ).join("<br/>") %><br/>
                 <%= link_to t('author.action.subscribe'), subscribe_author_path( author ), :method => :put  %>
               </div>
             </div>

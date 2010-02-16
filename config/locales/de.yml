@@ -160,11 +160,11 @@ de:
     next: "vorwärts"
   prefs:
     home_action:
-      show: 'show'
-      hide: 'hide'
-      delete: 'delete'
-      up: 'up'
-      down: 'down'
+      show: 'zeigen'
+      hide: 'verstecken'
+      delete: 'entfernen'
+      up: 'hoch bewegen'
+      down: 'runter bewegen'
     country:
       int: 'Global'
       de: 'Deutschland'
@@ -181,7 +181,7 @@ de:
       only: 'nur'
     label:
       remove: 'entfernen'
-      add_to_reading_list: 'Add to Reading List'
+      add_to_reading_list: 'zur Leseliste hinzufügen'
     category:
       politics: 'Politik'
       business: 'Wirtschaft'
@@ -264,6 +264,9 @@ de:
       simple: 'Einfach'
     name: 'Name des Themas:'
     query: 'Suchbegriff:'
+  rate:
+    source: 'Quelle gewichten'
+    author: 'Autoren gewichten'
     
       
       

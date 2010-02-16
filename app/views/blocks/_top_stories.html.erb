@@ -5,8 +5,8 @@
     <span class='dialogBox <%= dialogItemClass%>'>
       <% #Hide functionality is not available for now %>
       <% #link_to( t('prefs.home_action.hide'), hide_section_path( :id => block.id ) ) %>
-      <%= link_to( t('prefs.home_action.up'), up_section_path( :id => block.id ) ) %> |
-      <%= link_to( t('prefs.home_action.down'), down_section_path( :id => block.id ) ) %>
+      <%= link_to( image_tag('up.gif'), up_section_path( :id => block.id ) ) %> <%= link_to( t('prefs.home_action.up'), up_section_path( :id => block.id ) ) %>&nbsp;&nbsp;
+      <%= link_to( image_tag('down.gif'), down_section_path( :id => block.id ) ) %> <%= link_to( t('prefs.home_action.down'), down_section_path( :id => block.id ) ) %>
     </span>
   </h2>
   <% block.clusters.each do |cluster| %>

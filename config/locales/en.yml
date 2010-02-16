@@ -162,9 +162,9 @@ en:
     home_action:
       show: 'show'
       hide: 'hide'
-      delete: 'delete'
-      up: 'up'
-      down: 'down'
+      delete: 'remove'
+      up: 'move up'
+      down: 'move down'
     country:
       int: 'Global'
       de: 'Germany'
@@ -181,7 +181,7 @@ en:
       only: 'only'
     label:
       remove: 'remove'
-      add_to_reading_list: 'Add to Reading List'
+      add_to_reading_list: 'add to my reading-list'
     category:
       politics: 'Politics'
       business: 'Business'

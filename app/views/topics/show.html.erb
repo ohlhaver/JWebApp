@@ -8,7 +8,7 @@
     <h2>
       <%= t('navigation.main.my_topic' )%>: <a><%= @topic.name -%></a>
       
-      <span class='links'><%= render_search_preference_form( :sort_criteria, :subscription_type, :form_url => form_url, :form_method => form_method  ) %></span>
+      <span class='links'><%= render_search_preference_form( :sort_criteria, :form_url => form_url, :form_method => form_method  ) %></span>
 		<div class='result_filter'><%= render_filter_links( @topic.facets, form_url, form_method ) %></span>
     </h2>
 	<div class = "results_module"></div>

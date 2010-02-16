@@ -6,8 +6,11 @@
       <span class='dialogBox <%= dialogItemClass -%>'>
          <% #hide functionality is not available  %>
          <% #link_to( t( 'prefs.home_action.hide' ), hide_authors_path ) %>
-         <%= link_to( t( 'prefs.home_action.up' ), up_authors_path ) %> | 
-         <%= link_to( t( 'prefs.home_action.down' ), down_authors_path ) %>
+         <%= link_to( image_tag('up.gif'), up_authors_path ) %>
+	     <%= link_to( t( 'prefs.home_action.up' ), up_authors_path ) %>
+ 		&nbsp;&nbsp;
+        <%= link_to( image_tag('down.gif'), down_authors_path ) %> 
+		<%= link_to( t( 'prefs.home_action.down' ), down_authors_path ) %>
       </span>
     </h2>
     <% block.each do |story| %>
