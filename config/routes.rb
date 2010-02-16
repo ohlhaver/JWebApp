@@ -13,7 +13,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :sections, :member => [ :up, :down, :hide ]
   map.resources :clusters
   map.resources :stories, :collection => [ :advanced, :search_results ]
-  map.resources :topics, :member => [ :hide, :up, :down ]
+  map.resources :topics, :member => [ :unhide, :hide, :up, :down ]
   map.resources :authors, :member => [ :subscribe, :unsubscribe, :rate ], :collection => [ :hide, :up, :down ]
   map.resources :sources, :member => [ :rate ]
   map.connect ':controller/:action/:id'

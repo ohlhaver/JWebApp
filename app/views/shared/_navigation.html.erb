@@ -3,13 +3,35 @@
 <% # Topic Block %>
 
 <% topics_block = capture( navigation_links ) do | link_hash | %>
+<% unless link_hash[ :topics ].nil? %>
 <ul class='nav_block'>
 
   <% link = link_hash[:my_topics] %>
-  <li><%= link_to_navigation_item( link.name, link.to_url_hash) %></li>
+  <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
+    <li class='<%= dialogEventClass -%>'>
+      <%= link_to_navigation_item( link.name, link.to_url_hash) %>
+      <span class='navDialogBox <%= dialogItemClass -%>'>
+        <%= link_to t('prefs.home_action.up'),  up_topic_path('my') %> |
+        <%= link_to t('prefs.home_action.down'), down_topic_path('my') %>
+      </span>
+    </li>
+  <% end %>
   <% link_hash[ :topics ].each do |link| %>
-    <% name = link.base > 0 ? "#{link.name} (#{link.base})" : link.name %>
-  <li><%= link_to_navigation_item( name, link.to_url_hash) %> </li>
+  <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass| %>
+    <li class='<%= dialogEventClass -%>'>
+      <%= link_to_navigation_item( link.base.name_with_count, link.to_url_hash) %>
+      <span class='navDialogBox <%= dialogItemClass -%>'>
+        <% if link.base.home_group != true %>
+          <%= link_to t('prefs.home_action.show'), unhide_topic_path( link.id ) %>
+        <% else %>
+          <%= link_to t('prefs.home_action.hide'), hide_topic_path( link.id ) %>
+        <% end %> |
+        <%= link_to t('prefs.home_action.delete'), topic_path( link.id ), :method => :delete, :confirm => 'Are you sure?' %> |
+        <%= link_to t('prefs.home_action.up'),  up_topic_path( link.id ) %> |
+        <%= link_to t('prefs.home_action.down'), down_topic_path( link.id ) %>
+      </span>
+    </li>
+  <% end %>
   <% end %>
 
   <% link = link_hash[:add_topic] %> 
@@ -17,15 +39,33 @@
 
 </ul>
 <% end %>
+<% end %>
 
 <% # Section Block %>
 
 <% sections_block = capture( navigation_links ) do | link_hash | %>
+<% unless link_hash[ :sections ].nil? %>
 <ul class='nav_block'>
-
+  <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
+    <li class='<%= dialogEventClass %>'>
+      <span><%= t('navigation.main.sections') %></span>
+      <span class='navDialogBox <%= dialogItemClass -%>'>
+        <%= link_to t('prefs.home_action.up'),  up_section_path( 'all' ) %> |
+        <%= link_to t('prefs.home_action.down'), down_section_path( 'all' ) %>
+      </span>
+    </li>
+  <% end %>
   <% link_hash[ :sections ].each do |link| %>
-  <li><%= link_to_navigation_item( link.name, link.to_url_hash ) %>
-  </li>
+    <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass| %>
+      <li class='<%= dialogEventClass -%>'>
+        <%= link_to_navigation_item( link.name, link.to_url_hash ) %>
+        <span class='navDialogBox <%= dialogItemClass %>'>
+          <%= link_to t('prefs.home_action.delete'), section_path( link.id ), :method => :delete, :confirm => 'Are you sure?' %> |
+          <%= link_to t('prefs.home_action.up'), up_section_path( link.id ) %> |
+          <%= link_to t('prefs.home_action.down'), down_section_path( link.id ) %>
+        </span>
+      </li>
+    <% end %>
   <% end %>
 
   <% link = link_hash[:add_section] %>
@@ -39,23 +79,43 @@
 
 </ul>
 <% end %>
+<% end %>
 
 <% # Top Stories Block %>
 
 <% top_stories_block = capture( navigation_links[:top_stories] ) do | link | %>
+<% if link %>
 <ul class='nav_block'>
-
-  <li><%= link_to_navigation_item( link.name, link.to_url_hash ) %></li>
+  <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
+    <li class='<%= dialogEventClass -%>'>
+      <%= link_to_navigation_item( link.name, link.to_url_hash ) %>
+      <span class='navDialogBox <%= dialogItemClass -%>'>
+        <%= link_to t('prefs.home_action.up'), up_section_path( 'top' ) %> |
+        <%= link_to t('prefs.home_action.down'), down_section_path( 'down' ) %>
+      </span>
+    </li>
+  <% end %>
 </ul>
+<% end %>
 <% end %>
 
 <% # My Authors Block %>
 
 <% my_authors_block = capture( navigation_links[:my_authors] ) do |link| %>
+<% if link %>
 <ul class='nav_block'>
   <% name = link.base > 0 ? "#{link.name} (#{link.base})" : link.name %>
-  <li><%= link_to_navigation_item( name, link.to_url_hash ) %></li>
+  <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
+    <li class='<%= dialogEventClass %>'>
+      <%= link_to_navigation_item( name, link.to_url_hash ) %>
+      <span class='navDialogBox <%= dialogItemClass -%>'>
+        <%= link_to t('prefs.home_action.up'), up_authors_path %> |
+        <%= link_to t('prefs.home_action.down'), down_authors_path %>
+      </span>
+    </li>
+  <% end %>
 </ul>
+<% end %>
 <% end %>
 
 <% navigation_links.keys.each do |key| %>

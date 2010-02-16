@@ -54,6 +54,40 @@ class SectionsController < ApplicationController
     redirect_to request.referer || { :action => :index, :controller => :home }
   end
   
+  def all_section_up
+    cluster_groups_id = JAPI::PreferenceOption.homepage_display_id(:cluster_groups)
+    @cluster_groups = JAPI::HomeDisplayPreference.new( :id => params[:id] ).tap do |t|
+      t.prefix_options = {
+        :user_id => current_user.id,
+        :homepage_box_id => cluster_groups_id,
+        :reorder => :up
+      }
+    end
+    if @cluster_groups.save
+      flash[:notice] = 'Success'
+    else
+      flash[:error] = 'Failure'
+    end
+    redirect_to request.referer || { :action => :index, :controller => :home }
+  end
+  
+  def all_section_down
+    cluster_groups_id = JAPI::PreferenceOption.homepage_display_id(:cluster_groups)
+    @cluster_groups = JAPI::HomeDisplayPreference.new( :id => params[:id] ).tap do |t|
+      t.prefix_options = {
+        :user_id => current_user.id,
+        :homepage_box_id => cluster_groups_id,
+        :reorder => :down
+      }
+    end
+    if @cluster_groups.save
+      flash[:notice] = 'Success'
+    else
+      flash[:error] = 'Failure'
+    end
+    redirect_to request.referer || { :action => :index, :controller => :home }
+  end
+  
   def top_section_up
     top_stories_id = JAPI::PreferenceOption.homepage_display_id(:top_stories_cluster_group)
     @top_section = JAPI::HomeDisplayPreference.new( :id => params[:id] ).tap do |t|
@@ -90,6 +124,7 @@ class SectionsController < ApplicationController
   
   def up
     return top_section_up if params[:id] == 'top'
+    return all_section_up if params[:id] == 'all'
     @section = JAPI::HomeClusterPreference.new( :id => params[:id] ).tap do |t|
       t.prefix_options = { 
         :user_id => current_user.id, 
@@ -109,6 +144,7 @@ class SectionsController < ApplicationController
   
   def down
     return top_section_down if params[:id] == 'top'
+    return all_section_down if params[:id] == 'all'
     @section = JAPI::HomeClusterPreference.new( :id => params[:id] ).tap do |t|
       t.prefix_options = { 
         :user_id => current_user.id, 

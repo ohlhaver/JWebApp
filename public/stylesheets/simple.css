@@ -594,6 +594,9 @@ border: 0px;
   float:right;
   font-size:10px;
 }
+.navDialogBox{
+  font-size:10px;
+}
 .news_block h2 .dialogBox a {
   font-size:10px;
 }

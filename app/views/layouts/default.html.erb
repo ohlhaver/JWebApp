@@ -76,6 +76,8 @@
       Event.observe(element, 'mouseover', showMouseOvers);
       Event.observe(element, 'mouseout', hideMouseOvers);
     });
+    Event.observe($('navigation'), 'mouseover', showNavigationMouseOvers );
+    Event.observe($('navigation'), 'mouseout', hideNavigationMouseOvers );
   </script>
   <%= yield :custom_javascript %>
 </div>

@@ -19,3 +19,29 @@ JAPI::PreferenceOption.class_eval do
   end
   
 end
+
+JAPI::Topic.class_eval do
+  
+  # Last 24 hours
+  def home_count( time_span )
+    time_span = 24.hours.to_i if time_span.nil? || time_span.to_i > 24.hours.to_i
+    result = self.class.find( :one, :params => self.prefix_options.merge( :topic_id => self.id, :time_span => time_span, :per_page => 0 ) )
+    #result.facets.count
+    result
+  end
+  
+  # used only with home_count
+  def name_with_count
+    facets.count > 0 ? "#{name} (#{ facets.count })" : name
+  end
+  
+end
+
+
+JAPI::User.class_eval do
+  
+  def nav_blocks_order
+    @nav_blocks_order ||= home_blocks_order
+  end
+
+end

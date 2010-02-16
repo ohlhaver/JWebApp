@@ -12,7 +12,15 @@ function hideMouseOvers( event ){
   hideMouseOverData( event, '.mo_menu' );
   hideMouseOverData( event, '.mo_dialog' );
 }
-
+/* Navigation MouseOvers uses display block for now */
+function showNavigationMouseOvers( event ){
+  event = event || window.event;
+  showMouseOverData( event, '.mo_dialog', 'block');
+}
+function hideNavigationMouseOvers( event ){
+  event = event || window.event;
+  hideMouseOverData( event, '.mo_dialog');
+}
 function showMouseOverData(event, class_name, display_style ){
   event = event || window.event;
   var target = event.findElement( class_name + '_event_src' );

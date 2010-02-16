@@ -63,6 +63,19 @@ class TopicsController < ApplicationController
     redirect_to request.referer || { :action => :index }
   end
   
+  def unhide
+    @topic = JAPI::TopicPreference.new( :id => params[:id] ).tap do |t|
+      t.prefix_options = { :user_id => current_user.id }
+      t.home_group = true
+    end
+    if @topic.save
+      flash[:notice] = 'Success'
+    else
+      flash[:error] = 'Failure'
+    end
+    redirect_to request.referer || { :action => :show, :id => @topic }
+  end
+  
   def hide
     @topic = JAPI::TopicPreference.new( :id => params[:id] ).tap do |t|
       t.prefix_options = { :user_id => current_user.id }
@@ -77,6 +90,7 @@ class TopicsController < ApplicationController
   end
   
   def up
+    return move_up_my_topics if params[:id] == 'my'
     @topic = JAPI::TopicPreference.new( :id => params[:id] ).tap do |t|
       t.prefix_options = { :user_id => current_user.id, :reorder => :up }
     end
@@ -89,6 +103,7 @@ class TopicsController < ApplicationController
   end
   
   def down
+    return move_down_my_topics if params[:id] == 'my'
     @topic = JAPI::TopicPreference.new( :id => params[:id] ).tap do |t|
       t.prefix_options = { :user_id => current_user.id, :reorder => :down }
     end
@@ -98,6 +113,40 @@ class TopicsController < ApplicationController
       flash[:error] = 'Failure'
     end
     redirect_to request.referer || { :action => :show, :id => @topic }
+  end
+  
+  def move_up_my_topics
+    my_topics_id = JAPI::PreferenceOption.homepage_display_id(:my_topics)
+    @topic = JAPI::HomeDisplayPreference.new( :id => params[:id] ).tap do |t|
+      t.prefix_options = {
+        :user_id => current_user.id,
+        :homepage_box_id => my_topics_id,
+        :reorder => :up
+      }
+    end
+    if @topic.save
+      flash[:notice] = 'Success'
+    else
+      flash[:error] = 'Failure'
+    end
+    redirect_to request.referer || { :action => :index }
+  end
+  
+  def move_down_my_topics
+    my_topics_id = JAPI::PreferenceOption.homepage_display_id(:my_topics)
+    @topic = JAPI::HomeDisplayPreference.new( :id => params[:id] ).tap do |t|
+      t.prefix_options = {
+        :user_id => current_user.id,
+        :homepage_box_id => my_topics_id,
+        :reorder => :up
+      }
+    end
+    if @topic.save
+      flash[:notice] = 'Success'
+    else
+      flash[:error] = 'Failure'
+    end
+    redirect_to request.referer || { :action => :index }
   end
   
 end
