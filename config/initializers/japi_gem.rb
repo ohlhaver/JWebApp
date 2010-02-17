@@ -14,6 +14,12 @@ JAPI::PreferenceOption.class_eval do
     @@home_display_options ||= find( :all, :params => { :preference_id => :homepage_boxes } ).freeze
   end
   
+  def self.cluster_sort_criteria_options
+    @@cluster_sort_criteria_options ||= nil
+    @@cluster_sort_criteria_options = nil if @@cluster_sort_criteria_options.try( :error )
+    @@cluster_sort_criteria_options ||= sort_criteria_options.dup.delete_if{ |k| k.code.to_s =~ /_clustered$/ }
+  end
+  
   def self.homepage_display_id( code )
     self.homepage_display_options.select{ |x| x.code == code.to_sym }.collect{ |x| x.id }.first
   end

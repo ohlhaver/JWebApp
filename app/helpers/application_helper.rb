@@ -105,6 +105,11 @@ module ApplicationHelper
     render :partial => 'stories/preferences', :locals => options.merge( :attributes => attributes )
   end
   
+  def render_cluster_preference_form( *attributes )
+    options = attributes.extract_options!
+    render :partial => 'clusters/preferences', :locals => options.merge( :attributes => attributes )
+  end
+  
   def preference_options( attribute, options = {} )
     options[:args] = Array( options[:args] )
     args = [ "#{attribute}_options" ] + options[:args]
@@ -209,6 +214,7 @@ module ApplicationHelper
   
   def to_param( attribute )
     case attribute when :sort_criteria : :sc
+    when :cluster_sort_criteria : :sc
     when :subscription_type : :st
     end
   end

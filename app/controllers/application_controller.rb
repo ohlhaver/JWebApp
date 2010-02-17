@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_filter_var, :set_category_id_var
   layout 'default'
   
-  helper_method :sort_criteria, :subscription_type, :time_span, :video_pref, :blog_pref, :opinion_pref
+  helper_method :sort_criteria, :subscription_type, :time_span, :video_pref, :blog_pref, :opinion_pref, :cluster_sort_criteria
   
   #after_filter :log_session_info
   protected
@@ -47,6 +47,8 @@ class ApplicationController < ActionController::Base
   def sort_criteria
     Integer( params[:sc] || current_user.preference.sort_criteria || '1' ) rescue 1
   end
+  
+  alias_method :cluster_sort_criteria, :sort_criteria
   
   def sort_criteria=( value )
     params[:sc] = value
