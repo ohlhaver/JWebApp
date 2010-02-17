@@ -26,6 +26,16 @@ JAPI::PreferenceOption.class_eval do
   
 end
 
+JAPI::ClusterGroup.class_eval do
+  
+  fields :clusters, :stories
+  
+  def opinions?
+    clusters.nil? && stories.is_a?( Array )
+  end
+  
+end
+
 JAPI::Topic.class_eval do
   
   # Last 24 hours
