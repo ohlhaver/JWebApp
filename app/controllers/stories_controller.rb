@@ -18,6 +18,7 @@ class StoriesController < ApplicationController
   end
   
   def advanced
+    @topic = JAPI::TopicPreference.new
   end
   
   def search_results
@@ -25,6 +26,10 @@ class StoriesController < ApplicationController
     if params[:japi_topic_preference]
       @topic_params = params.delete( :japi_topic_preference )
       params.merge!( @topic_params )
+    end
+    if params[:topic]
+      @auto_complete_params = params.delete( :topic )
+      params.merge!( @auto_complete_params )
     end
     JAPI::TopicPreference.normalize!( params )
     @query =  [ params[:q], params[:qa], params[:qe], params[:qn] ].select{ |x| !x.blank? }.join(' ')

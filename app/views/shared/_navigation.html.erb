@@ -5,11 +5,10 @@
 <% topics_block = capture( navigation_links ) do | link_hash | %>
 <% unless link_hash[ :topics ].nil? %>
 <ul class='nav_block'>
-
   <% link = link_hash[:my_topics] %>
   <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
     <li class='<%= dialogEventClass -%>'>
-      <%= link_to_navigation_item( link.name, link.to_url_hash) %>
+      <%= link_to_navigation_item( link.name, link.to_url_hash ) %>
       <span class='navDialogBox <%= dialogItemClass -%>'>
         <%= link_to image_tag('up.gif'),  up_topic_path('my') %>
         <%= link_to image_tag('down.gif'), down_topic_path('my') %>
@@ -17,21 +16,19 @@
     </li>
   <% end %>
   <% link_hash[ :topics ].each do |link| %>
-  <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass| %>
-    <li class='<%= dialogEventClass -%>'>
-      <%= link_to_navigation_item( link.base.name_with_count, link.to_url_hash) %>
-      <span class='navDialogBox <%= dialogItemClass -%>'>           
-        <%= link_to image_tag('up.gif'),  up_topic_path( link.id ) %>
-        <%= link_to image_tag('down.gif'), down_topic_path( link.id ) %>
-		<%= link_to image_tag('close.gif'), topic_path( link.id ), :method => :delete, :confirm => 'Are you sure?' %>
-      </span>
-    </li>
+    <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass| %>
+      <li class='<%= dialogEventClass -%>'>
+        <%= link_to_navigation_item( link.base.name_with_count, link.to_url_hash ) %>
+        <span class='navDialogBox <%= dialogItemClass -%>'>           
+          <%= link_to image_tag('up.gif'),  up_topic_path( link.id ) %>
+          <%= link_to image_tag('down.gif'), down_topic_path( link.id ) %>
+          <%= link_to image_tag('close.gif'), topic_path( link.id ), :method => :delete, :confirm => 'Are you sure?' %>
+        </span>
+      </li>
+    <% end %>
   <% end %>
-  <% end %>
-
   <% link = link_hash[:add_topic] %> 
   <li class="grey"><%= link_to_navigation_item( link.name, link.to_url_hash ) %></li>
-
 </ul>
 <% end %>
 <% end %>

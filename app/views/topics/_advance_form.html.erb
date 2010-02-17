@@ -49,12 +49,14 @@
 	  <div class = "results_module"></div>
          <%= t('search.advance.filter.label') -%>
           <div>
-            <%= t('search.advance.filter.source') -%>
-            <%= f.text_field(:source_id, :disabled => true, :id => "adv_filter_searchfield" ) %></span>
+            <%= t('search.advance.filter.source') -%><span class='adv_search_menu'>
+              <%= source_auto_complete_field( 'topic', 'source_id', @topic.source ) %>
+            </span>
           </div>
         <div>
-            <%= t('search.advance.filter.author') -%>
-            <%= f.text_field(:author_id, :disabled => true, :id => "adv_filter_searchfield" ) %></span>
+            <%= t('search.advance.filter.author') -%><span class='adv_search_menu'>
+              <%= author_auto_complete_field( 'topic', 'author_id', @topic.author ) %>
+            </span>
           </div>
 	<div class = 'form_area'>
           <div>

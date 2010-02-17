@@ -674,4 +674,7 @@ span.mo_dialog{
 .nav_sections_label {
 	color : #333333;
 }
-
+div.auto_complete ul li{
+  font-size:10px;
+  line-height:12px;
+}

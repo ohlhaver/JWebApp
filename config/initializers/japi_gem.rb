@@ -37,6 +37,20 @@ JAPI::Topic.class_eval do
   
 end
 
+JAPI::TopicPreference.class_eval do
+  
+  attr_accessor :author, :source
+  
+  def parse_auto_complete_params!( params = {} )
+    self.author_id = params[:topic][:author_id] if params[:topic] && params[:topic][:author_id]
+    self.source_id = params[:topic][:source_id] if params[:topics] && params[:topic][:source_id]
+    self.author = JAPI::Author.new( :name => params[:author][:name] ) if self.author_id && params[:author] && !params[:author][:name].blank?
+    self.source = JAPI::Source.new( :name => params[:source][:name] ) if self.source_id && params[:source] && !params[:source][:name].blank?
+    self
+  end
+  
+end
+
 
 JAPI::User.class_eval do
   

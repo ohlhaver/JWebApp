@@ -1,20 +1,17 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   
+  include AutoCompleteHelper
+  
   def edition_options
     [ ['Global', 'int-en'], [ 'Deutschland', 'de-de'], [ 'Schweiz', 'ch-de'], [ 'Österreich', 'at-de' ] ]
   end
   
   def mouse_over( event_target, &block )
-    @parent_block_called_from_erb = @current_block_called_from_erb
-    @current_block_called_from_erb ||= block_called_from_erb?( block )
-    content = block.call( "mo_#{event_target}_event_src", "mo_#{event_target}" )
-    if !@parent_block_called_from_erb && block_called_from_erb?( block )
-      @parent_block_called_from_erb = nil
-      @current_block_called_from_erb = nil
-      return concat( content )
+    content = capture do 
+      block.call( "mo_#{event_target}_event_src", "mo_#{event_target}" )
     end
-    content
+    block_called_from_erb?( block ) ? concat( content ) : content
   end
   
   def source_rating_links( source )

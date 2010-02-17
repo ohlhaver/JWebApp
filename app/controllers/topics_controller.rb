@@ -21,7 +21,7 @@ class TopicsController < ApplicationController
   end
 
   def new
-    @topic = JAPI::TopicPreference.new( params[:japi_topic_preference] || {} )
+    @topic = JAPI::TopicPreference.new( params[:japi_topic_preference] || {} ).parse_auto_complete_params!( params )
     if params[:advance] == '1'
       @topic.sort_criteria ||= sort_criteria
       @topic.blog ||= blog_pref
@@ -37,6 +37,7 @@ class TopicsController < ApplicationController
       t.prefix_options = { :user_id => current_user.id } 
       t.home_group = true
       t.email_alert = true
+      t.parse_auto_complete_params!( params )
     end
     if @topic.save
       flash[:notice] = 'Success'
