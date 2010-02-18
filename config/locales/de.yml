@@ -218,7 +218,7 @@ de:
       label: "Erweiterte Suche"
       find: 
         label: "Ergebnisse finden"
-        at_least: "mit mindestens einem dieser Wörter:"
+        at_least: "mit mind. einem der Wörter:"
         all: "mit all diesen Wörtern:"
         exact: "mit genau dieser Wortfolge:"
         without: "ohne diese Wörter:"

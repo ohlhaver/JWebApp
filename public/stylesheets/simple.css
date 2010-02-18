@@ -322,6 +322,7 @@ h2 a {
 
 
 .story {
+	font-family: Georgia,"Times New Roman",Times,serif;
 	margin-top: 6px;
 	margin-bottom: 6px;
 	font-size: 16px;
@@ -513,7 +514,7 @@ h2 .my_authors_links span {
 #adv_searchfield {
 	display: inline;
 	float: right;
-	margin-right: 70px;
+	margin-right: 20px;
 	margin-top: 8px;
 	font-family: Georgia,"Times New Roman",Times,serif;
 	font-weight: normal;
@@ -677,4 +678,8 @@ span.mo_dialog{
 div.auto_complete ul li{
   font-size:10px;
   line-height:12px;
+}
+
+.reading_list_label {
+	margin-bottom: 30px;
 }
