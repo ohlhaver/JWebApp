@@ -404,6 +404,17 @@ h2 a {
 	color: #0000b6;
 }
 
+#search_preference_field_cluster_sort_criteria {
+	margin-left: -8px;
+	margin-right: 10px;
+	font-family: Georgia,"Times New Roman",Times,serif;
+	font-size: 13px;
+	line-height: 21px;
+	color: #0000b6;
+}
+
+
+
 #search_preference_field_subscription_type {
 	font-family: Georgia,"Times New Roman",Times,serif;
 	font-size: 13px;
@@ -441,16 +452,20 @@ h2 .add_topic_link a:visited {
 
 .result_filter {
 	margin-top: 30px;
+	font-size: 13px;
+	font-family: Georgia,"Times New Roman",Times,serif;
+ 	font-weight: normal;
+  	text-decoration: none;
 }
 
 .result_filter span {
 	color: #FFFFFF;
 	background-color: #0000b6;
 	padding: 6px;
-
 }
 
 .result_filter a {
+
 	color: #333333;
 	background-color: #FFFFFF;
 	padding: 6px;
