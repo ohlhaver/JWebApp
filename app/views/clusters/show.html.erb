@@ -11,12 +11,13 @@
         <span class='links'>
           <%= render_cluster_preference_form( :cluster_sort_criteria, :form_url => cluster_path( @cluster ), :form_method => :get  ) -%>
         </span>
+	</h2>
         <div class='result_filter'>
           <%= render_filter_links( @cluster, cluster_path( @cluster ), :get ) -%>
         </div>
+
         <div class = "results_module"></div>
       <% end %>
-    </h2>
     <% @cluster.stories.each do |story| %>
     <div class='cluster'>
     <div class='headline'>
