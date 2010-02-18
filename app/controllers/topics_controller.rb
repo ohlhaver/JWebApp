@@ -139,7 +139,7 @@ class TopicsController < ApplicationController
       t.prefix_options = {
         :user_id => current_user.id,
         :homepage_box_id => my_topics_id,
-        :reorder => :up
+        :reorder => :down
       }
     end
     if @topic.save
