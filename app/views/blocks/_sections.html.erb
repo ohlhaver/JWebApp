@@ -16,7 +16,7 @@
   <% if block.opinions? %>
     <% block.stories.each do |story| %>
       <div class='cluster'>
-        <%= render_story_preview( cluster ) %>
+        <%= render_story_preview( story ) %>
       </div>
     <% end %>
   <% else %>

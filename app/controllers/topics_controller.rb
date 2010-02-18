@@ -61,7 +61,7 @@ class TopicsController < ApplicationController
     else
       flash[:error] = 'Failure'
     end
-    redirect_to request.referer || { :action => :index }
+    redirect_to (request.referer == request.url) ? { :action => :index } : ( request.referer || { :action => :index } )
   end
   
   def unhide
