@@ -23,8 +23,9 @@ class StoriesController < ApplicationController
   
   def search_results
     @advanced = true
-    if params[:japi_topic_preference]
+    unless params[:japi_topic_preference].blank? && params[:topic_subscription].blank?
       @topic_params = params.delete( :japi_topic_preference )
+      @topic_params = params.delete( :topic_subscription ) if @topic_params.blank?
       params.merge!( @topic_params )
     end
     if params[:topic]
