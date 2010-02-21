@@ -9,8 +9,9 @@
       <%= t('navigation.main.my_topic' )%>: <a><%= @topic.name -%></a>
       
       <span class='links'><%= render_search_preference_form( :sort_criteria, :form_url => form_url, :form_method => form_method  ) %></span>
-		<div class='result_filter'><%= render_filter_links( @topic.facets, form_url, form_method ) %></span>
-    </h2>
+	</h2>
+		<div class='result_filter'><%= render_filter_links( @topic.facets, form_url, form_method ) %></div>
+    
 	<div class = "results_module"></div>
     <% @topic.stories.each do |story| %>
       <div class='cluster'>
