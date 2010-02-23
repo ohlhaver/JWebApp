@@ -9,13 +9,17 @@ class ApplicationController < ActionController::Base
   
   include JAPI::Connect
   
-  before_filter :set_filter_var, :set_category_id_var
+  before_filter :set_filter_var, :set_category_id_var, :reset_per_page
   layout 'default'
   
   helper_method :sort_criteria, :subscription_type, :time_span, :video_pref, :blog_pref, :opinion_pref, :cluster_sort_criteria
   
   #after_filter :log_session_info
   protected
+  
+  def reset_per_page
+    params[:per_page] = nil
+  end
   
   def set_category_id_var
     @category_id = params[:ctid].to_i == 0 ? :all : params[:ctid].to_i
