@@ -2,7 +2,7 @@
   <% if logged_in? -%>
     <br> <%= link_to( t( 'navigation.top.logout', :name => current_user.name ), logout_path ) %>
   <% else -%>
-    <br> <%= link_to( t( 'navigation.top.login' ), new_login_path ) -%>
+    <br> <%= link_to( t( 'navigation.top.login' ), login_path ) -%>
   <% end %>
 <% end %>
 

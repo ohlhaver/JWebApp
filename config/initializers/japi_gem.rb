@@ -113,3 +113,52 @@ class CASClient::Frameworks::Rails::Filter
     controller.send(:redirect_to, redirect_url)
   end
 end
+
+
+JAPI::Connect::InstanceMethods.class_eval do
+  
+  # Checks for session validation after 10.minutes
+  def session_check_for_validation
+    last_st = session.try( :[], :cas_last_valid_ticket )
+    unless last_st
+      if session[ :cas_user_attrs ]
+        session[ :cas_user_attrs ] = nil
+        session[ CASClient::Frameworks::Rails::Filter.client.username_session_key ] = nil
+      else
+        session[:cas_sent_to_gateway] = true if request.referer && URI.parse( request.referer ).host != JAPI::Config[:connect][:account_server].host
+      end
+      return
+    end
+    if request.get? && !request.xhr? && ( session[:revalidate].nil? || session[:revalidate] < Time.now.utc )
+      session[:cas_last_valid_ticket] = nil
+      session[:revalidate] = JAPI::User.session_revalidation_timeout.from_now
+    end
+  end
+  
+end
+
+JAPI::Connect::UserAccountsHelper.class_eval do
+  
+  def url_for_account_server( params = {} )
+    if @account_server_prefix_options.nil?
+      account_server_uri ||= JAPI::Config[:connect][:account_server]
+      @account_server_prefix_options ||= { :host => account_server_uri.host, :port => account_server_uri.port, :protocol => account_server_uri.scheme }
+    end
+    @account_server_prefix_options.reverse_merge( params.reverse_merge( :locale => locale, :service => self.request.url ) )
+  end
+  
+  def login_path( params = {} )
+    url_for_account_server( :controller => 'login', :jwa => 1, :locale => I18n.locale ).reverse_merge( params )
+  end
+  
+  def logout_path( params = {} )
+    url_for_account_server( :controller => 'logout' ).reverse_merge( params )
+  end
+  
+end
+
+ApplicationController.class_eval do
+  include JAPI::Connect::InstanceMethods
+  include JAPI::Connect::UserAccountsHelper
+  JAPI::Connect::UserAccountsHelper.instance_methods.each{ |method| self.helper_method( method ) }
+end

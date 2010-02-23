@@ -3,14 +3,6 @@ module ApplicationHelper
   
   include AutoCompleteHelper
   
-  def new_login_path( params = {} )
-    url_for_account_server( :controller => 'login', :jwa => 1, :locale => I18n.locale ).reverse_merge( params )
-  end
-  
-  def logout_path( params = {} )
-    url_for_account_server( :controller => 'logout' ).reverse_merge( params )
-  end
-  
   def edition_options
     [ ['Global', 'int-en'], [ 'Deutschland', 'de-de'], [ 'Schweiz', 'ch-de'], [ 'Österreich', 'at-de' ] ]
   end
