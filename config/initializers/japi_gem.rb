@@ -81,9 +81,10 @@ class CASClient::Frameworks::Rails::Filter
   
   def self.account_login_url(controller)
     service_url = read_service_url(controller)
-    url = JAPI::Config[:connect][:account_server].to_s + '/login?' + "service=#{CGI.escape(service_url)}&jwa=1&locale=#{I18n.locale}"
+    uri = URI.parse(JAPI::Config[:connect][:account_server].to_s + '/login')
+    uri.query = "service=#{CGI.escape(service_url)}&jwa=1&locale=#{I18n.locale}"
     log.debug("Generated account login url: #{url}")
-    return url
+    return uri.to_s
   end
   
   def self.redirect_to_cas_for_authentication(controller)
