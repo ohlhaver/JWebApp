@@ -1,5 +1,6 @@
 class TopicsController < ApplicationController
   
+  before_filter :store_referer_location, :only => [ :destroy, :unhide, :hide, :up, :down ]
   japi_connect_login_required
   
   def index
@@ -61,7 +62,7 @@ class TopicsController < ApplicationController
     else
       flash[:error] = 'Failure'
     end
-    redirect_to (request.referer == request.url) ? { :action => :index } : ( request.referer || { :action => :index } )
+    redirect_back_or_default( { :action => :index }, :if => Proc.new{ !uri_path_match?( request.url, return_to_uri ) } )
   end
   
   def unhide
@@ -74,7 +75,7 @@ class TopicsController < ApplicationController
     else
       flash[:error] = 'Failure'
     end
-    redirect_to request.referer || { :action => :show, :id => @topic }
+    redirect_back_or_default( :action => :show, :id => @topic )
   end
   
   def hide
@@ -87,7 +88,7 @@ class TopicsController < ApplicationController
     else
       flash[:error] = 'Failure'
     end
-    redirect_to request.referer || { :action => :show, :id => @topic }
+    redirect_back_or_default( :action => :show, :id => @topic )
   end
   
   def up
@@ -100,7 +101,7 @@ class TopicsController < ApplicationController
     else
       flash[:error] = 'Failure'
     end
-    redirect_to request.referer || { :action => :show, :id => @topic }
+    redirect_back_or_default(:action => :show, :id => @topic )
   end
   
   def down
@@ -113,7 +114,7 @@ class TopicsController < ApplicationController
     else
       flash[:error] = 'Failure'
     end
-    redirect_to request.referer || { :action => :show, :id => @topic }
+    redirect_back_or_default( :action => :show, :id => @topic )
   end
   
   def move_up_my_topics
@@ -130,7 +131,7 @@ class TopicsController < ApplicationController
     else
       flash[:error] = 'Failure'
     end
-    redirect_to request.referer || { :action => :index }
+    redirect_back_or_default( :action => :index )
   end
   
   def move_down_my_topics
@@ -147,7 +148,7 @@ class TopicsController < ApplicationController
     else
       flash[:error] = 'Failure'
     end
-    redirect_to request.referer || { :action => :index }
+    redirect_back_or_default( :action => :index )
   end
   
 end

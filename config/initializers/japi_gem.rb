@@ -83,7 +83,7 @@ class CASClient::Frameworks::Rails::Filter
     service_url = read_service_url(controller)
     uri = URI.parse(JAPI::Config[:connect][:account_server].to_s + '/login')
     uri.query = "service=#{CGI.escape(service_url)}&jwa=1&locale=#{I18n.locale}"
-    log.debug("Generated account login url: #{url}")
+    log.debug("Generated account login url: #{uri.to_s}")
     return uri.to_s
   end
   
@@ -134,6 +134,32 @@ JAPI::Connect::InstanceMethods.class_eval do
       session[:revalidate] = JAPI::User.session_revalidation_timeout.from_now
     end
   end
+  
+  def store_referer_location
+    session[:return_to] ||= ( params[:referer] || request.referer )
+  end
+  
+  def return_to_uri
+    URI.parse( session[:return_to] || "" )
+  end
+  
+  def redirect_back_or_default(default, options = {})
+    return_to = session[:return_to]
+    session[:return_to] = nil
+    redirect_to( 
+      ( options[:if] ? options[:if].call : true ) && !return_to.blank? ? return_to : default
+    )
+  end
+  
+  def uri_path_match?( suri, turi )
+    suri = suri.is_a?( URI ) ? suri.dup : URI.parse( suri.to_s )
+    suri.query = ''
+    turi = turi.is_a?( URI ) ? turi.dup : URI.parse( turi.to_s )
+    turi.query = ''
+    suri == turi
+  end
+  
+  protected :store_referer_location, :session_check_for_validation, :return_to_uri
   
 end
 

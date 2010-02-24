@@ -1,5 +1,6 @@
 class AuthorsController < ApplicationController
   
+  before_filter :store_referer_location, :only => [ :rate, :subscribe, :unsubscribe, :hide, :up, :down ]
   japi_connect_login_required :except => [ :show, :top ]
   
   before_filter :set_author_filter_var
@@ -41,7 +42,7 @@ class AuthorsController < ApplicationController
     else
       flash[:error] = 'Error'
     end
-    redirect_to request.referer || { :action => :my, :list => 1, :rated => 1 }
+    redirect_back_or_default( :action => :my, :list => 1, :rated => 1 )
   end
   
   def subscribe
@@ -54,7 +55,7 @@ class AuthorsController < ApplicationController
     else
       flash[:error] = 'Error'
     end
-    redirect_to request.referer || { :action => :my, :list => 1, :subscribed => 1 }
+    redirect_back_or_default( :action => :my, :list => 1, :subscribed => 1 )
   end
   
   def unsubscribe
@@ -65,7 +66,7 @@ class AuthorsController < ApplicationController
     else
       flash[:error] = 'Error'
     end
-    redirect_to request.referer || { :action => :my, :list => 1, :subscribed => 1 }
+    redirect_back_or_default( :action => :my, :list => 1, :subscribed => 1 )
   end
   
   # My Authors Hide
@@ -82,7 +83,7 @@ class AuthorsController < ApplicationController
     else
       flash[:error] = 'Failure'
     end
-    redirect_to request.referer || { :action => :index, :controller => :home }
+    redirect_back_or_default( :action => :index, :controller => :home )
   end
   
   # My Authors Up
@@ -100,7 +101,7 @@ class AuthorsController < ApplicationController
     else
       flash[:error] = 'Failure'
     end
-    redirect_to request.referer || { :action => :index, :controller => :home }
+    redirect_back_or_default( :action => :index, :controller => :home )
   end
   
   # My Authors Down
@@ -118,7 +119,7 @@ class AuthorsController < ApplicationController
     else
       flash[:error] = 'Failure'
     end
-    redirect_to request.referer || { :action => :index, :controller => :home }
+    redirect_back_or_default( :action => :index, :controller => :home )
   end
   
   protected

@@ -10,10 +10,4 @@ class PreferencesController < ApplicationController
     redirect_back_or_default( root_path )
   end
   
-  protected
-  
-  def store_referer_location
-    session[:return_to] ||= ( params[:referer] || request.referer )
-  end
-  
 end

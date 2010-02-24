@@ -1,5 +1,6 @@
 class SectionsController < ApplicationController
   
+  before_filter :store_referer_location, :only => [ :create, :destroy, :hide, :up, :down ]
   japi_connect_login_required :except => :show
   
   def show
@@ -18,7 +19,7 @@ class SectionsController < ApplicationController
       redirect_to request.referer || { :action => :show, :id => @section.id }
     else
       flash[:error] = 'Error while creating section.'
-      redirect_to request.referer || { :action => :index, :controller => :home }
+      redirect_back_or_default( :action => :index, :controller => :home )
     end
   end
   
@@ -35,7 +36,7 @@ class SectionsController < ApplicationController
     else
       flash[:error] = 'Failure'
     end
-    redirect_to request.referer || { :action => :index, :controller => :home }
+    redirect_back_or_default( { :action => :index, :controller => :home }, :if => Proc.new{ !uri_path_match?( request.url, return_to_uri ) } )
   end
   
   def hide
@@ -51,7 +52,7 @@ class SectionsController < ApplicationController
     else
       flash[:error] = 'Failure'
     end
-    redirect_to request.referer || { :action => :index, :controller => :home }
+    redirect_back_or_default( :action => :index, :controller => :home )
   end
   
   def all_section_up
@@ -68,7 +69,7 @@ class SectionsController < ApplicationController
     else
       flash[:error] = 'Failure'
     end
-    redirect_to request.referer || { :action => :index, :controller => :home }
+    redirect_back_or_default( :action => :index, :controller => :home )
   end
   
   def all_section_down
@@ -85,7 +86,7 @@ class SectionsController < ApplicationController
     else
       flash[:error] = 'Failure'
     end
-    redirect_to request.referer || { :action => :index, :controller => :home }
+    redirect_back_or_default( :action => :index, :controller => :home )
   end
   
   def top_section_up
@@ -102,7 +103,7 @@ class SectionsController < ApplicationController
     else
       flash[:error] = 'Failure'
     end
-    redirect_to request.referer || { :action => :index, :controller => :home }
+    redirect_back_or_default( :action => :show, :id => 'top' )
   end
   
   def top_section_down
@@ -119,7 +120,7 @@ class SectionsController < ApplicationController
     else
       flash[:error] = 'Failure'
     end
-    redirect_to request.referer || { :action => :index, :controller => :home }
+    redirect_back_or_default( :action => :show, :id => 'top' )
   end
   
   def up
@@ -139,7 +140,7 @@ class SectionsController < ApplicationController
     else
       flash[:error] = 'Error'
     end
-    redirect_to request.referer || { :action => :show, :id => @section.id }
+    redirect_back_or_default( :action => :show, :id => @section.id )
   end
   
   def down
@@ -159,7 +160,7 @@ class SectionsController < ApplicationController
     else
       flash[:error] = 'Error'
     end
-    redirect_to request.referer || { :action => :show, :id => @section.id }
+    redirect_back_or_default( :action => :show, :id => @section.id )
   end
   
 end

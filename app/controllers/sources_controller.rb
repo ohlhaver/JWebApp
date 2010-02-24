@@ -1,5 +1,6 @@
 class SourcesController < ApplicationController
   
+  before_filter :store_referer_location, :only => [ :rate ]
   japi_connect_login_required :except => :show
   
   def show
@@ -20,7 +21,7 @@ class SourcesController < ApplicationController
     else
       flash[:error] = 'Error'
     end
-    redirect_to request.referer || { :action => :show, :id => params[:id] }
+    redirect_back_or_default( :action => :show, :id => params[:id] )
   end
   
 end
