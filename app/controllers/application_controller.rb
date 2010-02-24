@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   
   helper_method :sort_criteria, :subscription_type, :time_span, :video_pref, :blog_pref, :opinion_pref, :cluster_sort_criteria
   
-  #after_filter :log_session_info
+  #before_filter :log_session_info
   protected
   
   def reset_per_page

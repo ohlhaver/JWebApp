@@ -136,7 +136,13 @@ JAPI::Connect::InstanceMethods.class_eval do
   end
   
   def store_referer_location
-    session[:return_to] ||= ( params[:referer] || request.referer )
+    request_uri = URI.parse(request.url)
+    request_uri.query = nil
+    unless session[:request_url] && session[:request_url] == request_uri.to_s
+      session[:request_url] = request_uri.to_s
+      session[:return_to] = ( params[:referer] || request.referer )
+    end
+    #log_session_info
   end
   
   def return_to_uri

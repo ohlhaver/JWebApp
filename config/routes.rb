@@ -10,6 +10,7 @@ ActionController::Routing::Routes.draw do |map|
   map.my_authors '/authors/my', :controller => 'authors', :action => 'my'
   map.logout '/logout', :controller => 'application', :action => 'logout'
   map.root :controller => 'home', :action => 'index'
+  map.connect '/sections/create', :controller => 'sections', :action => :create
   map.resources :sections, :member => [ :up, :down, :hide ]
   map.resources :clusters
   map.resources :stories, :collection => [ :advanced, :search_results ]
