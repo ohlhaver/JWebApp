@@ -144,11 +144,10 @@ JAPI::Connect::InstanceMethods.class_eval do
   end
   
   def redirect_back_or_default(default, options = {})
+    condition = ( options[:if] ? options[:if].call : true ) rescue true
     return_to = session[:return_to]
     session[:return_to] = nil
-    redirect_to( 
-      ( options[:if] ? options[:if].call : true ) && !return_to.blank? ? return_to : default
-    )
+    redirect_to( condition && !return_to.blank? ? return_to : default )
   end
   
   def uri_path_match?( suri, turi )
