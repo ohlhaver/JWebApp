@@ -128,7 +128,7 @@ font-family: Arial,Helvetica,sans-serif;
 
 #navigation {
 	font-size: 14px;
-	line-height: 22px;
+	line-height: 25px;
 	font-family: Arial,Helvetica,sans-serif;
 }
 
@@ -180,18 +180,16 @@ span.current{
 	color: #0000b6;
 }
 
-.news_group {
 
-
-	
-}
 
 .news_block {
-	border-top: 1px solid #CCCCCC;
-		
-
-	
+	border-top: 1px solid #CCCCCC;	
 }
+
+.settings_news_block {
+	border-top: 1px solid #CCCCCC;	
+}
+
 
 .topic_preview_block {
 	border-top: 1px solid #CCCCCC;
@@ -237,6 +235,27 @@ h2 a {
   	font-size: 16px;
 	line-height: 19px;
 }
+
+.settings_news_block h2 a:visited {
+  	font-family: Georgia,"Times New Roman",Times,serif;
+ 	font-weight: normal;
+  	text-decoration: none;
+  	font-size: 16px;
+	line-height: 19px;
+	color: #0000b6;	
+}
+
+.settings_news_block h2 a:link {
+  	font-family: Georgia,"Times New Roman",Times,serif;
+ 	font-weight: normal;
+  	text-decoration: none;
+  	font-size: 16px;
+	line-height: 19px;
+	color: #0000b6;	
+}
+
+
+
 
 .cluster {
 	margin-top: 20px;
@@ -535,6 +554,10 @@ h2 .my_authors_links span {
 
 }
 
+.adv_search_lines a {
+	color: #0000b6;			
+}
+
 #adv_searchfield {
 	display: inline;
 	float: right;
@@ -573,6 +596,24 @@ h2 .my_authors_links span {
 	
 }
 
+#settings_field {
+	display: inline;
+	float: right;
+	margin-right: 140px;
+	margin-top: 8px;
+	font-family: Georgia,"Times New Roman",Times,serif;
+	font-weight: normal;
+	text-decoration:none;
+	font-size: 16px;
+	line-height: 19px;
+	color: #333333;
+	height: 24px;
+	width: 220px;
+	border: 1px solid #999999;
+	padding: 4px 5px 0;
+	vertical-align: middle;
+	
+}
 
 
 
@@ -610,6 +651,7 @@ border: 0px;
 
 .about {
 	margin-top: 20px;
+	margin-bottom: 20px;
 	font-family: Georgia,"Times New Roman",Times,serif;
  	font-weight: normal;
   	text-decoration: none;
@@ -707,3 +749,32 @@ div.auto_complete ul li{
 .reading_list_label {
 	margin-bottom: 30px;
 }
+
+.confirmation_button {
+margin-top: 10px;
+margin-bottom: 10px;
+font-family: Georgia,"Times New Roman",Times,serif;
+font-weight: normal;
+text-decoration:none;
+font-size: 16px;
+line-height: 21px;
+color: #FFFFFF;
+background-color: #0000b6;
+vertical-align: middle;
+height: 32px;
+width: 163;
+border: 0px;
+}
+
+#settings_navigation {
+	font-size: 14px;
+	line-height: 27px;
+	font-family: Arial,Helvetica,sans-serif;
+}
+
+.prefs {
+	margin-bottom: 20px;
+}
+
+
+
