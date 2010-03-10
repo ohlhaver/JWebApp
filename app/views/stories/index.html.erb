@@ -30,17 +30,12 @@
 	<h2><span><%= t('stories.not.found_for_query', :query => "<a>'#{ truncate( @query, 20 ) }'</a>" )%></span></h2>
 	<%else%>
  	<h2>
-      <span><%= t('search.page.title', :query => "<a>'#{ truncate( @query, 20 ) }'</a>" ) -%></span>
-	  <div class='add_topic_link'><%= render :partial => 'topic_form' %></div> 
-	 	<div span='sorting_options'><%= render_search_preference_form( :sort_criteria, :form_url => form_url, :form_method => form_method ) %></span>  
+      <span><%= t('search.page.title', :query => "<a>'#{ truncate( @query, 20 ) }'</a>" ) -%></span> 
+	 	<%= render_search_preference_form( :sort_criteria, :form_url => form_url, :form_method => form_method ) %>
 		</h2>
       <div class='result_filter'><%= render_filter_links( @stories.facets, form_url, form_method ) %>  </div>
 	
-	 
-  
-
 <div class = "results_module"></div>
-
 
     <% @stories.each do |story| %>
       <div class='cluster'>
