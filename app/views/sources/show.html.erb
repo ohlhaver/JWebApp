@@ -1,7 +1,8 @@
 <div class='news_group'>
   <div class='news_block'>
-    <h2>
+    <h2><span class="page_label">
       <%= @source.name %>
+	</span>
 
         <%= render_source_rating_form( @source_preference, @source) %>
 
@@ -11,8 +12,7 @@
       <%= render_category_links( @categories, source_path( @source ) ) %>
     </div>
     <% end %>
-
-<div class = "results_module"></div>
+<br>
 
     <% @stories.each do |story| %>
       <div class='cluster'>

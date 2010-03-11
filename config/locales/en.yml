@@ -211,6 +211,7 @@ en:
       title: "Search results For: {{query}}"
     results:
       per_page: "show {{count}} results per page"
+      sorting: "sort by:"
     topic:
       add: "add to My Topics"
     simple: "search news"

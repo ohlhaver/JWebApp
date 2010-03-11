@@ -3,7 +3,7 @@
 <% end %>
 <div class='news_group'>
   <div class='news_block'>
-    <h2><%= t('topic.label.new') %></h2>
+    <h2><span class="page_label"><%= t('topic.label.new') %></h2></span>
     <% if params[:advance] == '1' %>
       <%= render :partial => 'advance_form' %>
     <% else %>

@@ -55,7 +55,7 @@ img {
 #searchbutton {
 		margin-left: 2px;
 		margin-top : -24px;
-		font-family: Georgia,"Times New Roman",Times,serif;
+		font-family: Arial,Helvetica,sans-serif;
 		font-weight: normal;
 		text-decoration:none;
 
@@ -215,6 +215,15 @@ span.current{
 	color: #333333;
 }
 
+h2 .page_label {
+color:#999999;
+font-family:Arial,Helvetica,sans-serif;
+font-size:16px;
+line-height:21px;
+margin-bottom:20px;
+text-transform:uppercase;
+}
+
 
 h2 a {
 	color: #0000b6;	
@@ -277,7 +286,7 @@ h2 a {
  	font-weight: normal;
   	text-decoration: none;
   	font-size: 22px;
-	line-height: 27px;
+	line-height: 31px;
 	font-style: normal;
 }
 
@@ -312,7 +321,7 @@ h2 a {
  	font-weight: normal;
   	text-decoration: none;
   	font-size: 16px;
-	line-height: 20px;
+	line-height: 26px;
 	color: #999999;
 }
 
@@ -322,7 +331,7 @@ h2 a {
  	font-weight: normal;
   	text-decoration: none;
   	font-size: 16px;
-	line-height: 24px;
+	line-height: 26px;
 	color: #999999;
 }
 
@@ -331,7 +340,7 @@ h2 a {
 	margin-top: 0px;
 	margin-bottom: 0px;
 	font-size: 16px;
-	line-height: 24px;
+	line-height: 26px;
 }
 
 .source a:link {
@@ -365,7 +374,7 @@ h2 a {
 }
 
 .pagination {
-	font-family: Georgia,"Times New Roman",Times,serif;
+	font-family: Arial,Helvetica,sans-serif;
 	font-size: 18px;
 	line-height: 30px;
 	color: #333333;
@@ -426,9 +435,15 @@ h2 a {
 	color: #0000b6;
 }
 
+#search_preference {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 13px;
+	line-height: 21px;
+}
+
 #search_preference_field_sort_criteria {
 
-	font-family: Georgia,"Times New Roman",Times,serif;
+
 	font-size: 13px;
 	line-height: 21px;
 	color: #0000b6;
@@ -437,7 +452,7 @@ h2 a {
 
 #search_preference_field_cluster_sort_criteria {
 
-	font-family: Georgia,"Times New Roman",Times,serif;
+
 	font-size: 13px;
 	line-height: 21px;
 	color: #0000b6;
@@ -447,7 +462,7 @@ h2 a {
 
 
 #search_preference_field_subscription_type {
-	font-family: Georgia,"Times New Roman",Times,serif;
+
 	font-size: 13px;
 	line-height: 21px;
 	color: #0000b6;
@@ -484,11 +499,40 @@ h2 .add_topic_link a:visited {
 	
 }
 
+h2 .keywords_filter{
+	font-size: 16px;
+	font-family:Arial,Helvetica,sans-serif;
+ 	font-weight: normal;
+  	text-decoration: none;
+	display: inline;
+	text-transform:uppercase;
+
+}
+
+
+h2 .keywords_filter a:link {
+	font-size: 16px;
+
+}
+
+h2 .keywords_filter a:visited {
+	font-size: 16px;
+
+}
+
+
+h2 .keywords_filter a:hover {
+	font-size: 16px;
+
+
+}
+
+
 
 .result_filter {
 	margin-top: 20px;
 	font-size: 13px;
-	font-family: Georgia,"Times New Roman",Times,serif;
+	font-family: Arial,Helvetica,sans-serif;
  	font-weight: normal;
   	text-decoration: none;
 }
@@ -498,10 +542,11 @@ h2 .add_topic_link a:visited {
 	background-color: #0000b6;
 	padding: 6px;
 	font-size: 13px;
+	border: 1px solid #0000b6;
 }
 
 .result_filter a {
-
+	border: 1px solid #99ccff;
 	color: #333333;
 	padding: 6px;
 	font-size: 13px;

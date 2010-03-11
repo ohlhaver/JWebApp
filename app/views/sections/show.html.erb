@@ -1,6 +1,6 @@
 <div class='news_group'>
   <div class='news_block'>
-    <h2><%= t("navigation.main.#{@section.name}")%></h2>
+    <h2><span class="page_label"><%= t("navigation.main.#{@section.name}")%></span></h2>
     <% if @section.opinions? %>
       <% @section.stories.each do |story| %>
         <div class='cluster'>

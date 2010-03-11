@@ -209,6 +209,7 @@ de:
   search:
     results:
       per_page: "{{count}} Ergebnisse pro Seite"
+      sorting: "sortiert nach:"
     page:
       title: "Suchergebnisse für: {{query}}"
     topic:

@@ -2,7 +2,7 @@
   <% mouse_over( :dialog ) do |dialogEventClass, dialogItemClass| %>
   <div class='news_block <%= dialogEventClass -%>'>
     <h2>
-      <%= link_to t('navigation.main.my_authors'), my_authors_path %>
+      <span class="page_label"><%= link_to t('navigation.main.my_authors'), my_authors_path %></span>
       <span class='dialogBox <%= dialogItemClass -%>'>
          <% #hide functionality is not available  %>
          <% #link_to( t( 'prefs.home_action.hide' ), hide_authors_path ) %>
