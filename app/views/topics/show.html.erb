@@ -10,9 +10,10 @@
       
       <span class='links'><%= render_search_preference_form( :sort_criteria, :form_url => form_url, :form_method => form_method  ) %></span>
 	</h2>
+
 		<div class='result_filter'><%= render_filter_links( @topic.facets, form_url, form_method ) %></div>
     
-<br>
+
     <% @topic.stories.each do |story| %>
       <div class='cluster'>
         <% if story.cluster && story.cluster.stories.any? %>

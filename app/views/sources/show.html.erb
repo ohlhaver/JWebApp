@@ -8,11 +8,12 @@
 
     </h2>
     <% if @categories.any? %>
+<br>
     <div class ='result_filter'>
       <%= render_category_links( @categories, source_path( @source ) ) %>
     </div>
     <% end %>
-<br>
+
 
     <% @stories.each do |story| %>
       <div class='cluster'>

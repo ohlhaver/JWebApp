@@ -211,7 +211,9 @@ de:
       per_page: "{{count}} Ergebnisse pro Seite"
       sorting: "sortiert nach:"
     page:
-      title: "Suchergebnisse für: {{query}}"
+      title: "Artikel für: {{query}}"
+      authors: "Autoren"
+      sources: "Publikationen"
     topic:
       add: "zu meinem Thema machen"
     simple: "suche Nachrichten"

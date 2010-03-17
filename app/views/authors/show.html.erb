@@ -7,6 +7,7 @@
         <%= render_author_rating_form( @author_preference, @author ) %>
       </div>
     </h2>
+	<br>
     <% @stories.each do |story| %>
       <div class='cluster'>
         <div class='headline'><%= render_headline_preview( story, :without => [ :authors ] ) %></div>

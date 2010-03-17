@@ -208,7 +208,9 @@ en:
       last_month: 'last month'
   search:
     page:
-      title: "Search results For: {{query}}"
+        title: "Articles for: {{query}}"
+        authors: "Authors for: {{query}}"
+        sources: "Sources for: {{query}}"
     results:
       per_page: "show {{count}} results per page"
       sorting: "sort by:"

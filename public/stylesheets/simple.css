@@ -341,6 +341,7 @@ h2 a {
 	margin-bottom: 0px;
 	font-size: 16px;
 	line-height: 26px;
+	text-transform:none;
 }
 
 .source a:link {
@@ -401,8 +402,8 @@ h2 a {
 
 .pagination_module {
 	border-top: 1px solid #CCCCCC;
-	margin-top: 30px;
-	margin-bottom: 30px;
+	margin-top: 20px;
+	margin-bottom: 25px;
 }
 
 .footer_module {
@@ -499,14 +500,13 @@ h2 .add_topic_link a:visited {
 	
 }
 
-h2 .keywords_filter{
+h2 .keywords_filter {
 	font-size: 16px;
 	font-family:Arial,Helvetica,sans-serif;
  	font-weight: normal;
   	text-decoration: none;
 	display: inline;
 	text-transform:uppercase;
-
 }
 
 
@@ -531,6 +531,7 @@ h2 .keywords_filter a:hover {
 
 .result_filter {
 	margin-top: 20px;
+	margin-bottom: 40px;
 	font-size: 13px;
 	font-family: Arial,Helvetica,sans-serif;
  	font-weight: normal;
@@ -831,4 +832,6 @@ border: 0px;
 	margin-bottom: 20px;
 }
 
-
+.author_source_results {
+	
+}
