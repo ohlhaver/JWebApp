@@ -568,6 +568,16 @@ h2 .keywords_filter a:hover {
 	display: inline;
 }
 
+.listed_rater {
+
+	margin-left: 20px;
+	display: inline;
+	float:right;
+	font-family: Arial,Helvetica,sans-serif;
+}
+
+
+
 h2 .rater a:link {
 	
 	font-family: Arial,Helvetica,sans-serif;
@@ -603,7 +613,7 @@ h2 .my_authors_links span {
 }
 
 .adv_search_lines {
-	font-family: Georgia,"Times New Roman",Times,serif;
+	font-family: Arial,Helvetica,sans-serif;
 	line-height: 45px;
 	font-size: 16px;
 	color: #333333;
@@ -685,7 +695,7 @@ h2 .my_authors_links span {
 .adv_searchbutton {
 margin-top: 30px;
 margin-bottom: 11px;
-font-family: Georgia,"Times New Roman",Times,serif;
+font-family: Arial,Helvetica,sans-serif;
 font-weight: normal;
 text-decoration:none;
 font-size: 16px;
@@ -809,7 +819,7 @@ div.auto_complete ul li{
 .confirmation_button {
 margin-top: 10px;
 margin-bottom: 10px;
-font-family: Georgia,"Times New Roman",Times,serif;
+	font-family: Arial,Helvetica,sans-serif;
 font-weight: normal;
 text-decoration:none;
 font-size: 16px;
@@ -832,6 +842,6 @@ border: 0px;
 	margin-bottom: 20px;
 }
 
-.author_source_results {
-	
+.source_author_results {
+	margin-top: 15px;
 }
