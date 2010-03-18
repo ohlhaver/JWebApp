@@ -9,9 +9,10 @@
 	<span class="page_label"><%= t('search.page.title', :query => "<a>'#{ truncate( @query, 20 ) }'</a>" ) -%></span>	
 	</h2>
 
-	
+	<div class = "source_author_results"></div>
+
 	<%end%>
-	<div class = "source_author_results">
+	
 	<% if @authors.any?%>
 	
     <h2>
@@ -35,7 +36,7 @@
         </h2>
 
       <% end %>
-	</div>
+	
 		
     <% end %>
 	</div>
