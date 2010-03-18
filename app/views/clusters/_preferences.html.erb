@@ -4,7 +4,7 @@
   <% end %>
 <% end %>
 <% form_tag( form_url, :method => form_method, :id => 'search_preference' ) do %>
-<%= t('search.results.sorting') %>
+&nbsp;&nbsp;<%= t('search.results.sorting') %>
   <% page_params( :exclude => attributes.collect{ |a| to_param(a).to_s }.push( 'page' ) ).each do | param | %>
     <%= hidden_field_tag( param, params[ param ] ) %>
   <% end %> &nbsp;
