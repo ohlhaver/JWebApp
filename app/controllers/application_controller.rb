@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
   end
   
   def sort_criteria
-    Integer( params[:sc] || current_user.preference.default_sort_criteria || '1' ) rescue 1
+    Integer( params[:sc] || current_user.preference.default_sort_criteria || '0' ) rescue 0
   end
   
   alias_method :cluster_sort_criteria, :sort_criteria
