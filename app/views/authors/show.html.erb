@@ -3,8 +3,8 @@
     <h2>
      <span class="page_label"> <%= @author.name %></span>
       <div class='rater'>
-	    <%= render_author_subscription( @author_preference, @author ) %>
-        <%= render_author_rating_form( @author_preference, @author ) %>
+	    <%= render_author_subscription( @author_preference, @author ) %>-&nbsp;&nbsp;
+        <%= t('prefs.labels.rate') %>&nbsp;<%= render_author_rating_form( @author_preference, @author ) %>
       </div>
     </h2>
 	<br>

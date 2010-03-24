@@ -14,4 +14,7 @@ class AboutController < ApplicationController
   def help
   end
   
+  def power
+  end
+  
 end

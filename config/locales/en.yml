@@ -96,6 +96,14 @@ en:
       summarizes: "Only summarized de-personalized information is provided to third parties."
       uses: "Personal information is used for providing services requested by the user including services with personalized content."
       researches: "Additionally, we use your personal information for internal research in order to improve your online experience as well as our technologies and services."
+    power:
+      label: "Jurnalo Power Account"
+      slogan: "With the Jurnalo Power Account you are activating the best news reading experience that money can buy."
+      gives: "The Jurnalo Power Account gives you all the functions of the Basic Account,"
+      topics: "- unlimited My Topics (includes e-mail alerts and advanced searches)"
+      authors: "- unlimited My Authors (includes subscriptions, e-mail alerts and ratings)"
+      sources: "- unlimited My Sources"      
+      cancel: "Payment is month-to-month.<br>If you cancel or downgrade, you’ll be billed for the current month, but you won’t be billed again."
   author:
     action:
       subscribe: 'subscribe'
@@ -159,6 +167,9 @@ en:
     previous: "previous"
     next: "next"
   prefs:
+    prefs:
+      labels: 
+        rate: 'rating:'
     home_action:
       show: 'show'
       hide: 'hide'

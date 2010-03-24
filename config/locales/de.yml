@@ -159,6 +159,8 @@ de:
     previous: "zurück"
     next: "vorwärts"
   prefs:
+    labels: 
+      rate: 'Gewichtung:'
     home_action:
       show: 'zeigen'
       hide: 'verstecken'
