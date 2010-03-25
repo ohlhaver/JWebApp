@@ -96,6 +96,14 @@ de:
       summarizes: "Nur zusammengefasste entpersonalisierte Informationen werden an Dritte weitergegeben."
       uses: "Die persönlichen Informationen werden für die Bereitstellung von gewünschten Dienstleistungen, einschließlich der Dienstleistungen mit angepassten Inhalten, verwendet."
       researches: "Wir nutzen Ihre persönlichen Informationen ausserdem für interne Auswertungen, um Ihre Onlineerfahrung sowie unsere Technologien und Dienstleistungen zu verbessern."
+    power:
+      label: "Jurnalo Power Plan"
+      slogan: "Mit dem Jurnalo Power Plan aktivieren Sie die beste Nachrichten-Lese-Erfahrung, die man für Geld kaufen kann."
+      gives: "Der Jurnalo Power Plan gibt Ihnen alle Funktionen des Basis Plans, plus:"
+      topics: "- unbegrenzte 'Meine Themen' (gespeicherte Suchen)"
+      authors: "- unbegrenzte 'Meine Autoren' (Abbonnements für Ihre Lieblingsautoren)"
+      sources: "- unbegrenzte 'Meine Quellen' (Ratings für jede beliebige Publikation)"      
+      cancel: "Die Bezahlung geschieht von Monat zu Monat. Wenn Sie kündigen oder downgraden, wird Ihnen nur noch der laufende Monat in Rechnung gestellt, aber kein weiterer Monat."  
   author:
     action:
       subscribe: 'abonnieren'
