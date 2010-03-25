@@ -100,10 +100,10 @@ de:
       label: "Jurnalo Power Plan"
       slogan: "Mit dem Jurnalo Power Plan aktivieren Sie die beste Nachrichten-Lese-Erfahrung, die man für Geld kaufen kann."
       gives: "Der Jurnalo Power Plan gibt Ihnen alle Funktionen des Basis Plans, plus:"
-      topics: "- unbegrenzte 'Meine Themen' (gespeicherte Suchen)"
-      authors: "- unbegrenzte 'Meine Autoren' (Abbonnements für Ihre Lieblingsautoren)"
-      sources: "- unbegrenzte 'Meine Quellen' (Ratings für jede beliebige Publikation)"      
-      cancel: "Die Bezahlung geschieht von Monat zu Monat. Wenn Sie kündigen oder downgraden, wird Ihnen nur noch der laufende Monat in Rechnung gestellt, aber kein weiterer Monat."  
+      topics: "- unbegrenzte 'Meine Themen'"
+      authors: "- unbegrenzte 'Meine Autoren'"
+      sources: "- unbegrenzte 'Meine Quellen'"      
+      cancel: "Die Bezahlung geschieht von Monat zu Monat. Wenn Sie kündigen, wird Ihnen nur noch der laufende Monat in Rechnung gestellt."  
   author:
     action:
       subscribe: 'abonnieren'

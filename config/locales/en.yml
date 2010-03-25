@@ -98,12 +98,12 @@ en:
       researches: "Additionally, we use your personal information for internal research in order to improve your online experience as well as our technologies and services."
     power:
       label: "Jurnalo Power Account"
-      slogan: "With the Jurnalo Power Account you are activating the best news reading experience that money can buy."
+      slogan: "The Jurnalo Power Account enables you to enjoy the best possible news reading experience."
       gives: "The Jurnalo Power Account gives you all the functions of the Basic Account, plus:"
-      topics: "- unlimited My Topics (saved searches)"
-      authors: "- unlimited My Authors (subscriptions to your favourite authors)"
-      sources: "- unlimited My Sources (ratings on any source)"      
-      cancel: "Payment is month-to-month.<br>If you cancel or downgrade, you’ll be billed for the current month, but you won’t be billed again."
+      topics: "- unlimited My Topics"
+      authors: "- unlimited My Authors"
+      sources: "- unlimited My Sources"      
+      cancel: "Payment is month-to-month. If you cancel you’ll be billed only for the current month."
   author:
     action:
       subscribe: 'subscribe'
