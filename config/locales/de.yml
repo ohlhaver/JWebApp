@@ -100,9 +100,9 @@ de:
       label: "Jurnalo Power Plan"
       slogan: "Mit dem Jurnalo Power Plan aktivieren Sie die beste Nachrichten-Lese-Erfahrung, die man für Geld kaufen kann."
       gives: "Der Jurnalo Power Plan gibt Ihnen alle Funktionen des Basis Plans, plus:"
-      topics: "- unbegrenzte 'Meine Themen'"
-      authors: "- unbegrenzte 'Meine Autoren'"
-      sources: "- unbegrenzte 'Meine Quellen'"      
+      topics: "- unbegrenzt eigene Suchthemen"
+      authors: "- unbegrenzt Autoren-Abbonements"
+      sources: "- unbegrenzt Quellen-Gewichtungen"      
       cancel: "Die Bezahlung geschieht von Monat zu Monat. Wenn Sie kündigen, wird Ihnen nur noch der laufende Monat in Rechnung gestellt."  
   author:
     action:

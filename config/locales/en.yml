@@ -100,9 +100,9 @@ en:
       label: "Jurnalo Power Account"
       slogan: "The Jurnalo Power Account enables you to enjoy the best possible news reading experience."
       gives: "The Jurnalo Power Account gives you all the functions of the Basic Account, plus:"
-      topics: "- unlimited My Topics"
-      authors: "- unlimited My Authors"
-      sources: "- unlimited My Sources"      
+      topics: "- unlimited search topics"
+      authors: "- unlimited author subscriptions"
+      sources: "- unlimited source settings"      
       cancel: "Payment is month-to-month. If you cancel you’ll be billed only for the current month."
   author:
     action:
@@ -167,9 +167,8 @@ en:
     previous: "previous"
     next: "next"
   prefs:
-    prefs:
-      labels: 
-        rate: 'rating:'
+    labels: 
+      rate: 'weight:'
     home_action:
       show: 'show'
       hide: 'hide'
