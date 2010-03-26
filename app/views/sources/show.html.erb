@@ -3,13 +3,14 @@
     <h2><span class="page_label">
       <%= @source.name %>
 	</span>
-		<span class = "rater">
-		<%= t('prefs.labels.rate') %>  <%= render_source_rating_form( @source_preference, @source) %>
-		</span>
+		<div class = "rater">
+		<%= t('prefs.labels.rate') %> &nbsp; <%= render_source_rating_form( @source_preference, @source) %>
+		</div>
 
     </h2>
-    <% if @categories.any? %>
 <br>
+    <% if @categories.any? %>
+
     <div class ='result_filter'>
       <%= render_category_links( @categories, source_path( @source ) ) %>
     </div>
