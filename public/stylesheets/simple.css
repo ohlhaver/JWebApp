@@ -201,10 +201,26 @@ span.current{
 .my_authors_block {
 	border-top: 1px solid #CCCCCC;
 	margin-top: 28px;
-			
+	font-family: Georgia,"Times New Roman",Times,serif;			
 }
 
 
+.my_topics_block {
+	border-top: 1px solid #CCCCCC;
+	margin-top: 28px;
+	font-family:Arial,Helvetica,sans-serif;
+			
+}
+
+.my_topics_block h2 {
+	
+	font-family:Arial,Helvetica,sans-serif;
+	font-weight: normal;
+  	text-decoration: none;
+  	font-size: 16px;
+	line-height: 19px;
+	color: #333333;		
+}
 
  h2 {
   	margin-top: 1px;
@@ -732,6 +748,10 @@ border: 0px;
 
 }
 
+.about h2 {
+	font-family: Arial,Helvetica,sans-serif;
+}
+
 /* MouseOvers */
 .dialogBox {
   float:right;
@@ -850,3 +870,54 @@ border: 0px;
 .source_author_results {
 	margin-top: 15px;
 }
+
+.my_elements_block {
+	border-top: 1px solid #CCCCCC;
+	margin-top: 8px;
+	font-family:Arial,Helvetica,sans-serif;
+			
+}
+
+.my_elements_block h2 {
+	
+	font-family:Arial,Helvetica,sans-serif;
+	font-weight: normal;
+  	text-decoration: none;
+  	font-size: 16px;
+	line-height: 19px;
+	color: #333333;		
+}
+
+.add_element_button {
+
+font-family: Arial,Helvetica,sans-serif;
+font-weight: normal;
+text-decoration:none;
+font-size: 12px;
+line-height: 21px;
+color: #FFFFFF;
+background-color: #0000b6;
+vertical-align: middle;
+height: 18px;
+width: 163;
+border: 0px;
+}
+
+.account_info {
+	margin-left: 100px;
+	display: inline;
+}
+
+.errorExplanation {
+	font-family: Arial,Helvetica,sans-serif;	
+}
+
+.errorExplanation h2 {
+	font-family: Arial,Helvetica,sans-serif;
+	
+}
+
+
+
+
+
