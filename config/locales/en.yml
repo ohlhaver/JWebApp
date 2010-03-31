@@ -259,7 +259,7 @@ en:
         found_for_query: "No articles found for {{query}}."
   seo:
     page:
-      default_title: "Jurnalo - the latest and most important news on any topic"
+      default_title: "Jurnalo - Search the news!"
       title:
         author: "Articles by {{name}} - Jurnalo"
         cluster_group: "{{name}} - Jurnalo"

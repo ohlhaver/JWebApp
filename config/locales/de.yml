@@ -259,7 +259,7 @@ de:
       found_for_query: "Keine Artikel zu {{query}} gefunden."
   seo:
     page:
-      default_title: "Jurnalo - die neuesten und wichtigsten Nachrichten zu jedem Thema"
+      default_title: "Jurnalo - suche Nachrichten!"
       title:
         author: "Artikel von {{name}} - Jurnalo"
         cluster_group: "{{name}} - Jurnalo"
