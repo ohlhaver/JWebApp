@@ -8,6 +8,7 @@ en:
     errors:
       models:
         attribute:
+          restricted: "need to be upgraded"
           required: "must be given"
           blank: "must be given"
           accepted: "must be accepted"

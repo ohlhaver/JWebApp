@@ -8,6 +8,7 @@ de:
     errors:
       models:
         attribute:
+          restricted: "müssen aufgerüstet werden"
           required: "muss gegeben sein"
           blank: "muss gegeben sein"
           accepted: "muss akzeptiert werden"
