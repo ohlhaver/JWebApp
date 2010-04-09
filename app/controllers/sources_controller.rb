@@ -12,6 +12,10 @@ class SourcesController < ApplicationController
   end
   
   def rate
+    if current_user.out_of_limit?( :sources )
+      redirect_to upgrade_path( :id => 2 )
+      return
+    end
     pref = ( JAPI::SourcePreference.find( nil, :params => { :source_id => params[:id],  :user_id => current_user.id } ) || 
         JAPI::SourcePreference.new( :source_id => params[:id] ) )
     pref.prefix_options = { :user_id => current_user.id }

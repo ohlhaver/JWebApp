@@ -66,6 +66,18 @@ de:
       over_x_years:
         one: 'mehr als 1 Jahr'
         other: 'vor {{count}} Jahren'
+  account:
+    current: 'Jetziger Plan'
+    upgrade: 'Upgrade zu'
+    downgrade: 'Downgrade zu'
+    basic:
+      label: "Jurnalo Basis Plan" 
+      info: "Ein eigenes Thema, ein Autoren-Abbonement und eine Quellen-Einstellung."
+      cost: gratis
+    power:
+      label: "<b>Jurnalo Power Plan</b>"
+      info: "Unbegrenzte Anzahl von eigenen Themen, Autoren-Abbonements und Quellen-Einstellungen."
+      cost: "EUR 5 pro Monat"
   jurnalo:
     about:
       label: "Über Jurnalo"
@@ -104,7 +116,13 @@ de:
       topics: "- unbegrenzt eigene Suchthemen"
       authors: "- unbegrenzt Autoren-Abbonements"
       sources: "- unbegrenzt Quellen-Gewichtungen"      
-      cancel: "Die Bezahlung geschieht von Monat zu Monat. Wenn Sie kündigen, wird Ihnen nur noch der laufende Monat in Rechnung gestellt."  
+      cancel: "Die Bezahlung geschieht von Monat zu Monat. Wenn Sie kündigen, wird Ihnen nur noch der laufende Monat in Rechnung gestellt."
+    upgrade:
+      required: "Upgrade Account erforderlich"
+      reason_: "Bitte beachten Sie Jurnalo Power Account Upgrade für unbegrenzten Zugang."
+      reason_1: "So erstellen Sie mehr als ein Thema bitte ein Upgrade auf die Jurnalo Power Account."
+      reason_2: "Um Gewicht mehr als eine Quelle bitte ein Upgrade auf Jurnalo Power Account."
+      reason_3: "Um Gewicht / Abonnieren mehr als einem Autor bitte ein Upgrade auf die Jurnalo Power Account."
   author:
     action:
       subscribe: 'abonnieren'
@@ -282,6 +300,8 @@ de:
   rate:
     source: 'Quelle gewichten'
     author: 'Autoren gewichten'
+  more:
+    info: "mehr Informationen"
     
       
       

@@ -22,6 +22,10 @@ class TopicsController < ApplicationController
   end
 
   def new
+    if current_user.out_of_limit?( :topics )
+      redirect_to upgrade_path( :id => 1 )
+      return
+    end
     @topic = JAPI::TopicPreference.new( params[:japi_topic_preference] || {} ).parse_auto_complete_params!( params )
     if params[:advance] == '1'
       @topic.sort_criteria ||= sort_criteria

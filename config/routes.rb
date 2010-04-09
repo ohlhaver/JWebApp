@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
   map.feedback '/feedback', :controller => :about, :action => :feedback
   map.privacy '/privacy', :controller => :about, :action => :privacy
   map.help '/help', :controller => :about, :action => :help
-  map.power '/power', :controller => :about, :action => :power
+  map.upgrade '/upgrade/:id', :controller => :about, :action => :power
   
   map.top_authors '/authors/top', :controller => 'authors', :action => 'top'
   map.my_authors '/authors/my', :controller => 'authors', :action => 'my'

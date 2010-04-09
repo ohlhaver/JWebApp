@@ -66,6 +66,18 @@ en:
       over_x_years:
         one: 'over 1 year ago'
         other: '{{count}} years ago'
+  account:
+    current: 'Current Plan'
+    upgrade: 'upgrade to'
+    downgrade: 'downgrade to'
+    basic:
+      label: Jurnalo Basic Account
+      info: "One personal topic, one author subscription and one source setting."
+      cost: free
+    power:
+      label: "<b>Jurnalo Power Account</b>"
+      info: "Unlimited personal topics, author subscriptions and source settings."
+      cost: "EUR 5 per month"
   jurnalo:
     about:
       label: "About Jurnalo"
@@ -105,6 +117,12 @@ en:
       authors: "- unlimited author subscriptions"
       sources: "- unlimited source settings"      
       cancel: "Payment is month-to-month. If you cancel you’ll be billed only for the current month."
+    upgrade:
+      required: "Account Upgrade Required"
+      reason_: "Please upgrade to Jurnalo Power Account for unlimited access."
+      reason_1: "To create more than one topic please upgrade to the Jurnalo Power account."
+      reason_2: "To rate more than one source please upgrade to the Jurnalo Power account."
+      reason_3: "To rate/subscribe more than one author please upgrade to the Jurnalo Power account."
   author:
     action:
       subscribe: 'subscribe'
@@ -279,3 +297,8 @@ en:
       simple: 'Simple'
     name: 'Topic label:'
     query: 'Search query:'
+  rate:
+    source: 'Source preference'
+    author: 'Author preference'
+  more:
+    info: "more info"

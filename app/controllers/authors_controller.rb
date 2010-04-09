@@ -33,6 +33,10 @@ class AuthorsController < ApplicationController
   end
   
   def rate
+    if current_user.out_of_limit?( :authors )
+      redirect_to upgrade_path( :id => 3 )
+      return
+    end
     pref = ( JAPI::AuthorPreference.find( nil, :params => { :author_id => params[:id],  :user_id => current_user.id } ) || 
         JAPI::AuthorPreference.new( :author_id => params[:id] ) )
     pref.prefix_options = { :user_id => current_user.id }
@@ -46,6 +50,10 @@ class AuthorsController < ApplicationController
   end
   
   def subscribe
+    if current_user.out_of_limit?( :authors )
+      redirect_to upgrade_path( :id => 3 )
+      return
+    end
     pref = ( JAPI::AuthorPreference.find( nil, :params => { :author_id => params[:id],  :user_id => current_user.id } ) ||
       JAPI::AuthorPreference.new( :author_id => params[:id] ) )
     pref.prefix_options = { :user_id => current_user.id }

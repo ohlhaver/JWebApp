@@ -70,6 +70,15 @@ end
 
 JAPI::User.class_eval do
   
+  def power_plan?
+    preference.plan_id == 1
+  end
+  
+  def out_of_limit?( name )
+    klass = JAPI.const_get( name.to_s.singularize.capitalize + 'Preference')
+    !self.power_plan? && klass.find(:all, :params => { :user_id => self.id }).size > 0
+  end
+  
   def nav_blocks_order
     @nav_blocks_order ||= home_blocks_order
   end

@@ -17,4 +17,5 @@ class AboutController < ApplicationController
   def power
   end
   
+  
 end
