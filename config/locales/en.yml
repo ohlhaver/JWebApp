@@ -120,9 +120,9 @@ en:
     upgrade:
       required: "Account Upgrade Required"
       reason_: "Please upgrade to Jurnalo Power Account for unlimited access."
-      reason_1: "To create more than one topic please upgrade to the Jurnalo Power account."
-      reason_2: "To rate more than one source please upgrade to the Jurnalo Power account."
-      reason_3: "To rate/subscribe more than one author please upgrade to the Jurnalo Power account."
+      reason_1: "To create more than one topic please upgrade to the Jurnalo Power Account."
+      reason_2: "To rate more than one source please upgrade to the Jurnalo Power Account."
+      reason_3: "To rate/subscribe to more than one author please upgrade to the Jurnalo Power Account."
   author:
     action:
       subscribe: 'subscribe'
