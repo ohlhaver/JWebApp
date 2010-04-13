@@ -71,6 +71,7 @@ img {
 		_margin-top: -16px;
 		_width: 10em;
 		_padding: 0;
+		*width: 10em;
 }
 
 .search-box-link {
