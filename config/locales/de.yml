@@ -72,11 +72,11 @@ de:
     downgrade: 'Downgrade zu'
     basic:
       label: "Jurnalo Basis Plan" 
-      info: "Ein eigenes Thema, ein Autoren-Abbonement und eine Quellen-Einstellung."
+      info: "Ein eigenes Thema, ein Autoren-Abonnement und eine Quellen-Einstellung."
       cost: gratis
     power:
       label: "<b>Jurnalo Power Plan</b>"
-      info: "Unbegrenzte Anzahl von eigenen Themen, Autoren-Abbonements und Quellen-Einstellungen."
+      info: "Unbegrenzte Anzahl von eigenen Themen, Autoren-Abonnements und Quellen-Einstellungen."
       cost: "EUR 5 pro Monat"
   jurnalo:
     about:
@@ -114,7 +114,7 @@ de:
       slogan: "Mit dem Jurnalo Power Plan aktivieren Sie die beste Nachrichten-Lese-Erfahrung, die man für Geld kaufen kann."
       gives: "Der Jurnalo Power Plan gibt Ihnen alle Funktionen des Basis Plans, plus:"
       topics: "- unbegrenzt eigene Suchthemen"
-      authors: "- unbegrenzt Autoren-Abbonements"
+      authors: "- unbegrenzt Autoren-Abonnements"
       sources: "- unbegrenzt Quellen-Gewichtungen"      
       cancel: "Die Bezahlung geschieht von Monat zu Monat. Wenn Sie kündigen, wird Ihnen nur noch der laufende Monat in Rechnung gestellt."
     upgrade:
