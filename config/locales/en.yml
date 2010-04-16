@@ -77,7 +77,7 @@ en:
     power:
       label: "<b>Jurnalo Power Account</b>"
       info: "Unlimited personal topics, author subscriptions and source settings."
-      cost: "EUR 5 per month"
+      cost: "5 € monthly"
   jurnalo:
     about:
       label: "About Jurnalo"
