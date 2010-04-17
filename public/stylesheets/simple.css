@@ -790,6 +790,7 @@ border: 0px;
 /* MouseOvers */
 .dialogBox {
   float:right;
+  display: inline;
 }
 
 .navDialogBox{

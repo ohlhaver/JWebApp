@@ -6,6 +6,7 @@
 	    <%= render_author_subscription( @author_preference, @author ) %>-&nbsp;&nbsp;
         <%= t('prefs.labels.rate') %>&nbsp;<%= render_author_rating_form( @author_preference, @author ) %>
       </div>
+	  <span class="page_label"> <%= @author.name %></span>
     </h2>
 	<br>
     <% @stories.each do |story| %>
