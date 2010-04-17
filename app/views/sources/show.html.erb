@@ -1,11 +1,12 @@
 <div class='news_group'>
   <div class='news_block'>
-    <h2><span class="page_label">
-      <%= @source.name %>
-	</span>
+    <h2>
 		<div class = "rater">
 		<%= t('prefs.labels.rate') %> &nbsp; <%= render_source_rating_form( @source_preference, @source) %>
 		</div>
+		<span class="page_label">
+	      <%= @source.name %>
+		</span>
 
     </h2>
 <br>

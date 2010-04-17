@@ -492,7 +492,12 @@ h2 a {
 	font-family: Arial,Helvetica,sans-serif;
 	font-size: 13px;
 	line-height: 21px;
+	margin-top: 0px;
+	display: inline;
+	float: right;
+
 }
+
 
 #search_preference_field_sort_criteria {
 
@@ -521,12 +526,7 @@ h2 a {
 	color: #0000b6;
 }
 
-#search_preference {
-	margin-top: 0px;
-	display: inline;
-	float: right;
 
-}
 
 .add_topic_link {
 
