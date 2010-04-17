@@ -396,6 +396,11 @@ h2 a {
 	text-transform:none;
 }
 
+
+.story .title {
+	line-height: 18px;
+}
+
 .source a:link {
 	color: #999999;
 }
