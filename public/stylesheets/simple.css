@@ -105,7 +105,7 @@ font-family: Arial,Helvetica,sans-serif;
 
 
 #module {
-	border-top: 1px solid #CCCCCC;
+	border-top: 7px solid #99CCFF;
 	padding-top: 7px;
 
 	margin-top: 10px;
@@ -123,7 +123,7 @@ font-family: Arial,Helvetica,sans-serif;
 
 
 #navigation_module {
-	border-top: 1px solid #CCCCCC;
+	border-top: 7px solid #99CCFF;
 	margin-top: 15px;
 	margin-bottom: 3px;
 }
@@ -158,7 +158,7 @@ span.current{
 }
 
 .nav_block {
-	border-top: 1px solid #CCCCCC;
+	border-top: 1px solid #99CCFF;
 	margin-top: 15px;	
 }
 
@@ -188,29 +188,34 @@ span.current{
 
 
 .news_block {
-	border-top: 1px solid #CCCCCC;	
+	border-top: 7px solid #99CCFF;	
 }
 
+.reading_list_block {
+	border-top: 1px solid #99CCFF;	
+}
+
+
 .settings_news_block {
-	border-top: 1px solid #CCCCCC;	
+	border-top: 7px solid #99CCFF;	
 }
 
 
 .topic_preview_block {
-	border-top: 1px solid #CCCCCC;
+	border-top: 1px solid #99CCFF;
 	margin-top: 34px;
 			
 }
 
 .my_authors_block {
-	border-top: 1px solid #CCCCCC;
+	border-top: 1px solid #99CCFF;
 	margin-top: 28px;
 	font-family: Georgia,"Times New Roman",Times,serif;			
 }
 
 
 .my_topics_block {
-	border-top: 1px solid #CCCCCC;
+	border-top: 7px solid #99CCFF;
 	margin-top: 28px;
 	font-family:Arial,Helvetica,sans-serif;
 			
@@ -297,7 +302,8 @@ h2 a {
  	font-weight: normal;
   	text-decoration: none;
 	font-style: normal;
-	margin-bottom: 1px;
+	line-height:24px;
+	margin-bottom: 0px;
 }
 
 
@@ -307,16 +313,41 @@ h2 a {
  	font-weight: normal;
   	text-decoration: none;
   	font-size: 22px;
-	line-height: 31px;
+	line-height: 24px;
 	font-style: normal;
 }
+
+.medium_headline {
+	font-family: Georgia,"Times New Roman",Times,serif;
+ 	font-weight: normal;
+  	text-decoration: none;
+	font-style: normal;
+	line-height:24px;
+	margin-bottom: 0px;
+}
+
+
+
+.medium_headline .title {
+	font-family:Georgia,"Times New Roman",Times,serif;
+ 	font-weight: normal;
+  	text-decoration: none;
+  	font-size: 19px;
+	line-height: 24px;
+	font-style: normal;
+}
+
+
+
+
+
 
 .age {
 	font-family: Georgia,"Times New Roman",Times,serif;
  	font-weight: normal;
   	text-decoration: none;
   	font-size: 16px;
-	line-height: 26px;
+	line-height: 0px;
 	color: #999999;
 }
 
@@ -324,7 +355,7 @@ h2 a {
 	font-family: Arial,Helvetica,sans-serif;
 	font-size: 12px;
 	line-height: 17px;
-	margin-top: 5px;
+	margin-top: 8px;
 	color: #333333;
 }
 
@@ -342,7 +373,7 @@ h2 a {
  	font-weight: normal;
   	text-decoration: none;
   	font-size: 16px;
-	line-height: 26px;
+	line-height: 0px;
 	color: #999999;
 }
 
@@ -352,16 +383,16 @@ h2 a {
  	font-weight: normal;
   	text-decoration: none;
   	font-size: 16px;
-	line-height: 26px;
+	line-height: 0px;
 	color: #999999;
 }
 
 .story {
 	font-family: Georgia,"Times New Roman",Times,serif;
-	margin-top: 0px;
+	margin-top: 5px;
 	margin-bottom: 0px;
 	font-size: 16px;
-	line-height: 26px;
+	line-height: 24px;
 	text-transform:none;
 }
 
@@ -422,25 +453,25 @@ h2 a {
 }
 
 .pagination_module {
-	border-top: 1px solid #CCCCCC;
+	border-top: 1px solid #99CCFF;
 	margin-top: 20px;
 	margin-bottom: 25px;
 }
 
 .footer_module {
-	border-top: 1px solid #CCCCCC;
+	border-top: 7px solid #99CCFF;
 	margin-top: 20px;
 	margin-bottom: 3px;
 }
 
 .results_module {
-	border-top: 1px solid #CCCCCC;
+	border-top: 7px solid #99CCFF;
 	margin-top: 26px;
 	margin-bottom: -10px;
 }
 
 .story_results_module {
-	border-top: 1px solid #CCCCCC;
+	border-top: 1px solid #99CCFF;
 	margin-top: 26px;
 	margin-bottom: 0px;
 }

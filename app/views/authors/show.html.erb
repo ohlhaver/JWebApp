@@ -10,7 +10,7 @@
 	<br>
     <% @stories.each do |story| %>
       <div class='cluster'>
-        <div class='headline'><%= render_headline_preview( story, :without => [ :authors ] ) %></div>
+        <div class='medium_headline'><%= render_headline_preview( story, :without => [ :authors ] ) %></div>
       </div>
     <% end %>
     <% if @stories.empty? %>
