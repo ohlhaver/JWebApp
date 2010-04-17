@@ -11,20 +11,24 @@
          <%= t('search.advance.find.label') -%>
           
 			<div>
+			<span><%= text_field_tag("q", params[:q], :id => "adv_searchfield") %></span>
             <span><%= t('search.advance.find.at_least') -%></span>
-            <span><%= text_field_tag("q", params[:q], :id => "adv_searchfield") %></span>
+            
             </div>
           <div>
+			<span><%= text_field_tag("qa", params[:qa], :id => "adv_searchfield") %></span>
             <span ><%= t('search.advance.find.all') -%></span>
-            <span><%= text_field_tag("qa", params[:qa], :id => "adv_searchfield") %></span>
+            
           </div>
           <div>
+			<span><%= text_field_tag("qe", params[:qe], :id => "adv_searchfield") %></span>
             <span><%= t('search.advance.find.exact') -%></span>
-            <span><%= text_field_tag("qe", params[:qe], :id => "adv_searchfield") %></span>
+            
           </div>
           <div>
+			<span><%= text_field_tag("qn", params[:qn], :id => "adv_searchfield") %></span>
             <span><%= t('search.advance.find.without') -%></span>
-            <span><%= text_field_tag("qn", params[:qn], :id => "adv_searchfield") %></span>
+            
           </div>
          
        
