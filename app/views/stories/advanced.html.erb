@@ -3,7 +3,7 @@
     <h2>
       <span class="page_label"><%= t('search.advance.label') -%></span>
     </h2>
-	<div class = "results_module"></div>
+	<div class = "thin_results_module"></div>
  
 	<div class= 'adv_search_lines'>
       <% form_tag search_results_stories_path do %>
@@ -46,7 +46,7 @@
 		</div>
 	
        
-	  <div class = "results_module"></div>
+	  <div class = "thin_results_module"></div>
          <%= t('search.advance.filter.label') -%>
           <div>
             <%= t('search.advance.filter.source') -%><span class='adv_search_menu'>
@@ -72,7 +72,7 @@
             <%= select_tag( 'st', options_for_select(  preference_options(:subscription_type), subscription_type ) ) %></span>
           </div>
 		</div>
-<div class = "results_module"></div>
+<div class = "thin_results_module"></div>
           <%= t('search.advance.preferences.label') -%>
 		<div class = 'form_area'>
           <div>

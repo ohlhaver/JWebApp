@@ -1,4 +1,4 @@
-	<div class = "results_module"></div>
+	<div class = "thin_results_module"></div>
  
    <div class= 'adv_search_lines'>
      	<% form_for( @topic, :url => topics_path, :html => { :id => 'advance_topic_form' }, :method => :post ) do |f| %>
@@ -10,7 +10,7 @@
 	
        </div>
 
-		<div class = "results_module"></div>
+		<div class = "thin_results_module"></div>
 
          <%= t('search.advance.find.label') -%>
           
@@ -46,7 +46,7 @@
 		</div>
 	
        
-	  <div class = "results_module"></div>
+	  <div class = "thin_results_module"></div>
          <%= t('search.advance.filter.label') -%>
           <div>
             <%= t('search.advance.filter.source') -%><span class='adv_search_menu'>
@@ -72,7 +72,7 @@
             <%= f.select( :subscription_type, preference_options(:subscription_type) ) %></span>
           </div>
 		</div>
-       <div class = "results_module"></div>
+       <div class = "thin_results_module"></div>
           <%= t('search.advance.preferences.label') -%>
 		<div class = 'form_area'>
           <div>
