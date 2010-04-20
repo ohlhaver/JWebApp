@@ -1,9 +1,7 @@
 <% content_for :user_actions do -%>
   <% if logged_in? -%>
     <br> <%= link_to( t( 'navigation.top.logout', :name => current_user.name ), logout_path ) %> 
-    <% unless current_user.power_plan? %>
-    <br> <%= link_to( t('navigation.top.upgrade'), account_path( :action => 'upgrade') ) %>
-    <% end %>
+
   <% else -%>
     <br> <%= link_to( t( 'navigation.top.login' ), login_path ) -%> - <%= link_to( t('navigation.top.register' ), account_path( :action => 'new' ) )%>
   <% end %>
@@ -12,4 +10,6 @@
 
   <%= link_to( t( 'navigation.top.reading_list' ), :controller => '/reading_list', :action => 'index' ) -%> <br>
   <%= link_to( t( 'navigation.top.settings' ), account_path( :jwa => 1, :edition => session[:edition] ) ) -%>
+<% if logged_in? -%><% unless current_user.power_plan? %> - <%= link_to( t('navigation.top.upgrade'), account_path( :action => 'power_plan') ) %>
+  <% end %><% end %>
   <%= yield :user_actions -%>

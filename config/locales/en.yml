@@ -180,7 +180,7 @@ en:
       login: "Login"
       logout: "{{name}} (logout)"
       reading_list: "Reading list"
-      register: "Register"
+      register: "Sign up"
       settings: "Settings"
       upgrade: "Upgrade"
   pagination:
