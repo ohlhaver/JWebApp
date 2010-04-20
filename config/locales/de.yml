@@ -182,6 +182,7 @@ de:
       reading_list: "Leseliste"
       register: "Registrieren"
       settings: "Einstellungen"
+      upgrade: "Upgrade"
   pagination:
     previous: "zurück"
     next: "vorwärts"

@@ -182,6 +182,7 @@ en:
       reading_list: "Reading list"
       register: "Register"
       settings: "Settings"
+      upgrade: "Upgrade"
   pagination:
     previous: "previous"
     next: "next"

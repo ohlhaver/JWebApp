@@ -1,8 +1,11 @@
 <% content_for :user_actions do -%>
   <% if logged_in? -%>
-    <br> <%= link_to( t( 'navigation.top.logout', :name => current_user.name ), logout_path ) %>
+    <br> <%= link_to( t( 'navigation.top.logout', :name => current_user.name ), logout_path ) %> 
+    <% unless current_user.power_plan? %>
+    <br> <%= link_to( t('navigation.top.upgrade'), account_path( :action => 'upgrade') ) %>
+    <% end %>
   <% else -%>
-    <br> <%= link_to( t( 'navigation.top.login' ), login_path ) -%>
+    <br> <%= link_to( t( 'navigation.top.login' ), login_path ) -%> - <%= link_to( t('navigation.top.register' ), account_path( :action => 'new' ) )%>
   <% end %>
 <% end %>
 
