@@ -3,7 +3,7 @@
     <h2><span class="page_label"><%= t("navigation.main.#{@section.name}")%></span></h2>
     <% if @section.opinions? %>
       <% @section.stories.each do |story| %>
-        <div class='cluster'>
+        <div class='medium_cluster'>
           <%= render_story_search_preview( story ) %>
         </div>
       <% end %>

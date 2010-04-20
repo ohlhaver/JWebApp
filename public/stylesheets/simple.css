@@ -297,9 +297,15 @@ h2 a {
 
 
 .cluster {
-	margin-top: 20px;
+	margin-top: 24px;
 	margin-bottom: 30px;	
 }
+
+.medium_cluster {
+	margin-top: 26px;
+	margin-bottom: 15px;	
+}
+
 
 .headline {
 	font-family: Georgia,"Times New Roman",Times,serif;
@@ -362,6 +368,15 @@ h2 a {
 	margin-top: 8px;
 	color: #333333;
 }
+
+.medium_info {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 12px;
+	line-height: 17px;
+	margin-top: 4px;
+	color: #333333;
+}
+
 
 
 .keywords {
@@ -594,7 +609,7 @@ h2 .keywords_filter a:hover {
 
 .result_filter {
 	margin-top: 20px;
-	margin-bottom: 35px;
+	margin-bottom: 38px;
 	font-size: 13px;
 	font-family: Arial,Helvetica,sans-serif;
  	font-weight: normal;

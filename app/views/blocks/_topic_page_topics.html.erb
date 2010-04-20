@@ -17,8 +17,9 @@
 	<span class="page_label"><%= link_to block.name, topic_path( block.id ) %></span>
  </h2>
   <% block.stories.each do |story| %>
-    <div class='cluster'>
+   <div class='cluster'>
       <% if story.cluster && story.cluster.stories.any? %>
+		 
         <%= render_cluster_preview( story.cluster, story ) %>
       <% else %>
         <%= render_story_search_preview( story ) %>

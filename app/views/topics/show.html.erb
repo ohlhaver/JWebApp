@@ -14,7 +14,7 @@
     
 
     <% @topic.stories.each do |story| %>
-      <div class='cluster'>
+      <div class='medium_cluster'>
         <% if story.cluster && story.cluster.stories.any? %>
           <%= render_cluster_preview( story.cluster, story ) %>
         <% else %>
