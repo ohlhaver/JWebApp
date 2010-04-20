@@ -43,6 +43,8 @@ class StoriesController < ApplicationController
     params_options[:user_id] = current_user.id unless current_user.new_record?
     params_options[:language_id] = news_edition.language_id if current_user.new_record?
     @stories = JAPI::Story.find( :all, :from => :advance, :params => params_options )
+    @authors = []
+    @sources = []
     render :action => :index
   end
   
