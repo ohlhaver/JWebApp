@@ -137,7 +137,7 @@ module ApplicationHelper
   end
   
   def render_filter_link( filter, name, count )
-    return unless count > 0
+    return if eval( "@skip_#{filter}_filter" ) || count <= 0
     string = ( filter == :all ) ? '' : " "
     if @filter == filter
       string << " " << content_tag( :span, t( name, :count => count ) )

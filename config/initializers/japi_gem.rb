@@ -57,6 +57,34 @@ JAPI::TopicPreference.class_eval do
   
   attr_accessor :author, :source
   
+  def self.map
+    @@map ||= {
+      :search_any => :q,
+      :search_all => :qa,
+      :search_exact_phrase => :qe,
+      :search_except => :qn,
+      :sort_criteria => :sc,
+      :time_span => :ts,
+      :subscription_type => :st,
+      :blog => :bp,
+      :video => :vp,
+      :opinion => :op,
+      :author_id => :aid,
+      :source_id => :sid,
+      :category_id => :cid,
+      :region_id => :rid
+    }
+  end
+  
+  # from topic -> advance_search
+  def self.normalize!( params = {})
+    map.each{ |k,v|
+      value = params.delete( k )
+      params[v] = value unless value.blank?
+    }
+    params
+  end
+  
   def parse_auto_complete_params!( params = {} )
     self.author_id = params[:topic][:author_id] if params[:topic] && params[:topic][:author_id]
     self.source_id = params[:topic][:source_id] if params[:topics] && params[:topic][:source_id]
