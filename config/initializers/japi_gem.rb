@@ -223,6 +223,14 @@ JAPI::Connect::UserAccountsHelper.class_eval do
     url_for_account_server( :controller => 'logout' ).reverse_merge( params )
   end
   
+  def url_for_account_server( params = {} )
+    if @account_server_prefix_options.nil?
+      account_server_uri ||= JAPI::Config[:connect][:account_server]
+      @account_server_prefix_options ||= { :host => account_server_uri.host, :port => account_server_uri.port, :protocol => account_server_uri.scheme }
+    end
+    @account_server_prefix_options.reverse_merge( params.reverse_merge( :locale => I18n.locale, :service => CGI.escape( self.request.url ) ) )
+  end
+  
 end
 
 ApplicationController.class_eval do
