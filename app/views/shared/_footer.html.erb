@@ -2,7 +2,8 @@
 
   <%= link_to t( 'navigation.bottom.about' ), about_path %> -
   <%= link_to t( 'navigation.bottom.privacy' ), privacy_path %> -
-  <%= link_to t( 'navigation.bottom.imprint'), imprint_path %>
+  <%= link_to t( 'navigation.bottom.imprint' ), imprint_path %> -
+  <%= link_to t( 'navigation.bottom.contact' ), account_path( :action => 'contact', :jar => logged_in? ? 1 : 0 ) %>
 
 <br>
   <span class= "grey">&copy; 2010</span>

@@ -297,15 +297,9 @@ h2 a {
 
 
 .cluster {
-	margin-top: 24px;
+	margin-top: 20px;
 	margin-bottom: 30px;	
 }
-
-.medium_cluster {
-	margin-top: 26px;
-	margin-bottom: 15px;	
-}
-
 
 .headline {
 	font-family: Georgia,"Times New Roman",Times,serif;
@@ -368,15 +362,6 @@ h2 a {
 	margin-top: 8px;
 	color: #333333;
 }
-
-.medium_info {
-	font-family: Arial,Helvetica,sans-serif;
-	font-size: 12px;
-	line-height: 17px;
-	margin-top: 4px;
-	color: #333333;
-}
-
 
 
 .keywords {
@@ -474,7 +459,7 @@ h2 a {
 
 .pagination_module {
 	border-top: 1px solid #99CCFF;
-	margin-top: 15px;
+	margin-top: 20px;
 	margin-bottom: 25px;
 }
 
@@ -495,6 +480,7 @@ h2 a {
 	margin-top: 26px;
 	margin-bottom: -10px;
 }
+
 
 .story_results_module {
 	border-top: 1px solid #99CCFF;
@@ -609,7 +595,7 @@ h2 .keywords_filter a:hover {
 
 .result_filter {
 	margin-top: 20px;
-	margin-bottom: 38px;
+	margin-bottom: 35px;
 	font-size: 13px;
 	font-family: Arial,Helvetica,sans-serif;
  	font-weight: normal;
@@ -744,7 +730,7 @@ h2 .my_authors_links span {
 	
 }
 
-#settings_field, input.settings_field, input.settings_field_right, #user_captcha{
+#settings_field, input.settings_field, textarea.settings_field, input.settings_field_right, #user_captcha, #user_feedback_captcha{
 	display: inline;
 	float: right;
 	margin-right: 140px;
@@ -762,10 +748,16 @@ h2 .my_authors_links span {
 	vertical-align: middle;
 }
 
-input.settings_field, #user_captcha{
+input.settings_field, textarea.settings_field, #user_captcha, #user_feedback_captcha{
   display:auto;
   float:none;
   margin-right: none;
+}
+
+textarea.settings_field{
+  margin-right: none;
+  height: auto;
+  width: auto;
 }
 
 .form_area {
