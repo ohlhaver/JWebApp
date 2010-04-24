@@ -1,3 +1,24 @@
+JAPI::Client.class_eval do
+  
+  def api_response( path, params )
+    url = URI.parse( api_request_url( path ) )
+    request = Net::HTTP::Post.new( url.path )
+    # Multiple Params Fix
+    flatten_params!( params )
+    request.set_form_data( params )
+    response = Curb.post( url.to_s, request.body, :timeout => self.timeout, :catch_errors => true)
+    return response.body_str if response
+    return invalid_api_call_response( path )
+    # Timeout::timeout( self.timeout ) {
+    #   response = Net::HTTP.new( url.host, url.port ).start{ |http| http.request( request ) } rescue nil
+    #   return response.try( :body ) || invalid_api_call_response( path )
+    # }
+    # return timeout_api_call_response( path )
+  end
+  
+end
+
+
 JAPI::PreferenceOption.class_eval do 
   
   def self.cluster_group_options( edition )
