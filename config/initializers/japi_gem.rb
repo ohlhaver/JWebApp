@@ -6,7 +6,7 @@ JAPI::Client.class_eval do
     # Multiple Params Fix
     flatten_params!( params )
     request.set_form_data( params )
-    response = Curb.post( url.to_s, request.body, :timeout => self.timeout, :catch_errors => true)
+    response = Curb.post( url.to_s, request.body, :timeout => 6*(self.timeout||10), :catch_errors => true)
     return response.body_str if response
     return invalid_api_call_response( path )
     # Timeout::timeout( self.timeout ) {
