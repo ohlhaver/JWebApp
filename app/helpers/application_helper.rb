@@ -122,6 +122,16 @@ module ApplicationHelper
     render :partial => 'sources/categories', :locals => { :categories => categories, :base_url => base_url }
   end
   
+  def story_symbol( story )
+    str = ""
+    begin
+      str << image_tag( 'video.gif' ) if story.is_video?
+      str << image_tag( 'opinion.gif' ) if story.is_opinion?
+    rescue StandardError
+    end
+    return str
+  end
+  
   def render_category_link( name, url, category_id )
     if @category_id == category_id
       content_tag( :span, t( name ) )

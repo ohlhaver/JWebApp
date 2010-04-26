@@ -57,6 +57,12 @@ JAPI::ClusterGroup.class_eval do
   
 end
 
+JAPI::Story.class_eval do
+  
+  fields :cluster, :is_opinion, :is_video, :is_blog
+  
+end
+
 JAPI::Topic.class_eval do
   
   # Last 24 hours
