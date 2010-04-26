@@ -8,9 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="verify-v1" content="uktXEFRkC4oLS3pjPi7ZkolIVksbOF8D7PRiyCDs+fM=" />
+	<meta name="viewport" content="initial-scale=0.9; maximum-scale=0.9; user-scalable=0;" />
 	<%= stylesheet_link_tag 'reset' %>    
-	<%= stylesheet_link_tag 'grid' %>
-	<%= stylesheet_link_tag 'simple' %>
+
 	<% if mobile_device? -%>
 		<%= stylesheet_link_tag 'grid_mobile' %>
 		<%= stylesheet_link_tag 'simple_mobile' %>
@@ -19,52 +19,37 @@
   </head>
 	<body>
 
-		<div class="container_4">
-
 	
-			<div id= "top_frame" class = "grid_3">
+			<div id= "top_frame">
 
 			<%= link_to( image_tag( 'logo.gif'), root_path ) %>
+			<div id="top_navigation" >
+		      <%= render :partial => 'shared/top_navigation' %>
+		    </div>
+	
 
+			<br>
 
-
+		<div id = "search">
 	  <% form_tag( stories_path, :id => 'search_form', :method => :get, :class => 'inline_form' ) do -%>
 	    <input type="text" title="Search News" autocomplete="off" tabindex="1" name="q" id = 'searchfield' class ="text"  value="<%= params[:q] -%>" />
-	    <input type="submit" value="<%= t( 'search.simple' ) -%>" tabindex="2" id = 'searchbutton' class ="button"/>
-	    <div class='search-box-link'>
-	      <%= link_to( t( 'search.advance.label' ), advanced_stories_path ) %>
-	    </div>
+	    <input type="submit" value="<%= t( 'search.simple_mobile' ) -%>" tabindex="2" id = 'searchbutton' class ="button"/>
+
 	  <% end -%>
+	</div>
 
 </div>
-	
-    <div id="top_navigation" class="grid_1">
-      <%= render :partial => 'shared/top_navigation' %>
-    </div>
 
-    <div id="edition" class="prefix_3 grid_1">
-      <%= render :partial => 'shared/edition' %>		
-    </div>
 
-	<div id="content" class="grid_3">
+	<div id="content">
 		  <%= yield %>
 	      <div>&nbsp;</div>
 		  <div class="pagination_module" class="grid_3">	</div>
 		  <%= render :partial => 'shared/lrec' %>
 	</div>
 	
-	<div id="module" class="grid_1">
-
-	<div id='home_link' >
-	 <%= link_to_navigation_item 'Home', root_path %> &nbsp;
-	</div>
-		
-	<div id="navigation" >
-	      <%= render :partial => 'shared/navigation' %>
-	    </div>
-	</div>
     
-	<div id="footer" class = "grid_4">
+	<div id="footer">
     <%= render :partial => 'shared/footer' %>
   </div>
   <%= javascript_include_tag 'prototype' %>
@@ -82,6 +67,7 @@
   </script>
   <%= yield :custom_javascript %>
 </div>
+
 
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
