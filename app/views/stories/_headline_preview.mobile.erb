@@ -1,0 +1,51 @@
+<% if hide_add_to_reading_list %>
+  <span class='title'>
+    <%= link_to( story.title, story.url, :target => '_BLANK' ) %>
+  </span>
+<% else %>
+<% mouse_over( :icon ) do |iconEventClass, iconItemClass| %>
+  <span class="title <%= iconEventClass -%>">
+    <%= link_to( story.title, story.url, :target => '_BLANK' ) %>&nbsp;
+    <% mouse_over( :menu ) do |menuEventClass, menuItemClass| %>
+      <span class='<%= iconItemClass -%> <%= menuEventClass -%>'>
+        <%= image_tag('plus.gif') %>
+        <div class='<%= menuItemClass -%> actionsBox'>
+          <div>
+            <%= link_to( t('prefs.label.add_to_reading_list'), { :controller => '/reading_list', :action => :create, :id => story.id }, :method => :post ) %>
+          </div>
+        </div>
+      </span>
+    <% end -%>
+  </span>
+<% end %>
+<% end %>
+<br>
+<% if story.source %>
+  <% mouse_over( :icon ) do | iconEventClass, iconItemClass | %>
+    <span class='source fs80 <%= iconEventClass %>'>
+      <%= link_to( story.source.name, source_path( story.source ) ) %>
+    </span>
+  <% end %>  
+  <span class='separator'>-</span>
+<% end %>
+<% if story.authors.any? && !hide_authors %>
+  <% story.authors.each do |author| %>
+    <% mouse_over(:icon) do | iconEventClass, iconItemClass | %>
+      <span class='author fs80 <%= iconEventClass -%>'>
+        <%= link_to( author.name, author_path( author ) ) -%>
+        <% mouse_over(:menu) do | menuEventClass, menuItemClass | %>
+          <span class='<%= iconItemClass -%> <%= menuEventClass -%>'>
+            <%= image_tag('plus.gif') %>
+            <div class='<%= menuItemClass -%> actionsBox'>
+              <div>
+                <%= link_to t('author.action.subscribe'), subscribe_author_path( author ), :method => :put  %>
+              </div>
+            </div>
+          </span>
+        <% end %>
+      </span>
+    <% end -%>
+    <span class='separator'>-</span>
+  <% end %>
+<% end %>
+<span class='age fs80'><%= time_ago_in_words( story.created_at ) -%></span>

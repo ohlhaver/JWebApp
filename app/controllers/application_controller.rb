@@ -9,10 +9,10 @@ class ApplicationController < ActionController::Base
   
   include JAPI::Connect
   
-  before_filter :set_filter_var, :set_category_id_var, :reset_per_page
+  before_filter :set_filter_var, :set_category_id_var, :reset_per_page, :prepare_for_mobile
   layout 'default'
   
-  helper_method :sort_criteria, :subscription_type, :time_span, :video_pref, :blog_pref, :opinion_pref, :cluster_sort_criteria
+  helper_method :sort_criteria, :subscription_type, :time_span, :video_pref, :blog_pref, :opinion_pref, :cluster_sort_criteria, :mobile_device?
   
   #before_filter :log_session_info
   protected
@@ -64,6 +64,16 @@ class ApplicationController < ActionController::Base
   
   def subscription_type=( value )
     params[:st] = value
+  end
+  
+  private
+  
+  def mobile_device?
+    request.user_agent =~ /Mobile|webOS/    
+  end
+  
+  def prepare_for_mobile
+    request.format = :mobile if mobile_device?
   end
   
 end
