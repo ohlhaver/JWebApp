@@ -5,7 +5,7 @@
 <% else %>
 <% mouse_over( :icon ) do |iconEventClass, iconItemClass| %>
   <span class="title <%= iconEventClass -%>">
-    <%= link_to( story.title, story.url, :target => '_BLANK' ) %> <%= story_symbol( story ) %>
+    <%= story_symbol( story ) %> <%= link_to( story.title, story.url, :target => '_BLANK' ) %> 
     <% mouse_over( :menu ) do |menuEventClass, menuItemClass| %>
       <span class='<%= iconItemClass -%> <%= menuEventClass -%>'>
         <%= image_tag('plus.gif') %>
