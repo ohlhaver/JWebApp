@@ -1,5 +1,5 @@
 <% render_image_block( cluster ) do -%>
-  <div class='headline'><%= render_headline_preview( headline ) %></div>
+  <div class='headline'><%= render_headline_preview( headline, :without => :image ) %></div>
   <ul>
     <% cluster.stories.each do |story| %>
       <li class='story'><%= render_story_preview( story, :without => :image ) %></li>

@@ -63,17 +63,16 @@
       <div class='result_filter'><%= render_filter_links( @stories.facets, form_url, form_method ) %>  </div>
 
     <% @stories.each do |story| %>
-        <% if story.cluster && story.cluster.stories.any? %>
-		<div class='cluster'>
-          <%= render_cluster_preview( story.cluster, story ) %>
-        <% else %>
-		<div class='medium_cluster'>
-          <%= render_story_search_preview( story ) %>
-        <% end %>
+      <% if story.cluster && story.cluster.stories.any? %>
+      <div class='cluster'>
+        <%= render_cluster_preview( story.cluster, story ) %>
+      <% else %>
+      <div class='medium_cluster'>
+        <%= render_story_search_preview( story ) %>
+      <% end %>
       </div>
     <% end %>
-	
-	<% end %>
+  <% end %>
   </div>
 </div>
 <%= render_search_pagination( @stories, :form_url => form_url, :form_method => form_method ) %>
