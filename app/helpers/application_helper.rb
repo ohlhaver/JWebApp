@@ -42,6 +42,17 @@ module ApplicationHelper
     render :partial => 'clusters/preview', :locals => { :headline => headline, :cluster => cluster }
   end
   
+  def render_image_block( cluster_or_story, &block )
+    content = ""
+    if current_user.show_images? && cluster_or_story.image
+      content = capture{ block.call if block }
+      content = capture{ render(:partial => 'shared/image_block', :locals => { :image => cluster_or_story.image, :content => content }) }
+    else
+      content = capture{ block.call }  if block
+    end
+    block_called_from_erb?( block ) ? concat( content ) : content
+  end
+  
   def render_cluster_info( cluster )
     render :partial => 'clusters/info', :locals => { :cluster => cluster }
   end
@@ -51,7 +62,8 @@ module ApplicationHelper
     options[:without] = Array( options[:without] )
     render :partial => 'stories/preview', :locals => { :story => story, 
       :hide_authors => options[:without].include?( :authors ),
-      :hide_add_to_reading_list => options[:without].include?( :add_to_reading_list ) }
+      :hide_add_to_reading_list => options[:without].include?( :add_to_reading_list ),
+      :hide_image => options[:without].include?( :image ) }
   end
   
   def render_headline_preview( story, options = nil )

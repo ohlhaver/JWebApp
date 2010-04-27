@@ -125,6 +125,10 @@ end
 
 JAPI::User.class_eval do
   
+  def show_images?
+    preference.image == 1
+  end
+  
   def power_plan?
     preference.plan_id == 1
   end
