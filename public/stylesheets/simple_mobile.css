@@ -1016,5 +1016,15 @@ border: 0px;
   vertical-align: middle;
 }
 
+.image_grid{
+  display:inline;
+  float: left;
+  position: relative;
+  margin-right: 20px;
+  margin-top: 5px;
+  width: 80px;
+  text-align: center;
+}
+
 
 

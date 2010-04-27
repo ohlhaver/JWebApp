@@ -1,10 +1,12 @@
-<div class='headline'><%= render_headline_preview( headline ) %></div>
+<% render_image_block( cluster ) do -%>
+<div class='headline'><%= render_headline_preview( headline, :without => :image ) %></div>
 <ul>
   <% cluster.stories.each do |story| %>
-    <li class='story'><%= render_story_preview( story ) %></li>
+    <li class='story'><%= render_story_preview( story, :without => :image ) %></li>
   <% end %>
   <li class='info'> 
     <%= render_cluster_info( cluster ) %>
   </li>
   <li class='keywords'><%= links_to_keywords( *(cluster.top_keywords) ).join(' - ') %></li>
 </ul>
+<% end %>

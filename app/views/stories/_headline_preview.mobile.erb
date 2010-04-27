@@ -1,3 +1,5 @@
+<% render_image_block( story, hide_image ) do -%>
+
 <% if hide_add_to_reading_list %>
   <span class='title'>
     <%= story_symbol( story ) %> <%= link_to( story.title, story.url, :target => '_BLANK' ) %>
@@ -49,3 +51,4 @@
   <% end %>
 <% end %>
 <span class='age fs80'><%= time_ago_in_words( story.created_at ) -%></span>
+<% end %>
