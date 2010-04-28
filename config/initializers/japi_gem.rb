@@ -122,6 +122,20 @@ JAPI::TopicPreference.class_eval do
   
 end
 
+JAPI::Author.class_eval do
+  
+  def original_name
+    attributes[:name]
+  end
+  
+  def name
+    words = original_name.chars.split(' ')
+    words = words[0,4].push('...') if words.size > 4
+    words.each{ |w| w.capitalize! }.join(' ')
+  end
+  
+end
+
 
 JAPI::User.class_eval do
   
