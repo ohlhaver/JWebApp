@@ -196,7 +196,6 @@ class CASClient::Frameworks::Rails::Filter
   end
 end
 
-
 JAPI::Connect::InstanceMethods.class_eval do
   
   # Checks for session validation after 10.minutes
