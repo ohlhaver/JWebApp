@@ -129,9 +129,22 @@ JAPI::Author.class_eval do
   end
   
   def name
-    words = original_name.chars.split(' ')
-    words = words[0,4].push('...') if words.size > 4
-    words.each{ |w| w.capitalize! }.join(' ')
+    join_words( words_array, 4 )
+  end
+  
+  def full_name
+    join_words( words_array )
+  end
+  
+  protected
+  
+  def words_array
+    words = original_name.mb_chars.split(' ')
+    words.collect{ |w| w[0,1] == '"' ? w[0,1]+w[1..-1].capitalize! : w.capitalize }
+  end
+  
+  def join_words( words, count = nil )
+    count && words.size > count ? words[0, count].push('...').join(' ') : words.join(' ')
   end
   
 end
