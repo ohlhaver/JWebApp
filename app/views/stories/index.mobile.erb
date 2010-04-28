@@ -1,25 +1,38 @@
+<% content_for :page_label do %>
+    <% mouse_over( :icon ) do |iconEventClass, iconItemClass| %>
+      <span class="page_label <%= iconEventClass -%>">
+        <%= t('search.page.title', :query => "<a>'#{ truncate( @query, 20 ) }'</a>" ) -%> &nbsp;
+        <% mouse_over( :menu ) do |menuEventClass, menuItemClass| %>
+          <span class='<%= iconItemClass -%> <%= menuEventClass -%>'>
+            <%= image_tag('plus.gif') %>
+            <div class='<%= menuItemClass -%> actionsBox'>
+              <div>
+                <%= render :partial => 'topic_form' %>
+              </div>
+            </div>
+          </span>
+        <% end -%>
+      </span>
+    <% end %>
+<% end %>
+
 <% form_url = @advanced ? search_results_stories_path : stories_path %>
 <% form_method = @advanced ? :post : :get %>
 <div class='news_group'>
   <div class='news_block'>
 	<div class ='story'>
+		
    	<% unless display_only_story_search_results? %>
       <% if @authors.any? or @sources.any? %>
 	<h2>
-	<span class="page_label"><%= t('search.page.title', :query => "<a>'#{ truncate( @query, 20 ) }'</a>" ) -%></span>	
-	</h2>
-
+	<%= yield :page_label %></h2>
 	<div class = "source_author_results"></div>
-
 	<%end%>
-	
-	<% if @authors.any?%>
-	
-    <h2>
+		<% if @authors.any?%>
+	<h2>
 	<span class="page_label"><%= t('search.page.authors', :query => "<a>'#{ truncate( @query, 20 ) }'</a>" ) -%></span>
 	
-        
-        <% @authors.each_with_index do |author, index| %>
+         <% @authors.each_with_index do |author, index| %>
           <%= link_to author.name, author_path( author ) -%><%= ',&nbsp;&nbsp; ' unless index == @authors.size - 1  %>
       	<% end %>
         </h2>

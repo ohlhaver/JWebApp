@@ -32,21 +32,12 @@
 <% end %>
 <% if story.authors.any? && !hide_authors %>
   <% story.authors.each do |author| %>
-    <% mouse_over(:icon) do | iconEventClass, iconItemClass | %>
-      <span class='author fs80 <%= iconEventClass -%>'>
+    
+      <span class='author fs80'>
         <%= link_to( author.name, author_path( author ) ) -%>
-        <% mouse_over(:menu) do | menuEventClass, menuItemClass | %>
-          <span class='<%= iconItemClass -%> <%= menuEventClass -%>'>
-            <%= image_tag('plus.gif') %>
-            <div class='<%= menuItemClass -%> actionsBox'>
-              <div>
-                <%= link_to t('author.action.subscribe'), subscribe_author_path( author ), :method => :put  %>
-              </div>
-            </div>
-          </span>
-        <% end %>
+        
       </span>
-    <% end -%>
+  
     <span class='separator'>-</span>
   <% end %>
 <% end %>
