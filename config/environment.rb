@@ -33,7 +33,7 @@ Rails::Initializer.run do |config|
 
   # Skip frameworks you're not going to use. To use Rails without a database,
   # you must remove the Active Record framework.
-  config.frameworks -= [ :active_record, :action_mailer ]
+  config.frameworks -= [ :active_record ]
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
@@ -46,6 +46,9 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 end
+
+ExceptionNotification::Notifier.exception_recipients = %w(ram.singla@gmail.com ohlhaver@gmail.com)
+ExceptionNotification::Notifier.sender_address = %(no-reply@jurnalo.com)
 
 Rails.logger.info( "Rails Initialized" )
 

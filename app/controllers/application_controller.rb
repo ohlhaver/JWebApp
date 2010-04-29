@@ -2,7 +2,6 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-
   protect_from_forgery
   
   filter_parameter_logging :password
@@ -13,6 +12,8 @@ class ApplicationController < ActionController::Base
   layout 'default'
   
   helper_method :sort_criteria, :subscription_type, :time_span, :video_pref, :blog_pref, :opinion_pref, :cluster_sort_criteria, :mobile_device?
+  
+  include ExceptionNotification::Notifiable
   
   #before_filter :log_session_info
   protected
