@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   include JAPI::Connect
   
   before_filter :set_filter_var, :set_category_id_var, :reset_per_page, :prepare_for_mobile
+  after_filter :reset_session_params
+  
   layout 'default'
   
   helper_method :sort_criteria, :subscription_type, :time_span, :video_pref, :blog_pref, :opinion_pref, :cluster_sort_criteria, :mobile_device?
@@ -17,6 +19,13 @@ class ApplicationController < ActionController::Base
   
   #before_filter :log_session_info
   protected
+  
+  def reset_session_params
+    params[:locale] = nil
+    params[:edition] = nil
+    params[:ticket] = nil
+    params[:authenticity_token] = nil
+  end
   
   def reset_per_page
     params[:per_page] = nil

@@ -21,6 +21,19 @@ end
 
 JAPI::PreferenceOption.class_eval do 
   
+  def self.edition_options
+    @@edition_options ||= nil
+    @@edition_options = nil if @@edition_options.try( :error )
+    @@edition_options = find( :all, :params => { :preference_id => 'edition_id' } ).freeze
+    @@edition_options
+  end
+
+  def self.edition_country_map
+    @@edition_country_map ||= nil
+    @@edition_country_map = nil if @@edition_country_map.try(:empty?)
+    @@edition_country_map ||= self.edition_options.inject( {} ){ |map,record| map[ record.code.to_s.downcase ] = record.id; map }.freeze
+  end
+  
   def self.cluster_group_options( edition )
     @@cluster_group_options ||= {}
     hash_key = "#{edition.region}_#{edition.locale}"
@@ -43,6 +56,11 @@ JAPI::PreferenceOption.class_eval do
   
   def self.homepage_display_id( code )
     self.homepage_display_options.select{ |x| x.code == code.to_sym }.collect{ |x| x.id }.first
+  end
+  
+  def self.default_country_edition( country_code )
+    country_code.try(:downcase!)
+    edition_country_map[ country_code ] || 'int-en'
   end
   
 end
@@ -177,7 +195,7 @@ class CASClient::Frameworks::Rails::Filter
   def self.account_login_url(controller)
     service_url = read_service_url(controller)
     uri = URI.parse(JAPI::Config[:connect][:account_server].to_s + '/login')
-    uri.query = "service=#{CGI.escape(service_url)}&jwa=1&locale=#{I18n.locale}"
+    uri.query = "service=#{CGI.escape(service_url)}&jwa=1"
     log.debug("Generated account login url: #{uri.to_s}")
     return uri.to_s
   end
@@ -258,22 +276,29 @@ JAPI::Connect::InstanceMethods.class_eval do
     suri == turi
   end
   
-  protected :store_referer_location, :session_check_for_validation, :return_to_uri
+  def set_edition
+    params[:edition] = session[:edition] if params[:edition].blank? || !JAPI::PreferenceOption.valid_edition?( params[:edition] )
+    session[:edition] = params[:edition]
+    session[:edition] ||= current_user.edition || JAPI::PreferenceOption.default_country_edition( headers['X-GeoIP-Country'] || "" )
+    params[:edition] = session[:edition] unless params[:edition].blank?
+  end
+  
+  protected :store_referer_location, :session_check_for_validation, :return_to_uri, :set_edition
   
 end
 
 JAPI::Connect::UserAccountsHelper.class_eval do
   
-  def url_for_account_server( params = {} )
-    if @account_server_prefix_options.nil?
-      account_server_uri ||= JAPI::Config[:connect][:account_server]
-      @account_server_prefix_options ||= { :host => account_server_uri.host, :port => account_server_uri.port, :protocol => account_server_uri.scheme }
-    end
-    @account_server_prefix_options.reverse_merge( params.reverse_merge( :locale => locale, :service => self.request.url ) )
-  end
+  # def url_for_account_server( params = {} )
+  #   if @account_server_prefix_options.nil?
+  #     account_server_uri ||= JAPI::Config[:connect][:account_server]
+  #     @account_server_prefix_options ||= { :host => account_server_uri.host, :port => account_server_uri.port, :protocol => account_server_uri.scheme }
+  #   end
+  #   @account_server_prefix_options.reverse_merge( params.reverse_merge( :locale => locale, :service => self.request.url ) )
+  # end
   
   def login_path( params = {} )
-    url_for_account_server( :controller => 'login', :jwa => 1, :locale => I18n.locale ).reverse_merge( params )
+    url_for_account_server( :controller => 'login', :jwa => 1 ).reverse_merge( params )
   end
   
   def logout_path( params = {} )
@@ -285,7 +310,7 @@ JAPI::Connect::UserAccountsHelper.class_eval do
       account_server_uri ||= JAPI::Config[:connect][:account_server]
       @account_server_prefix_options ||= { :host => account_server_uri.host, :port => account_server_uri.port, :protocol => account_server_uri.scheme }
     end
-    @account_server_prefix_options.reverse_merge( params.reverse_merge( :locale => I18n.locale, :service => CGI.escape( self.request.url ) ) )
+    @account_server_prefix_options.reverse_merge( params.reverse_merge( :service => CGI.escape( self.request.url ) ) )
   end
   
 end

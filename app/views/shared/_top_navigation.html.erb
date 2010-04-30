@@ -9,7 +9,7 @@
 
 
   <%= link_to( t( 'navigation.top.reading_list' ), :controller => '/reading_list', :action => 'index' ) -%> <br>
-  <%= link_to( t( 'navigation.top.settings' ), account_path( :jwa => 1, :edition => session[:edition] ) ) -%>
+  <%= link_to( t( 'navigation.top.settings' ), account_path( :jwa => 1 ) ) -%>
 <% if logged_in? -%><% unless current_user.power_plan? %> - <%= link_to( t('navigation.top.upgrade'), account_path( :action => 'power_plan', :jar => 1) ) %>
   <% end %><% end %>
   <%= yield :user_actions -%>
