@@ -279,7 +279,7 @@ JAPI::Connect::InstanceMethods.class_eval do
   def set_edition
     params[:edition] = session[:edition] if params[:edition].blank? || !JAPI::PreferenceOption.valid_edition?( params[:edition] )
     session[:edition] = params[:edition]
-    session[:edition] ||= current_user.edition || JAPI::PreferenceOption.default_country_edition( headers['X-GeoIP-Country'] || "" )
+    session[:edition] ||= current_user.edition || JAPI::PreferenceOption.default_country_edition( request.headers['X-GeoIP-Country'] || "" )
     params[:edition] = session[:edition] unless params[:edition].blank?
   end
   
