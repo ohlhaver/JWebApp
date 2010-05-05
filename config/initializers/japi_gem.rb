@@ -276,6 +276,15 @@ JAPI::Connect::InstanceMethods.class_eval do
     suri == turi
   end
   
+  def set_locale
+    params[:locale] = session[:locale] if params[:locale].blank? || !JAPI::PreferenceOption.valid_locale?( params[:locale] )
+    session[:locale] = params[:locale]
+    session[:locale] = nil if session[:locale].blank?
+    session[:locale] ||= current_user.locale
+    I18n.locale = session[:locale] || JAPI::PreferenceOption.parse_edition( edition ).try( :locale ) || 'en'
+    params[:locale] = session[:locale] unless params[:locale].blank?
+  end
+  
   def set_edition
     params[:edition] = session[:edition] if params[:edition].blank? || !JAPI::PreferenceOption.valid_edition?( params[:edition] )
     session[:edition] = params[:edition]
