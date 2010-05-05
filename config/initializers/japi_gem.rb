@@ -280,7 +280,7 @@ JAPI::Connect::InstanceMethods.class_eval do
     params[:locale] = nil if params[:locale].blank? || !JAPI::PreferenceOption.valid_locale?( params[:locale] )
     session[:locale] = params[:locale]
     session[:locale] ||= current_user.locale
-    session[:locale] ||= JAPI::PreferenceOption.parse_edition( edition ).try( :locale ) || 'en'
+    session[:locale] ||= JAPI::PreferenceOption.parse_edition( session[:edition] ).try( :locale ) || 'en'
     I18n.locale = session[:locale]
     params[:locale] = session[:locale] unless params[:locale].blank?
   end
