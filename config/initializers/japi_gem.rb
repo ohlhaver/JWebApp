@@ -292,7 +292,19 @@ JAPI::Connect::InstanceMethods.class_eval do
     params[:edition] = session[:edition] unless params[:edition].blank?
   end
   
-  protected :store_referer_location, :session_check_for_validation, :return_to_uri, :set_edition
+  def restore_mem_cache_cas_last_valid_ticket
+    return unless TICKET_STORE
+    last_ticket = TICKET_STORE.get( session[:session_id] )
+    session[:cas_last_valid_ticket] = last_ticket
+  end
+  
+  def store_to_mem_cache_cas_last_valid_ticket
+    return unless TICKET_STORE
+    TICKET_STORE.set( session[:session_id], session[:cas_last_valid_ticket], 15.minutes.to_i ) if session[:cas_last_valid_ticket]
+    session.delete( :cas_last_valid_ticket )
+  end
+  
+  protected :store_referer_location, :session_check_for_validation, :return_to_uri, :set_edition, :restore_mem_cache_cas_last_valid_ticket, :store_to_mem_cache_cas_last_valid_ticket
   
 end
 
@@ -324,7 +336,52 @@ JAPI::Connect::UserAccountsHelper.class_eval do
   
 end
 
+JAPI::Connect::ClassMethods.class_eval do
+  
+  def japi_connect_login_required( options = {} )
+    before_filter :restore_mem_cache_cas_last_valid_ticket
+    before_filter :session_check_for_validation
+    if options[:only]
+      before_filter :authenticate_using_cas_with_gateway,    :except => options[:only]
+      before_filter :authenticate_using_cas_without_gateway, :only => options[:only]
+    elsif options[:except]
+      before_filter :authenticate_using_cas_with_gateway, :only => options[:except]
+      before_filter :authenticate_using_cas_without_gateway, :except => options[:except]
+    else
+      before_filter :authenticate_using_cas_without_gateway
+    end
+    before_filter :store_to_mem_cache_cas_last_valid_ticket
+    before_filter :set_current_user
+    before_filter :set_edition
+    before_filter :set_locale
+    before_filter :check_for_new_users, options
+    before_filter :redirect_to_activation_page_if_not_active, options
+  end
+  
+  def japi_connect_login_optional( options = {} )
+    before_filter :restore_mem_cache_cas_last_valid_ticket
+    before_filter :session_check_for_validation
+    if options[:only]
+      before_filter :authenticate_using_cas_without_gateway,    :except => options[:only]
+      before_filter :authenticate_using_cas_with_gateway, :only => options[:only]
+    elsif options[:except]
+      before_filter :authenticate_using_cas_without_gateway, :only => options[:except]
+      before_filter :authenticate_using_cas_with_gateway, :except => options[:except]
+    else
+      before_filter :authenticate_using_cas_with_gateway
+    end
+    before_filter :store_to_mem_cache_cas_last_valid_ticket
+    before_filter :set_current_user
+    before_filter :set_edition
+    before_filter :set_locale
+    before_filter :check_for_new_users, options
+    before_filter :redirect_to_activation_page_if_not_active, options
+  end
+  
+end
+
 ApplicationController.class_eval do
+  extend JAPI::Connect::ClassMethods
   include JAPI::Connect::InstanceMethods
   include JAPI::Connect::UserAccountsHelper
   JAPI::Connect::UserAccountsHelper.instance_methods.each{ |method| self.helper_method( method ) }
