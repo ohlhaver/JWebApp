@@ -331,7 +331,11 @@ JAPI::Connect::UserAccountsHelper.class_eval do
       account_server_uri ||= JAPI::Config[:connect][:account_server]
       @account_server_prefix_options ||= { :host => account_server_uri.host, :port => account_server_uri.port, :protocol => account_server_uri.scheme }
     end
-    @account_server_prefix_options.reverse_merge( params.reverse_merge( :service => CGI.escape( self.request.url ) ) )
+    if params.is_a?( Hash )
+      @account_server_prefix_options.reverse_merge( params.reverse_merge( :service => CGI.escape( self.request.url ) ) )
+    else
+      url_for( @account_server_prefix_options.reverse_merge( :controller => '/' ) ) + params
+    end
   end
   
 end

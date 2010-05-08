@@ -191,6 +191,7 @@ en:
     labels: 
       rate: 'weight:'
     home_action:
+      edit: 'edit'
       show: 'show'
       hide: 'hide'
       delete: 'remove'

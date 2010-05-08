@@ -191,6 +191,7 @@ de:
     labels: 
       rate: 'Gewichtung:'
     home_action:
+      edit: 'bearbeiten'
       show: 'zeigen'
       hide: 'verstecken'
       delete: 'entfernen'

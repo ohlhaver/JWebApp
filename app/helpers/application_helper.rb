@@ -215,6 +215,10 @@ module ApplicationHelper
     controller.action_name != 'index'
   end
   
+  def edit_topic_path( topic )
+    url_for_account_server( "users/#{current_user.id}/topic_preferences/#{topic.id}/edit" )
+  end
+  
   def per_page
     Integer( params[:per_page] || ( current_user.per_page rescue 10 ) || 10 )
   end

@@ -3,11 +3,13 @@
 <div class='news_group'>
   <div class='news_block'>
 	<% if @topic.stories.empty? %>
-      <h2><span class = "about"><%= t('stories.not.found_for_query', :query => "<a>'#{ truncate( @topic.name, 20 ) }'</a>" )%></span></h2>
+      <h2><span class = "about">
+        <%= t( 'stories.not.found_for_query', :query => link_to( truncate( @topic.name, 20 ), edit_topic_path( @topic ), :title => t('prefs.home_action.edit') ) ) %>
+      </span></h2>
 	<%else%>
     <h2>
 	  <span class='links'><%= render_search_preference_form( :sort_criteria, :form_url => form_url, :form_method => form_method  ) %></span>
-      <span class="page_label"><%= t('navigation.main.my_topic' )%>: <a><%= @topic.name -%></a></span>  
+      <span class="page_label"><%= t('navigation.main.my_topic' )%>: <%= link_to( @topic.name, edit_topic_path( @topic ), :title => t('prefs.home_action.edit')  ) -%></span>  
 	</h2>
 
 		<div class='result_filter'><%= render_filter_links( @topic.facets, form_url, form_method ) %></div>
