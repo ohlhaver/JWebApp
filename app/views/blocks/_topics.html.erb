@@ -4,6 +4,7 @@
     <h2>
       <span class='dialogBox <%= dialogItemClass -%>'>
         <%= link_to( t('prefs.home_action.edit'), edit_topic_path( block ) ) %>
+        &nbsp;&nbsp;
          <% #link_to( t( 'prefs.home_action.hide' ), hide_topic_path( :id => block.id ) ) %> 
 		<%= link_to( image_tag('up.gif'), up_topic_path( :id => block.id ) ) %>
   		<%= link_to( t( 'prefs.home_action.up' ), up_topic_path( :id => block.id ) ) %>
