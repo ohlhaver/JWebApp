@@ -27,19 +27,20 @@
       <h2><%= yield :page_label %></h2>
       <div class = "source_author_results"></div>
     <%end%>
-    <% if @authors.any?%>
-      <h2>
-        <span class="page_label"><%= t('search.page.authors', :query => "<a>'#{ truncate( @query, 20 ) }'</a>" ) -%></span>
-        <% @authors.each_with_index do |author, index| %>
-          <%= link_to author.name, author_path( author ) -%><%= ',&nbsp;&nbsp; ' unless index == @authors.size - 1  %>
-        <% end %>
-      </h2>
-    <% end %>
+   
     <% if @sources.any? %>
       <h2>
         <span class="page_label"><%= t('search.page.sources', :query => "<a>'#{ truncate( @query, 20 ) }'</a>" ) -%></span>
         <% @sources.each_with_index do |source, index| %>
           <%= link_to source.name, source_path( source ) -%><%= ',&nbsp;&nbsp; ' unless index == @sources.size - 1 %>
+        <% end %>
+      </h2>
+    <% end %>
+ <% if @authors.any?%>
+      <h2>
+        <span class="page_label"><%= t('search.page.authors', :query => "<a>'#{ truncate( @query, 20 ) }'</a>" ) -%></span>
+        <% @authors.each_with_index do |author, index| %>
+          <%= link_to author.name, author_path( author ) -%><%= ',&nbsp;&nbsp; ' unless index == @authors.size - 1  %>
         <% end %>
       </h2>
     <% end %>

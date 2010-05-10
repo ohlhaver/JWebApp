@@ -198,7 +198,7 @@ de:
       up: 'hoch bewegen'
       down: 'runter bewegen'
     edition:
-      int: 'Global'
+      int: 'International'
       de: 'Deutschland'
       at: 'Österreich'
       ch: 'Schweiz'

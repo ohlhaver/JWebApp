@@ -664,8 +664,9 @@ h2 .rater a:link {
 	
 	font-family: Arial,Helvetica,sans-serif;
 	font-size: 13px;
-	color: #999999;
+	color: #333333;
 	margin-right: 10px;
+
 	
 }
 
@@ -673,7 +674,7 @@ h2 .rater a:visited {
 	
 	font-family: Arial,Helvetica,sans-serif;
 	font-size: 13px;
-	color: #999999;
+	color: #333333;
 	margin-right: 10px;
 	
 }

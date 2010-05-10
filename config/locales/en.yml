@@ -198,7 +198,7 @@ en:
       up: 'move up'
       down: 'move down'
     edition:
-      int: 'Global'
+      int: 'International'
       de: 'Deutschland'
       at: 'Österreich'
       ch: 'Schweiz'
