@@ -6,7 +6,9 @@ class AuthorsController < ApplicationController
   before_filter :set_author_filter_var
   
   def show
-    @author = JAPI::Author.find( params[:id] ) || JAPI::Author.new( :name => I18n.t( 'author.not.found' ) )
+    # jap = 1 is additional parameter to put the author into priority list on page view
+    additional_attrs = current_user.new_record? ? {} : { :jap => 1 }
+    @author = JAPI::Author.find( params[:id], :params => additional_attrs ) || JAPI::Author.new( :name => I18n.t( 'author.not.found' ) )
     @author_preference = JAPI::AuthorPreference.find( nil, :params => { :author_id => params[:id],  :user_id => current_user.id } ) unless current_user.new_record?
     @author_preference ||= JAPI::AuthorPreference.new( :author_id => params[:id], :preference => nil, :subscribed => false )
     @stories = JAPI::Story.find( :all, :params => { :author_ids => params[:id] }, :from => :authors )
@@ -39,7 +41,7 @@ class AuthorsController < ApplicationController
     end
     pref = ( JAPI::AuthorPreference.find( nil, :params => { :author_id => params[:id],  :user_id => current_user.id } ) || 
         JAPI::AuthorPreference.new( :author_id => params[:id] ) )
-    pref.prefix_options = { :user_id => current_user.id }
+    pref.prefix_options = { :user_id => current_user.id, :jap => 1 }
     pref.preference = ( Integer( params[:rating] || "" ) rescue nil )
     if pref.save
       flash[:notice] = 'Success'
@@ -56,7 +58,7 @@ class AuthorsController < ApplicationController
     end
     pref = ( JAPI::AuthorPreference.find( nil, :params => { :author_id => params[:id],  :user_id => current_user.id } ) ||
       JAPI::AuthorPreference.new( :author_id => params[:id] ) )
-    pref.prefix_options = { :user_id => current_user.id }
+    pref.prefix_options = { :user_id => current_user.id, :jap => 1 }
     pref.subscribed = true
     if pref.save
       flash[:notice] = 'Success'
