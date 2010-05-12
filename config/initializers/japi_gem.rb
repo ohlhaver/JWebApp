@@ -232,13 +232,17 @@ JAPI::Connect::InstanceMethods.class_eval do
   # Checks for session validation after 10.minutes
   def session_check_for_validation
     last_st = session.try( :[], :cas_last_valid_ticket )
-    unless last_st
-      if session[ :cas_user_attrs ]
-        session[ :cas_user_attrs ] = nil
-        session[ CASClient::Frameworks::Rails::Filter.client.username_session_key ] = nil
-      else
-        session[:cas_sent_to_gateway] = true if request.referer && URI.parse( request.referer ).host != JAPI::Config[:connect][:account_server].host
-      end
+    # unless last_st
+    #   if session[ :cas_user_attrs ]
+    #     session[ :cas_user_attrs ] = nil
+    #     session[ CASClient::Frameworks::Rails::Filter.client.username_session_key ] = nil
+    #   else
+    #     session[:cas_sent_to_gateway] = true if request.referer && URI.parse( request.referer ).host != JAPI::Config[:connect][:account_server].host
+    #   end
+    #   return
+    # end
+    if last_st.nil? && session[ :cas_user_attrs ].nil?
+      session[ :cas_sent_to_gateway ] = true if request.referer && URI.parse( request.referer ).host != JAPI::Config[:connect][:account_server].host
       return
     end
     if request.get? && !request.xhr? && ( session[:revalidate].nil? || session[:revalidate] < Time.now.utc )
