@@ -3,7 +3,7 @@ class ReadingListController < ApplicationController
   japi_connect_login_required
   
   def index
-    prefs = JAPI::StoryPreference.find( :all, :params => { :user_id => current_user.id } )
+    prefs = JAPI::StoryPreference.find( :all, :params => { :user_id => current_user.id, :page => params[:page] || 1 } )
     prefs_hash = prefs.inject({}){ |s,x| s[x.story_id] = x.id; s }
     @stories = JAPI::Story.find( :all, :from => :list, :params => { :story_id => prefs.collect( &:story_id ) } )
     @stories.collect{ |x| x.id = prefs_hash[x.id] }
