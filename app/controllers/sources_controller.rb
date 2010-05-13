@@ -7,7 +7,7 @@ class SourcesController < ApplicationController
     @source = JAPI::Source.find( params[:id] ) || JAPI::Source.new( :name => I18n.t( 'source.not.found' ) )
     @source_preference = JAPI::SourcePreference.find( nil, :params => { :source_id => params[:id],  :user_id => current_user.id } ) unless current_user.new_record?
     @source_preference ||= JAPI::SourcePreference.new( :source_id => params[:id], :preference => nil )
-    @stories = JAPI::Story.find( :all, :params => { :source_id => params[:id], :category_id => ( @category_id == :all ? nil : @category_id ) }, :from => :sources )
+    @stories = JAPI::Story.find( :all, :params => { :source_id => params[:id], :category_id => ( @category_id == :all ? nil : @category_id ), :page => params[:page] || '1' }, :from => :sources )
     @categories = JAPI::PreferenceOption.category_options.select{ |opt| @stories.facets.category_count( opt.id ) > 0 }
   end
   
