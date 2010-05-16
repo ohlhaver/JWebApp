@@ -160,6 +160,7 @@ de:
       privacy: "Datenschutz"
       contact: "Kontakt"
     main:
+      back_to_home: "zurück zur Homepage"
       add_section: "Neue Rubrik"
       add_topic: "Neues Thema"
       business: "Wirtschaft"

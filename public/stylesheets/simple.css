@@ -98,6 +98,10 @@ font-family: Arial,Helvetica,sans-serif;
 	color: #0000b6;
 }
 
+#skyscraper {
+	margin-top: 10px;
+}
+
 #edition_field {
 
 	color: #0000b6;
@@ -117,9 +121,6 @@ font-family: Arial,Helvetica,sans-serif;
 	margin-top: 10px;
 }
 
-#skyscraper {
-	margin-top: 30px;
-}
 
 
 #navigation_module {

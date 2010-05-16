@@ -160,6 +160,7 @@ en:
       privacy: "Privacy"
       contact: "Contact"
     main:
+      back_to_home: "back to home"
       add_section: "Add Section"
       add_topic: "Add Topic"
       business: "Business"
