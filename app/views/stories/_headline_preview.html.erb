@@ -12,9 +12,11 @@
         <span class='<%= iconItemClass -%> <%= menuEventClass -%>'>
           <%= image_tag('plus.gif') %>
           <div class='<%= menuItemClass -%> actionsBox'>
-            <div>
+            <!-- google_ad_section_start(weight=ignore) --> 
+			<div>
               <%= link_to( t('prefs.label.add_to_reading_list'), { :controller => '/reading_list', :action => :create, :id => story.id }, :method => :post ) %>
             </div>
+			<!-- google_ad_section_end -->
           </div>
         </span>
       <% end -%>
