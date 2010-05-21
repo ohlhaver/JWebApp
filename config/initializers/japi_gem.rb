@@ -330,6 +330,11 @@ JAPI::Connect::UserAccountsHelper.class_eval do
     url_for_account_server( :controller => 'logout' ).reverse_merge( params )
   end
   
+  def upgrade_required_path( params = {} )
+    id = params.delete(:id)
+    url_for( account_path( params.merge( :action => :upgrade_required, :jar => 1 ) ) ) + "&id=#{id}"
+  end
+  
   def url_for_account_server( params = {} )
     if @account_server_prefix_options.nil?
       account_server_uri ||= JAPI::Config[:connect][:account_server]

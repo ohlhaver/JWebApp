@@ -42,6 +42,12 @@
 
 
 	<div id="content">
+	    <% if flash[:notice] %>
+        <div class="flash" style="color:green" ><%= flash[:notice] %></div>
+      <% end %>
+      <% if flash[:error] %>
+        <div class="flash" style="color: red"><%= flash[:error] %></div>
+      <% end %>
 		  <%= yield %>
 	      <div>&nbsp;</div>
 		  <div class="pagination_module" class="grid_3">	</div>

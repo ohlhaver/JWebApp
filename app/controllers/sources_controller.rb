@@ -13,7 +13,8 @@ class SourcesController < ApplicationController
   
   def rate
     if current_user.out_of_limit?( :sources )
-      redirect_to upgrade_path( :id => 2 )
+      session[:return_to] = nil
+      redirect_to upgrade_required_path( :id => 2 )
       return
     end
     pref = ( JAPI::SourcePreference.find( nil, :params => { :source_id => params[:id],  :user_id => current_user.id } ) || 

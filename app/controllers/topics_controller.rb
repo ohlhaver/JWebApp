@@ -23,7 +23,8 @@ class TopicsController < ApplicationController
 
   def new
     if current_user.out_of_limit?( :topics )
-      redirect_to upgrade_path( :id => 1 )
+      session[:return_to] = nil
+      redirect_to upgrade_required_path( :id => 1 )
       return
     end
     @topic = JAPI::TopicPreference.new( params[:japi_topic_preference] || {} ).parse_auto_complete_params!( params )
