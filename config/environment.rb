@@ -47,7 +47,7 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 end
 
-ExceptionNotification::Notifier.exception_recipients = %w(ram.singla@gmail.com ohlhaver@gmail.com)
+ExceptionNotification::Notifier.exception_recipients = %w(ram@rforce.in ohlhaver@gmail.com)
 ExceptionNotification::Notifier.sender_address = %(no-reply@jurnalo.com)
 
 Rails.logger.info( "Rails Initialized" )
