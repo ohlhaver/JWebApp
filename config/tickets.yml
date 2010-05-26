@@ -1,6 +1,6 @@
 ram:
   servers:
-  - "localhost:11211"
+  #- "localhost:11211"
 development: 
   servers:
 production:
