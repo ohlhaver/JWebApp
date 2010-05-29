@@ -79,6 +79,8 @@ de:
       info: "Unbegrenzte Anzahl von eigenen Themen, Autoren-Abonnements und Quellen-Einstellungen."
       cost: "5 € monatlich"
   jurnalo:
+    login:
+      fb_button: "Anmelden"
     about:
       label: "Über Jurnalo"
       you_can: "Mit Jurnalo können Sie"

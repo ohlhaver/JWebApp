@@ -79,6 +79,8 @@ en:
       info: "Unlimited personal topics, author subscriptions and source settings."
       cost: "5 € monthly"
   jurnalo:
+    login:
+      fb_button: "Login"
     about:
       label: "About Jurnalo"
       you_can: "With Jurnalo you can"

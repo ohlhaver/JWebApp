@@ -8,12 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="verify-v1" content="uktXEFRkC4oLS3pjPi7ZkolIVksbOF8D7PRiyCDs+fM=" />
-	<%= stylesheet_link_tag 'reset' %>    
-	<%= stylesheet_link_tag 'grid4b' %>
-	<%= stylesheet_link_tag 'simple' %>
+	<%= stylesheet_link_tag 'reset', 'grid4b', 'simple', 'fb', :cache => 'base' %>
 	<% if mobile_device? -%>
-		<%= stylesheet_link_tag 'grid_mobile' %>
-		<%= stylesheet_link_tag 'simple_mobile' %>
+		<%= stylesheet_link_tag 'grid_mobile', 'simple_mobile', :cache => 'mobile' %>
 	<% end -%>
 	
   </head>
@@ -112,10 +109,7 @@
 	<div id="footer" class = "grid_4">
     <%= render :partial => 'shared/footer' %>
   </div>
-  <%= javascript_include_tag 'prototype' %>
-  <%= javascript_include_tag 'effects' %>
-  <%= javascript_include_tag 'controls' %>
-  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag 'prototype', 'effects', 'controls', 'application', :cache => 'jbase' %>
   <script>
     var elements = $$('div.news_group');
     elements.each( function(element) {
@@ -129,6 +123,9 @@
 </div>
 
 <script type="text/javascript">
+function facebook_onlogin(){
+  document.location.href = "<%= @facebook_login_url %>";
+}
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
 </script>

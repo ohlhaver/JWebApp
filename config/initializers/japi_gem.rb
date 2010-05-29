@@ -336,6 +336,10 @@ JAPI::Connect::UserAccountsHelper.class_eval do
     url_for( account_path( params.merge( :action => :upgrade_required, :jar => 1 ) ) ) + "&id=#{id}"
   end
   
+  def fb_login_path( params = {} )
+    url_for( url_for_account_server( :controller => 'fb', :action => 'login' ).reverse_merge( params ) )
+  end
+  
   def url_for_account_server( params = {} )
     if @account_server_prefix_options.nil?
       account_server_uri ||= JAPI::Config[:connect][:account_server]

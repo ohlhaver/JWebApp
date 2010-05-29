@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   
   include JAPI::Connect
   
-  before_filter :set_filter_var, :set_category_id_var, :reset_per_page, :prepare_for_mobile
+  before_filter :set_filter_var, :set_category_id_var, :reset_per_page, :prepare_for_mobile, :set_facebook_login_url
   after_filter :reset_session_params
   
   layout 'default'
@@ -84,6 +84,10 @@ class ApplicationController < ActionController::Base
   
   def prepare_for_mobile
     request.format = :mobile if mobile_device?
+  end
+  
+  def set_facebook_login_url
+    @facebook_login_url = fb_login_path
   end
   
 end
