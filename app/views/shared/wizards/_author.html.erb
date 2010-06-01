@@ -1,0 +1,21 @@
+<% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
+<div class='wizzard <%= dialogEventClass -%>'>
+  <h2>
+    <span class='dialogBox <%= dialogItemClass -%>'>
+    </span>
+    <span class="page_label"><%= link_to( t('jurnalo.wizard.title'), "#" ) %></span>
+  </h2>
+  <div class='cluster'>
+    <strong><%= t('jurnalo.wizard.subscribe_author') %></strong><br/><br/>
+    <%= link_to( t('author.action.search_here'), whats_authors_path ) %> <%= link_to t('jurnalo.wizard.whats_that'), whats_authors_path %>
+    <% unless logged_in? && !current_user.new_user? %>
+      <br/><br/>
+      <%= t('jurnalo.wizard.free_signup', :link => link_to( t('navigation.top.register').downcase, account_path( :action => 'new' ) ) ) %>
+      <%= t('jurnalo.wizard.fb_login', :link => %Q(<a class="fb_button fb_button_small" rel="nofollow" onclick="facebook_onlogin();return false" href="#{@facebook_login_url}" ><span class="fb_button_text">Facebook</span></a>) )%>
+    <% else %>
+      <br/><br/>
+      <%= link_to t('jurnalo.wizard.do_not_show_again'), turn_off_wizard_path(:id => :author) %>
+    <% end %>
+  </div>
+</div>
+<% end %>

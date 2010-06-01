@@ -3,6 +3,15 @@ module ApplicationHelper
   
   include AutoCompleteHelper
   
+  def show_wizard( wizard_id )
+    partial = case( wizard_id ) when :random :
+      current_user.random_wizard
+    when :author, :story, :source, :topic:
+      wizard_id
+    end
+    render :partial => "shared/wizards/#{partial}" if partial
+  end
+  
   # Singapore Edition 'sg-en' ClusterGroups Exists but Removing Singapore from the list
   def edition_options
     editions= case I18n.locale 

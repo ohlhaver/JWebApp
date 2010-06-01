@@ -1,6 +1,9 @@
 class ReadingListController < ApplicationController
   
-  japi_connect_login_required
+  japi_connect_login_required :except => :whats
+  
+  def whats
+  end
   
   def index
     prefs = JAPI::StoryPreference.find( :all, :params => { :user_id => current_user.id, :page => params[:page] || 1 } )

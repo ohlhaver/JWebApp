@@ -192,6 +192,11 @@ span.current{
 	border-top: 7px solid #99CCFF;	
 }
 
+.wizzard{
+  background-color: #99CCFF;
+  padding: 10px;
+}
+
 .reading_list_block {
 	border-top: 1px solid #99CCFF;	
 }
@@ -1017,4 +1022,15 @@ border: 0px;
  float:left;
  position: relative;
  width: 430px; 
+}
+
+.mr_20px, input.mr_20px {
+  margin-right:20px;
+}
+.mt_20px{
+  margin-top:20px;
+}
+ol.numbered{
+  list-style-position:inside;
+  list-style-type:decimal;
 }

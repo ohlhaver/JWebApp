@@ -1,9 +1,12 @@
 class AuthorsController < ApplicationController
   
   before_filter :store_referer_location, :only => [ :rate, :subscribe, :unsubscribe, :hide, :up, :down ]
-  japi_connect_login_required :except => [ :show, :top ]
+  japi_connect_login_required :except => [ :show, :top, :whats ]
   
   before_filter :set_author_filter_var
+  
+  def whats
+  end
   
   def show
     # jap = 1 is additional parameter to put the author into priority list on page view
@@ -15,7 +18,8 @@ class AuthorsController < ApplicationController
   end
   
   def top
-    render :action => :show
+    @authors = JAPI::Author.find( :all, :params => { :top => 1, :page => params[:page] || '1' } )
+    render :action => :index
   end
   
   # display list of subscribed author stories

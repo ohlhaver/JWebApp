@@ -1,7 +1,10 @@
 class SourcesController < ApplicationController
   
   before_filter :store_referer_location, :only => [ :rate ]
-  japi_connect_login_required :except => :show
+  japi_connect_login_required :except => [ :show, :whats ]
+  
+  def whats
+  end
   
   def show
     @source = JAPI::Source.find( params[:id] ) || JAPI::Source.new( :name => I18n.t( 'source.not.found' ) )

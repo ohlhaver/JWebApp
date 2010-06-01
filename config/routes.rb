@@ -6,7 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   map.privacy '/privacy', :controller => :about, :action => :privacy
   map.help '/help', :controller => :about, :action => :help
   map.upgrade '/upgrade/:id', :controller => :about, :action => :power
-  
+  map.turn_off_wizard '/wizard/off/:id', :controller => :preferences, :action => 'turn_off_wizard'
   map.top_authors '/authors/top', :controller => 'authors', :action => 'top'
   map.my_authors '/authors/my', :controller => 'authors', :action => 'my'
   map.logout '/logout', :controller => 'application', :action => 'logout'
@@ -15,9 +15,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :sections, :member => [ :up, :down, :hide ]
   map.resources :clusters
   map.resources :stories, :collection => [ :advanced, :search_results ]
-  map.resources :topics, :member => [ :unhide, :hide, :up, :down ]
-  map.resources :authors, :member => [ :subscribe, :unsubscribe, :rate ], :collection => [ :hide, :up, :down ]
-  map.resources :sources, :member => [ :rate ]
+  map.resources :topics, :member => [ :unhide, :hide, :up, :down ], :collection => [ :whats ]
+  map.resources :authors, :member => [ :subscribe, :unsubscribe, :rate ], :collection => [ :hide, :up, :down, :whats ]
+  map.resources :sources, :member => [ :rate ], :collection => [ :whats ]
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end

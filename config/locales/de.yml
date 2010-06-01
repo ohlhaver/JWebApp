@@ -125,10 +125,21 @@ de:
       reason_1: "Um mehr als ein eigenes Thema zu erstellen, upgraden Sie bitte auf den Jurnalo Power Plan."
       reason_2: "Um mehr als eine Quelle zu gewichten, upgraden Sie bitte auf den Jurnalo Power Plan."
       reason_3: "Um mehr als einen Autoren zu abonnieren, upgraden Sie bitte auf den Jurnalo Power Plan."
+    wizard:
+      title: 'Neu hier?'
+      create_topic: "Erstellen Sie jetzt Ihr erstes eigenes Thema!"
+      subscribe_author: "Abonnieren Sie jetzt Ihre ersten Lieblingsautoren!"
+      rate_source: "Gewichten Sie jetzt Ihre ersten Nachrichten-Quellen!"
+      reading_list: "Speichern Sie interessante Artikel auf Ihre Leseliste!"
+      whats_that: "Was ist das?"
+      free_signup: "gratis in 10 Sekunden {{link}}"
+      fb_login: "oder sofort mit {{link}} einloggen"
+      do_not_show_again: "Do not show this again"
   author:
     action:
       subscribe: 'abonnieren'
       unsubscribe: 'abbestellen'
+      search_here: 'Hier Autoren finden!'
     not:
       found: "Autor nicht gefunden"
     stories:
@@ -140,6 +151,19 @@ de:
       subscribed: 'abonniert'
       rated: 'gewichtet'
   authors:
+    what:
+      label: "Autoren Abonnieren"
+    subscribe:
+      why: "Erhalten Sie jeden neuen Artikel von Ihren Lieblingautoren, egal aus welcher Nachrichten-Quelle."
+      howto: "Einen Autor zu abonnieren ist ganz einfach:"
+      step_1: "Klicken Sie auf den Namen des Autoren. So gelangen Sie auf die Seite des Autors."
+      step_2: "Klicken Sie nun rechts oben neben dem Namen des Autors auf 'abonnieren'."
+    search:
+      label: "Suche"
+      info: "Suchen Sie jetzt nach einem Lieblings-Autor:"
+    top_list:
+      label: "Jurnalos Top Autoren Liste"
+      browse: "Oder finden Sie hier eine Liste der zur Zeit bei den Jurnalo Nutzern beliebtesten Autoren: "
     not:
       found: "Autor nicht gefunden."
   cluster:
@@ -290,6 +314,19 @@ de:
         opinion: "Meinungen:"
         blog: "Blogs:"
   source:
+    what:
+      label: "Quellen Gewichten"
+    action:
+      rate_here: "Hier Quellen gewichten!"
+    rating:
+      howto: "Einen Quelle zu gewichten ist ganz einfach:"
+      step_1: "Klicken Sie auf den Namen der Quelle. So gelangen Sie auf die Seite der Quelle."
+      step_2: "Wählen Sie nun rechts oben neben dem Namen der Quelle  eine Gewichtung."
+      what: "Sie können jeder Nachrichten-Quelle (Online-Zeitungen, Blogs etc.) eine der folgenden Gewichtungen geben:"
+      values: "ignorieren, niedrig, mittel, hoch, oder  'nicht gewichtet'"
+      personalized_results: "Diese Gewichtung entscheidet direkt darüber, wie hoch Artikel dieser Quelle in Ihren Suchergebnissen plaziert werden."
+      not_rated_info: "Wenn Sie 'nicht gewichtet' wählen, so gilt für Sie die Default-Gewichtung von Jurnalo. Diese richtet sich nach der durschnittlichen Gewichtung der Jurnalo Nutzer."
+      rated_sources: "Unter 'Einstellungen > meine Quellen' sehen Sie eine Liste aller Quellen, denen Sie eine Gewichtung gegeben haben."
     not:
       found: "Quelle nicht gefunden."
   stories:
@@ -307,16 +344,35 @@ de:
         reading_list: "Leseliste - Jurnalo"
         search: "{{query}} - Jurnalo"
         videos: "Videos zu {{query}} - Jurnalo"
+  reading_list:
+    what:
+      label: 'Artikel zur Leseliste Speichern'
+    action:
+      howto: "Wie geht das?"
+    add:
+      why: "Mittels der Leseliste können Sie Artikel speichern, die Sie später lesen wollen."
+      why_2: "Die Links zu diesen Artikeln bleiben Ihnen auf Ihrer Leseliste erhalten, bis Sie sie löschen."
+      howto: "Einen Artikel zur Leselsite zu speichern ist ganz einfach:"
+      step_1: "Halten Sie die Maus auf die Überschrift des Artikels, bis rechts von der Überschirftdas kleine runde Plussymbol erscheint."
+      step_2: "Gehen Sie nun auf das Plussymbol und klicken sie auf 'zur Leseliste speichern'."
   topic:
     label:
       new: 'Neues Thema'
+      what: 'Eigenes Thema Erstellen'
     action:
       add: 'Thema hinzufügen'
       test: 'testen'
       advance: 'Erweitert'
       simple: 'Einfach'
+      create: 'Los!'
+      create_topic: 'Thema erstellen'
+      advance_topic: 'erweitertes Thema'
+      advance_topic_info: "Oder erstellen Sie ein {{link}} für eine komplexere Suchanfrage."
     name: 'Name des Themas:'
     query: 'Suchbegriff:'
+    what:
+      info: "Erhalten Sie die Nachrichtensuchergebnisse zu einem beliebigen Begriff. "
+      feature: "Diese erscheinen auf Ihrer Homepage und/oder per E-mail."
   rate:
     source: 'Quelle gewichten'
     author: 'Autoren gewichten'

@@ -125,10 +125,21 @@ en:
       reason_1: "To create more than one topic please upgrade to the Jurnalo Power Account."
       reason_2: "To rate more than one source please upgrade to the Jurnalo Power Account."
       reason_3: "To rate/subscribe to more than one author please upgrade to the Jurnalo Power Account."
+    wizard:
+      title: 'New to Jurnalo?'
+      create_topic: "Create your first personal topic now!"
+      subscribe_author: "Subscribe to your first favorite authors now!"
+      rate_source: "Rate your first news sources now!"
+      reading_list: "Save interesting articles to your reading list!"
+      whats_that: "What's that?"
+      free_signup: "{{link}} free in 10 seconds"
+      fb_login: "or login directly with {{link}}"
+      do_not_show_again: "Do not show this again"
   author:
     action:
       subscribe: 'subscribe'
       unsubscribe: 'unsubscribe'
+      search_here: 'Find authors here!'
     not:
       found: "Author not found."
     stories:
@@ -140,6 +151,19 @@ en:
       subscribed: 'Subscribed'
       rated: 'Weighted'
   authors:
+    what:
+      label: "Author Subscriptions"
+    subscribe:
+      why: "Receive every new article by your favourite authors, no matter from which news source."
+      howto: "Subscribing to an author is simple:"
+      step_1: "Click on the name of the author and you get redirected to the author's page."
+      step_2: "Now click the 'subscribe' link on the right of the authors name."
+    search:
+      label: "Search"
+      info: "You can also search for your favourite authors now:"
+    top_list:
+      label: "Jurnalo's Top Authors List"
+      browse: "Or find a list here of the authors that are currently most popular among the Jurnalo users:"
     not:
       found: "No authors found"
   cluster:
@@ -290,6 +314,19 @@ en:
         opinion: "Opinions:"
         blog: "Blogs:"
   source:
+    what:
+      label: "Source Rating"
+    action:
+      rate_here: "Rate sources here!"
+    rating:
+      howto: "Rating a source is simple:"
+      step_1: "Click on the name of the source and you get redirected to the source's page."
+      step_2: "Now select a rating on the upper right, next to the source's name."
+      what: "You can rate any news source (online newspapers, blogs etc.) by giving it one of the following ratings:"
+      values: "'ignore', 'low', 'medium', 'high', or 'not rated'"
+      personalized_results: "This rating directly determines the ranking of articles by this source in your search results."
+      not_rated_info: "If you select 'not rated', the default rating by Jurnalo is used. Jurnalo's default rating is determined by the average rating of all Jurnalo users."
+      rated_sources: "In 'settings > my sources' you can find a list of all sources that you have rated."
     not:
       found: "Source not found."
   stories:
@@ -307,16 +344,35 @@ en:
         reading_list: "Reading list - Jurnalo"
         search: "{{query}} - Jurnalo"
         videos: "Videos on {{query}} - Jurnalo"
+  reading_list:
+    what:
+      label: 'Save articles to your reading list'
+    action:
+      howto: "How do I do this?"
+    add:
+      why: "With the reading list you can save articles that you want to read later."
+      why_2: "The links to these articles will remain you reading list until you delete them."
+      howto: "To add an article to your reading list is very simple:"
+      step_1: "Move your mouse over the headline until the little round plus symbol appears."
+      step_2: "Now move your mouse over the plus symbol and click 'add to my reading list."
   topic:
     label:
       new: 'New Topic'
+      what: 'Create a search topic'
     action:
       add: 'Add Topic'
       test: 'test'
       advance: 'Advanced'
       simple: 'Simple'
+      create: 'Create!'
+      create_topic: 'Create Topic'
+      advance_topic: 'an advanced topic'
+      advance_topic_info: 'Or create {{link}} for a more complex search query.'
     name: 'Topic label:'
     query: 'Search query:'
+    what:
+      info: "Get news search results for any search term."
+      feature: "They will be displayed on your homepage or optionally send as e-mail alerts."
   rate:
     source: 'Source preference'
     author: 'Author preference'

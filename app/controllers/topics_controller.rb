@@ -1,7 +1,11 @@
 class TopicsController < ApplicationController
   
   before_filter :store_referer_location, :only => [ :destroy, :unhide, :hide, :up, :down ]
-  japi_connect_login_required
+  japi_connect_login_required :except => :whats
+  
+  def whats
+    @topic  = JAPI::TopicPreference.new
+  end
   
   def index
     params_options =  { :topic_id => :my, :user_id => current_user.id }

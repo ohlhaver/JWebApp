@@ -187,6 +187,20 @@ JAPI::User.class_eval do
   def nav_blocks_order
     @nav_blocks_order ||= home_blocks_order
   end
+  
+  def random_wizard
+    if @wizards.blank?
+      @wizards = []
+      preference.wizards.each{ |key,value| @wizards.push(key) if value == '1' }
+    end
+    @wizards.rand
+  end
+  
+  def turn_off_wizard( wizard_id )
+    preference.wizards.merge!( wizard_id.to_s => 0 )
+    j = JAPI::Preference.new( :id => self.id, :wizards => { wizard_id => 0 } )
+    j.save
+  end
 
 end
 

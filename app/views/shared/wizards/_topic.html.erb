@@ -1,0 +1,27 @@
+<% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
+<div class='wizzard <%= dialogEventClass -%>'>
+  <h2>
+    <span class='dialogBox <%= dialogItemClass -%>'>
+    </span>
+    <span class="page_label"><%= link_to( t('jurnalo.wizard.title'), "#" ) %></span>
+  </h2>
+  <div class='cluster'>
+    <strong><%= t('jurnalo.wizard.create_topic') %></strong>
+    <% @topic ||= JAPI::TopicPreference.new %>
+    <% form_for( @topic, :url => topics_path, :html => { :id => 'simple_topic_form' }, :method => :post ) do |f| %>
+    <div>
+      <span><%= f.text_field(:search_any, :class => 'settings_field mr_20px') %></span> 
+      <%= submit_tag( t('topic.action.create'), :class => "adv_searchbutton mt_20px mr_20px" ) %> <%= link_to t('jurnalo.wizard.whats_that'), whats_topics_path %>
+    </div>
+    <% end %>
+    <% unless logged_in? && !current_user.new_user? %>
+      <br/>
+      <%= t('jurnalo.wizard.free_signup', :link => link_to( t('navigation.top.register').downcase, account_path( :action => 'new' ) ) ) %>
+      <%= t('jurnalo.wizard.fb_login', :link => %Q(<a class="fb_button fb_button_small" rel="nofollow" onclick="facebook_onlogin();return false" href="#{@facebook_login_url}" ><span class="fb_button_text">Facebook</span></a>) )%>
+    <% else %>
+      <br/>
+      <%= link_to t('jurnalo.wizard.do_not_show_again'), turn_off_wizard_path(:id => :topic) %>
+    <% end %>
+  </div>
+</div>
+<% end %>
