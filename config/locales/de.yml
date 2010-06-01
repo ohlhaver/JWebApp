@@ -132,8 +132,8 @@ de:
       rate_source: "Gewichten Sie jetzt Ihre ersten Nachrichten-Quellen!"
       reading_list: "Speichern Sie interessante Artikel auf Ihre Leseliste!"
       whats_that: "Was ist das?"
-      free_signup: "gratis in 10 Sekunden {{link}}"
-      fb_login: "oder sofort mit {{link}} einloggen"
+      free_signup: "oder {{link}}"
+      fb_login: "Gratis {{link}}"
       do_not_show_again: "Do not show this again"
   author:
     action:

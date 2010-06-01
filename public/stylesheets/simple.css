@@ -195,7 +195,28 @@ span.current{
 .wizzard{
   background-color: #99CCFF;
   padding: 10px;
+  margin-bottom: 20px;
 }
+
+.wizzard .cluster {
+	font-family: Arial,Helvetica,sans-serif;	
+
+}
+
+.wizzard .cluster a:link{
+	text-decoration: underline;	
+
+}
+
+.wizzard .cluster a:visited{
+	text-decoration: underline;	
+
+}
+
+.login_text {
+	font-size: 13px;
+}
+
 
 .reading_list_block {
 	border-top: 1px solid #99CCFF;	

@@ -10,12 +10,15 @@
     <%= link_to( t('source.action.rate_here'), whats_sources_path ) %> <%= link_to t('jurnalo.wizard.whats_that'), whats_sources_path %>
     <% unless logged_in? && !current_user.new_user? %>
       <br/><br/>
+     <div class ="login_text">
+	<%= t('jurnalo.wizard.fb_login', :link => %Q(<a class="fb_button fb_button_small" rel="nofollow" onclick="facebook_onlogin();return false" href="#{@facebook_login_url}" ><span class="fb_button_text">Login</span></a>) )%>
       <%= t('jurnalo.wizard.free_signup', :link => link_to( t('navigation.top.register').downcase, account_path( :action => 'new' ) ) ) %>
-      <%= t('jurnalo.wizard.fb_login', :link => %Q(<a class="fb_button fb_button_small" rel="nofollow" onclick="facebook_onlogin();return false" href="#{@facebook_login_url}" ><span class="fb_button_text">Facebook</span></a>) )%>
+     </div>
     <% else %>
       <br/><br/>
       <%= link_to t('jurnalo.wizard.do_not_show_again'), turn_off_wizard_path(:id => :source) %>
     <% end %>
+	
   </div>
 </div>
 <% end %>

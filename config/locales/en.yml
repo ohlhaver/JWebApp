@@ -132,8 +132,8 @@ en:
       rate_source: "Rate your first news sources now!"
       reading_list: "Save interesting articles to your reading list!"
       whats_that: "What's that?"
-      free_signup: "{{link}} free in 10 seconds"
-      fb_login: "or login directly with {{link}}"
+      free_signup: "or {{link}}"
+      fb_login: "Free {{link}}"
       do_not_show_again: "Do not show this again"
   author:
     action:
