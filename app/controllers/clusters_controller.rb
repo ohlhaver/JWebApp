@@ -8,7 +8,7 @@ class ClustersController < ApplicationController
       :cluster_id => params[:id], :per_page => params[:per_page], 
       :sort_criteria => sort_criteria, :user_id => current_user.id, 
       :page => params[:page], @filter => '1' } ) || JAPI::Cluster.find( :stories => [] )
-    @page_title = "Jurnalo - " + @cluster.top_keywords.join(' - ').to_s
+    @page_title = I18n.t( "seo.page.title.cluster_group",  :name => @cluster.top_keywords.join(' - ').to_s )
   end
 
 end

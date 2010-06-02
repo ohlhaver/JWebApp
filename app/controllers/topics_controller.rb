@@ -22,7 +22,7 @@ class TopicsController < ApplicationController
       :sort_criteria => sort_criteria, :subscription_type => subscription_type, @filter => 4 }
     @topic = JAPI::Topic.find( :one, 
       :params => params_options )
-    @page_title = "Jurnalo - #{@topic.name}"
+    @page_title = @page_title = I18n.t( "seo.page.title.search", :query => @topic.name )
   end
 
   def new
