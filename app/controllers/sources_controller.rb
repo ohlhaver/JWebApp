@@ -2,8 +2,10 @@ class SourcesController < ApplicationController
   
   before_filter :store_referer_location, :only => [ :rate ]
   japi_connect_login_required :except => [ :show, :whats ]
+  before_filter :correct_param_id
   
   def whats
+    @page_title = "Jurnalo - #{t('source.what.label')}"
   end
   
   def show
@@ -12,6 +14,7 @@ class SourcesController < ApplicationController
     @source_preference ||= JAPI::SourcePreference.new( :source_id => params[:id], :preference => nil )
     @stories = JAPI::Story.find( :all, :params => { :source_id => params[:id], :category_id => ( @category_id == :all ? nil : @category_id ), :page => params[:page] || '1' }, :from => :sources )
     @categories = JAPI::PreferenceOption.category_options.select{ |opt| @stories.facets.category_count( opt.id ) > 0 }
+    @page_title = "Jurnalo - #{@source.name}"
   end
   
   def rate
@@ -30,6 +33,12 @@ class SourcesController < ApplicationController
       flash[:error] = 'Error'
     end
     redirect_back_or_default( :action => :show, :id => params[:id] )
+  end
+  
+  protected
+  
+  def correct_param_id
+    params[:id] = params[:id].match(/(\d+)/).try(:[], 1) unless params[:id].blank?
   end
   
 end

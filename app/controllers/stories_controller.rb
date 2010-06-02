@@ -15,10 +15,12 @@ class StoriesController < ApplicationController
     @stories = JAPI::Story.find( :all, :params => params_options )
     @authors = JAPI::Author.find( :all, :params => { :q => params[:q], :per_page => 3, :page => 1 } ) || []
     @sources = JAPI::Source.find( :all, :params => { :q => params[:q], :per_page => 3, :page => 1 } ) || []
+    @page_title = "Jurnalo - #{params[:q]}"
   end
   
   def advanced
     @topic = JAPI::TopicPreference.new
+    @page_title = "Jurnalo - #{I18n.t('search.advance.label')}"
   end
   
   def search_results
@@ -51,6 +53,7 @@ class StoriesController < ApplicationController
     @skip_video_filter = params[:vp].to_s == '0'
     @skip_opinion_filter = params[:op].to_s == '0'
     filters.each{ |y| params[ y.first ] = y.last }
+    @page_title = "Jurnalo - #{@query}"
     render :action => :index
   end
   

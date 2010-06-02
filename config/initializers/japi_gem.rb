@@ -75,6 +75,34 @@ JAPI::ClusterGroup.class_eval do
   
 end
 
+JAPI::Cluster.class_eval do
+  
+  def top_keywords_in_ascii
+    top_keywords.collect{ |x| x.to_ascii_s }
+  end
+  
+  def to_param
+    "#{id}-#{top_keywords_in_ascii.join('-')}"
+  end
+  
+end
+
+JAPI::Author.class_eval do
+  
+  def to_param
+    "#{id}-#{name.to_ascii_s.downcase.gsub(/\.|\ /, '-')}"
+  end
+  
+end
+
+JAPI::Source.class_eval do
+  
+  def to_param
+    "#{id}-#{name.to_ascii_s.downcase.gsub(/\.|\ /, '-')}"
+  end
+  
+end
+
 JAPI::Story.class_eval do
   
   fields :cluster, :is_opinion, :is_video, :is_blog

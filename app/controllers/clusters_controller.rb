@@ -3,10 +3,12 @@ class ClustersController < ApplicationController
   japi_connect_login_required :except => :show
   
   def show
+    cluster_id = params[:id].match(/^(\d+)/).try(:[], 1)
     @cluster = JAPI::Cluster.find(:one, :params => { 
       :cluster_id => params[:id], :per_page => params[:per_page], 
       :sort_criteria => sort_criteria, :user_id => current_user.id, 
       :page => params[:page], @filter => '1' } ) || JAPI::Cluster.find( :stories => [] )
+    @page_title = "Jurnalo - " + @cluster.top_keywords.join(' - ').to_s
   end
 
 end

@@ -3,6 +3,7 @@ class ReadingListController < ApplicationController
   japi_connect_login_required :except => :whats
   
   def whats
+    @page_title = "Jurnalo - #{t('reading_list.what.label')}"
   end
   
   def index
@@ -11,6 +12,7 @@ class ReadingListController < ApplicationController
     @stories = JAPI::Story.find( :all, :from => :list, :params => { :story_id => prefs.collect( &:story_id ) } )
     @stories.collect{ |x| x.id = prefs_hash[x.id] }
     @stories.pagination = prefs.pagination
+    @page_title = "Jurnalo - #{I18n.t('navigation.top.reading_list')}"
   end
   
   def create

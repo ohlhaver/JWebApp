@@ -2,10 +2,11 @@ class AuthorsController < ApplicationController
   
   before_filter :store_referer_location, :only => [ :rate, :subscribe, :unsubscribe, :hide, :up, :down ]
   japi_connect_login_required :except => [ :show, :top, :whats ]
-  
+  before_filter :correct_param_id
   before_filter :set_author_filter_var
   
   def whats
+    @page_title = "Jurnalo - #{t('authors.what.label')}"
   end
   
   def show
@@ -15,6 +16,7 @@ class AuthorsController < ApplicationController
     @author_preference = JAPI::AuthorPreference.find( nil, :params => { :author_id => params[:id],  :user_id => current_user.id } ) unless current_user.new_record?
     @author_preference ||= JAPI::AuthorPreference.new( :author_id => params[:id], :preference => nil, :subscribed => false )
     @stories = JAPI::Story.find( :all, :params => { :author_ids => params[:id], :page => params[:page] || '1' }, :from => :authors )
+    @page_title = "Jurnalo - #{@author.name}"
   end
   
   def top
@@ -144,6 +146,10 @@ class AuthorsController < ApplicationController
     @author_filter = :all 
     @author_filter = :subscribed if params[:subscribed] == '1'
     @author_filter = :rated if params[:rated] == '1'
+  end
+  
+  def correct_param_id
+    params[:id] = params[:id].match(/(\d+)/).try(:[], 1) unless params[:id].blank?
   end
   
 end

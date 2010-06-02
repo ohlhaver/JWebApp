@@ -8,6 +8,7 @@ class SectionsController < ApplicationController
       :user_id => current_user.id, :page => params[:page], 
       :language_id => news_edition.language_id, :region_id => news_edition.region_id,
       :cluster_group_id => params[:id], :per_page => params[:per_page] } )
+    @page_title = "Jurnalo - #{I18n.t("navigation.main.#{@section.name}")}"
   end
   
   def create

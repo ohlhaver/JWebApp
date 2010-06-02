@@ -5,6 +5,7 @@ class TopicsController < ApplicationController
   
   def whats
     @topic  = JAPI::TopicPreference.new
+    @page_title = "Jurnalo - #{t('topic.label.what')}"
   end
   
   def index
@@ -16,13 +17,12 @@ class TopicsController < ApplicationController
     @topic_preference = JAPI::TopicPreference.find( params[:id], :params => { :user_id => current_user.id } )
     self.sort_criteria = @topic_preference.sort_criteria if params[:sc].blank?
     self.subscription_type = @topic_preference.subscription_type if params[:st].blank?
-    
     params_options = { :topic_id => params[:id], :page => params[:page],
       :per_page => params[:per_page], :user_id => current_user.id, 
       :sort_criteria => sort_criteria, :subscription_type => subscription_type, @filter => 4 }
-      
     @topic = JAPI::Topic.find( :one, 
       :params => params_options )
+    @page_title = "Jurnalo - #{@topic.name}"
   end
 
   def new
