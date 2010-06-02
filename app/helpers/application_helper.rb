@@ -7,7 +7,7 @@ module ApplicationHelper
     partial = case( wizard_id ) when :random :
       current_user.random_wizard
     when :author, :story, :source, :topic:
-      wizard_id
+      currrent_user.wizard?( wizard_id ) ? wizard_id : nil
     end
     render :partial => "shared/wizards/#{partial}" if partial
   end

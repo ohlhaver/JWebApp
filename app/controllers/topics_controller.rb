@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
   
   before_filter :store_referer_location, :only => [ :destroy, :unhide, :hide, :up, :down ]
-  japi_connect_login_required :except => :whats
+  japi_connect_login_required :except => [ :whats, :create ]
   
   def whats
     @topic  = JAPI::TopicPreference.new
@@ -43,6 +43,10 @@ class TopicsController < ApplicationController
   end
   
   def create
+    unless logged_in?
+      redirect_to new_topic_path( :japi_topic_preference => params[:japi_topic_preference], :advance => params[:advance] )
+      return
+    end
     @topic = JAPI::TopicPreference.new( params[:japi_topic_preference] ).tap do |t| 
       t.prefix_options = { :user_id => current_user.id } 
       t.home_group = true
@@ -158,6 +162,13 @@ class TopicsController < ApplicationController
       flash[:error] = 'Failure'
     end
     redirect_back_or_default( :action => :index )
+  end
+  
+  protected
+  
+  def cas_filter_allowed?
+    case( action_name ) when 'create' : false 
+    else true end
   end
   
 end

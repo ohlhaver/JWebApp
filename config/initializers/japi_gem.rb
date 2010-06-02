@@ -196,6 +196,10 @@ JAPI::User.class_eval do
     @wizards.rand
   end
   
+  def wizard?( wizard_id )
+    preference.wizards[ wizard_id.to_s ] == '1'
+  end
+  
   def turn_off_wizard( wizard_id )
     preference.wizards.merge!( wizard_id.to_s => 0 )
     j = JAPI::Preference.new( :id => self.id, :wizards => { wizard_id => 0 } )
