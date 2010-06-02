@@ -3,10 +3,13 @@
   <h2>
     <span class='dialogBox <%= dialogItemClass -%>'>
     </span>
-    <span class="page_label"><%= link_to( t('jurnalo.wizard.title'), "#" ) %></span>
+    <span class="about"><%= link_to( t('jurnalo.wizard.title'), "#" ) %></span>
   </h2>
   <div class='cluster'>
-    <strong><%= t('jurnalo.wizard.reading_list') %></strong><br/><br/>
+	<div class="wizzard_text">
+    <%= link_to t('jurnalo.wizard.reading_list'), :controller => :reading_list, :action => :whats %>
+	</div>
+	<br/>
     <%= link_to( t('reading_list.action.howto'), :controller => :reading_list, :action => :whats ) %>
     <% unless logged_in? && !current_user.new_user? %>
       <br/><br/>

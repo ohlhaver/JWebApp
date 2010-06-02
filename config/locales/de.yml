@@ -133,8 +133,8 @@ de:
       reading_list: "Speichern Sie interessante Artikel auf Ihre Leseliste!"
       whats_that: "Was ist das?"
       free_signup: "oder {{link}}"
-      fb_login: "Gratis {{link}}"
-      do_not_show_again: "Do not show this again"
+      fb_login: "{{link}}"
+      do_not_show_again: "Bitte nicht nochmal anzeigen"
   author:
     action:
       subscribe: 'abonnieren'
@@ -155,14 +155,14 @@ de:
       label: "Autoren Abonnieren"
     subscribe:
       why: "Erhalten Sie jeden neuen Artikel von Ihren Lieblingautoren, egal aus welcher Nachrichten-Quelle."
-      howto: "Einen Autor zu abonnieren ist ganz einfach:"
-      step_1: "Klicken Sie auf den Namen des Autoren. So gelangen Sie auf die Seite des Autors."
-      step_2: "Klicken Sie nun rechts oben neben dem Namen des Autors auf 'abonnieren'."
+      howto: "Anleitung:"
+      step_1: "Klicken Sie auf den Namen des Autoren."
+      step_2: "Klicken Sie nun rechts vom Namen auf 'abonnieren'."
     search:
-      label: "Suche"
+      label: "Autor Suche"
       info: "Suchen Sie jetzt nach einem Lieblings-Autor:"
     top_list:
-      label: "Jurnalos Top Autoren Liste"
+      label: "Hier gehts zu Jurnalos Top Autoren Liste"
       browse: "Oder finden Sie hier eine Liste der zur Zeit bei den Jurnalo Nutzern beliebtesten Autoren: "
     not:
       found: "Autor nicht gefunden."
@@ -350,10 +350,10 @@ de:
     action:
       howto: "Wie geht das?"
     add:
-      why: "Mittels der Leseliste können Sie Artikel speichern, die Sie später lesen wollen."
+      why: "Mit der Leseliste können Sie Artikel speichern fürs späteres Lesen."
       why_2: "Die Links zu diesen Artikeln bleiben Ihnen auf Ihrer Leseliste erhalten, bis Sie sie löschen."
-      howto: "Einen Artikel zur Leselsite zu speichern ist ganz einfach:"
-      step_1: "Halten Sie die Maus auf die Überschrift des Artikels, bis rechts von der Überschirftdas kleine runde Plussymbol erscheint."
+      howto: "Anleitung:"
+      step_1: "Halten Sie die Maus auf die Überschrift des Artikels."
       step_2: "Gehen Sie nun auf das Plussymbol und klicken sie auf 'zur Leseliste speichern'."
   topic:
     label:

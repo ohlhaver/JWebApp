@@ -3,11 +3,14 @@
   <h2>
     <span class='dialogBox <%= dialogItemClass -%>'>
     </span>
-    <span class="page_label"><%= link_to( t('jurnalo.wizard.title'), "#" ) %></span>
+    <span class="about"><%= link_to( t('jurnalo.wizard.title'), "#" ) %></span>
   </h2>
   <div class='cluster'>
-    <strong><%= t('jurnalo.wizard.rate_source') %></strong><br/><br/>
-    <%= link_to( t('source.action.rate_here'), whats_sources_path ) %> <%= link_to t('jurnalo.wizard.whats_that'), whats_sources_path %>
+	<div class="wizzard_text">
+    <%= link_to t('jurnalo.wizard.rate_source'), whats_sources_path %>
+	</div>
+	<br/>
+     <%= link_to t('jurnalo.wizard.whats_that'), whats_sources_path %>
     <% unless logged_in? && !current_user.new_user? %>
       <br/><br/>
      <div class ="login_text">

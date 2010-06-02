@@ -200,21 +200,61 @@ span.current{
 
 .wizzard .cluster {
 	font-family: Arial,Helvetica,sans-serif;	
-
+	margin-top: 18px;
+	margin-bottom: 11px;
 }
 
 .wizzard .cluster a:link{
-	text-decoration: underline;	
+		
 
 }
 
 .wizzard .cluster a:visited{
-	text-decoration: underline;	
+	
 
 }
 
+.wizzard_text {
+	font-size: 20px;
+}
+
+#wizzard_searchfield {
+
+	margin-left :0px;
+	margin-top : 0px;
+	font-family: Georgia,"Times New Roman",Times,serif;
+	font-weight: normal;
+	text-decoration:none;
+	font-size: 18px;
+	line-height: 21px;
+	color: #333333;
+	height: 28px;
+	width: 210px;
+	border: 1px solid #999999;
+	padding: 7px 5px 0;
+	vertical-align: middle;
+
+	
+}
+
+.wizzard_searchbutton {
+margin-top: 0px;
+margin-bottom: 0px;
+font-family: Arial,Helvetica,sans-serif;
+font-weight: normal;
+text-decoration:none;
+font-size: 16px;
+line-height: 21px;
+color: #FFFFFF;
+background-color: #0000b6;
+vertical-align: middle;
+height: 35px;
+width: 163;
+border: 0px;
+}
+
 .login_text {
-	font-size: 13px;
+	font-size: 16px;
 }
 
 

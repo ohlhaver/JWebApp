@@ -3,15 +3,18 @@
   <h2>
     <span class='dialogBox <%= dialogItemClass -%>'>
     </span>
-    <span class="page_label"><%= link_to( t('jurnalo.wizard.title'), "#" ) %></span>
+    <span class ="about"><%= link_to( t('jurnalo.wizard.title'), "#" ) %></span>
   </h2>
   <div class='cluster'>
-    <strong><%= t('jurnalo.wizard.create_topic') %></strong>
+	<div class="wizzard_text">
+   <%= link_to t('jurnalo.wizard.create_topic'), whats_topics_path %> 
+	</div>
+	<br>
     <% @topic ||= JAPI::TopicPreference.new %>
     <% form_for( @topic, :url => topics_path, :html => { :id => 'simple_topic_form' }, :method => :post ) do |f| %>
     <div>
-      <span><%= f.text_field(:search_any, :class => 'settings_field mr_20px') %></span> 
-      <%= submit_tag( t('topic.action.create'), :class => "adv_searchbutton mt_20px mr_20px" ) %> <%= link_to t('jurnalo.wizard.whats_that'), whats_topics_path %>
+      <span><%= f.text_field(:search_any, :id => 'wizzard_searchfield') %></span> 
+      <%= submit_tag( t('topic.action.create'), :class => "wizzard_searchbutton" ) %>&nbsp;&nbsp;<%= link_to t('jurnalo.wizard.whats_that'), whats_topics_path %>
     </div>
     <% end %>
     <% unless logged_in? && !current_user.new_user? %>

@@ -133,7 +133,7 @@ en:
       reading_list: "Save interesting articles to your reading list!"
       whats_that: "What's that?"
       free_signup: "or {{link}}"
-      fb_login: "Free {{link}}"
+      fb_login: "{{link}}"
       do_not_show_again: "Do not show this again"
   author:
     action:
@@ -154,16 +154,16 @@ en:
     what:
       label: "Author Subscriptions"
     subscribe:
-      why: "Receive every new article by your favourite authors, no matter from which news source."
-      howto: "Subscribing to an author is simple:"
-      step_1: "Click on the name of the author and you get redirected to the author's page."
-      step_2: "Now click the 'subscribe' link on the right of the authors name."
+      why: "Get every new article by your favourite authors from any publication."
+      howto: "How to subscribe:"
+      step_1: "Click on the name of any author."
+      step_2: "Then click the 'subscribe' link."
     search:
-      label: "Search"
-      info: "You can also search for your favourite authors now:"
+      label: "Search author"
+      info: "Search for your favourite authors:"
     top_list:
-      label: "Jurnalo's Top Authors List"
-      browse: "Or find a list here of the authors that are currently most popular among the Jurnalo users:"
+      label: "List of the currently most popular authors"
+      browse: "These are the most popular authors:"
     not:
       found: "No authors found"
   cluster:
@@ -319,12 +319,12 @@ en:
     action:
       rate_here: "Rate sources here!"
     rating:
-      howto: "Rating a source is simple:"
-      step_1: "Click on the name of the source and you get redirected to the source's page."
-      step_2: "Now select a rating on the upper right, next to the source's name."
-      what: "You can rate any news source (online newspapers, blogs etc.) by giving it one of the following ratings:"
+      howto: "Instructions:"
+      step_1: "Click on the name of the source."
+      step_2: "Then select a rating on the upper right, next to the source's name."
+      what: "You can rate any publication by giving it one of the following ratings:"
       values: "'ignore', 'low', 'medium', 'high', or 'not rated'"
-      personalized_results: "This rating directly determines the ranking of articles by this source in your search results."
+      personalized_results: "This rating directly determines the ranking of articles in your search results."
       not_rated_info: "If you select 'not rated', the default rating by Jurnalo is used. Jurnalo's default rating is determined by the average rating of all Jurnalo users."
       rated_sources: "In 'settings > my sources' you can find a list of all sources that you have rated."
     not:
@@ -350,11 +350,11 @@ en:
     action:
       howto: "How do I do this?"
     add:
-      why: "With the reading list you can save articles that you want to read later."
+      why: "With the reading list you can save articles."
       why_2: "The links to these articles will remain you reading list until you delete them."
-      howto: "To add an article to your reading list is very simple:"
-      step_1: "Move your mouse over the headline until the little round plus symbol appears."
-      step_2: "Now move your mouse over the plus symbol and click 'add to my reading list."
+      howto: "Intstructions:"
+      step_1: "Move your mouse over the headline."
+      step_2: "Then move your mouse over the plus symbol and click 'add to my reading list.'"
   topic:
     label:
       new: 'New Topic'
