@@ -319,12 +319,12 @@ de:
     action:
       rate_here: "Hier Quellen gewichten!"
     rating:
-      howto: "Einen Quelle zu gewichten ist ganz einfach:"
-      step_1: "Klicken Sie auf den Namen der Quelle. So gelangen Sie auf die Seite der Quelle."
-      step_2: "Wählen Sie nun rechts oben neben dem Namen der Quelle  eine Gewichtung."
-      what: "Sie können jeder Nachrichten-Quelle (Online-Zeitungen, Blogs etc.) eine der folgenden Gewichtungen geben:"
+      howto: "Anleitung:"
+      step_1: "Klicken Sie auf den Namen der Quelle."
+      step_2: "Wählen Sie nun rechts oben eine Gewichtung."
+      what: "Sie können jeder Publikation eine der folgenden Gewichtungen geben:"
       values: "ignorieren, niedrig, mittel, hoch, oder  'nicht gewichtet'"
-      personalized_results: "Diese Gewichtung entscheidet direkt darüber, wie hoch Artikel dieser Quelle in Ihren Suchergebnissen plaziert werden."
+      personalized_results: "Diese Gewichtung entscheidet direkt darüber, wie Ihre Suchergebnisse aussehen."
       not_rated_info: "Wenn Sie 'nicht gewichtet' wählen, so gilt für Sie die Default-Gewichtung von Jurnalo. Diese richtet sich nach der durschnittlichen Gewichtung der Jurnalo Nutzer."
       rated_sources: "Unter 'Einstellungen > meine Quellen' sehen Sie eine Liste aller Quellen, denen Sie eine Gewichtung gegeben haben."
     not:
