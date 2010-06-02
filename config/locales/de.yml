@@ -127,10 +127,10 @@ de:
       reason_3: "Um mehr als einen Autoren zu abonnieren, upgraden Sie bitte auf den Jurnalo Power Plan."
     wizard:
       title: 'Neu hier?'
-      create_topic: "Erstellen Sie jetzt Ihr erstes eigenes Thema!"
-      subscribe_author: "Abonnieren Sie jetzt Ihre ersten Lieblingsautoren!"
-      rate_source: "Gewichten Sie jetzt Ihre ersten Nachrichten-Quellen!"
-      reading_list: "Speichern Sie interessante Artikel auf Ihre Leseliste!"
+      create_topic: "Erstellen Sie ein eigenes Thema!"
+      subscribe_author: "Abonnieren Sie Ihren ersten Autor!"
+      rate_source: "Gewichten Sie ein paar Nachrichten-Quellen!"
+      reading_list: "Speichern Sie interessante Artikel in Ihrer Leseliste!"
       whats_that: "Was ist das?"
       free_signup: "oder {{link}}"
       fb_login: "{{link}}"

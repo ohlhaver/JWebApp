@@ -127,14 +127,14 @@ en:
       reason_3: "To rate/subscribe to more than one author please upgrade to the Jurnalo Power Account."
     wizard:
       title: 'New to Jurnalo?'
-      create_topic: "Create your first personal topic now!"
-      subscribe_author: "Subscribe to your first favorite authors now!"
-      rate_source: "Rate your first news sources now!"
+      create_topic: "Create your a personal topic!"
+      subscribe_author: "Subscribe to your first author!"
+      rate_source: "Rate a few news sources!"
       reading_list: "Save interesting articles to your reading list!"
       whats_that: "What's that?"
       free_signup: "or {{link}}"
       fb_login: "{{link}}"
-      do_not_show_again: "Do not show this again"
+      do_not_show_again: "Do not show this again."
   author:
     action:
       subscribe: 'subscribe'
