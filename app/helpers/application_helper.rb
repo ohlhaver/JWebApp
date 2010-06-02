@@ -93,11 +93,11 @@ module ApplicationHelper
   end
   
   def render_pagination( collection )
-    render( :partial => 'shared/pagination', :locals => { :pagination => collection.pagination } ) if collection.pagination.total_pages > 1
+    render( :partial => 'shared/pagination', :locals => { :pagination => collection.pagination } ) if collection.pagination && collection.pagination.total_pages > 1
   end
   
   def render_search_pagination( collection, options = {} )
-    render( :partial => 'stories/pagination', :locals => options.merge( :pagination => collection.pagination ) ) if collection.pagination.total_pages > 1
+    render( :partial => 'stories/pagination', :locals => options.merge( :pagination => collection.pagination ) ) if collection.pagination && collection.pagination.total_pages > 1
   end
   
   def link_to_navigation_item( *args, &block )
