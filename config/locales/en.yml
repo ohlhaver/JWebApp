@@ -325,7 +325,7 @@ en:
       what: "You can rate any publication by giving it one of the following ratings:"
       values: "'not rated', 'ignore', 'low', 'medium' or 'high'"
       personalized_results: "This rating determines the ranking of your search results."
-      not_rated_info: "For 'not rated' the default rating is used, which is determined by the average rating by all users."
+      not_rated_info: "For 'not rated' the default rating is used. The latter is determined by the average rating by all users."
       rated_sources: "In 'settings > my sources' you can find a list of all sources that you have rated."
     not:
       found: "Source not found."
