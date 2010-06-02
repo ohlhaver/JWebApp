@@ -325,7 +325,7 @@ de:
       what: "Sie können jeder Publikation eine der folgenden Gewichtungen geben:"
       values: "'nicht gewichtet', 'ignorieren', 'niedrig', 'mittel', oder 'hoch'"
       personalized_results: "Diese Gewichtung entscheidet über das Ranking Ihrer Suchergebnisse."
-      not_rated_info: "Wenn Sie 'nicht gewichtet' wählen, dann gilt die Default-Gewichtung. Diese richtet sich nach der durschnittlichen Gewichtung durch alle Jurnalo Nutzer."
+      not_rated_info: "Wenn Sie 'nicht gewichtet' wählen, dann gilt die Default-Gewichtung. Diese richtet sich nach der durchschnittlichen Gewichtung durch alle Jurnalo Nutzer."
       rated_sources: "Unter 'Einstellungen > meine Quellen' sehen Sie eine Liste aller Quellen, denen Sie bereits eine Gewichtung gegeben haben."
     not:
       found: "Quelle nicht gefunden."

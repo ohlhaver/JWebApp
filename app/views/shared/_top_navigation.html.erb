@@ -14,6 +14,6 @@
 
 
   <br><%= link_to( t( 'navigation.top.reading_list' ), :controller => '/reading_list', :action => 'index' ) -%> - <%= link_to( t( 'navigation.top.settings' ), account_path( :jwa => 1 ) ) -%>
-<% if logged_in? -%><% unless current_user.power_plan? %> - <%= link_to( t('navigation.top.upgrade'), account_path( :action => 'upgrade', :jar => 1 ) ) %>
+<% if logged_in? -%><% unless current_user.power_plan? %> <br> <%= link_to( t('navigation.top.upgrade'), account_path( :action => 'upgrade', :jar => 1 ) ) %>
   <% end %><% end %>
  
