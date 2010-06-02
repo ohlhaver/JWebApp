@@ -14,8 +14,10 @@
         <%= text_field_tag(:q, '', :id => 'wizzard_searchfield') %>
         <%= submit_tag( t('authors.search.label'), :class => "wizzard_searchbutton" ) %>
       <% end %>
-      <br/><br/>
+      <br/>
+	<div class ="adv_search_lines">
 	 <%= link_to t('authors.top_list.label'), top_authors_path %>
+	</div>
 
       
      </div>

@@ -127,9 +127,9 @@ en:
       reason_3: "To rate/subscribe to more than one author please upgrade to the Jurnalo Power Account."
     wizard:
       title: 'New to Jurnalo?'
-      create_topic: "Create your a personal topic!"
-      subscribe_author: "Subscribe to your first author!"
-      rate_source: "Rate a few news sources!"
+      create_topic: "Create a personal topic!"
+      subscribe_author: "Subscribe to your favorite author!"
+      rate_source: "Decide which publications you love and hate!"
       reading_list: "Save interesting articles to your reading list!"
       whats_that: "What's that?"
       free_signup: "or {{link}}"
@@ -157,7 +157,7 @@ en:
       why: "Get every new article by your favourite authors from any publication."
       howto: "How to subscribe:"
       step_1: "Click on the name of any author."
-      step_2: "Then click the 'subscribe' link."
+      step_2: "Click the 'subscribe' link."
     search:
       label: "Search author"
       info: "Search for your favourite authors:"
@@ -321,11 +321,11 @@ en:
     rating:
       howto: "Instructions:"
       step_1: "Click on the name of the source."
-      step_2: "Then select a rating on the upper right, next to the source's name."
+      step_2: "Select a rating on the upper right:"
       what: "You can rate any publication by giving it one of the following ratings:"
-      values: "'ignore', 'low', 'medium', 'high', or 'not rated'"
-      personalized_results: "This rating directly determines the ranking of articles in your search results."
-      not_rated_info: "If you select 'not rated', the default rating by Jurnalo is used. Jurnalo's default rating is determined by the average rating of all Jurnalo users."
+      values: "'not rated', 'ignore', 'low', 'medium' or 'high'"
+      personalized_results: "This rating determines the ranking of your search results."
+      not_rated_info: "For 'not rated' the default rating is used, which is determined by the average rating by all users."
       rated_sources: "In 'settings > my sources' you can find a list of all sources that you have rated."
     not:
       found: "Source not found."
@@ -350,11 +350,11 @@ en:
     action:
       howto: "How do I do this?"
     add:
-      why: "With the reading list you can save articles."
+      why: "With the reading list you can save articles for later reading."
       why_2: "The links to these articles will remain you reading list until you delete them."
       howto: "Intstructions:"
       step_1: "Move your mouse over the headline."
-      step_2: "Then move your mouse over the plus symbol and click 'add to my reading list.'"
+      step_2: "Move your mouse over the plus symbol and click 'add to my reading list.'"
   topic:
     label:
       new: 'New Topic'
@@ -372,7 +372,7 @@ en:
     query: 'Search query:'
     what:
       info: "Get news search results for any search term."
-      feature: "They will be displayed on your homepage or optionally send as e-mail alerts."
+      feature: "They will be displayed on your homepage or sent as e-mail alerts."
   rate:
     source: 'Source preference'
     author: 'Author preference'
