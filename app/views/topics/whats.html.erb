@@ -12,7 +12,7 @@
       <span><%= f.text_field(:search_any, :class => 'settings_field mr_20px') %></span> 
       <%= submit_tag( t('topic.action.create_topic'), :class => "adv_searchbutton mt_20px mr_20px" ) %>
       <%= link_to_function( t('topic.action.test'), "test_topic( 'simple_topic_form' )"  ) %>
-      <%= hidden_field_tag( :advance, 1, :id => 'advance_topic_field' ) %><br/>
+      <%= hidden_field_tag( :advance, 0, :id => 'advance_topic_field' ) %><br/>
       <%= t('topic.action.advance_topic_info', :link => link_to_function( t('topic.action.advance_topic'), "advance_topic( 'simple_topic_form' )" ) ) %> 
     <% end %>
     </div>
