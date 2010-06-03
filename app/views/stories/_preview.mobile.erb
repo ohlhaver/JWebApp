@@ -1,11 +1,11 @@
 <% if hide_add_to_reading_list %>
   <span class='title'>
-    <%= story_symbol( story ) %> <%= link_to( story.title, story.url, :target => '_BLANK' ) %>
+    <%= story_symbol( story ) %> <%= link_to( story.title, story.url, :target => '_BLANK', :rel => 'nofollow' ) %>
   </span>
 <% else %>
 <% mouse_over( :icon ) do |iconEventClass, iconItemClass| %>
   <span class="title <%= iconEventClass -%>">
-    <%= story_symbol( story ) %> <%= link_to( story.title, story.url, :target => '_BLANK' ) %>
+    <%= story_symbol( story ) %> <%= link_to( story.title, story.url, :target => '_BLANK', :rel => 'nofollow' ) %>
     <% mouse_over( :menu ) do |menuEventClass, menuItemClass| %>
       <span class='<%= iconItemClass -%> <%= menuEventClass -%>'>
         <%= image_tag('plus.gif') %>
