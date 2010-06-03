@@ -128,7 +128,7 @@ de:
     wizard:
       title: 'Neu hier?'
       create_topic: "Erstellen Sie ein eigenes Thema!"
-      subscribe_author: "Abonnieren Sie Ihren Lieblingsautor!"
+      subscribe_author: "Abonnieren Sie Ihre Lieblingsautoren!"
       rate_source: "Gewichten Sie Ihre Nachrichten-Quellen!"
       reading_list: "Speichern Sie interessante Artikel zu Ihrer Leseliste!"
       whats_that: "Was ist das?"
@@ -350,11 +350,12 @@ de:
     action:
       howto: "Wie geht das?"
     add:
-      why: "Mit der Leseliste können Sie Artikel zum später-lesen speichern."
+      why: "Mit der Leseliste können Sie Artikel zum später lesen speichern."
       why_2: "Die Links zu diesen Artikeln bleiben Ihnen auf Ihrer Leseliste erhalten, bis Sie sie löschen."
       howto: "Anleitung:"
       step_1: "Halten Sie die Maus auf die Überschrift des Artikels."
-      step_2: "Gehen Sie auf das Plussymbol und klicken Sie auf 'zur Leseliste speichern'."
+      step_2: "Gehen Sie auf das Plussymbol."
+      step_3: "Klicken Sie auf 'zur Leseliste speichern'"
   topic:
     label:
       new: 'Neues Thema'
@@ -366,13 +367,13 @@ de:
       simple: 'Einfach'
       create: 'Los!'
       create_topic: 'Thema erstellen'
-      advance_topic: 'erweitertes Thema'
-      advance_topic_info: "Oder erstellen Sie ein {{link}} für eine kompliziertere Suchanfrage."
+      advance_topic: 'erweitert'
+      advance_topic_info: "{{link}}"
     name: 'Name des Themas:'
     query: 'Suchbegriff:'
     what:
-      info: "Erhalten Sie die Nachrichtensuchergebnisse zu einem beliebigen Begriff. "
-      feature: "Diese sehen Sie auf Ihrer Homepage oder per E-mail."
+      info: "Erhalten Sie automatisch alle Nachrichten zu einem Suchbegriff. "
+      feature: "Diese erscheinen auf Ihrer Homepage und per E-mail."
   rate:
     source: 'Quelle gewichten'
     author: 'Autoren gewichten'

@@ -128,8 +128,8 @@ en:
     wizard:
       title: 'New to Jurnalo?'
       create_topic: "Create a personal topic!"
-      subscribe_author: "Subscribe to your favorite author!"
-      rate_source: "Decide which publications you love and hate!"
+      subscribe_author: "Subscribe to your favorite authors!"
+      rate_source: "Rate your news sources!"
       reading_list: "Save interesting articles to your reading list!"
       whats_that: "What's that?"
       free_signup: "or {{link}}"
@@ -154,9 +154,9 @@ en:
     what:
       label: "Author Subscriptions"
     subscribe:
-      why: "Get every new article by your favourite authors from any publication."
+      why: "Get every new article by your favorite authors from any publication."
       howto: "How to subscribe:"
-      step_1: "Click on the name of any author."
+      step_1: "Click the name of any author."
       step_2: "Click the 'subscribe' link."
     search:
       label: "Search author"
@@ -320,11 +320,11 @@ en:
       rate_here: "Rate sources here!"
     rating:
       howto: "Instructions:"
-      step_1: "Click on the name of the source."
+      step_1: "Click the name of the source."
       step_2: "Select a rating on the upper right:"
       what: "You can rate any publication by giving it one of the following ratings:"
       values: "'not rated', 'ignore', 'low', 'medium' or 'high'"
-      personalized_results: "This rating determines the ranking of your search results."
+      personalized_results: "This rating determines the ranking in your search results."
       not_rated_info: "For 'not rated' the default rating is used. The latter is determined by the average rating by all users."
       rated_sources: "In 'settings > my sources' you can find a list of all sources that you have rated."
     not:
@@ -354,7 +354,8 @@ en:
       why_2: "The links to these articles will remain you reading list until you delete them."
       howto: "Intstructions:"
       step_1: "Move your mouse over the headline."
-      step_2: "Move your mouse over the plus symbol and click 'add to my reading list.'"
+      step_2: "Move your mouse over the plus symbol.'"
+      step_3: "Click 'add to my reading list.'"
   topic:
     label:
       new: 'New Topic'
@@ -366,8 +367,8 @@ en:
       simple: 'Simple'
       create: 'Create!'
       create_topic: 'Create Topic'
-      advance_topic: 'an advanced topic'
-      advance_topic_info: 'Or create {{link}} for a more complex search query.'
+      advance_topic: 'advanced'
+      advance_topic_info: '{{link}}'
     name: 'Topic label:'
     query: 'Search query:'
     what:

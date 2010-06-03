@@ -12,8 +12,8 @@
       <%= t('topic.what.feature') %>
       <span><%= f.text_field(:search_any, :id => 'wizzard_searchfield') %></span> 
       <%= submit_tag( t('topic.action.create_topic'), :class => "wizzard_searchbutton" ) %>&nbsp;&nbsp;
-      <%= link_to_function( t('topic.action.test'), "test_topic( 'simple_topic_form' )"  ) %>
-      <%= hidden_field_tag( :advance, 0, :id => 'advance_topic_field' ) %><br/>
+      <%= link_to_function( t('topic.action.test'), "test_topic( 'simple_topic_form' )"  ) %> | 
+      <%= hidden_field_tag( :advance, 0, :id => 'advance_topic_field' ) %>
       <%= t('topic.action.advance_topic_info', :link => link_to_function( t('topic.action.advance_topic'), "advance_topic( 'simple_topic_form' )" ) ) %> 
     <% end %>
     </div>
