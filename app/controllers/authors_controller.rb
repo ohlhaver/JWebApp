@@ -15,7 +15,7 @@ class AuthorsController < ApplicationController
     @author = JAPI::Author.find( params[:id], :params => additional_attrs ) || JAPI::Author.new( :name => I18n.t( 'author.not.found' ) )
     @author_preference = JAPI::AuthorPreference.find( nil, :params => { :author_id => params[:id],  :user_id => current_user.id } ) unless current_user.new_record?
     @author_preference ||= JAPI::AuthorPreference.new( :author_id => params[:id], :preference => nil, :subscribed => false )
-    @stories = JAPI::Story.find( :all, :params => { :author_ids => params[:id], :page => params[:page] || '1' }, :from => :authors )
+    @stories = JAPI::Story.find( :all, :params => { :author_ids => params[:id], :page => params[:page] || '1', :all => 1 }, :from => :authors )
     @page_title = I18n.t( "seo.page.title.author", :name => @author.name )
   end
   
