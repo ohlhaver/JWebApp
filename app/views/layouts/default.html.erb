@@ -16,6 +16,7 @@
 	<% end -%>
 	
   </head>
+<!-- google_ad_section_start(weight=ignore) --> 
 	<body>
 
 		<div class="container_4">
@@ -76,7 +77,7 @@
 	</div>
 	
 
-	<% if params[:controller] == "stories" and params[:action] == "index"%>
+	<% if (params[:controller] == "stories" and params[:action] == "index") or params[:controller] == "clusters" %>
 
 	<ul class='nav_block'>
 		<div id="skyscraper">
@@ -139,4 +140,5 @@ pageTracker._trackPageview();
 } catch(err) {}</script>
 
 </body>
+<!-- google_ad_section_end -->
 </html>
