@@ -82,7 +82,7 @@ JAPI::Cluster.class_eval do
   end
   
   def to_param
-    "#{id}-#{top_keywords_in_ascii.join('-')}"
+    "#{id}-#{top_keywords_in_ascii.join('-').gsub(/\.|\ /, '-').gsub(/[^\w\-]/, '')}"
   end
   
 end
@@ -90,7 +90,7 @@ end
 JAPI::Author.class_eval do
   
   def to_param
-    "#{id}-#{name.to_ascii_s.downcase.gsub(/\.|\ /, '-')}"
+    "#{id}-#{name.to_ascii_s.downcase.gsub(/\.|\ /, '-').gsub(/[^\w\-]/, '')}"
   end
   
 end
@@ -98,7 +98,7 @@ end
 JAPI::Source.class_eval do
   
   def to_param
-    "#{id}-#{name.to_ascii_s.downcase.gsub(/\.|\ /, '-')}"
+    "#{id}-#{name.to_ascii_s.downcase.gsub(/\.|\ /, '-').gsub(/\.|\ /, '-').gsub(/[^\w\-]/, '')}"
   end
   
 end
