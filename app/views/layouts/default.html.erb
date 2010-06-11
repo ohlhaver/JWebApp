@@ -71,26 +71,30 @@
 		  <%= render :partial => 'shared/lrec' %>
 	</div>
 
+	
 	<% if params[:controller] == "home" or params[:controller] == "topics" or params[:controller] == "sections" or params[:action] == "my"  %>
-	<div id="module" class="grid_1">
 
+	<div id="module" class="grid_1">
 	<div id='home_link' >
 	
 	<%= link_to_navigation_item 'Home', root_path %> &nbsp;
 	
 	</div>
+	</div>
 
 	<%end%>
 
 	
 
 	<% if params[:controller] == "home" or params[:controller] == "topics" or params[:controller] == "sections" or params[:action] == "my"  %>
+	<div class = "grid_1">
 	<div id="navigation" >
 	      <%= render :partial => 'shared/navigation' %>
 	</div>
+	</div>
 	<%end%>
 	
-	</div>
+	
 	
 
 
