@@ -71,39 +71,19 @@
 	<div id="module" class="grid_1">
 
 	<div id='home_link' >
-	<% if params[:controller] == "stories" or params[:controller] == "clusters" or params[:controller] == "sources"%>
-	<%= link_to_navigation_item t('navigation.main.back_to_home'), root_path %> &nbsp;
-	<%else%>
+	<% if params[:controller] == "home" or params[:controller] == "topics" or params[:controller] == "sections" or params[:action] == "my"  %>
 	<%= link_to_navigation_item 'Home', root_path %> &nbsp;
+	
+	<%else%>
+	<%= link_to_navigation_item t('navigation.main.back_to_home'), root_path %> &nbsp;
 	<%end%>
 	</div>
 	
 
-	<% if (params[:controller] == "stories" and params[:action] == "index") or params[:controller] == "clusters" %>
-
-	<ul class='nav_block'>
-		<div id="skyscraper">
-			<script type="text/javascript"><!--
-			google_ad_client = "pub-0643230471169917";
-			/* 160x600, Erstellt 16.05.10 */
-			google_ad_slot = "0257578820";
-			google_ad_width = 160;
-			google_ad_height = 600;
-			//-->
-			</script>
-			<script type="text/javascript"
-			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-			</script>
-		</div>
-		</ul>
-	<%else%>
-	
+	<% if params[:controller] == "home" or params[:controller] == "topics" or params[:controller] == "sections" or params[:action] == "my"  %>
 	<div id="navigation" >
 	      <%= render :partial => 'shared/navigation' %>
 	</div>
-	
-	
-
 	<%end%>
 	
 	</div>
