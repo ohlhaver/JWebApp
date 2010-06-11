@@ -53,8 +53,12 @@
     </div>
 
 
-
+	<% if params[:controller] == "home" or params[:controller] == "topics" or params[:controller] == "sections" or params[:action] == "my"  %>
 	<div id="content" class="grid_3">
+	<% else %>
+	<div id="content" class="grid_4">
+	<%end%>
+	
 	    <% if flash[:notice] %>
         <div class="flash" style="color:green" ><%= flash[:notice] %></div>
       <% end %>
@@ -67,17 +71,17 @@
 		  <%= render :partial => 'shared/lrec' %>
 	</div>
 
-
+	<% if params[:controller] == "home" or params[:controller] == "topics" or params[:controller] == "sections" or params[:action] == "my"  %>
 	<div id="module" class="grid_1">
 
 	<div id='home_link' >
-	<% if params[:controller] == "home" or params[:controller] == "topics" or params[:controller] == "sections" or params[:action] == "my"  %>
+	
 	<%= link_to_navigation_item 'Home', root_path %> &nbsp;
 	
-	<%else%>
-	<%= link_to_navigation_item t('navigation.main.back_to_home'), root_path %> &nbsp;
-	<%end%>
 	</div>
+
+	<%end%>
+
 	
 
 	<% if params[:controller] == "home" or params[:controller] == "topics" or params[:controller] == "sections" or params[:action] == "my"  %>

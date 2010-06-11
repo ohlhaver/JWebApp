@@ -2,7 +2,11 @@
   <div class='image_grid'>
     <a href='<%= url -%>'><img src='<%= image -%>' alt='' /></a>
   </div>
+<% if params[:controller] == "home" or params[:controller] == "topics" or params[:controller] == "sections" or params[:action] == "my"  %>
   <div class='grid_3_image'>
+<%else%>
+<div class='grid_4_image'>
+<%end%>
     <%= content %>
   </div>
 </div>

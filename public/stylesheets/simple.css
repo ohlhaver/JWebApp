@@ -1084,6 +1084,12 @@ border: 0px;
  position: relative;
  width: 430px; 
 }
+.grid_4_image{
+ display:inline;
+ float:left;
+ position: relative;
+ width: 660px; 
+}
 
 .mr_20px, input.mr_20px {
   margin-right:20px;
