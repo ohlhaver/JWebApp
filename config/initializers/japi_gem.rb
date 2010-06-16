@@ -1,5 +1,29 @@
 JAPI::Client.class_eval do
   
+  def async_api_call( path, multi_curb, params = {}, &block )
+    params ||= {}
+    async_api_response( path, multi_curb, params ) do |response|
+      result = ( Hash.from_xml( response ) rescue nil ).try( :[], 'response' )
+      result ||= Hash.from_xml( incorrect_format_api_call_response( path ) )[ 'response' ]
+      result.symbolize_keys!
+      objectify_result_data!( result )
+      block.call( result )
+    end
+  end
+  
+  def async_api_response( path, multi_curb, params, &block )
+    url = URI.parse( api_request_url( path ) )
+    request = Net::HTTP::Post.new( url.path )
+    flatten_params!( params )
+    request.set_form_data( params )
+    Curb.async_post( url.to_s, request.body, :multi_curb => multi_curb, :timeout => 6*(self.timeout||10), :catch_errors => true ) do |response|
+      xml = response.body_str if response
+      xml ||= invalid_api_call_response( path )
+      block.call( xml )
+    end
+    return true
+  end
+  
   def api_response( path, params )
     url = URI.parse( api_request_url( path ) )
     request = Net::HTTP::Post.new( url.path )
@@ -14,6 +38,89 @@ JAPI::Client.class_eval do
     #   return response.try( :body ) || invalid_api_call_response( path )
     # }
     # return timeout_api_call_response( path )
+  end
+  
+end
+
+JAPI::Model::Base.class_eval do
+  
+  attr_reader :multi_curb
+  
+  def set_multi_curb
+    @multi_curb = Curl::Multi.new
+  end
+  
+  def self.async_find(*arguments, &block)
+    scope   = arguments.slice!(0)
+    options = arguments.slice!(0) || {}
+    options[:multi_curb] ||= Curl::Multi.new
+    case scope
+    when :all   then async_find_every(:all, options, &block)
+    when :first then async_find_every(:first, options, &block)
+    when :last  then async_find_every(:last, options, &block)
+    when :one   then async_find_one(options, &block)
+    else             async_find_single(scope, options, &block)
+    end
+    return options[:multi_curb]
+  end
+  
+  
+  protected
+  
+  def self.async_find_single( id, options={}, &block )
+    options[:params] ||= {}
+    options[:params].symbolize_keys!
+    options[:params].merge!( :id => id )
+    client.async_api_call( element_path, options[:multi_curb], options[:params] ) do |result|
+      object = result[:error] ? nil : result[:data]
+      object.try( :tap ){ |r| 
+        r.prefix_options = { :user_id => options[:params][:user_id] } if options[:params][:user_id]
+        r.pagination = result[:pagination]; 
+        r.facets = result[:facets] 
+      }
+      block.call( object ) if block
+    end
+  end
+  
+  def self.async_find_every(item, options, &block)
+    options[:params] ||= {}
+    collection_block = Proc.new{ |result| 
+      collection = JAPI::PaginatedCollection.new( result ).each{ |x| 
+        x.prefix_options = { :user_id => options[:params][:user_id] } if options[:params][:user_id]
+        x 
+      }
+      block.call( item == :all ? collection : collection.send( item ) ) if block
+    }
+    case from = options[:from]
+    when Symbol :
+      client.async_api_call( "#{collection_path}/#{from}", options[:multi_curb], options[:params], &collection_block )
+    when String :
+      client.async_api_call( from, options[:multi_curb], options[:params], &collection_block )
+    else
+      client.async_api_call( collection_path, options[:multi_curb], options[:params], &collection_block )
+    end
+  end
+  
+  # Find a single resource from a one-off URL
+  def self.async_find_one(options, &block)
+    options[:params] ||= {}
+    object_block = Proc.new{ |result|
+      object = result[:error] ? nil : Array( result[:data] ).first 
+      object.try( :tap ){ |r| 
+        r.prefix_options = { :user_id => options[:params][:user_id] } if options[:params][:user_id]
+        r.pagination = result[:pagination]
+        r.facets = result[:facets]
+      }
+      block.call( object ) if block
+    }
+    case( from = options[:from] )
+    when Symbol :
+      client.async_api_call( "#{collection_path}/#{from}", options[:multi_curb], options[:params], &object_block )
+    when String :
+      client.async_api_call( from, options[:params], options[:multi_curb], &object_block )
+    else
+      client.async_api_call( collection_path, options[:multi_curb], options[:params], &object_block )
+    end
   end
   
 end
@@ -111,6 +218,21 @@ end
 
 JAPI::Topic.class_eval do
   
+  
+  def self.home_count_map( topic_preferences, prefix_options, default_time_span )
+    multi_curb = Curl::Multi.new
+    counts_map = {}
+    topic_preferences.each do |pref|
+      time_span = pref.time_span || default_time_span
+      time_span = 24.hours.to_i if time_span.nil? || time_span.to_i > 24.hours.to_i
+      async_find( :one, :multi_curb => multi_curb, :params => prefix_options.merge( :topic_id => pref.id, :time_span => time_span, :per_page => 0 ) ) do |object|
+        counts_map[ pref.id ] = object
+      end
+    end
+    multi_curb.perform
+    counts_map
+  end
+  
   # Last 24 hours
   def home_count( time_span )
     time_span = 24.hours.to_i if time_span.nil? || time_span.to_i > 24.hours.to_i
@@ -198,6 +320,8 @@ end
 
 JAPI::User.class_eval do
   
+  self.session_revalidation_timeout = 24.hours
+  
   def show_images?
     preference.image == 1
   end
@@ -233,45 +357,130 @@ JAPI::User.class_eval do
     j = JAPI::Preference.new( :id => self.id, :wizards => { wizard_id => 0 } )
     j.save
   end
+  
+  def set_home_blocks( edition, navigation_links = true )
+    set_multi_curb if multi_curb.nil?
+    user_id = new_record? ? 'default' : self.id
+    @home_blocks = ActiveSupport::OrderedHash.new
+    edition ||= JAPI::PreferenceOption.parse_edition( self.edition || 'int-en' )
+    home_blocks_order.each do |pref|
+      case( pref ) when :top_stories_cluster_group
+        @home_blocks[:top_stories] = []
+      when :cluster_groups
+        @home_blocks[:sections] = []
+        JAPI::ClusterGroup.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id, :cluster_group_id => 'all', :region_id => edition.region_id, :language_id => edition.language_id } ) do |objects|
+          @home_blocks[:sections] = objects
+        end
+      when :my_authors
+        @home_blocks[:my_authors] = []
+        JAPI::Story.async_find( :all, :from => :authors, :multi_curb => multi_curb, :params => { :author_ids => :all, :user_id => self.id, :preview => 1, :language_id => edition.language_id } ) do |objects|
+          @home_blocks[:my_authors] = [ objects ]
+        end unless self.id.blank?
+      when :my_topics
+        @home_blocks[:topics] = []
+        JAPI::Topic.async_find( :all, :multi_curb => multi_curb, :params => { :topic_id => :all, :user_id => self.id } ) do | objects |
+          @home_blocks[:topics] = objects
+        end unless self.id.blank?
+      end
+    end
+    set_navigation_links( edition, false ) if navigation_links
+    multi_curb.perform # blocking call
+    if @home_blocks[:sections].nil?
+      @home_blocks[:top_stories] = Array( JAPI::ClusterGroup.find( :one, :params => { :user_id => user_id, :cluster_group_id => 'top', :preview => 1, :region_id => edition.region_id, :language_id => edition.language_id } ) )
+    else
+      @home_blocks[:top_stories] = Array( @home_blocks[:sections].shift )
+    end if @home_blocks.key?( :top_stories )
+    @home_blocks.delete(:top_stories) if @home_blocks.key?( :top_stories ) && @home_blocks[:top_stories].first && @home_blocks[:top_stories].first.clusters.blank?
+    @home_blocks
+  end
+  
+  def set_navigation_links( edition, auto_perform = true )
+    set_multi_curb if multi_curb.nil?
+    user_id = new_record? ? 'default' : self.id
+    @navigation_links = ActiveSupport::OrderedHash.new
+    nav_blocks_order.each do |pref|
+      case( pref ) when :top_stories_cluster_group
+        @navigation_links[ :top_stories ] = JAPI::NavigationLink.new( :id => 'top', :name => 'Top Stories', :type => 'cluster_group' )
+      when :cluster_groups
+        @navigation_links[ :sections ] = nil 
+        JAPI::HomeClusterPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id, :language_id => edition.language_id, :region_id => edition.region_id } ) do |results|
+          @navigation_links[ :sections ] = results.collect{ |pref| 
+            JAPI::NavigationLink.new( :id => pref.cluster_group.id , :name => pref.cluster_group.name , :type => 'cluster_group' )
+          }
+        end
+        @navigation_links[ :add_section ] = JAPI::NavigationLink.new( :name => 'Add Section', :type => 'new_cluster_group', :remote => true )
+      when :my_topics
+        @navigation_links[ :topics ] = nil
+        JAPI::TopicPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id } ) do |results|
+          counts_map = JAPI::Topic.home_count_map( results, { :user_id => user_id }, self.preference.default_time_span ) # All topics count are done in parallel.
+          @navigation_links[ :topics ] = results.collect do |pref|
+            JAPI::NavigationLink.new( :id => pref.id, :name => pref.name, :translate => false, :type => 'topic' ).tap{ |l| 
+              l.base =  counts_map[ pref.id ]
+            }
+          end
+        end
+        @navigation_links[ :add_topic ] = JAPI::NavigationLink.new( :name => 'Add Topic', :type => 'new_topic', :remote => true )
+        @navigation_links[ :my_topics ] = JAPI::NavigationLink.new( :name => 'My Topics', :type => 'my_topics', :remote => true )
+      when :my_authors
+        @navigation_links[ :my_authors ] = JAPI::NavigationLink.new( :name => 'My Authors', :type => 'my_authors' ).tap{ |l| l.base = 0 }
+        JAPI::Story.async_find( :all, :from => :authors, :multi_curb => multi_curb, :params => { :author_ids => :all, :user_id => self.id, 
+          :per_page => 0, :time_span => 24.hours.to_i } 
+        ) do | results |
+          @navigation_links[ :my_authors ].base = results.facets.count
+        end
+      end
+    end
+    multi_curb.perform if auto_perform
+    @navigation_links
+  end
+
+  def home_blocks( edition = nil )
+    return @home_blocks if @home_blocks
+    set_home_blocks( edition )
+  end
+  
+  def navigation_links( edition = nil )
+    return @navigation_links if @navigation_links
+    set_navigation_links( edition )
+  end
+  
 
 end
 
-class CASClient::Frameworks::Rails::Filter
-  
-  
-  def self.account_login_url(controller)
-    service_url = read_service_url(controller)
-    uri = URI.parse(JAPI::Config[:connect][:account_server].to_s + '/login')
-    uri.query = "service=#{CGI.escape(service_url)}&jwa=1"
-    log.debug("Generated account login url: #{uri.to_s}")
-    return uri.to_s
-  end
-  
-  def self.redirect_to_cas_for_authentication(controller)
-    redirect_url = ''
-    if use_gatewaying?
-      controller.session[:cas_sent_to_gateway] = true
-      redirect_url << login_url(controller) << "&gateway=true"
-    else
-      controller.session[:cas_sent_to_gateway] = false
-      redirect_url << account_login_url(controller)
-    end
-    if controller.session[:previous_redirect_to_cas] &&
-        controller.session[:previous_redirect_to_cas] > (Time.now - 1.second)
-      log.warn("Previous redirect to the CAS server was less than a second ago. The client at #{controller.request.remote_ip.inspect} may be stuck in a redirection loop!")
-      controller.session[:cas_validation_retry_count] ||= 0
-      if controller.session[:cas_validation_retry_count] > 3
-        log.error("Redirection loop intercepted. Client at #{controller.request.remote_ip.inspect} will be redirected back to login page and forced to renew authentication.")
-        redirect_url += "&renew=1&redirection_loop_intercepted=1"
-      end
-      controller.session[:cas_validation_retry_count] += 1
-    else
-      controller.session[:cas_validation_retry_count] = 0
-    end
-    controller.session[:previous_redirect_to_cas] = Time.now
-    log.debug("Redirecting to #{redirect_url.inspect}")
-    controller.send(:redirect_to, redirect_url)
-  end
+class CASClient::Frameworks::Rails::Filter  
+  # def self.account_login_url(controller)
+  #   service_url = read_service_url(controller)
+  #   uri = URI.parse(JAPI::Config[:connect][:account_server].to_s + '/login')
+  #   uri.query = "service=#{CGI.escape(service_url)}&jwa=1"
+  #   log.debug("Generated account login url: #{uri.to_s}")
+  #   return uri.to_s
+  # end
+  # 
+  # def self.redirect_to_cas_for_authentication(controller)
+  #   redirect_url = ''
+  #   if use_gatewaying?
+  #     controller.session[:cas_sent_to_gateway] = true
+  #     redirect_url << login_url(controller) << "&gateway=true"
+  #   else
+  #     controller.session[:cas_sent_to_gateway] = false
+  #     redirect_url << account_login_url(controller)
+  #   end
+  #   if controller.session[:previous_redirect_to_cas] &&
+  #       controller.session[:previous_redirect_to_cas] > (Time.now - 1.second)
+  #     log.warn("Previous redirect to the CAS server was less than a second ago. The client at #{controller.request.remote_ip.inspect} may be stuck in a redirection loop!")
+  #     controller.session[:cas_validation_retry_count] ||= 0
+  #     if controller.session[:cas_validation_retry_count] > 3
+  #       log.error("Redirection loop intercepted. Client at #{controller.request.remote_ip.inspect} will be redirected back to login page and forced to renew authentication.")
+  #       redirect_url += "&renew=1&redirection_loop_intercepted=1"
+  #     end
+  #     controller.session[:cas_validation_retry_count] += 1
+  #   else
+  #     controller.session[:cas_validation_retry_count] = 0
+  #   end
+  #   controller.session[:previous_redirect_to_cas] = Time.now
+  #   log.debug("Redirecting to #{redirect_url.inspect}")
+  #   controller.send(:redirect_to, redirect_url)
+  # end
 end
 
 JAPI::Connect::InstanceMethods.class_eval do
@@ -351,7 +560,7 @@ JAPI::Connect::InstanceMethods.class_eval do
   
   def store_to_mem_cache_cas_last_valid_ticket
     return unless TICKET_STORE
-    TICKET_STORE.set( session[:session_id], session[:cas_last_valid_ticket], 15.minutes.to_i ) if session[:cas_last_valid_ticket]
+    TICKET_STORE.set( session[:session_id], session[:cas_last_valid_ticket], 2.hours.to_i ) if session[:cas_last_valid_ticket]
     session.delete( :cas_last_valid_ticket )
   end
   

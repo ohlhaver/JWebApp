@@ -7,6 +7,7 @@ class HomeController < ApplicationController
     if force_login == '1' && current_user.new_record?
       redirect_to :action => :index_with_login
     else
+      current_user.set_home_blocks( news_edition )
       @story_blocks = current_user.home_blocks( news_edition )
     end
   end

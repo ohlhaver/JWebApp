@@ -26,6 +26,26 @@ module Curb
     response.nil? ? raise( message ) : response 
   end
   
+  def self.async_post( url, data = "", options = {}, &block )
+    multi_curb = options.delete( :multi_curb )
+    catch_errors = options.delete(:catch_errors)
+    easy = Curl::Easy.new(url) do |curl|
+      curl.headers["User-Agent"] = (options[:user_agent] || USER_AGENT)
+      curl.headers["If-Modified-Since"] = options[:if_modified_since].httpdate if options.has_key?(:if_modified_since)
+      curl.headers["If-None-Match"] = options[:if_none_match] if options.has_key?(:if_none_match)
+      curl.headers["Accept-encoding"] = 'gzip, deflate' if options.has_key?(:compress)
+      curl.follow_location = true
+      curl.userpwd = options[:http_authentication].join(':') if options.has_key?(:http_authentication)
+      curl.http_auth_types = Array( options[:http_auth] ).collect{ |r| AUTH_TYPES[r] }.inject(0){|s,r| s = s | r } if options.has_key?( :http_auth )
+      curl.max_redirects = options[:max_redirects] if options[:max_redirects]
+      curl.timeout = options[:timeout] if options[:timeout]
+      curl.connect_timeout = options[:connect_timeout] if options[:connect_timeout]
+      curl.post_body = data
+      curl.on_complete{ |curl,code| block.call(curl) } if block
+    end
+    multi_curb.add( easy )
+  end
+  
   def self.post( url, data = "", options = {}, &block )
     catch_errors = options.delete(:catch_errors)
     easy = Curl::Easy.new(url) do |curl|
