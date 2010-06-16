@@ -12,10 +12,13 @@ class StoriesController < ApplicationController
     params_options.merge!( :page => params[:page], :per_page => params[:per_page], @filter => 4 )
     params_options[:user_id] = current_user.id unless current_user.new_record?
     params_options[:language_id] = news_edition.language_id if current_user.new_record?
-    @stories = JAPI::Story.find( :all, :params => params_options )
-    @authors = JAPI::Author.find( :all, :params => { :q => params[:q], :per_page => 3, :page => 1 } ) || []
-    @sources = JAPI::Source.find( :all, :params => { :q => params[:q], :per_page => 3, :page => 1 } ) || []
-    @page_title = I18n.t( "seo.page.title.search", :query => params[:q] )
+    multi_curb = Curl::Multi.new
+    JAPI::Story.async_find( :all, :multi_curb => multi_curb, :params => params_options ){ |results| @stories = results }
+    JAPI::Author.async_find( :all, :multi_curb => multi_curb, :params => { :q => params[:q], :per_page => 3, :page => 1 } ){ |results|  @authors = results || [] }
+    JAPI::Source.async_find( :all, :multi_curb => multi_curb, :params => { :q => params[:q], :per_page => 3, :page => 1 } ){ |results| @sources = results || [] }
+    multi_curb.perform do
+      @page_title = I18n.t( "seo.page.title.search", :query => params[:q] )
+    end
   end
   
   def advanced
