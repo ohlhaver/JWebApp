@@ -31,17 +31,14 @@ module Curb
     catch_errors = options.delete(:catch_errors)
     easy = Curl::Easy.new(url) do |curl|
       curl.headers["User-Agent"] = (options[:user_agent] || USER_AGENT)
-      #curl.headers["If-Modified-Since"] = options[:if_modified_since].httpdate if options.has_key?(:if_modified_since)
-      #curl.headers["If-None-Match"] = options[:if_none_match] if options.has_key?(:if_none_match)
-      #curl.headers["Accept-encoding"] = 'gzip, deflate' if options.has_key?(:compress)
       curl.follow_location = false
       curl.userpwd = options[:http_authentication].join(':') if options.has_key?(:http_authentication)
       curl.http_auth_types = Array( options[:http_auth] ).collect{ |r| AUTH_TYPES[r] }.inject(0){|s,r| s = s | r } if options.has_key?( :http_auth )
       curl.max_redirects = 0
-      curl.timeout = options[:timeout] if options[:timeout]
+      curl.timeout = 15 # wait for 10 seconds.
       curl.connect_timeout = 30 # wait for 30 seconds.
       curl.post_body = data
-      curl.on_complete{ |easy_curl,code| block.call(easy_curl) } if block
+      curl.on_complete{ |easy_curl, code| block.call(easy_curl) } if block
     end
     multi_curb.add( easy )
   end
