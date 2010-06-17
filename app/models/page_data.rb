@@ -101,7 +101,7 @@ class PageData
         @home_blocks[:topics] = ActiveSupport::OrderedHash.new
         (user.topic_preferences || []).each do |pref|
           @home_blocks[:topics][ pref.id] = nil
-          JAPI::Topic.async_find( :one, :multi_curb => multi_curb, :params => { :topic_id => pref.id, :user_id => user.id } ) do | topic |
+          JAPI::Topic.async_find( :one, :multi_curb => multi_curb, :params => { :topic_id => pref.id, :user_id => user.id, :preview => 1 } ) do | topic |
             @home_blocks[:topics][ topic.id ] = topic
           end
         end unless user.new_record?
