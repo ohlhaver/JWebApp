@@ -5,8 +5,7 @@ RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
-
-gem('taf2-curb')
+gem('curb')
 require 'curb'
 
 Rails::Initializer.run do |config|
