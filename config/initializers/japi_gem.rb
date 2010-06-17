@@ -218,6 +218,16 @@ end
 
 JAPI::Topic.class_eval do
   
+  def self.async_home_count_map( multi_curb, topic_preferences, prefix_options, default_time_span, &block )
+    topic_preferences.each do |pref|
+      time_span = pref.time_span || default_time_span
+      time_span = 24.hours.to_i if time_span.nil? || time_span.to_i > 24.hours.to_i
+      async_find( :one, :multi_curb => multi_curb, :params => prefix_options.merge( :topic_id => pref.id, :time_span => time_span, :per_page => 0 ) ) do |object|
+        block.call( object ) if block
+      end
+    end
+  end
+  
   
   def self.home_count_map( topic_preferences, prefix_options, default_time_span )
     multi_curb = Curl::Multi.new
@@ -320,7 +330,26 @@ end
 
 JAPI::User.class_eval do
   
+  attr_accessor :home_blocks
+  attr_accessor :home_blocks_order
+  attr_accessor :navigation_links
+  attr_accessor :topic_preferences
+  attr_accessor :preference
+  attr_accessor :section_preferences
+  
   self.session_revalidation_timeout = 24.hours
+  
+  def home_blocks_legacy
+    blocks = ActiveSupport::OrderedHash.new
+    home_blocks.each do |key, value|
+      blocks[ key ] = case( key ) 
+      when :top_stories, :my_authors : Array( value )
+      when :sections, :topics : home_blocks[ key ].keys.collect{ |k| home_blocks[ key ][ k ] }
+      else value
+      end
+    end
+    blocks
+  end
   
   def show_images?
     preference.image == 1
@@ -358,91 +387,91 @@ JAPI::User.class_eval do
     j.save
   end
   
-  def set_home_blocks( edition, navigation_links = true )
-    set_multi_curb if multi_curb.nil?
-    user_id = new_record? ? 'default' : self.id
-    @home_blocks = ActiveSupport::OrderedHash.new
-    edition ||= JAPI::PreferenceOption.parse_edition( self.edition || 'int-en' )
-    home_blocks_order.each do |pref|
-      case( pref ) when :top_stories_cluster_group
-        @home_blocks[:top_stories] = []
-      when :cluster_groups
-        @home_blocks[:sections] = []
-        JAPI::ClusterGroup.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id, :cluster_group_id => 'all', :region_id => edition.region_id, :language_id => edition.language_id } ) do |objects|
-          @home_blocks[:sections] = objects
-        end
-      when :my_authors
-        @home_blocks[:my_authors] = []
-        JAPI::Story.async_find( :all, :from => :authors, :multi_curb => multi_curb, :params => { :author_ids => :all, :user_id => self.id, :preview => 1, :language_id => edition.language_id } ) do |objects|
-          @home_blocks[:my_authors] = [ objects ]
-        end unless self.id.blank?
-      when :my_topics
-        @home_blocks[:topics] = []
-        JAPI::Topic.async_find( :all, :multi_curb => multi_curb, :params => { :topic_id => :all, :user_id => self.id } ) do | objects |
-          @home_blocks[:topics] = objects
-        end unless self.id.blank?
-      end
-    end
-    set_navigation_links( edition, false ) if navigation_links
-    multi_curb.perform # blocking call
-    if @home_blocks[:sections].nil?
-      @home_blocks[:top_stories] = Array( JAPI::ClusterGroup.find( :one, :params => { :user_id => user_id, :cluster_group_id => 'top', :preview => 1, :region_id => edition.region_id, :language_id => edition.language_id } ) )
-    else
-      @home_blocks[:top_stories] = Array( @home_blocks[:sections].shift )
-    end if @home_blocks.key?( :top_stories )
-    @home_blocks.delete(:top_stories) if @home_blocks.key?( :top_stories ) && @home_blocks[:top_stories].first && @home_blocks[:top_stories].first.clusters.blank?
-    @home_blocks
-  end
-  
-  def set_navigation_links( edition, auto_perform = true )
-    set_multi_curb if multi_curb.nil?
-    user_id = new_record? ? 'default' : self.id
-    @navigation_links = ActiveSupport::OrderedHash.new
-    nav_blocks_order.each do |pref|
-      case( pref ) when :top_stories_cluster_group
-        @navigation_links[ :top_stories ] = JAPI::NavigationLink.new( :id => 'top', :name => 'Top Stories', :type => 'cluster_group' )
-      when :cluster_groups
-        @navigation_links[ :sections ] = nil 
-        JAPI::HomeClusterPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id, :language_id => edition.language_id, :region_id => edition.region_id } ) do |results|
-          @navigation_links[ :sections ] = results.collect{ |pref| 
-            JAPI::NavigationLink.new( :id => pref.cluster_group.id , :name => pref.cluster_group.name , :type => 'cluster_group' )
-          }
-        end
-        @navigation_links[ :add_section ] = JAPI::NavigationLink.new( :name => 'Add Section', :type => 'new_cluster_group', :remote => true )
-      when :my_topics
-        @navigation_links[ :topics ] = nil
-        JAPI::TopicPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id } ) do |results|
-          counts_map = JAPI::Topic.home_count_map( results, { :user_id => user_id }, self.preference.default_time_span ) # All topics count are done in parallel.
-          @navigation_links[ :topics ] = results.collect do |pref|
-            JAPI::NavigationLink.new( :id => pref.id, :name => pref.name, :translate => false, :type => 'topic' ).tap{ |l| 
-              l.base =  counts_map[ pref.id ]
-            }
-          end
-        end
-        @navigation_links[ :add_topic ] = JAPI::NavigationLink.new( :name => 'Add Topic', :type => 'new_topic', :remote => true )
-        @navigation_links[ :my_topics ] = JAPI::NavigationLink.new( :name => 'My Topics', :type => 'my_topics', :remote => true )
-      when :my_authors
-        @navigation_links[ :my_authors ] = JAPI::NavigationLink.new( :name => 'My Authors', :type => 'my_authors' ).tap{ |l| l.base = 0 }
-        JAPI::Story.async_find( :all, :from => :authors, :multi_curb => multi_curb, :params => { :author_ids => :all, :user_id => self.id, 
-          :per_page => 0, :time_span => 24.hours.to_i } 
-        ) do | results |
-          @navigation_links[ :my_authors ].base = results.facets.count
-        end
-      end
-    end
-    multi_curb.perform if auto_perform
-    @navigation_links
-  end
-
-  def home_blocks( edition = nil )
-    return @home_blocks if @home_blocks
-    set_home_blocks( edition )
-  end
-  
-  def navigation_links( edition = nil )
-    return @navigation_links if @navigation_links
-    set_navigation_links( edition )
-  end
+  # def set_home_blocks( edition, navigation_links = true )
+  #   set_multi_curb if multi_curb.nil?
+  #   user_id = new_record? ? 'default' : self.id
+  #   @home_blocks = ActiveSupport::OrderedHash.new
+  #   edition ||= JAPI::PreferenceOption.parse_edition( self.edition || 'int-en' )
+  #   home_blocks_order.each do |pref|
+  #     case( pref ) when :top_stories_cluster_group
+  #       @home_blocks[:top_stories] = []
+  #     when :cluster_groups
+  #       @home_blocks[:sections] = []
+  #       JAPI::ClusterGroup.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id, :cluster_group_id => 'all', :region_id => edition.region_id, :language_id => edition.language_id } ) do |objects|
+  #         @home_blocks[:sections] = objects
+  #       end
+  #     when :my_authors
+  #       @home_blocks[:my_authors] = []
+  #       JAPI::Story.async_find( :all, :from => :authors, :multi_curb => multi_curb, :params => { :author_ids => :all, :user_id => self.id, :preview => 1, :language_id => edition.language_id } ) do |objects|
+  #         @home_blocks[:my_authors] = [ objects ]
+  #       end unless self.id.blank?
+  #     when :my_topics
+  #       @home_blocks[:topics] = []
+  #       JAPI::Topic.async_find( :all, :multi_curb => multi_curb, :params => { :topic_id => :all, :user_id => self.id } ) do | objects |
+  #         @home_blocks[:topics] = objects
+  #       end unless self.id.blank?
+  #     end
+  #   end
+  #   set_navigation_links( edition, false ) if navigation_links
+  #   multi_curb.perform # blocking call
+  #   if @home_blocks[:sections].nil?
+  #     @home_blocks[:top_stories] = Array( JAPI::ClusterGroup.find( :one, :params => { :user_id => user_id, :cluster_group_id => 'top', :preview => 1, :region_id => edition.region_id, :language_id => edition.language_id } ) )
+  #   else
+  #     @home_blocks[:top_stories] = Array( @home_blocks[:sections].shift )
+  #   end if @home_blocks.key?( :top_stories )
+  #   @home_blocks.delete(:top_stories) if @home_blocks.key?( :top_stories ) && @home_blocks[:top_stories].first && @home_blocks[:top_stories].first.clusters.blank?
+  #   @home_blocks
+  # end
+  # 
+  # def set_navigation_links( edition, auto_perform = true )
+  #   set_multi_curb if multi_curb.nil?
+  #   user_id = new_record? ? 'default' : self.id
+  #   @navigation_links = ActiveSupport::OrderedHash.new
+  #   nav_blocks_order.each do |pref|
+  #     case( pref ) when :top_stories_cluster_group
+  #       @navigation_links[ :top_stories ] = JAPI::NavigationLink.new( :id => 'top', :name => 'Top Stories', :type => 'cluster_group' )
+  #     when :cluster_groups
+  #       @navigation_links[ :sections ] = nil 
+  #       JAPI::HomeClusterPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id, :language_id => edition.language_id, :region_id => edition.region_id } ) do |results|
+  #         @navigation_links[ :sections ] = results.collect{ |pref| 
+  #           JAPI::NavigationLink.new( :id => pref.cluster_group.id , :name => pref.cluster_group.name , :type => 'cluster_group' )
+  #         }
+  #       end
+  #       @navigation_links[ :add_section ] = JAPI::NavigationLink.new( :name => 'Add Section', :type => 'new_cluster_group', :remote => true )
+  #     when :my_topics
+  #       @navigation_links[ :topics ] = nil
+  #       JAPI::TopicPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id } ) do |results|
+  #         counts_map = JAPI::Topic.home_count_map( results, { :user_id => user_id }, self.preference.default_time_span ) # All topics count are done in parallel.
+  #         @navigation_links[ :topics ] = results.collect do |pref|
+  #           JAPI::NavigationLink.new( :id => pref.id, :name => pref.name, :translate => false, :type => 'topic' ).tap{ |l| 
+  #             l.base =  counts_map[ pref.id ]
+  #           }
+  #         end
+  #       end
+  #       @navigation_links[ :add_topic ] = JAPI::NavigationLink.new( :name => 'Add Topic', :type => 'new_topic', :remote => true )
+  #       @navigation_links[ :my_topics ] = JAPI::NavigationLink.new( :name => 'My Topics', :type => 'my_topics', :remote => true )
+  #     when :my_authors
+  #       @navigation_links[ :my_authors ] = JAPI::NavigationLink.new( :name => 'My Authors', :type => 'my_authors' ).tap{ |l| l.base = 0 }
+  #       JAPI::Story.async_find( :all, :from => :authors, :multi_curb => multi_curb, :params => { :author_ids => :all, :user_id => self.id, 
+  #         :per_page => 0, :time_span => 24.hours.to_i } 
+  #       ) do | results |
+  #         @navigation_links[ :my_authors ].base = results.facets.count
+  #       end
+  #     end
+  #   end
+  #   multi_curb.perform if auto_perform
+  #   @navigation_links
+  # end
+  # 
+  # def home_blocks( edition = nil )
+  #   return @home_blocks if @home_blocks
+  #   set_home_blocks( edition )
+  # end
+  # 
+  # def navigation_links( edition = nil )
+  #   return @navigation_links if @navigation_links
+  #   set_navigation_links( edition )
+  # end
   
 
 end
@@ -484,6 +513,12 @@ class CASClient::Frameworks::Rails::Filter
 end
 
 JAPI::Connect::InstanceMethods.class_eval do
+  
+  def after_japi_connect
+    @page_data = PageData.new( current_user, :edition => news_edition, :navigation => true )
+    @page_data.finalize
+    current_user.navigation_links = @page_data.navigation_links
+  end
   
   # Checks for session validation after 10.minutes
   def session_check_for_validation
@@ -629,6 +664,7 @@ JAPI::Connect::ClassMethods.class_eval do
     before_filter :set_locale
     before_filter :check_for_new_users, options
     before_filter :redirect_to_activation_page_if_not_active, options
+    before_filter :after_japi_connect
   end
   
   def japi_connect_login_optional( options = {} )
@@ -649,6 +685,7 @@ JAPI::Connect::ClassMethods.class_eval do
     before_filter :set_locale
     before_filter :check_for_new_users, options
     before_filter :redirect_to_activation_page_if_not_active, options
+    before_filter :after_japi_connect
   end
   
 end
