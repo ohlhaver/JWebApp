@@ -344,7 +344,7 @@ JAPI::User.class_eval do
     home_blocks.each do |key, value|
       blocks[ key ] = case( key ) 
       when :top_stories, :my_authors : Array( value )
-      when :sections, :topics : home_blocks[ key ].keys.collect{ |k| home_blocks[ key ][ k ] }
+      when :sections, :topics : home_blocks[ key ].keys.collect{ |k| home_blocks[ key ][ k ] }.select{ |x| !x.nil? }
       else value
       end
     end
