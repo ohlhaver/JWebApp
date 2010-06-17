@@ -16,9 +16,8 @@ class StoriesController < ApplicationController
     JAPI::Story.async_find( :all, :multi_curb => multi_curb, :params => params_options ){ |results| @stories = results }
     JAPI::Author.async_find( :all, :multi_curb => multi_curb, :params => { :q => params[:q], :per_page => 3, :page => 1 } ){ |results| @authors = results || [] }
     JAPI::Source.async_find( :all, :multi_curb => multi_curb, :params => { :q => params[:q], :per_page => 3, :page => 1 } ){ |results| @sources = results || [] }
-    multi_curb.perform do
-      @page_title = I18n.t( "seo.page.title.search", :query => params[:q] )
-    end
+    multi_curb.perform
+    @page_title = I18n.t( "seo.page.title.search", :query => params[:q] )
   end
   
   def advanced
