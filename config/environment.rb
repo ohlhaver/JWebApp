@@ -7,7 +7,7 @@ RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 gem('curb')
 require 'curb'
-Curl::Multi.default_timeout = 5000
+Curl::Multi.default_timeout = 10
 
 Rails::Initializer.run do |config|
   
