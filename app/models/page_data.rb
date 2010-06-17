@@ -9,6 +9,7 @@ class PageData
   
   def initialize( user, options = {} )
     @multi_curb = Curl::Multi.new
+    @multi_curb.default_timeout = 5000
     @multi_curb.max_connects = 5
     @user = user
     @edition = ( options[:edition] || JAPI::PreferenceOption.parse_edition( user.edition || 'int-en' ) )
@@ -31,6 +32,8 @@ class PageData
   
   def set_user_preferences( &block )
     new_multi_curb = Curl::Multi.new
+    new_multi_curb.default_timeout = 5000
+    new_multi_curb.max_connects = 5
     JAPI::HomeDisplayPreference.async_find( :all, :multi_curb => new_multi_curb, :params => { :user_id => user_id } ){ |prefs|
       user.home_blocks_order = prefs.collect{ |pref| pref.element.code }
     }
