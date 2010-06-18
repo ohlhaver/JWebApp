@@ -12,7 +12,7 @@
         <div class='<%= menuItemClass -%> actionsBox'>
           	<!-- google_ad_section_start(weight=ignore) --> 
 			 <div style='margin-bottom:10px;'>
-	            <%= link_to( t('prefs.label.add_to_reading_list'), { :controller => '/reading_list', :action => :create, :id => story.id }, :method => :post ) %>
+	            <%= link_to( t('prefs.label.add_to_reading_list'), { :controller => '/reading_list', :action => :create, :id => story.id }, :method => :post, :rel => :nofollow ) %>
 	          </div>
 			<!-- google_ad_section_end -->
         </div>

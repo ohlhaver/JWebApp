@@ -568,7 +568,7 @@ JAPI::Connect::InstanceMethods.class_eval do
   end
   
   def web_spider?
-    request.user_agent =~ /(Googlebot)|(Slurp)|(spider)|(Sogou)|(robot)|(Mediapartners\-Google)/
+    request.user_agent =~ /(Googlebot)|(Slurp)|(spider)|(Sogou)|(robot)|(Mediapartners\-Google)|(msnbot)/
   end
   
   def store_referer_location
