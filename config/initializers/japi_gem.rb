@@ -171,6 +171,8 @@ JAPI::PreferenceOption.class_eval do
   end
   
   def self.async_load_all
+    @@clusters_group_options ||= {}
+    return unless @@clusters_group_options == {}
     multi_curb = Curl::Multi.new
     prefs = { :category_id => :category, :time_span => :time_span, 
       :blog => :blog_pref, :video => :video_pref, :opinion => :opinion_pref, 
@@ -566,7 +568,7 @@ JAPI::Connect::InstanceMethods.class_eval do
   end
   
   def web_spider?
-    request.user_agent =~ /(Googlebot)|(Slurp)|(spider)|(Sogou)|(robot)|(Mediapartners-Google)/
+    request.user_agent =~ /(Googlebot)|(Slurp)|(spider)|(Sogou)|(robot)|(Mediapartners\-Google)/
   end
   
   def store_referer_location
