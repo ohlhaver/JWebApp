@@ -170,6 +170,30 @@ JAPI::PreferenceOption.class_eval do
     edition_country_map[ country_code ] || 'int-en'
   end
   
+  def self.async_load_all
+    multi_curb = Curl::Multi.new
+    prefs = { :category_id => :category, :time_span => :time_span, 
+      :blog => :blog_pref, :video => :video_pref, :opinion => :opinion_pref, 
+      :author => :author_rating, :source => :source_rating,
+      :sort_criteria => :sort_criteria, :region_id => :region,
+      :language_id => :language, :subscription_type => :subscription_type }
+    prefs.each do |pref, name|  
+      async_find( :all, :params => { :preference_id => pref }, :multi_curb => multi_curb ) do | result |
+        class_variable_set( "@@#{ name }_options", result.freeze )
+      end
+    end
+    multi_curb.perform
+    @@clusters_group_options = {}
+    [ 'int-en', 'in-en', 'gb-en', 'us-en', 'de-de', 'at-de', 'ch-de' ].each do |edition|
+      edition = JAPI::PreferenceOption.parse_edition( edition )
+      hash_key = "#{edition.region}_#{edition.locale}"
+      async_find( :all, :params => { :preference_id => :homepage_cluster_groups, :region_id => edition.region_id, :language_id => edition.locale_id }, :multi_curb => multi_curb ) do |object|
+        @@clusters_group_options[ hash_key ] = object
+      end
+    end
+    multi_curb.perform
+  end
+  
 end
 
 JAPI::ClusterGroup.class_eval do

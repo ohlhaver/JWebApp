@@ -51,6 +51,7 @@ ExceptionNotification::Notifier.exception_recipients = %w(ram@rforce.in ohlhaver
 ExceptionNotification::Notifier.sender_address = %(no-reply@jurnalo.com)
 
 Rails.logger.info( "Rails Initialized" )
+JAPI::PreferenceOption.async_load_all
 
 if defined?(PhusionPassenger)
   PhusionPassenger.on_event(:starting_worker_process) do |forked|
