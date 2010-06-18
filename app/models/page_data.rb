@@ -15,7 +15,7 @@ class PageData
     set_user_preferences do
       JAPI::ClusterGroup.async_find( :one, :multi_curb => multi_curb, :params => { 
         :user_id => user.id, :language_id => edition.language_id, :region_id => edition.region_id,
-        :cluster_group_id => 'top', :preview => 1 } ){ |cluster| @top_stories = cluster } if options[:top_stories]
+        :cluster_group_id => 'top', :preview => 1 } ){ |cluster| @top_stories = cluster } if options[:top_stories] && @top_stories.nil?
     end
     set_navigation_links if options[:navigation]
     yield( self ) if block_given?
@@ -30,7 +30,7 @@ class PageData
       count = 0
       begin
         count += 1
-        SystemTimer.timeout_after(6) do
+        SystemTimer.timeout_after( 5 ) do
           multi_curb.perform
         end
       rescue Timeout::Error 
@@ -42,20 +42,28 @@ class PageData
   end
   
   def set_user_preferences( &block )
-    JAPI::HomeDisplayPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id } ){ |prefs|
-      user.home_blocks_order = prefs.collect{ |pref| pref.element.code }
-    }
-    JAPI::Preference.async_find( user_id, :multi_curb => multi_curb ){ |pref|
-      user.preference = pref
-    }
-    JAPI::TopicPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id } ){ |prefs|
-      user.topic_preferences = prefs
-    }
-    JAPI::HomeClusterPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id, :region_id => edition.region_id, :language_id => edition.language_id } ){ |prefs|
-      user.section_preferences = prefs
-    }
-    block.call if block #( new_multi_curb ) if block
-    multi_curb.perform
+    count = 0
+    while( true)
+      count += 1
+      JAPI::HomeDisplayPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id } ){ |prefs|
+        user.home_blocks_order = prefs.collect{ |pref| pref.element.code }
+      } if user.home_blocks_order.nil?
+    
+      JAPI::Preference.async_find( user_id, :multi_curb => multi_curb ){ |pref|
+        user.preference = pref
+      } if user.preference.nil?
+    
+      JAPI::TopicPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id } ){ |prefs|
+        user.topic_preferences = prefs
+      } if user.topic_preferences.nil?
+    
+      JAPI::HomeClusterPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id, :region_id => edition.region_id, :language_id => edition.language_id } ){ |prefs|
+        user.section_preferences = prefs
+      } if user.section_preferences.nil?
+      block.call if block #( new_multi_curb ) if block
+      self.finalize
+      break if count > 2 || ( user.preference && user.home_blocks_order && user.topic_preferences && user.section_preferences )
+    end
   end
   
   def set_navigation_links
