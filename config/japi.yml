@@ -22,5 +22,5 @@ client:
     base_url: http://api.jurnalo.com
     access_key: VGYt8Yx2UIce2xIvOYMJ
   production:
-    base_url: http://api.jurnalo.com
+    base_url: http://10.176.252.94
     access_key: VGYt8Yx2UIce2xIvOYMJ

@@ -34,7 +34,7 @@ class PageData
           multi_curb.perform
         end
       rescue Timeout::Error 
-        retry unless count > 5
+        retry unless count > 2
       end
     else
       multi_curb.perform
@@ -48,15 +48,12 @@ class PageData
       JAPI::HomeDisplayPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id } ){ |prefs|
         user.home_blocks_order = prefs.collect{ |pref| pref.element.code }
       } if user.home_blocks_order.nil?
-    
       JAPI::Preference.async_find( user_id, :multi_curb => multi_curb ){ |pref|
         user.preference = pref
       } if user.preference.nil?
-    
       JAPI::TopicPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id } ){ |prefs|
         user.topic_preferences = prefs
       } if user.topic_preferences.nil?
-    
       JAPI::HomeClusterPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id, :region_id => edition.region_id, :language_id => edition.language_id } ){ |prefs|
         user.section_preferences = prefs
       } if user.section_preferences.nil?
