@@ -57,6 +57,7 @@ if defined?(PhusionPassenger)
     if forked
       Rails.logger.info( 'Passenger Forked' )
       JAPI::Model::Base.client = JAPI::Client.new( JAPI::Config[:client] )
+      TICKET_STORE.reset if TICKET_STORE
     end
   end
 end
