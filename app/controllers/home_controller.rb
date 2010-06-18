@@ -1,3 +1,4 @@
+require 'benchmark'
 class HomeController < ApplicationController
   
   japi_connect_login_optional :except => :index_with_login
@@ -18,11 +19,14 @@ class HomeController < ApplicationController
   protected
   
   def after_japi_connect
-    @page_data = PageData.new( current_user, :edition => news_edition, :top_stories => true, :navigation => true )
-    @page_data.set_home_blocks
-    @page_data.finalize
-    current_user.navigation_links = @page_data.navigation_links
-    current_user.home_blocks = @page_data.home_blocks
+    bm = Benchmark.measure { 
+      @page_data = PageData.new( current_user, :edition => news_edition, :top_stories => true, :navigation => true )
+      @page_data.set_home_blocks
+      @page_data.finalize
+      current_user.navigation_links = @page_data.navigation_links
+      current_user.home_blocks = @page_data.home_blocks
+    }
+    logger.info( bm.to_s )
   end
   
 end
