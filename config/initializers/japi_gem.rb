@@ -171,6 +171,7 @@ JAPI::PreferenceOption.class_eval do
   end
   
   def self.async_load_all
+    return unless @@cluster_group_options == nil
     multi_curb = Curl::Multi.new
     prefs = { :category_id => :category, :time_span => :time_span, 
       :blog => :blog_pref, :video => :video_pref, :opinion => :opinion_pref, 
@@ -557,13 +558,17 @@ JAPI::Connect::InstanceMethods.class_eval do
     #   return
     # end
     if last_st.nil? && session[ :cas_user_attrs ].nil?
-      session[ :cas_sent_to_gateway ] = true if request.referer && URI.parse( request.referer ).host != JAPI::Config[:connect][:account_server].host
+      session[ :cas_sent_to_gateway ] = true if web_spider? || ( request.referer && URI.parse( request.referer ).host != JAPI::Config[:connect][:account_server].host )
       return
     end
     if request.get? && !request.xhr? && ( session[:revalidate].nil? || session[:revalidate] < Time.now.utc )
       session[:cas_last_valid_ticket] = nil
       session[:revalidate] = JAPI::User.session_revalidation_timeout.from_now
     end
+  end
+  
+  def web_spider?
+    request.user_agent =~ /(Googlebot)|(Slurp)|(spider)|(Sogou)|(robot)/
   end
   
   def store_referer_location

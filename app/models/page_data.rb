@@ -104,7 +104,7 @@ class PageData
     @home_blocks = ActiveSupport::OrderedHash.new
     user.home_blocks_order.each do |pref|
       case( pref ) when :top_stories_cluster_group
-        @home_blocks[:top_stories] = nil
+        @home_blocks[:top_stories] = []
       when :cluster_groups
         @home_blocks[:sections] = nil #ActiveSupport::OrderedHash.new
         JAPI::ClusterGroup.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id, :cluster_group_id => 'all', :region_id => edition.region_id, :language_id => edition.language_id } ) do |objects|
