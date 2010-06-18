@@ -9,7 +9,7 @@ class PageData
   
   def initialize( user, options = {} )
     @multi_curb = Curl::Multi.new
-    @multi_curb.pipeline = true
+    @multi_curb.pipeline = false
     @user = user
     @edition = ( options[:edition] || JAPI::PreferenceOption.parse_edition( user.edition || 'int-en' ) )
     set_user_preferences do
@@ -25,6 +25,13 @@ class PageData
     user.new_record? ? 'default' : user.id
   end
   
+  def add( &block )
+    block.call( multi_curb )
+  end
+  
+  # Needed with passenger 
+  # because it used to get hanged indefinitely.
+  # Not sure why?.
   def finalize
     if defined?( SystemTimer )
       count = 0
