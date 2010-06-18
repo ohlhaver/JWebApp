@@ -171,7 +171,8 @@ JAPI::PreferenceOption.class_eval do
   end
   
   def self.async_load_all
-    return unless @@clusters_group_options == nil
+    @@clusters_group_options ||= {}
+    return unless @@clusters_group_options == {}
     multi_curb = Curl::Multi.new
     prefs = { :category_id => :category, :time_span => :time_span, 
       :blog => :blog_pref, :video => :video_pref, :opinion => :opinion_pref, 
@@ -184,7 +185,6 @@ JAPI::PreferenceOption.class_eval do
       end
     end
     multi_curb.perform
-    @@clusters_group_options = {}
     [ 'int-en', 'in-en', 'gb-en', 'us-en', 'de-de', 'at-de', 'ch-de' ].each do |edition|
       edition = JAPI::PreferenceOption.parse_edition( edition )
       hash_key = "#{edition.region}_#{edition.locale}"
