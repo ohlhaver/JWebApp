@@ -171,7 +171,7 @@ JAPI::PreferenceOption.class_eval do
   end
   
   def self.async_load_all
-    return unless @@cluster_group_options == nil
+    return unless @@clusters_group_options == nil
     multi_curb = Curl::Multi.new
     prefs = { :category_id => :category, :time_span => :time_span, 
       :blog => :blog_pref, :video => :video_pref, :opinion => :opinion_pref, 
