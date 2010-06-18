@@ -28,7 +28,7 @@ class PageData
   def finalize
     if defined?( SystemTimer )
       SystemTimer.timeout_after(6) do
-        multi_curb.perfom
+        multi_curb.perform
       end
     else
       multi_curb.perform
