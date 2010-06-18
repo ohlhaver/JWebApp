@@ -106,7 +106,7 @@ class PageData
       case( pref ) when :top_stories_cluster_group
         @home_blocks[:top_stories] = []
       when :cluster_groups
-        @home_blocks[:sections] = nil #ActiveSupport::OrderedHash.new
+        @home_blocks[:sections] = []#ActiveSupport::OrderedHash.new
         JAPI::ClusterGroup.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id, :cluster_group_id => 'all', :region_id => edition.region_id, :language_id => edition.language_id } ) do |objects|
           @home_blocks[:sections] = objects
           if @home_blocks[:sections].nil?
@@ -135,7 +135,7 @@ class PageData
           @home_blocks[:my_authors] = [ objects ]
         end unless user.new_record?
       when :my_topics
-        @home_blocks[:topics] = nil # ActiveSupport::OrderedHash.new
+        @home_blocks[:topics] = [] # ActiveSupport::OrderedHash.new
         JAPI::Topic.async_find( :all, :multi_curb => multi_curb, :params => { :topic_id => :all, :user_id => user.id } ) do | objects |
           @home_blocks[:topics] = objects
         end unless user.new_record?
