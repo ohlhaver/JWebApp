@@ -27,8 +27,14 @@ class PageData
   
   def finalize
     if defined?( SystemTimer )
-      SystemTimer.timeout_after(6) do
-        multi_curb.perform
+      count = 0
+      begin
+        count += 1
+        SystemTimer.timeout_after(6) do
+          multi_curb.perform
+        end
+      rescue Timeout::Error 
+        retry unless count > 5
       end
     else
       multi_curb.perform
