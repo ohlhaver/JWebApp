@@ -10,6 +10,7 @@ class PageData
   def initialize( user, options = {} )
     @multi_curb = Curl::Multi.new
     @multi_curb.pipeline = false
+    @multi_curb.max_connects = 20
     @user = user
     @edition = ( options[:edition] || JAPI::PreferenceOption.parse_edition( user.edition || 'int-en' ) )
     set_user_preferences do
