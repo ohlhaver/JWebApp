@@ -76,7 +76,7 @@ class PageData
   end
   
   def set_navigation_links
-    return unless @navigation_links.nil? && options[:navigation] && user.section_preferences && user.topic_preferences && user.home_blocks_order
+    return unless @navigation_links.nil? && options[:navigation] && user.preference && user.section_preferences && user.topic_preferences && user.home_blocks_order
     @navigation_links = ActiveSupport::OrderedHash.new
     user.nav_blocks_order.each do |pref|
       case( pref ) when :top_stories_cluster_group
