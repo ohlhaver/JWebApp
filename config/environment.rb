@@ -26,6 +26,7 @@ Rails::Initializer.run do |config|
   # Specify gems that this application depends on and have them installed with rake gems:install
   # config.gem "bj"
   config.gem 'nokogiri'
+  ActiveSupport::XmlMini.backend = 'Nokogiri'
   
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -46,8 +47,6 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 end
-
-ActiveSupport::XmlMini.backend = 'Nokogiri'
 
 ExceptionNotification::Notifier.exception_recipients = %w(ram@rforce.in ohlhaver@gmail.com)
 ExceptionNotification::Notifier.sender_address = %(no-reply@jurnalo.com)
