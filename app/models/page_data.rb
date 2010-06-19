@@ -1,3 +1,5 @@
+# Benchmark.measure{ p = PageData.new(u, :navigation => true, :home => true ) }.to_s
+
 class PageData
   
   attr_reader :multi_curb
@@ -6,19 +8,16 @@ class PageData
   attr_reader :home_blocks
   attr_reader :user
   attr_reader :top_stories
+  attr_reader :options
   
   def initialize( user, options = {} )
     @multi_curb = Curl::Multi.new
     @multi_curb.pipeline = false
-    @multi_curb.max_connects = 20
+    @multi_curb.max_connects = 48
     @user = user
+    @options = options
     @edition = ( options[:edition] || JAPI::PreferenceOption.parse_edition( user.edition || 'int-en' ) )
-    set_user_preferences do
-      JAPI::ClusterGroup.async_find( :one, :multi_curb => multi_curb, :params => { 
-        :user_id => user.id, :language_id => edition.language_id, :region_id => edition.region_id,
-        :cluster_group_id => 'top', :preview => 1 } ){ |cluster| @top_stories = cluster } if options[:top_stories] && @top_stories.nil?
-    end
-    set_navigation_links if options[:navigation]
+    set_user_preferences
     yield( self ) if block_given?
   end
   
@@ -53,25 +52,31 @@ class PageData
     count = 0
     while( true)
       count += 1
+      block.call if block
       JAPI::HomeDisplayPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id } ){ |prefs|
         user.home_blocks_order = prefs.collect{ |pref| pref.element.code }
+        set_home_blocks
+        set_navigation_links
       } if user.home_blocks_order.nil?
       JAPI::Preference.async_find( user_id, :multi_curb => multi_curb ){ |pref|
         user.preference = pref
       } if user.preference.nil?
       JAPI::TopicPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id } ){ |prefs|
         user.topic_preferences = prefs
+        set_navigation_links
       } if user.topic_preferences.nil?
       JAPI::HomeClusterPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id, :region_id => edition.region_id, :language_id => edition.language_id } ){ |prefs|
         user.section_preferences = prefs
+        set_navigation_links
       } if user.section_preferences.nil?
-      block.call if block #( new_multi_curb ) if block
+       #( new_multi_curb ) if block
       self.finalize
       break if count > 2 || ( user.preference && user.home_blocks_order && user.topic_preferences && user.section_preferences )
     end
   end
   
   def set_navigation_links
+    return unless @navigation_links.nil? && options[:navigation] && user.section_preferences && user.topic_preferences
     @navigation_links = ActiveSupport::OrderedHash.new
     user.nav_blocks_order.each do |pref|
       case( pref ) when :top_stories_cluster_group
@@ -102,6 +107,7 @@ class PageData
   end
   
   def set_home_blocks
+    return unless options[:home] && @home_blocks.nil? && user.home_blocks_order
     @home_blocks = ActiveSupport::OrderedHash.new
     user.home_blocks_order.each do |pref|
       case( pref ) when :top_stories_cluster_group
@@ -117,7 +123,6 @@ class PageData
           end if @home_blocks.key?( :top_stories )
           @home_blocks.delete(:top_stories) if @home_blocks.key?( :top_stories ) && @home_blocks[:top_stories].first && @home_blocks[:top_stories].first.clusters.blank?
         end
-        #
         #top_cluster_ids = top_stories.clusters.collect( &:id )
         #user.section_preferences.each do | pref |
         #  JAPI::ClusterGroup.async_find( :all, : )

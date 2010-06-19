@@ -7,7 +7,7 @@ RAILS_GEM_VERSION = '2.3.4' unless defined? RAILS_GEM_VERSION
 require File.join(File.dirname(__FILE__), 'boot')
 gem('curb')
 require 'curb'
-Curl::Multi.default_timeout = 20 # 20 milliseconds 
+Curl::Multi.default_timeout = 50 # 20 milliseconds 
 
 Rails::Initializer.run do |config|
   
@@ -25,7 +25,7 @@ Rails::Initializer.run do |config|
 
   # Specify gems that this application depends on and have them installed with rake gems:install
   # config.gem "bj"
-  
+  config.gem 'faster_xml_simple'
   
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
