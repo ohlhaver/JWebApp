@@ -10,7 +10,7 @@ class PageData
   attr_reader :top_stories
   attr_reader :options
   
-  def initialize( user, options = {} )
+  def initialize( user, options = {}, &block )
     @multi_curb = Curl::Multi.new
     @multi_curb.pipeline = false
     @multi_curb.max_connects = 48
@@ -18,7 +18,7 @@ class PageData
     @options = options
     @edition = ( options[:edition] || JAPI::PreferenceOption.parse_edition( user.edition || 'int-en' ) )
     set_user_preferences
-    yield( self ) if block_given?
+    block.call if block
   end
   
   def user_id

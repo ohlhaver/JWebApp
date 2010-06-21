@@ -25,6 +25,8 @@ Rails::Initializer.run do |config|
 
   # Specify gems that this application depends on and have them installed with rake gems:install
   # config.gem "bj"
+  config.gem 'erubis' , :version => '2.6.4'
+  config.gem 'erubis_rails_helper', :version => '1.0.0'
   config.gem 'nokogiri'
   ActiveSupport::XmlMini.backend = 'Nokogiri'
   
