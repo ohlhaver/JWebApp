@@ -6,28 +6,44 @@ class AuthorsController < ApplicationController
   before_filter :set_author_filter_var
   
   def whats
+    page_data_finalize
     @page_title = "Jurnalo - #{t('authors.what.label')}"
   end
   
   def show
     # jap = 1 is additional parameter to put the author into priority list on page view
     additional_attrs = current_user.new_record? ? {} : { :jap => 1 }
-    @author = JAPI::Author.find( params[:id], :params => additional_attrs ) || JAPI::Author.new( :name => I18n.t( 'author.not.found' ) )
-    @author_preference = JAPI::AuthorPreference.find( nil, :params => { :author_id => params[:id],  :user_id => current_user.id } ) unless current_user.new_record?
-    @author_preference ||= JAPI::AuthorPreference.new( :author_id => params[:id], :preference => nil, :subscribed => false )
-    @stories = JAPI::Story.find( :all, :params => { :author_ids => params[:id], :page => params[:page] || '1', :all => 1 }, :from => :authors )
+    @page_data.add do |multi_curb|
+      JAPI::Author.async_find( params[:id], :multi_curb => multi_curb, :params => additional_attrs ){ |result| @author = result || JAPI::Author.new( :name => I18n.t( 'author.not.found' ) ) }
+      @author_preference ||= JAPI::AuthorPreference.new( :author_id => params[:id], :preference => nil, :subscribed => false )
+      JAPI::AuthorPreference.async_find( nil, :multi_curb => multi_curb, :params => { :author_id => params[:id],  :user_id => current_user.id } ) do |result|
+        @author_preference = result if result
+      end unless current_user.new_record?
+      JAPI::Story.async_find( :all, :multi_curb => multi_curb, :params => { :author_ids => params[:id], :page => params[:page] || '1', :all => 1 }, :from => :authors ){ |results| @stories = results }
+    end
+    page_data_finalize
     @page_title = I18n.t( "seo.page.title.author", :name => @author.name )
   end
   
   def top
-    @authors = JAPI::Author.find( :all, :params => { :top => 1, :page => params[:page] || '1' } )
+    @page_data.add do |multi_curb|
+      JAPI::Author.async_find( :all, :multi_curb => multi_curb, :params => { :top => 1, :page => params[:page] || '1' } ) do |result|
+        @authors = result
+      end
+    end
+    page_data_finalize
     render :action => :index
   end
   
   # display list of subscribed author stories
   def my
     return list if params[:list] == '1'
-    @stories= JAPI::Story.find( :all, :params => { :author_ids => 'all', :user_id => current_user.id }, :from => :authors)
+    @page_data.add do |multi_curb|
+      JAPI::Story.async_find( :all, :multi_curb => multi_curb, :params => { :author_ids => 'all', :user_id => current_user.id }, :from => :authors) do |result|
+        @stories= result
+      end
+    end
+    page_data_finalize
     render :action => :my_author_stories
   end
   
@@ -36,11 +52,15 @@ class AuthorsController < ApplicationController
     params_options = { :page => params[:page] || 1, :per_page => params[:per_page], :user_id => current_user.id }
     params_options[:scope] = :fav if @author_filter == :subscribed
     params_options[:scope] = :pref if @author_filter == :rated
-    @author_prefs = JAPI::AuthorPreference.find( :all, :params => params_options )
+    @page_data.add do |multi_curb|
+      JAPI::AuthorPreference.async_find( :all, :multi_curb => multi_curb, :params => params_options ){ |results| @author_prefs = results }
+    end
+    page_data_finalize
     render :action => :my_authors
   end
   
   def rate
+    current_user.set_preference
     if current_user.out_of_limit?( :authors )
       session[:return_to] = nil
       redirect_to upgrade_required_path( :id => 3 )
@@ -59,6 +79,7 @@ class AuthorsController < ApplicationController
   end
   
   def subscribe
+    current_user.set_preference
     if current_user.out_of_limit?( :authors )
       session[:return_to] = nil
       redirect_to upgrade_required_path( :id => 3 )
@@ -141,6 +162,10 @@ class AuthorsController < ApplicationController
   end
   
   protected
+  
+  def page_data_auto_finalize?
+    false
+  end
   
   def set_author_filter_var
     @author_filter = :all 

@@ -364,6 +364,10 @@ JAPI::User.class_eval do
   
   self.session_revalidation_timeout = 24.hours
   
+  def set_preference
+    @preference ||= JAPI::Preference.find( id_or_default )
+  end
+  
   def home_blocks_legacy
     blocks = ActiveSupport::OrderedHash.new
     home_blocks.each do |key, value|
@@ -576,7 +580,7 @@ JAPI::Connect::InstanceMethods.class_eval do
   end
   
   def web_spider?
-    request.user_agent =~ /(Googlebot)|(Slurp)|(spider)|(Sogou)|(robot)|(Mediapartners\-Google)|(msnbot)/
+    request.user_agent =~ /(Googlebot)|(Slurp)|(spider)|(Sogou)|(robot)|(Mediapartners\-Google)|(msnbot)|(Google\-Site\-Verification)/
   end
   
   def store_referer_location
