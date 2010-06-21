@@ -20,7 +20,7 @@ class HomeController < ApplicationController
   
   def after_japi_connect
     bm = Benchmark.measure { 
-      @page_data = PageData.new( current_user, :edition => news_edition, :navigation => true, :home => true )
+      @page_data = PageData.new( current_user, :edition => news_edition, :navigation => true, :home => true, :auto_perform => true )
     }
     logger.info( bm.to_s )
     current_user.navigation_links = @page_data.navigation_links

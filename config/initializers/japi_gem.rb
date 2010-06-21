@@ -540,7 +540,15 @@ end
 JAPI::Connect::InstanceMethods.class_eval do
   
   def after_japi_connect
-    @page_data = PageData.new( current_user, :edition => news_edition, :navigation => true )
+    @page_data = PageData.new( current_user, :edition => news_edition, :navigation => true, :auto_perform => false )
+    page_data_finalize if page_data_auto_finalize?
+  end
+  
+  def page_data_auto_finalize?
+    true
+  end
+  
+  def page_data_finalize
     @page_data.finalize
     current_user.navigation_links = @page_data.navigation_links
   end

@@ -15,10 +15,12 @@ class PageData
     @multi_curb.pipeline = false
     @multi_curb.max_connects = 48
     @user = user
+    options[:auto_perform] = true if options[:auto_perform].nil?
     @options = options
     @edition = ( options[:edition] || JAPI::PreferenceOption.parse_edition( user.edition || 'int-en' ) )
     set_user_preferences
     block.call if block
+    self.finalize if options[:auto_perform]
   end
   
   def user_id
@@ -31,13 +33,13 @@ class PageData
   
   # Needed with passenger 
   # because it used to get hanged indefinitely.
-  # Not sure why?.
+  # Not sure why?. (#Older and buggy curl library.)
   def finalize
     if defined?( SystemTimer )
       count = 0
       begin
         count += 1
-        SystemTimer.timeout_after( 8 ) do
+        SystemTimer.timeout_after( 30 ) do
           multi_curb.perform
         end
       rescue Timeout::Error 
@@ -49,30 +51,23 @@ class PageData
   end
   
   def set_user_preferences( &block )
-    count = 0
-    while( true)
-      count += 1
-      block.call if block
-      JAPI::HomeDisplayPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id } ){ |prefs|
-        user.home_blocks_order = prefs.collect{ |pref| pref.element.code }
-        set_home_blocks
-        set_navigation_links
-      } if user.home_blocks_order.nil?
-      JAPI::Preference.async_find( user_id, :multi_curb => multi_curb ){ |pref|
-        user.preference = pref
-      } if user.preference.nil?
-      JAPI::TopicPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id } ){ |prefs|
-        user.topic_preferences = prefs
-        set_navigation_links
-      } if user.topic_preferences.nil?
-      JAPI::HomeClusterPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id, :region_id => edition.region_id, :language_id => edition.language_id } ){ |prefs|
-        user.section_preferences = prefs
-        set_navigation_links
-      } if user.section_preferences.nil?
-       #( new_multi_curb ) if block
-      self.finalize
-      break if count > 2 || ( user.preference && user.home_blocks_order && user.topic_preferences && user.section_preferences )
-    end
+    JAPI::HomeDisplayPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id } ){ |prefs|
+      user.home_blocks_order = prefs.collect{ |pref| pref.element.code }
+      set_home_blocks
+      set_navigation_links
+    } #if user.home_blocks_order.nil?
+    JAPI::Preference.async_find( user_id, :multi_curb => multi_curb ){ |pref|
+      user.preference = pref
+      set_navigation_links
+    } #if user.preference.nil?
+    JAPI::TopicPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id } ){ |prefs|
+      user.topic_preferences = prefs
+      set_navigation_links
+    } #if user.topic_preferences.nil?
+    JAPI::HomeClusterPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id, :region_id => edition.region_id, :language_id => edition.language_id } ){ |prefs|
+      user.section_preferences = prefs
+      set_navigation_links
+    } #if user.section_preferences.nil?
   end
   
   def set_navigation_links
