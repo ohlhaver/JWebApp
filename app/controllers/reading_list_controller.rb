@@ -7,11 +7,18 @@ class ReadingListController < ApplicationController
   end
   
   def index
-    prefs = JAPI::StoryPreference.find( :all, :params => { :user_id => current_user.id, :page => params[:page] || 1 } )
-    prefs_hash = prefs.inject({}){ |s,x| s[x.story_id] = x.id; s }
-    @stories = JAPI::Story.find( :all, :from => :list, :params => { :story_id => prefs.collect( &:story_id ) } )
+    @page_data.add do |multi_curb|
+      JAPI::StoryPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => current_user.id, :page => params[:page] || 1 } ) do |prefs|
+        @prefs = prefs
+        JAPI::Story.async_find( :all, :multi_curb => multi_curb, :from => :list, :params => { :story_id => @prefs.collect( &:story_id ) } ) do |stories|
+          @stories = stories
+        end
+      end
+    end
+    page_data_finalize
+    prefs_hash = @prefs.inject({}){ |s,x| s[x.story_id] = x.id; s }
     @stories.collect{ |x| x.id = prefs_hash[x.id] }
-    @stories.pagination = prefs.pagination
+    @stories.pagination = @prefs.pagination
     @page_title = "Jurnalo - #{I18n.t('navigation.top.reading_list')}"
   end
   
@@ -34,6 +41,12 @@ class ReadingListController < ApplicationController
       flash[:error] = 'Fail'
     end
     redirect_to :action => :index
+  end
+  
+  protected
+  
+  def auto_page_data_finalize
+    [ :whats ].include?( action_name.to_sym )
   end
 
 end

@@ -4,10 +4,16 @@ class SectionsController < ApplicationController
   japi_connect_login_required :except => :show
   
   def show
-    @section = JAPI::ClusterGroup.find( :one, :params => { 
-      :user_id => current_user.id, :page => params[:page], 
-      :language_id => news_edition.language_id, :region_id => news_edition.region_id,
-      :cluster_group_id => params[:id], :per_page => params[:per_page] } )
+    @page_data.add do |multi_curb|
+      JAPI::ClusterGroup.async_find( :one, :multi_curb => multi_curb, :params => { 
+        :user_id => current_user.id, :page => params[:page], 
+        :language_id => news_edition.language_id, :region_id => news_edition.region_id,
+        :cluster_group_id => params[:id], :per_page => params[:per_page] } 
+      ) do |section|
+        @section = section
+      end
+    end
+    page_data_finalize
     @page_title = "Jurnalo - #{I18n.t("navigation.main.#{@section.name}")}"
   end
   
@@ -162,6 +168,12 @@ class SectionsController < ApplicationController
       flash[:error] = 'Error'
     end
     redirect_back_or_default( :action => :show, :id => @section.id )
+  end
+  
+  protected
+  
+  def auto_page_data_finalize?
+    false
   end
   
 end
