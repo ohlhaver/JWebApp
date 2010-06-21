@@ -10,27 +10,40 @@ class TopicsController < ApplicationController
   
   def index
     params_options =  { :topic_id => :my, :user_id => current_user.id }
-    @topics = JAPI::Topic.find( :all, :params => params_options )
+    @page_data.add do |multi_curb|
+      JAPI::Topic.async_find( :all, :multi_curb => multi_curb, :params => params_options ) do |result| 
+        @topics = result
+      end
+    end
+    page_data_finalize
   end
   
   def show
-    @topic_preference = JAPI::TopicPreference.find( params[:id], :params => { :user_id => current_user.id } )
-    self.sort_criteria = @topic_preference.sort_criteria if params[:sc].blank?
-    self.subscription_type = @topic_preference.subscription_type if params[:st].blank?
-    params_options = { :topic_id => params[:id], :page => params[:page],
-      :per_page => params[:per_page], :user_id => current_user.id, 
-      :sort_criteria => sort_criteria, :subscription_type => subscription_type, @filter => 4 }
-    @topic = JAPI::Topic.find( :one, 
-      :params => params_options )
+    @page_data.add do |multi_curb|
+      JAPI::TopicPreference.async_find( params[:id], :multi_curb => multi_curb, :params => { :user_id => current_user.id } ) do |result|
+        @topic_preference = result
+        self.sort_criteria = @topic_preference.sort_criteria if params[:sc].blank?
+        self.subscription_type = @topic_preference.subscription_type if params[:st].blank?
+        params_options = { :topic_id => params[:id], :page => params[:page],
+          :per_page => params[:per_page], :user_id => current_user.id, 
+          :sort_criteria => sort_criteria, :subscription_type => subscription_type, @filter => 4 }
+        JAPI::Topic.async_find( :one, :multi_curb => multi_curb, :params => params_options ) do |topic|
+          @topic = topic
+        end
+      end
+    end
+    page_data_finalize
     @page_title = @page_title = I18n.t( "seo.page.title.search", :query => @topic.name )
   end
 
   def new
+    current_user.set_preference
     if current_user.out_of_limit?( :topics )
       session[:return_to] = nil
       redirect_to upgrade_required_path( :id => 1 )
       return
     end
+    page_data_finalize
     @topic = JAPI::TopicPreference.new( params[:japi_topic_preference] || {} ).parse_auto_complete_params!( params )
     if params[:advance] == '1'
       @topic.sort_criteria ||= sort_criteria
@@ -169,6 +182,10 @@ class TopicsController < ApplicationController
   def cas_filter_allowed?
     case( action_name ) when 'create' : false 
     else true end
+  end
+  
+  def auto_page_data_finalize?
+    [ :what ].include?( action_name.to_sym )
   end
   
 end

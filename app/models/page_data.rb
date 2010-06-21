@@ -59,7 +59,7 @@ class PageData
     JAPI::Preference.async_find( user_id, :multi_curb => multi_curb ){ |pref|
       user.preference = pref
       set_navigation_links
-    } #if user.preference.nil?
+    } if user.preference.nil?
     JAPI::TopicPreference.async_find( :all, :multi_curb => multi_curb, :params => { :user_id => user_id } ){ |prefs|
       user.topic_preferences = prefs
       set_navigation_links
