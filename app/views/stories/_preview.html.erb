@@ -1,8 +1,9 @@
-<% if hide_add_to_reading_list %>
+<% erb_cache "#{Date.today.day}/stories/preview/#{story.id}-#{I18n.locale}", { :locals => { :story => story, :hide_add_to_reading_list => hide_add_to_reading_list } } do %>
+<%% if hide_add_to_reading_list %>
   <span class='title'>
    <%= story_symbol( story ) %> <%= link_to( story.title, story.url, :target => '_BLANK', :rel => 'nofollow' ) %> 
   </span>
-<% else %>
+<%% else %>
 <% mouse_over( :icon ) do |iconEventClass, iconItemClass| %>
   <span class="title <%= iconEventClass -%>">
     <%= story_symbol( story ) %> <%= link_to( story.title, story.url, :target => '_BLANK', :rel => 'nofollow' ) %> 
@@ -20,7 +21,7 @@
     <% end -%>
   </span>
 <% end %>
-<% end %>
+<%% end %>
 <span class='separator first'>-</span>
 <% if story.source %>
   <% mouse_over( :icon ) do | iconEventClass, iconItemClass | %>
@@ -49,4 +50,6 @@
     <% end -%>
     <span class='separator'> </span>
   <% end %>
+<% end %>
+
 <% end %>

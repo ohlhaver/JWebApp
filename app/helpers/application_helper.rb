@@ -3,6 +3,12 @@ module ApplicationHelper
   
   include AutoCompleteHelper
   
+  def erb_cache(name = {}, options = {}, &block)
+    locals = options.delete( :locals )
+    content = capture{ cache( name, options, &block) }
+    concat( @template.render( :inline => content, :locals => locals ) )
+  end
+  
   def show_wizard( wizard_id )
     partial = case( wizard_id ) when :random :
       current_user.random_wizard
