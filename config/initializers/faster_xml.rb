@@ -1,4 +1,6 @@
 # Nokogiri Bugfix for CDATA elements CAS Authentication Bug
+if defined?( ActiveSupport::XmlMini_Nokogiri )
+
 ActiveSupport::XmlMini_Nokogiri::Conversions::Node.class_eval do
   CONTENT_ROOT = '__content__'
   
@@ -35,3 +37,5 @@ ActiveSupport::XmlMini_Nokogiri::Conversions::Node.class_eval do
 end
 
 Nokogiri::XML::Node.send(:include, ActiveSupport::XmlMini_Nokogiri::Conversions::Node)
+
+end

@@ -28,7 +28,7 @@ Rails::Initializer.run do |config|
   config.gem 'erubis' , :version => '>=2.6.4'
   config.gem 'erubis_rails_helper', :version => '1.0.0'
   config.gem 'nokogiri'
-  ActiveSupport::XmlMini.backend = 'Nokogiri'
+  ActiveSupport::XmlMini.backend = 'NokogiriSAX'
   
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
