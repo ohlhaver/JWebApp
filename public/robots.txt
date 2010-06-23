@@ -4,5 +4,20 @@
 # User-Agent: *
 # Disallow: /
 
-Sitemap: http://www.jurnalo.com/sitemaps/sitemap_index.xml.gz
+User-agent: Mediapartners-Google
+Disallow:
 
+User-agent: Adsbot-Google
+Disallow:
+
+User-agent: Googlebot-Image
+Disallow:
+
+User-agent:  *
+Disallow: /clusters/
+Disallow: /topics/
+Disallow: /read_list/
+Disallow: /haufens/
+Disallow: /recommendations/
+
+Sitemap: http://www.jurnalo.com/sitemaps/sitemap_index.xml.gz
