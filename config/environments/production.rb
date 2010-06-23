@@ -1,3 +1,4 @@
+require 'memcache'
 # Settings specified here will take precedence over those in config/environment.rb
 
 # The production environment is meant for finished, "live" apps.
@@ -10,7 +11,7 @@ config.action_controller.perform_caching             = true
 config.action_view.cache_template_loading            = true
 
 #config.cache_store = :file_store, RAILS_ROOT + '/tmp/cache'
-config.cache_store = :mem_cache_store, Memcached::Rails.new("10.176.238.17:11211")
+config.cache_store = :mem_cache_store, "10.176.238.17:11211"
 
 # See everything in the log (default is :info)
 config.log_level = :info
