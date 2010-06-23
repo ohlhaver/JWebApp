@@ -8,7 +8,9 @@ config.cache_classes = true
 config.action_controller.consider_all_requests_local = false
 config.action_controller.perform_caching             = true
 config.action_view.cache_template_loading            = true
-config.cache_store = :file_store, RAILS_ROOT + '/tmp/cache'
+
+#config.cache_store = :file_store, RAILS_ROOT + '/tmp/cache'
+config.cache_store = :mem_cache_store, Memcached::Rails.new("10.176.238.17:11211")
 
 # See everything in the log (default is :info)
 config.log_level = :info

@@ -1,4 +1,4 @@
-<% erb_cache "#{Date.today.day}/stories/preview-mobi/#{story.id}-#{I18n.locale}", { :locals => { :story => story, :hide_add_to_reading_list => hide_add_to_reading_list } } do %>
+<% erb_cache "stories/preview-mobi/#{story.id}-#{I18n.locale}", { :expires_in => 24.hours, :locals => { :story => story, :hide_add_to_reading_list => hide_add_to_reading_list } } do %>
 <%% if hide_add_to_reading_list %>
   <span class='title'>
     <%= story_symbol( story ) %> <%= link_to( story.title, story.url, :target => '_BLANK', :rel => 'nofollow' ) %>
