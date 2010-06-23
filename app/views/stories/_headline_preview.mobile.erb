@@ -1,10 +1,11 @@
+<% erb_cache "#{Date.today.day}/stories/headline-mobi/#{story.id}-#{hide_image}-#{I18n.locale}", { :locals => { :story => story, :hide_add_to_reading_list => hide_add_to_reading_list } } do %>
 <% render_image_block( story, hide_image ) do -%>
 
-<% if hide_add_to_reading_list %>
+<%% if hide_add_to_reading_list %>
   <span class='title'>
     <%= story_symbol( story ) %> <%= link_to( story.title, story.url, :target => '_BLANK', :rel => 'nofollow' ) %>
   </span>
-<% else %>
+<%% else %>
 <% mouse_over( :icon ) do |iconEventClass, iconItemClass| %>
   <span class="title <%= iconEventClass -%>">
     <%= story_symbol( story ) %> <%= link_to( story.title, story.url, :target => '_BLANK', :rel => 'nofollow' ) %>&nbsp;
@@ -22,7 +23,7 @@
     <% end -%>
   </span>
 <% end %>
-<% end %>
+<%% end %>
 <br>
 <% if story.source %>
   <% mouse_over( :icon ) do | iconEventClass, iconItemClass | %>
@@ -43,5 +44,6 @@
     <span class='separator'>-</span>
   <% end %>
 <% end %>
-<span class='age fs80'><%= time_ago_in_words( story.created_at ) -%></span>
+<span class='age fs80'><%%= time_ago_in_words( story.created_at ) -%></span>
+<% end %>
 <% end %>

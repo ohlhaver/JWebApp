@@ -4,9 +4,11 @@
   <% cluster.stories.each do |story| %>
     <li class='story'><%= render_story_preview( story, :without => :image ) %></li>
   <% end %>
+  <% cache "#{Date.today.day}/cluster-mobi/#{cluster.id}-info-keywords" do -%>
   <li class='info'> 
     <%= render_cluster_info( cluster ) %>
   </li>
   <li class='keywords'><%= links_to_keywords( *(cluster.top_keywords) ).join(' - ') %></li>
+  <% end %>
 </ul>
 <% end %>
