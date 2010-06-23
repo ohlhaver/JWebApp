@@ -276,6 +276,10 @@ JAPI::Topic.class_eval do
     result
   end
   
+  def count
+    facets.try(:count) || 0
+  end
+  
   # used only with home_count
   def name_with_count
     facets.count > 0 ? "#{name} (#{ facets.count })" : name

@@ -6,25 +6,29 @@
 <% unless link_hash[ :topics ].nil? %>
 <ul class='nav_block'>
   <% link = link_hash[:my_topics] %>
-  <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
-    <li class='<%= dialogEventClass -%>'>
-      <%= link_to_navigation_item( link.name, link.to_url_hash ) %>
-      <span class='navDialogBox <%= dialogItemClass -%>'>
-        <%= link_to image_tag('up.gif'),  up_topic_path('my') %>
-        <%= link_to image_tag('down.gif'), down_topic_path('my') %>
-      </span>
-    </li>
-  <% end %>
-  <% link_hash[ :topics ].each do |link| %>
-    <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass| %>
+  <% cache( "navigation/topics/my-#{I18n.locale}" ) do %>
+    <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
       <li class='<%= dialogEventClass -%>'>
-        <%= link_to_navigation_item( link.base.name_with_count, link.to_url_hash ) %>
-        <span class='navDialogBox <%= dialogItemClass -%>'>           
-          <%= link_to image_tag('up.gif'),  up_topic_path( link.id ) %>
-          <%= link_to image_tag('down.gif'), down_topic_path( link.id ) %>
-          <%= link_to image_tag('close.gif'), topic_path( link.id ), :method => :delete, :confirm => 'Are you sure?' %>
+        <%= link_to_navigation_item( link.name, link.to_url_hash ) %>
+        <span class='navDialogBox <%= dialogItemClass -%>'>
+          <%= link_to image_tag('up.gif'),  up_topic_path('my') %>
+          <%= link_to image_tag('down.gif'), down_topic_path('my') %>
         </span>
       </li>
+    <% end %>
+  <% end %>
+  <% link_hash[ :topics ].each do |link| %>
+    <% cache( "navigation/topics/#{link.id}-#{link.base.count}" ) do %>
+      <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass| %>
+        <li class='<%= dialogEventClass -%>'>
+          <%= link_to_navigation_item( link.base.name_with_count, link.to_url_hash ) %>
+          <span class='navDialogBox <%= dialogItemClass -%>'>           
+            <%= link_to image_tag('up.gif'),  up_topic_path( link.id ) %>
+            <%= link_to image_tag('down.gif'), down_topic_path( link.id ) %>
+            <%= link_to image_tag('close.gif'), topic_path( link.id ), :method => :delete, :confirm => 'Are you sure?' %>
+          </span>
+        </li>
+      <% end %>
     <% end %>
   <% end %>
   <% link = link_hash[:add_topic] %> 
@@ -48,26 +52,29 @@
     </li>
   <% end %>
   <% link_hash[ :sections ].each do |link| %>
-    <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass| %>
-      <li class='<%= dialogEventClass -%>'>
-        <%= link_to_navigation_item( link.name, link.to_url_hash ) %>
-        <span class='navDialogBox <%= dialogItemClass %>'>       
-          <%= link_to image_tag('up.gif'), up_section_path( link.id ) %>
-          <%= link_to image_tag('down.gif'), down_section_path( link.id ) %>
-		  <%= link_to image_tag('close.gif'), section_path( link.id ), :method => :delete, :confirm => 'Are you sure?' %>
-        </span>
-      </li>
+    <% cache( "navigation/sections/#{link.id}") do %>
+      <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass| %>
+        <li class='<%= dialogEventClass -%>'>
+          <%= link_to_navigation_item( link.name, link.to_url_hash ) %>
+          <span class='navDialogBox <%= dialogItemClass %>'>       
+            <%= link_to image_tag('up.gif'), up_section_path( link.id ) %>
+            <%= link_to image_tag('down.gif'), down_section_path( link.id ) %>
+            <%= link_to image_tag('close.gif'), section_path( link.id ), :method => :delete, :confirm => 'Are you sure?' %>
+          </span>
+        </li>
+      <% end %>
     <% end %>
   <% end %>
-
-  <% link = link_hash[:add_section] %>
-  <li class="grey">
-    <span id='add_section_link'><%= link_to_function( link.name, 'Element.show("add_section_form");Element.hide("add_section_link")' ) %></span>
-    <span id='add_section_form' style='display:none;'>
-      <%= render :partial => 'sections/form' %>
-      <%= link_to_function( 'Hide', 'Element.show("add_section_link");Element.hide("add_section_form")' ) %>
-    </span>
-  </li>
+  <% cache( "navigation/sections/add-#{I18n.locale}") do %>
+    <% link = link_hash[:add_section] %>
+    <li class="grey">
+      <span id='add_section_link'><%= link_to_function( link.name, 'Element.show("add_section_form");Element.hide("add_section_link")' ) %></span>
+      <span id='add_section_form' style='display:none;'>
+        <%= render :partial => 'sections/form' %>
+        <%= link_to_function( 'Hide', 'Element.show("add_section_link");Element.hide("add_section_form")' ) %>
+      </span>
+    </li>
+  <% end %>
 </ul>
 
 <ul class='nav_block'>
@@ -88,14 +95,16 @@
 <% top_stories_block = capture( navigation_links[:top_stories] ) do | link | %>
 <% if link %>
 <ul class='nav_block'>
-  <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
-    <li class='<%= dialogEventClass -%>'>
-      <%= link_to_navigation_item( link.name, link.to_url_hash ) %>
-      <span class='navDialogBox <%= dialogItemClass -%>'>
-        <%= link_to image_tag('up.gif'), up_section_path( 'top' ) %>
-        <%= link_to image_tag('down.gif'), down_section_path( 'top' ) %>
-      </span>
-    </li>
+  <% cache( "navigation/sections/top-#{I18n.locale}") do %>
+    <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
+      <li class='<%= dialogEventClass -%>'>
+        <%= link_to_navigation_item( link.name, link.to_url_hash ) %>
+        <span class='navDialogBox <%= dialogItemClass -%>'>
+          <%= link_to image_tag('up.gif'), up_section_path( 'top' ) %>
+          <%= link_to image_tag('down.gif'), down_section_path( 'top' ) %>
+        </span>
+      </li>
+    <% end %>
   <% end %>
 </ul>
 <% end %>
@@ -106,15 +115,17 @@
 <% my_authors_block = capture( navigation_links[:my_authors] ) do |link| %>
 <% if link %>
 <ul class='nav_block'>
-  <% name = link.base > 0 ? "#{link.name} (#{link.base})" : link.name %>
-  <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
-    <li class='<%= dialogEventClass %>'>
-      <%= link_to_navigation_item( name, link.to_url_hash ) %>
-      <span class='navDialogBox <%= dialogItemClass -%>'>
-        <%= link_to image_tag('up.gif'), up_authors_path %>
-        <%= link_to image_tag('down.gif'), down_authors_path %>
-      </span>
-    </li>
+  <% cache( "navigation/authors/my-#{link.base}") do %>
+    <% name = link.base > 0 ? "#{link.name} (#{link.base})" : link.name %>
+    <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
+      <li class='<%= dialogEventClass %>'>
+        <%= link_to_navigation_item( name, link.to_url_hash ) %>
+        <span class='navDialogBox <%= dialogItemClass -%>'>
+          <%= link_to image_tag('up.gif'), up_authors_path %>
+          <%= link_to image_tag('down.gif'), down_authors_path %>
+        </span>
+      </li>
+    <% end %>
   <% end %>
 </ul>
 <% end %>
