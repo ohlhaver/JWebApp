@@ -35,19 +35,19 @@ class PageData
   # because it used to get hanged indefinitely.
   # Not sure why?. (#Older and buggy curl library.)
   def finalize
-    if defined?( SystemTimer )
-      count = 0
-      begin
-        count += 1
-        SystemTimer.timeout_after( 30 ) do
-          multi_curb.perform
-        end
-      rescue Timeout::Error 
-        retry unless count > 2
-      end
-    else
-      multi_curb.perform
-    end
+    # if defined?( SystemTimer )
+    #       count = 0
+    #       begin
+    #         count += 1
+    #         SystemTimer.timeout_after( 30 ) do
+    #           multi_curb.perform
+    #         end
+    #       rescue Timeout::Error 
+    #         retry unless count > 2
+    #       end
+    #     else
+    multi_curb.perform
+    # end
   end
   
   def set_user_preferences( &block )
