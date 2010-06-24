@@ -1,4 +1,4 @@
-require 'memcache'
+# require 'memcache'
 # Settings specified here will take precedence over those in config/environment.rb
 
 # The production environment is meant for finished, "live" apps.
@@ -14,7 +14,7 @@ config.action_view.cache_template_loading            = true
 config.gem 'memcached'
 require 'memcached'
 
-config.cache_store = :mem_cache_store, Memcached::Rails.new( "10.176.238.17:11211" )
+config.cache_store = :mem_cache_store, Memcached::Rails.new( "10.176.238.17:11211", { :exceptions_to_retry => [], :exception_retry_limit => 1 } )
 
 # See everything in the log (default is :info)
 config.log_level = :info
