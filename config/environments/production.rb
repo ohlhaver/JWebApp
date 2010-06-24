@@ -19,6 +19,11 @@ config.cache_store = :mem_cache_store, Memcached::Rails.new( "10.176.238.17:1121
 # See everything in the log (default is :info)
 config.log_level = :info
 
+begin
+require 'memprof/signal'
+rescue Exception
+end
+
 # Use a different logger for distributed setups
 # config.logger = SyslogLogger.new
 
