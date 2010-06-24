@@ -4,36 +4,39 @@
 
 <% topics_block = capture( navigation_links ) do | link_hash | %>
 <% unless link_hash[ :topics ].nil? %>
-<ul class='nav_block'>
-  <% link = link_hash[:my_topics] %>
-  <% cache( "navigation/topics/my-#{I18n.locale}", :expires_in => 24.hours  ) do %>
-    <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
-      <li class='<%= dialogEventClass -%>'>
-        <%= link_to_navigation_item( link.name, link.to_url_hash ) %>
-        <span class='navDialogBox <%= dialogItemClass -%>'>
-          <%= link_to image_tag('up.gif'),  up_topic_path('my') %>
-          <%= link_to image_tag('down.gif'), down_topic_path('my') %>
-        </span>
-      </li>
-    <% end %>
-  <% end %>
-  <% link_hash[ :topics ].each do |link| %>
-    <% cache( "navigation/topics/#{link.id}-#{link.base.count}", :expires_in => 24.hours  ) do %>
-      <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass| %>
+  <% super_key = link_hash[ :topics ].collect( &:id ).join('-') + ':' + link_hash[ :topics ].collect{ |t| t.count rescue 0 }.join('-')  %>
+  <% cache( "navigation/topics/#{I18n.locale}-#{super_key.hash}-#{super_key[0..4]}#{super_key[-4..-1]}", :expires_in => 24.hours ) do %>
+  <ul class='nav_block'>
+    <% link = link_hash[:my_topics] %>
+    <% cache( "navigation/topics/my-#{I18n.locale}", :expires_in => 24.hours  ) do %>
+      <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
         <li class='<%= dialogEventClass -%>'>
-          <%= link_to_navigation_item( link.base.name_with_count, link.to_url_hash ) %>
-          <span class='navDialogBox <%= dialogItemClass -%>'>           
-            <%= link_to image_tag('up.gif'),  up_topic_path( link.id ) %>
-            <%= link_to image_tag('down.gif'), down_topic_path( link.id ) %>
-            <%= link_to image_tag('close.gif'), topic_path( link.id ), :method => :delete, :confirm => 'Are you sure?' %>
+          <%= link_to_navigation_item( link.name, link.to_url_hash ) %>
+          <span class='navDialogBox <%= dialogItemClass -%>'>
+            <%= link_to image_tag('up.gif'),  up_topic_path('my') %>
+            <%= link_to image_tag('down.gif'), down_topic_path('my') %>
           </span>
         </li>
       <% end %>
     <% end %>
+    <% link_hash[ :topics ].each do |link| %>
+      <% cache( "navigation/topics/#{link.id}-#{link.base.count}", :expires_in => 24.hours  ) do %>
+        <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass| %>
+          <li class='<%= dialogEventClass -%>'>
+            <%= link_to_navigation_item( link.base.name_with_count, link.to_url_hash ) %>
+            <span class='navDialogBox <%= dialogItemClass -%>'>           
+              <%= link_to image_tag('up.gif'),  up_topic_path( link.id ) %>
+              <%= link_to image_tag('down.gif'), down_topic_path( link.id ) %>
+              <%= link_to image_tag('close.gif'), topic_path( link.id ), :method => :delete, :confirm => 'Are you sure?' %>
+            </span>
+          </li>
+        <% end %>
+      <% end %>
+    <% end %>
+    <% link = link_hash[:add_topic] %> 
+    <li class="grey"><%= link_to_navigation_item( link.name, link.to_url_hash ) %></li>
+  </ul>
   <% end %>
-  <% link = link_hash[:add_topic] %> 
-  <li class="grey"><%= link_to_navigation_item( link.name, link.to_url_hash ) %></li>
-</ul>
 <% end %>
 <% end %>
 
@@ -41,50 +44,53 @@
 
 <% sections_block = capture( navigation_links ) do | link_hash | %>
 <% unless link_hash[ :sections ].nil? %>
-<ul class='nav_block'>
-  <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
-    <li class='<%= dialogEventClass %>'>
-      <span class="nav_sections_label"><%= t('navigation.main.sections') %></span>
-      <span class='navDialogBox <%= dialogItemClass -%>'>
-        <%= link_to image_tag('up.gif'),  up_section_path( 'all' ) %>
-        <%= link_to image_tag('down.gif'), down_section_path( 'all' ) %>
-      </span>
-    </li>
-  <% end %>
-  <% link_hash[ :sections ].each do |link| %>
-    <% cache( "navigation/sections/#{link.id}", :expires_in => 24.hours ) do %>
-      <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass| %>
-        <li class='<%= dialogEventClass -%>'>
-          <%= link_to_navigation_item( link.name, link.to_url_hash ) %>
-          <span class='navDialogBox <%= dialogItemClass %>'>       
-            <%= link_to image_tag('up.gif'), up_section_path( link.id ) %>
-            <%= link_to image_tag('down.gif'), down_section_path( link.id ) %>
-            <%= link_to image_tag('close.gif'), section_path( link.id ), :method => :delete, :confirm => 'Are you sure?' %>
-          </span>
-        </li>
+  <% super_key = link_hash[ :sections ].collect(&:id).join('-')  %>
+  <% cache( "navigation/sections/#{I18n.locale}-#{ super_key.hash }-#{ super_key[-4..-1] }", :expires_in => 24.hours ) do %>
+  <ul class='nav_block'>
+    <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
+      <li class='<%= dialogEventClass %>'>
+        <span class="nav_sections_label"><%= t('navigation.main.sections') %></span>
+        <span class='navDialogBox <%= dialogItemClass -%>'>
+          <%= link_to image_tag('up.gif'),  up_section_path( 'all' ) %>
+          <%= link_to image_tag('down.gif'), down_section_path( 'all' ) %>
+        </span>
+      </li>
+    <% end %>
+    <% link_hash[ :sections ].each do |link| %>
+      <% cache( "navigation/sections/#{link.id}", :expires_in => 24.hours ) do %>
+        <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass| %>
+          <li class='<%= dialogEventClass -%>'>
+            <%= link_to_navigation_item( link.name, link.to_url_hash ) %>
+            <span class='navDialogBox <%= dialogItemClass %>'>       
+              <%= link_to image_tag('up.gif'), up_section_path( link.id ) %>
+              <%= link_to image_tag('down.gif'), down_section_path( link.id ) %>
+              <%= link_to image_tag('close.gif'), section_path( link.id ), :method => :delete, :confirm => 'Are you sure?' %>
+            </span>
+          </li>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
-  <% cache( "navigation/sections/add-#{I18n.locale}", :expires_in => 24.hours ) do %>
-    <% link = link_hash[:add_section] %>
-    <li class="grey">
-      <span id='add_section_link'><%= link_to_function( link.name, 'Element.show("add_section_form");Element.hide("add_section_link")' ) %></span>
-      <span id='add_section_form' style='display:none;'>
-        <%= render :partial => 'sections/form' %>
-        <%= link_to_function( 'Hide', 'Element.show("add_section_link");Element.hide("add_section_form")' ) %>
-      </span>
-    </li>
-  <% end %>
-</ul>
+    <% cache( "navigation/sections/add-#{I18n.locale}", :expires_in => 24.hours ) do %>
+      <% link = link_hash[:add_section] %>
+      <li class="grey">
+        <span id='add_section_link'><%= link_to_function( link.name, 'Element.show("add_section_form");Element.hide("add_section_link")' ) %></span>
+        <span id='add_section_form' style='display:none;'>
+          <%= render :partial => 'sections/form' %>
+          <%= link_to_function( 'Hide', 'Element.show("add_section_link");Element.hide("add_section_form")' ) %>
+        </span>
+      </li>
+    <% end %>
+  </ul>
 
-<ul class='nav_block'>
-	<br>
-<script type="text/javascript">
-	var flattr_url = 'http://www.jurnalo.com';
-	var flattr_btn='compact';
-</script>
-<script src="http://api.flattr.com/button/load.js" type="text/javascript"></script>
-</ul>
+  <ul class='nav_block'>
+  	<br>
+  <script type="text/javascript">
+  	var flattr_url = 'http://www.jurnalo.com';
+  	var flattr_btn='compact';
+  </script>
+  <script src="http://api.flattr.com/button/load.js" type="text/javascript"></script>
+  </ul>
+  <% end %>
 <% end %>
 <% end %>
 
@@ -95,7 +101,7 @@
 <% top_stories_block = capture( navigation_links[:top_stories] ) do | link | %>
 <% if link %>
 <ul class='nav_block'>
-  <% cache( "navigation/sections/top-#{I18n.locale}", :expires_in => 24.hours ) do %>
+  <%# cache( "navigation/sections/top-#{I18n.locale}", :expires_in => 24.hours ) do %>
     <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
       <li class='<%= dialogEventClass -%>'>
         <%= link_to_navigation_item( link.name, link.to_url_hash ) %>
@@ -105,7 +111,7 @@
         </span>
       </li>
     <% end %>
-  <% end %>
+  <%# end %>
 </ul>
 <% end %>
 <% end %>
@@ -115,7 +121,7 @@
 <% my_authors_block = capture( navigation_links[:my_authors] ) do |link| %>
 <% if link %>
 <ul class='nav_block'>
-  <% cache( "navigation/authors/my-#{link.base}", :expires_in => 24.hours ) do %>
+  <%# cache( "navigation/authors/my-#{link.base}", :expires_in => 24.hours ) do %>
     <% name = link.base > 0 ? "#{link.name} (#{link.base})" : link.name %>
     <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
       <li class='<%= dialogEventClass %>'>
@@ -126,7 +132,7 @@
         </span>
       </li>
     <% end %>
-  <% end %>
+  <%# end %>
 </ul>
 <% end %>
 <% end %>
