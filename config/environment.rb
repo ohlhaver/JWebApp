@@ -62,7 +62,8 @@ if defined?(PhusionPassenger)
       Rails.logger.info( 'Passenger Forked' )
       JAPI::Model::Base.client = JAPI::Client.new( JAPI::Config[:client] )
       TICKET_STORE.reset if TICKET_STORE
-      Rails.cache.reset if Rails.cache.respond_to?( :reset )
+      memcache = Rails.cache.instance_variable_get('@data')
+      memcache.reset if memcache.respond_to?( :reset )
     end
   end
 end
