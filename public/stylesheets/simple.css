@@ -967,7 +967,19 @@ span.mo_dialog{
 .pdt6px {
   padding-top:6px;
 }
-
+.w200px {
+  width: 200px;
+}
+.pb5px{
+  padding-bottom: 5px;
+}
+.inline{
+  display:inline;
+}
+.name{
+  float: left;
+  padding-right: 10px;
+}
 .nav_sections_label {
 	color : #333333;
 }

@@ -3,8 +3,15 @@ module ApplicationHelper
   
   include AutoCompleteHelper
   
-  def fb_like_plugin( story )
-    render :partial => "shared/fb_like", :locals => { :url => story_path( :id => story, :only_path => false ) }
+  def fb_like_plugin( record, style = "" )
+    url = case( record ) when JAPI::Story
+      story_path( :id => record, :only_path => false )
+    when JAPI::Author
+      page_author_path( :id => record, :only_path => false )
+    when JAPI::Source
+      page_source_path( :id => record, :only_path => false )
+    end rescue nil
+    render(:partial => "shared/fb_like", :locals => { :url =>  url, :style => style }) if url
   end
   
   def erb_cache(name = {}, options = {}, &block)

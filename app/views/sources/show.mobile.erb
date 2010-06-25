@@ -5,7 +5,7 @@
 		<%= t('prefs.labels.rate') %> &nbsp; <%= render_source_rating_form( @source_preference, @source) %>
 		</div>
 		<span class="page_label">
-	      <%= @source.name %>
+	      <div class="name"><%= @source.name %></div> <%= fb_like_plugin( @source ) unless @source.new_record? %>
 		</span>
 
     </h2>

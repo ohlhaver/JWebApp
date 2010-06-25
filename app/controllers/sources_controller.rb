@@ -1,11 +1,23 @@
 class SourcesController < ApplicationController
   
   before_filter :store_referer_location, :only => [ :rate ]
-  japi_connect_login_required :except => [ :show, :whats ]
+  japi_connect_login_required :except => [ :show, :whats, :page ]
   before_filter :correct_param_id
   
   def whats
     @page_title = "Jurnalo - #{t('source.what.label')}"
+  end
+  
+  def page
+    @source = JAPI::Source.find( params[:id] )
+    if @source && !web_spider?
+      redirect_to source_path( @source )
+    else
+      render :text => %Q(<html><head>
+        <meta property="og:title" content="#{@source.try(:name) || I18n.t('source.not.found')}"/>
+        <meta property="og:site_name" content="Jurnalo.com"/>
+      </head><body></body></html>)
+    end
   end
   
   def show

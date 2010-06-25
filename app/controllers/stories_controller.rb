@@ -4,7 +4,7 @@ class StoriesController < ApplicationController
   
   def show
     @story = JAPI::Story.find( params[:id] )
-    unless @story && web_spider?
+   if @story && !web_spider?
       redirect_to @story.url
     else
       render :text => %Q(<html><head>

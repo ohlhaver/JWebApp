@@ -1,13 +1,25 @@
 class AuthorsController < ApplicationController
   
   before_filter :store_referer_location, :only => [ :rate, :subscribe, :unsubscribe, :hide, :up, :down ]
-  japi_connect_login_required :except => [ :show, :top, :whats ]
+  japi_connect_login_required :except => [ :show, :top, :whats, :page ]
   before_filter :correct_param_id
   before_filter :set_author_filter_var
   
   def whats
     page_data_finalize
     @page_title = "Jurnalo - #{t('authors.what.label')}"
+  end
+  
+  def page
+    @author = JAPI::Author.find( params[:id] )
+    if @author && !web_spider?
+      redirect_to author_path( @author )
+    else
+      render :text => %Q(<html><head>
+        <meta property="og:title" content="#{@author.try(:name) || I18n.t('author.not.found')}"/>
+        <meta property="og:site_name" content="Jurnalo.com"/>
+      </head><body></body></html>)
+    end
   end
   
   def show

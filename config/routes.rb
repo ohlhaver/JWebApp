@@ -16,8 +16,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :clusters
   map.resources :stories, :collection => [ :advanced, :search_results ]
   map.resources :topics, :member => [ :unhide, :hide, :up, :down ], :collection => [ :whats ]
-  map.resources :authors, :member => [ :subscribe, :unsubscribe, :rate ], :collection => [ :hide, :up, :down, :whats ]
-  map.resources :sources, :member => [ :rate ], :collection => [ :whats ]
+  map.resources :authors, :member => [ :subscribe, :unsubscribe, :rate, :page ], :collection => [ :hide, :up, :down, :whats ]
+  map.resources :sources, :member => [ :rate, :page ], :collection => [ :whats ]
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end

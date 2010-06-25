@@ -8,7 +8,9 @@
 	    <%= render_author_subscription( @author_preference, @author ) %>-&nbsp;&nbsp;
         <%= t('prefs.labels.rate') %>&nbsp;<%= render_author_rating_form( @author_preference, @author ) %>
       </div>
-	  <span class="page_label"> <%= @author.full_name %></span>
+	  <span class="page_label"> 
+	    <div class="name"><%= @author.full_name %></div> <%= fb_like_plugin( @author ) unless @author.new_record? %>
+	  </span>
     </h2>
 	<br>
     <% @stories.each do |story| %>
