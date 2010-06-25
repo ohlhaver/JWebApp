@@ -1,6 +1,19 @@
 class StoriesController < ApplicationController
   
-  japi_connect_login_optional
+  japi_connect_login_optional :skip => :show
+  
+  def show
+    @story = JAPI::Story.find( params[:id] )
+    unless @story && web_spider?
+      redirect_to @story.url
+    else
+      render :text => %Q(<html><head>
+        <meta property="og:title" content="#{@story.try(:title) || 'Story Not Found'}"/>
+        <meta property="og:site_name" content="Jurnalo.com"/>
+        <meta property="og:image" content="#{@story.try(:image)}"/>
+      </head><body></body></html>)
+    end
+  end
   
   def index
     @advanced = false

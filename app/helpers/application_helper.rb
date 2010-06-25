@@ -3,6 +3,10 @@ module ApplicationHelper
   
   include AutoCompleteHelper
   
+  def fb_like_plugin( story )
+    render :partial => "shared/fb_like", :locals => { :url => story_path( :id => story, :only_path => false ) }
+  end
+  
   def erb_cache(name = {}, options = {}, &block)
     locals = options.delete( :locals )
     content = capture{ cache( name, options, &block) }

@@ -1,4 +1,4 @@
-<% erb_cache "stories/preview/#{story.id}-#{I18n.locale}", { :locals => { :expires_in => 24.hours, :story => story, :hide_add_to_reading_list => hide_add_to_reading_list } } do %>
+<% erb_cache "stories/preview/#{story.id}-#{I18n.locale}-v1", { :locals => { :expires_in => 24.hours, :story => story, :hide_add_to_reading_list => hide_add_to_reading_list } } do %>
 <%% if hide_add_to_reading_list %>
   <span class='title'>
    <%= story_symbol( story ) %> <%= link_to( story.title, story.url, :target => '_BLANK', :rel => 'nofollow' ) %> 
@@ -13,7 +13,8 @@
         <div class='<%= menuItemClass -%> actionsBox'>		 
  		<!-- google_ad_section_start(weight=ignore) --> 
 		 <div style='margin-bottom:10px;'>
-            <%= link_to( t('prefs.label.add_to_reading_list'), { :controller => '/reading_list', :action => :create, :id => story.id }, :method => :post, :rel => :nofollow ) %>
+            <%= link_to( t('prefs.label.add_to_reading_list'), { :controller => '/reading_list', :action => :create, :id => story.id }, :method => :post, :rel => :nofollow ) %><br/>
+            <%= fb_like_plugin( story ) %>
           </div>
 		<!-- google_ad_section_end -->   
         </div>
