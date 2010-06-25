@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
   
-  japi_connect_login_optional :skip => :show
+  japi_connect_login_optional
   
   def show
     @story = JAPI::Story.find( params[:id] )
