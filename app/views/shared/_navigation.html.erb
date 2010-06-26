@@ -115,7 +115,7 @@
 <% my_authors_block = capture( navigation_links[:my_authors] ) do |link| %>
 <% if link %>
 <ul class='nav_block'>
-  <% cache( "navigation/authors/my-#{link.base}", :expires_in => 24.hours ) do %>
+  <% cache( "navigation/authors/my-#{link.base}-#{I18n.locale}", :expires_in => 24.hours ) do %>
     <% name = link.base > 0 ? "#{link.name} (#{link.base})" : link.name %>
     <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
       <li class='<%= dialogEventClass %>'>
