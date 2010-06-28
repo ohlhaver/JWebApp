@@ -1,7 +1,7 @@
 <% form_dom_id = "ap_rating_form_#{author.id}" %>
 <% field_dom_id = "ap_rating_#{author.id}" %>
 <% form_tag( rate_author_path( author ), :id => form_dom_id, :class => 'inline_form' ) do %>
-  <%= select_tag( 'rating',  options_for_select( preference_options( :author_rating ), author_preference.preference ), :id => field_dom_id ) %>
+  <%= select_tag( 'rating',  options_for_select( preference_options( :author_rating, :include_blank => 'prefs.val.nil' ), author_preference.preference ), :id => field_dom_id ) %>
 <% end %>
 <% content_for :custom_javascript do %>
   <%= observe_field( field_dom_id, :function => "$('#{form_dom_id}').submit();" ) %>

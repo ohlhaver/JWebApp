@@ -157,7 +157,10 @@ module ApplicationHelper
     options[:args] = Array( options[:args] )
     args = [ "#{attribute}_options" ] + options[:args]
     select_options = JAPI::PreferenceOption.send( *args ).collect{ |option| [ t(option.name), option.id ] }
-    select_options.unshift( [ '', nil ] ) if options[:include_blank]
+    if options[:include_blank]
+      value = options[:include_blank] == true ? '' : t( options[:include_blank] )
+      select_options.unshift( [ value, nil ] )
+    end
     select_options
   end
   

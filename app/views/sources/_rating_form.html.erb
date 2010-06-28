@@ -1,7 +1,7 @@
 <% form_dom_id = "sp_rating_form_#{source.id}" %>
 <% field_dom_id = "sp_rating_#{source.id}" %>
 <% form_tag( rate_source_path( source ), :id => form_dom_id, :class => 'inline_form' ) do %>
-  <%= select_tag( 'rating',  options_for_select( preference_options( :source_rating ), source_preference.preference ), :id => field_dom_id ) %>
+  <%= select_tag( 'rating',  options_for_select( preference_options( :source_rating, :include_blank => 'prefs.val.nil' ), source_preference.preference ), :id => field_dom_id ) %>
 <% end %>
 <% content_for :custom_javascript do %>
   <%= observe_field( field_dom_id, :function => "$('#{form_dom_id}').submit();" ) %>
