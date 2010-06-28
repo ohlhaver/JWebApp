@@ -547,6 +547,14 @@ end
 
 JAPI::Connect::InstanceMethods.class_eval do
   
+  def logout
+    begin
+      TICKET_STORE.delete( session[:session_id] ) if TICKET_STORE
+    ensure
+      CASClient::Frameworks::Rails::GatewayFilter.logout( self, JAPI::Config[:connect][:service] )
+    end
+  end
+  
   def after_japi_connect
     @page_data = PageData.new( current_user, :edition => news_edition, :navigation => true, :auto_perform => false )
     page_data_finalize if page_data_auto_finalize?
@@ -634,13 +642,19 @@ JAPI::Connect::InstanceMethods.class_eval do
   
   def restore_mem_cache_cas_last_valid_ticket
     return unless TICKET_STORE
-    last_ticket = TICKET_STORE.get( session[:session_id] )
-    session[:cas_last_valid_ticket] = last_ticket
+    @last_cas_ticket = TICKET_STORE.get( session[:session_id] )
+    session[:cas_last_valid_ticket] = @last_cas_ticket
   end
   
   def store_to_mem_cache_cas_last_valid_ticket
     return unless TICKET_STORE
-    TICKET_STORE.set( session[:session_id], session[:cas_last_valid_ticket], 2.hours.to_i ) if session[:cas_last_valid_ticket]
+    if @last_cas_ticket != session[:cas_last_valid_ticket] && session[:cas_last_valid_ticket]
+      if @last_cas_ticket
+        TICKET_STORE.replace( session[:session_id], session[:cas_last_valid_ticket], 48.hours.to_i )
+      else
+        TICKET_STORE.add( session[:session_id], session[:cas_last_valid_ticket], 48.hours.to_i )
+      end
+    end
     session.delete( :cas_last_valid_ticket )
   end
   
