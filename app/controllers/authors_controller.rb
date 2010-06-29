@@ -1,7 +1,7 @@
 class AuthorsController < ApplicationController
   
   before_filter :store_referer_location, :only => [ :rate, :subscribe, :unsubscribe, :hide, :up, :down ]
-  japi_connect_login_required :except => [ :show, :top, :whats, :page ]
+  japi_connect_login_required :except => [ :show, :top, :whats, :page, :my ]
   before_filter :correct_param_id
   before_filter :set_author_filter_var
   
@@ -49,6 +49,10 @@ class AuthorsController < ApplicationController
   
   # display list of subscribed author stories
   def my
+    if current_user.new_record?
+      redirect_to :action => :whats
+      return false
+    end
     return list if params[:list] == '1'
     @page_data.add do |multi_curb|
       JAPI::Story.async_find( :all, :multi_curb => multi_curb, :params => { :author_ids => 'all', :user_id => current_user.id }, :from => :authors) do |result|
@@ -68,6 +72,10 @@ class AuthorsController < ApplicationController
       JAPI::AuthorPreference.async_find( :all, :multi_curb => multi_curb, :params => params_options ){ |results| @author_prefs = results }
     end
     page_data_finalize
+    if @author_prefs.blank?
+      redirect_to :action => :whats
+      return false
+    end
     render :action => :my_authors
   end
   

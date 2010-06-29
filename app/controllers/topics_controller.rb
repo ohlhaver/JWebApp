@@ -1,7 +1,7 @@
 class TopicsController < ApplicationController
   
   before_filter :store_referer_location, :only => [ :destroy, :unhide, :hide, :up, :down ]
-  japi_connect_login_required :except => [ :whats, :create ]
+  japi_connect_login_required :except => [ :whats, :create, :index ]
   
   def whats
     @topic  = JAPI::TopicPreference.new
@@ -9,6 +9,10 @@ class TopicsController < ApplicationController
   end
   
   def index
+    if current_user.new_record?
+      redirect_to :action => :whats
+      return false
+    end
     params_options =  { :topic_id => :my, :user_id => current_user.id }
     @page_data.add do |multi_curb|
       JAPI::Topic.async_find( :all, :multi_curb => multi_curb, :params => params_options ) do |result| 
@@ -16,6 +20,10 @@ class TopicsController < ApplicationController
       end
     end
     page_data_finalize
+    if @topics.blank?
+      redirect_to :action => :whats
+      return false
+    end
   end
   
   def show
