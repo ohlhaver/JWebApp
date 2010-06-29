@@ -6,7 +6,8 @@
 <% unless link_hash[ :topics ].nil? %>
 <ul class='nav_block'>
   <% link = link_hash[:my_topics] %>
-  <% cache( "navigation/topics/my-#{I18n.locale}", :expires_in => 24.hours  ) do %>
+  <% topic_url = base_url?( "/topics" ) %>
+  <% cache( "navigation/topics/my-#{I18n.locale}-#{topic_url}", :expires_in => 24.hours  ) do %>
     <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
       <li class='<%= dialogEventClass -%>'>
         <%= link_to_navigation_item( link.name, link.to_url_hash ) %>
@@ -18,7 +19,8 @@
     <% end %>
   <% end %>
   <% link_hash[ :topics ].each do |link| %>
-    <% cache( "navigation/topics/#{link.id}-#{link.base.count}", :expires_in => 24.hours  ) do %>
+    <% topic_url = base_url?( "/topics/#{link.id}" ) %>
+    <% cache( "navigation/topics/#{link.id}-#{link.base.count}-#{topic_url}", :expires_in => 24.hours  ) do %>
       <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass| %>
         <li class='<%= dialogEventClass -%>'>
           <%= link_to_navigation_item( link.base.name_with_count, link.to_url_hash ) %>
@@ -52,7 +54,8 @@
     </li>
   <% end %>
   <% link_hash[ :sections ].each do |link| %>
-    <% cache( "navigation/sections/#{link.id}", :expires_in => 24.hours ) do %>
+    <% section_url = base_url?( "/sections/#{link.id}" ) %>
+    <% cache( "navigation/sections/#{link.id}-#{section_url}", :expires_in => 24.hours ) do %>
       <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass| %>
         <li class='<%= dialogEventClass -%>'>
           <%= link_to_navigation_item( link.name, link.to_url_hash ) %>
@@ -95,7 +98,8 @@
 <% top_stories_block = capture( navigation_links[:top_stories] ) do | link | %>
 <% if link %>
 <ul class='nav_block'>
-  <% cache( "navigation/sections/top-#{I18n.locale}", :expires_in => 24.hours ) do %>
+  <% top_url = base_url?( "/sections/top" ) %>
+  <% cache( "navigation/sections/top-#{I18n.locale}-#{top_url}", :expires_in => 24.hours ) do %>
     <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
       <li class='<%= dialogEventClass -%>'>
         <%= link_to_navigation_item( link.name, link.to_url_hash ) %>
@@ -115,7 +119,8 @@
 <% my_authors_block = capture( navigation_links[:my_authors] ) do |link| %>
 <% if link %>
 <ul class='nav_block'>
-  <% cache( "navigation/authors/my-#{link.base}-#{I18n.locale}", :expires_in => 24.hours ) do %>
+  <% author_url = base_url?( "/authors/my" ) %>
+  <% cache( "navigation/authors/my-#{link.base}-#{I18n.locale}-#{author_url}", :expires_in => 24.hours ) do %>
     <% name = link.base > 0 ? "#{link.name} (#{link.base})" : link.name %>
     <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
       <li class='<%= dialogEventClass %>'>
