@@ -211,6 +211,7 @@ en:
       register: "Sign up"
       settings: "Settings"
       upgrade: "Upgrade"
+      renew: "Renew"
   pagination:
     previous: "previous"
     next: "next"

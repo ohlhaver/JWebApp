@@ -211,6 +211,7 @@ de:
       register: "Registrieren"
       settings: "Einstellungen"
       upgrade: "Upgrade"
+      renew: "Erneuern"
   pagination:
     previous: "zurück"
     next: "vorwärts"

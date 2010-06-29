@@ -392,6 +392,10 @@ JAPI::User.class_eval do
     preference.plan_id == 1
   end
   
+  def renew?
+    preference.renew
+  end
+  
   def out_of_limit?( name )
     preference.out_of_limit
     #klass = JAPI.const_get( name.to_s.singularize.capitalize + 'Preference')
