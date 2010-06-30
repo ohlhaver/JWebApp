@@ -161,6 +161,13 @@ JAPI::PreferenceOption.class_eval do
     @@cluster_sort_criteria_options ||= sort_criteria_options.dup.delete_if{ |k| k.code.to_s =~ /_clustered$/ }
   end
   
+  def self.sort_criteria_options
+    @@sort_criteria_options ||= nil
+    @@sort_criteria_options = nil if @@sort_criteria_options.try( :error )
+    @@sort_criteria_options ||= find( :all, :params => { :preference_id => 'sort_criteria' } ).delete_if{ |k| k.code.to_s =~ /_clustered$/ }.freeze
+    @@sort_criteria_options
+  end
+  
   def self.homepage_display_id( code )
     self.homepage_display_options.select{ |x| x.code == code.to_sym }.collect{ |x| x.id }.first
   end
