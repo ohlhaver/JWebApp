@@ -55,7 +55,7 @@
   <% end %>
   <% link_hash[ :sections ].each do |link| %>
     <% section_url = base_url?( "/sections/#{link.id}" ) %>
-    <% cache( "navigation/sections/#{link.id}-#{section_url}", :expires_in => 24.hours ) do %>
+    <% cache( "navigation/sections/#{link.id}-#{section_url}-#{I18n.locale}", :expires_in => 24.hours ) do %>
       <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass| %>
         <li class='<%= dialogEventClass -%>'>
           <%= link_to_navigation_item( link.name, link.to_url_hash ) %>
