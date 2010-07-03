@@ -88,7 +88,7 @@ class PageData
         @navigation_links[ :add_topic ] = JAPI::NavigationLink.new( :name => 'Add Topic', :type => 'new_topic', :remote => true )
         @navigation_links[ :my_topics ] = JAPI::NavigationLink.new( :name => 'My Topics', :type => 'my_topics', :remote => true )
         JAPI::Topic.async_home_count_map( multi_curb, user.topic_preferences, { :user_id => user_id }, user.preference.default_time_span ){ |topic|
-          @navigation_links[:topics].select{ |l| l.id == topic.id }.each{ |link| link.base = topic }
+          @navigation_links[:topics].select{ |l| topic && l.id == topic.id }.each{ |link| link.base = topic }
         } unless user.new_record?
       when :my_authors
         @navigation_links[ :my_authors ] = JAPI::NavigationLink.new( :name => 'My Authors', :type => 'my_authors' ).tap{ |l| l.base = 0 }
