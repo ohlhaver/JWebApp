@@ -1,0 +1,48 @@
+"ë
+
+  <% if hide_add_to_reading_list %>
+    <span class='title'>
+       <a href="http://rss.feedsportal.com/c/266/f/3495/s/bb3cc0e/l/0L0Sindependent0O0Cnews0Cworld0Camericas0Creturn0Eto0Ethe0Eun0Eafter0Ea0E53year0Eabsence0E20A191740Bhtml/story01.htm" rel="nofollow" target="_BLANK">Return to the UN after a 53-year absence</a> 
+    </span>
+  <% else %>
+  
+    <span class="title mo_icon_event_src">
+       <a href="http://rss.feedsportal.com/c/266/f/3495/s/bb3cc0e/l/0L0Sindependent0O0Cnews0Cworld0Camericas0Creturn0Eto0Ethe0Eun0Eafter0Ea0E53year0Eabsence0E20A191740Bhtml/story01.htm" rel="nofollow" target="_BLANK">Return to the UN after a 53-year absence</a> &nbsp;
+      <!-- google_ad_section_start(weight=ignore) -->
+      
+        <span class='mo_icon mo_menu_event_src w200px'>
+          <a href="/reading_list/create/7651336" onclick="var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var s = document.createElement('input'); s.setAttribute('type', 'hidden'); s.setAttribute('name', 'authenticity_token'); s.setAttribute('value', '7SS03MnT1QO6/FZnE13goaWKS8ayQEeRxEWKCGYKERc='); f.appendChild(s);f.submit();return false;" rel="nofollow"><img alt="Plus" class="inline pb5px" src="/images/plus.gif?1266499257" title="add to my reading-list" /></a>
+          <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Flocalhost%3A3000%2Fstories%2F7651336&amp;layout=button_count&amp;show_faces=false&amp;width=450&amp;action=recommend&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:150px; height:21px; display:inline; " allowTransparency="true">
+</iframe>
+          <!-- div class='mo_menu actionsBox'></div -->
+        </span>
+            <!-- google_ad_section_end -->
+    </span>
+  
+  <% end %>
+  <br>
+  
+    
+      <span class='source fs80 mo_icon_event_src'>
+        <a href="/sources/572-independent-co-uk">independent.co.uk</a>
+      </span>
+      
+    <span class='separator'>-</span>
+  
+  
+    
+      
+        <span class='author fs80 mo_icon_event_src'>
+          <a href="/authors/46865-david-usborne-new-york">David Usborne New York</a>          <!-- google_ad_section_start(weight=ignore) -->
+          
+            <span class='mo_icon mo_menu_event_src'>
+              <a href="/authors/46865-david-usborne-new-york/subscribe" onclick="var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_method'); m.setAttribute('value', 'put'); f.appendChild(m);var s = document.createElement('input'); s.setAttribute('type', 'hidden'); s.setAttribute('name', 'authenticity_token'); s.setAttribute('value', '7SS03MnT1QO6/FZnE13goaWKS8ayQEeRxEWKCGYKERc='); f.appendChild(s);f.submit();return false;"><img alt="Plus" src="/images/plus.gif?1266499257" title="subscribe" /></a>
+              <!-- div class='mo_menu actionsBox'></div -->
+            </span>
+          
+          <!-- google_ad_section_end -->
+        </span>
+            <span class='separator'>-</span>
+    
+  
+  <span class='age fs80'><%= time_ago_in_words( story.created_at ) -%></span>

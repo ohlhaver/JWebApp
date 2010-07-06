@@ -1,0 +1,12 @@
+"`
+    
+    
+      <li class='mo_dialog_event_src'>
+        <a href="/authors/my">My Authors</a>
+        <span class='navDialogBox mo_dialog'>
+          <a href="/authors/up"><img alt="Up" src="/images/up.gif?1266499257" /></a>
+          <a href="/authors/down"><img alt="Down" src="/images/down.gif?1266499257" /></a>
+        </span>
+      </li>
+    
+  

@@ -1,0 +1,58 @@
+"G
+<div class='clearfix'>
+  <div class='image_grid'>
+    <a href='http://www.zeit.de/2010/24/01-Wahl-Bundespraesident'><img src='http://cdn.jurnalo.com/images/9/2/e/3/f/6/3/f/4c147c06c9e3f63fe6000249' alt='' /></a>
+  </div>
+
+<div class='grid_4_image'>
+
+    
+  <% if hide_add_to_reading_list %>
+    <span class='title'>
+      <img alt="Opinion" src="/images/opinion.gif?1266504544" /> <a href="http://www.zeit.de/2010/24/01-Wahl-Bundespraesident" rel="nofollow" target="_BLANK">Bundespräsidentenwahl: Genug der Taktik</a> 
+    </span>
+  <% else %>
+  
+    <span class="title mo_icon_event_src">
+      <img alt="Opinion" src="/images/opinion.gif?1266504544" /> <a href="http://www.zeit.de/2010/24/01-Wahl-Bundespraesident" rel="nofollow" target="_BLANK">Bundespräsidentenwahl: Genug der Taktik</a> &nbsp;
+      <!-- google_ad_section_start(weight=ignore) -->
+      
+        <span class='mo_icon mo_menu_event_src w200px'>
+          <a href="/reading_list/create/87" onclick="var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var s = document.createElement('input'); s.setAttribute('type', 'hidden'); s.setAttribute('name', 'authenticity_token'); s.setAttribute('value', '7SS03MnT1QO6/FZnE13goaWKS8ayQEeRxEWKCGYKERc='); f.appendChild(s);f.submit();return false;" rel="nofollow"><img alt="Plus" class="inline pb5px" src="/images/plus.gif?1266499257" title="zur Leseliste hinzufügen" /></a>
+          <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Flocalhost%3A3000%2Fstories%2F87&amp;layout=button_count&amp;show_faces=false&amp;width=450&amp;action=recommend&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:150px; height:21px; display:inline; " allowTransparency="true">
+</iframe>
+          <!-- div class='mo_menu actionsBox'></div -->
+        </span>
+            <!-- google_ad_section_end -->
+    </span>
+  
+  <% end %>
+  <br>
+  
+    
+      <span class='source fs80 mo_icon_event_src'>
+        <a href="/sources/9-zeit-de">zeit.de</a>
+      </span>
+      
+    <span class='separator'>-</span>
+  
+  
+    
+      
+        <span class='author fs80 mo_icon_event_src'>
+          <a href="/authors/5694-josef-joffe">Josef Joffe</a>          <!-- google_ad_section_start(weight=ignore) -->
+          
+            <span class='mo_icon mo_menu_event_src'>
+              <a href="/authors/5694-josef-joffe/subscribe" onclick="var f = document.createElement('form'); f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_method'); m.setAttribute('value', 'put'); f.appendChild(m);var s = document.createElement('input'); s.setAttribute('type', 'hidden'); s.setAttribute('name', 'authenticity_token'); s.setAttribute('value', '7SS03MnT1QO6/FZnE13goaWKS8ayQEeRxEWKCGYKERc='); f.appendChild(s);f.submit();return false;"><img alt="Plus" src="/images/plus.gif?1266499257" title="abonnieren" /></a>
+              <!-- div class='mo_menu actionsBox'></div -->
+            </span>
+          
+          <!-- google_ad_section_end -->
+        </span>
+            <span class='separator'>-</span>
+    
+  
+  <span class='age fs80'><%= time_ago_in_words( story.created_at ) -%></span>
+
+  </div>
+</div>
