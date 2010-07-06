@@ -1,6 +1,4 @@
-<div class='news_group'>
-  <%= show_wizard( :random ) %>
-</div>
+
 <% @story_blocks.keys.each do | group_type | %>
   <div class='news_group'>
     <% partial = "blocks/#{group_type}" %>
