@@ -55,7 +55,9 @@ class AuthorsController < ApplicationController
     end
     return list if params[:list] == '1'
     @page_data.add do |multi_curb|
-      JAPI::Story.async_find( :all, :multi_curb => multi_curb, :params => { :author_ids => 'all', :user_id => current_user.id }, :from => :authors) do |result|
+      req_params =  { :author_ids => 'all', :user_id => current_user.id, :page => params[:page] || '1' }
+      req_params[:per_page] = params[:per_page] if params[:per_page]
+      JAPI::Story.async_find( :all, :multi_curb => multi_curb, :params => req_params, :from => :authors) do |result|
         @stories= result
       end
     end
