@@ -1,14 +1,14 @@
-<% erb_cache "stories/headline/#{story.id}-#{hide_image}-#{I18n.locale}-v7", { :expires_in => 24.hours, :locals => { :story => story, :hide_add_to_reading_list => hide_add_to_reading_list } } do %>
+<% erb_cache "stories/headline/#{story.id}-#{hide_image}-#{I18n.locale}-v8", { :expires_in => 24.hours, :locals => { :story => story, :hide_add_to_reading_list => hide_add_to_reading_list } } do %>
 <% render_image_block( story, hide_image ) do -%>
 
   <%% if hide_add_to_reading_list %>
     <span class='title'>
-      <%= story_symbol( story ) %> <%= link_to( story.title, story.url, :target => '_BLANK', :rel => 'nofollow' ) %> 
+      <%= story_symbol( story ) %> <%= link_to( story.title, story_path( story ), :rel => 'nofollow' ) %> 
     </span>
   <%% else %>
   <% mouse_over( :icon ) do |iconEventClass, iconItemClass| %>
     <span class="title <%= iconEventClass -%>">
-      <%= story_symbol( story ) %> <%= link_to( story.title, story.url, :target => '_BLANK', :rel => 'nofollow' ) %> &nbsp;
+      <%= story_symbol( story ) %> <%= link_to( story.title, story_path( story ), :rel => 'nofollow' ) %> &nbsp;
       <!-- google_ad_section_start(weight=ignore) -->
       <% mouse_over( :menu ) do |menuEventClass, menuItemClass| %>
         <span class='<%= iconItemClass -%> <%= menuEventClass -%> w200px'>

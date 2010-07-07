@@ -5,8 +5,9 @@ class StoriesController < ApplicationController
   def show
     @story = JAPI::Story.find( params[:id] )
    if @story && !web_spider?
-      redirect_to @story.url
-    else
+     #redirect_to @story.url
+     render :action => :show, :layout => false
+   else
       render :text => %Q(<html><head>
         <meta property="og:title" content="#{@story.try(:title) || 'Story Not Found'}"/>
         <meta property="og:site_name" content="Jurnalo.com"/>
