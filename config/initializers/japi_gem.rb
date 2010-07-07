@@ -300,8 +300,8 @@ JAPI::TopicPreference.class_eval do
   
   def self.map
     @@map ||= {
-      :search_any => :q,
-      :search_all => :qa,
+      :search_any => :qa,
+      :search_all => :q,
       :search_exact_phrase => :qe,
       :search_except => :qn,
       :sort_criteria => :sc,
