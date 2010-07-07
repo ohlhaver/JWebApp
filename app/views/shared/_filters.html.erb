@@ -30,4 +30,8 @@
     <%= render_filter_link( :video, 'cluster.all.videos', facets.video_count ) %>
     <%= render_filter_link( :opinion, 'cluster.all.opinions', facets.opinion_count ) %>
     <%= render_filter_link( :blog, 'cluster.all.blogs', facets.blog_count ) %>
-<% end %>
+<% elsif facets.filter_count > 0 && @skip_filters %>
+    <%= content_tag( :span, t( 'cluster.all.videos', :count => facets.video_count ) ) if params[:vp] == '4' %>
+    <%= content_tag( :span, t( 'cluster.all.opinions', :count => facets.opinion_count ) ) if params[:op] == '4' %>
+    <%= content_tag( :span, t( 'cluster.all.blogs', :count => facets.blog_count ) ) if params[:bp] == '4' %>
+<% end%>
