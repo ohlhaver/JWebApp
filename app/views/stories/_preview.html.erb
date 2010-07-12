@@ -1,12 +1,12 @@
 <% erb_cache "stories/preview/#{story.id}-#{I18n.locale}-v8", { :locals => { :expires_in => 24.hours, :story => story, :hide_add_to_reading_list => hide_add_to_reading_list } } do %>
 <%% if hide_add_to_reading_list %>
   <span class='title'>
-   <%= story_symbol( story ) %> <%= link_to( story.title, story_path( story ), :rel => 'nofollow' ) %> 
+   <%= story_symbol( story ) %> <%= link_to( story.title, story_path( story ), :onclick => js_related_links_fragments, :rel => 'nofollow' ) %> 
   </span>
 <%% else %>
 <% mouse_over( :icon ) do |iconEventClass, iconItemClass| %>
   <span class="title <%= iconEventClass -%>">
-    <%= story_symbol( story ) %> <%= link_to( story.title, story_path( story ), :rel => 'nofollow' ) %> 
+    <%= story_symbol( story ) %> <%= link_to( story.title, story_path( story ), :onclick => js_related_links_fragments, :rel => 'nofollow' ) %> 
     <!-- google_ad_section_start(weight=ignore) -->
     <% mouse_over( :menu ) do |menuEventClass, menuItemClass| %> 
       <span class='<%= iconItemClass -%> <%= menuEventClass -%> w200px'>

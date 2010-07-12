@@ -1,6 +1,6 @@
 <% if block.stories.any? %>
 
-  <div class='news_block'>
+  <div id="topic_<%= block.id %>_<%= story.id %>" class='news_block'>
     <h2>
 
 	  <span class="page_label"><%= link_to block.name, topic_path( block.id ) %></span>

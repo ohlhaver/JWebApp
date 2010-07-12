@@ -380,3 +380,5 @@ en:
     author: 'Author preference'
   more:
     info: "more info"
+    related:
+      stories: "more related stories"

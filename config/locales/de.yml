@@ -380,7 +380,8 @@ de:
     author: 'Autoren gewichten'
   more:
     info: "mehr Informationen"
-    
+    related:
+      stories: "mehr ähnliche Artikel"
       
       
       

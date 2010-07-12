@@ -4,10 +4,14 @@ class StoriesController < ApplicationController
   
   def show
     @story = JAPI::Story.find( params[:id] )
-   if @story && !web_spider?
-     #redirect_to @story.url
-     render :action => :show, :layout => false
-   else
+    if @story && !web_spider?
+      set_related_stories
+      if @related_stories.blank?
+        redirect_to @story.url
+      else
+        render :action => :show, :layout => false
+      end
+    else
       render :text => %Q(<html><head>
         <meta property="og:title" content="#{@story.try(:title) || 'Story Not Found'}"/>
         <meta property="og:site_name" content="Jurnalo.com"/>
@@ -82,6 +86,42 @@ class StoriesController < ApplicationController
   def page_data_auto_finalize?
     case(action_name) when 'advanced' : true
     else false end
+  end
+  
+  def set_related_stories
+    @related_story_params = {}
+    referer = base_url( request.referer || '/' ).gsub(/http\:\/\/[^\/]+/, '')
+    if (match = referer.match(/\/topics\/(\d+)/))
+      params[:topic] = match[1]
+    elsif ( match = referer.match(/\/clusters\/(\d+)/) )
+      params[:cluster] = match[1]
+    elsif params[:topic].blank? && params[:cluster].blank?
+      params[:cluster] = @story.cluster.try(:id)
+    end
+    if params[:cluster]
+      @cluster = JAPI::Cluster.find( :one, :params => { :cluster_id => params[:cluster], :per_page => 1, :page => 1, :user_id => current_user.id } )
+      if @cluster
+        @related_stories = JAPI::Story.find( :all, :params => { :q => @cluster.top_keywords.join(' '), :per_page => 4 } )
+        @related_story_params[:cluster] = params[:cluster]
+        @more_results_url = stories_path( :q => @cluster.top_keywords.join(' ') )
+      end
+    elsif params[:topic]
+      @topic = JAPI::Topic.find( :one, :params => { :topic_id => params[:topic] , :per_page => 4, :page => 1, :user_id => current_user.id } )
+      if @topic && @topic.stories.any?
+        @related_stories = @topic.stories
+        @related_story_params[:topic] = params[:topic]
+         @more_results_url = topic_path( @topic )
+      end
+    end
+    unless @related_stories.blank?
+      @related_stories.delete_if{ |s| s.id == @story.id }
+      @related_stories.pop if @related_stories.size > 3
+    end
+  end
+  
+  def base_url( url = nil )
+    url ||= controller.request.url
+    url.gsub(/\?.*/, '')
   end
   
 end

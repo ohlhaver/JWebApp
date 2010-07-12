@@ -3,6 +3,16 @@ module ApplicationHelper
   
   include AutoCompleteHelper
   
+  def js_related_links_fragments
+    "var elem = Element.up( this, '.cluster' );
+     if ( elem && elem.id ){
+       var elements = [];
+       elem.id.scan(/[^_]+/, function(match) { elements.push(match[0]) });
+       location.href = this.href + '?' + elements[0] + '=' + elements[1]
+       return false;
+     }"
+  end
+  
   def fb_like_plugin( record, style = "" )
     url = case( record ) when JAPI::Story
       story_path( :id => record, :only_path => false )
