@@ -96,10 +96,20 @@ class StoriesController < ApplicationController
       params[:topic] = match[1]
     elsif ( match = referer.match(/\/clusters\/(\d+)/) )
       params[:cluster] = match[1]
+    elsif !params[:japi_topic_preference].blank?
+      @related_story_params[:japi_topic_preference] = params.delete( :japi_topic_preference )
+      params.merge!( @related_story_params[:japi_topic_preference] )
+      JAPI::TopicPreference.normalize!( params )
+      params[:search] = JAPI::TopicPreference.extract( params )
     elsif params[:topic].blank? && params[:cluster].blank?
       params[:cluster] = @story.cluster.try(:id)
     end
-    if params[:cluster]
+    if params[:search]
+      @related_stories = JAPI::Story.find( :all, :from => :advance, :params => params[:search].merge!( :per_page => 4, :user_id => current_user.id ) )
+      if @related_stories.any?
+        @more_results_url = search_results_stories_path( :japi_topic_preference => @related_story_params[:japi_topic_preference] )
+      end
+    elsif params[:cluster]
       @cluster = JAPI::Cluster.find( :one, :params => { :cluster_id => params[:cluster], :per_page => 1, :page => 1, :user_id => current_user.id } )
       if @cluster
         @related_stories = JAPI::Story.find( :all, :params => { :q => @cluster.top_keywords.join(' '), :language_id => @cluster.language_id, :per_page => 4 } )
