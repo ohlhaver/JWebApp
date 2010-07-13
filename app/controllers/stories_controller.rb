@@ -66,7 +66,8 @@ class StoriesController < ApplicationController
     params_options.merge!( :page => params[:page], :per_page => params[:per_page] )
     params_options[@filter] = 4 unless @filter == :all
     params_options[:user_id] = current_user.id unless current_user.new_record?
-    params_options[:language_id] = news_edition.language_id if current_user.new_record?
+    params_options[:language_id] ||= params[:l] unless params[:l].blank?
+    params_options[:language_id] ||= news_edition.language_id if current_user.new_record?
     @page_data.add do |multi_curb|
       JAPI::Story.async_find( :all, :multi_curb => multi_curb, :from => :advance, :params => params_options ){ |results| @stories = results }
     end
@@ -96,20 +97,16 @@ class StoriesController < ApplicationController
       params[:topic] = match[1]
     elsif ( match = referer.match(/\/clusters\/(\d+)/) )
       params[:cluster] = match[1]
-    elsif !params[:japi_topic_preference].blank?
-      @related_story_params[:japi_topic_preference] = params.delete( :japi_topic_preference )
-      params.merge!( @related_story_params[:japi_topic_preference] )
-      JAPI::TopicPreference.normalize!( params )
-      params[:search] = JAPI::TopicPreference.extract( params )
     elsif params[:topic].blank? && params[:cluster].blank?
       params[:cluster] = @story.cluster.try(:id)
-    end
-    if params[:search]
-      @related_stories = JAPI::Story.find( :all, :from => :advance, :params => params[:search].merge!( :per_page => 4, :user_id => current_user.id ) )
-      if @related_stories.any?
-        @more_results_url = search_results_stories_path( :japi_topic_preference => @related_story_params[:japi_topic_preference] )
+      if params[:cluster].blank? && !params[:japi_topic_preference].blank?
+        @related_story_params[:japi_topic_preference] = params.delete( :japi_topic_preference )
+        params.merge!( @related_story_params[:japi_topic_preference] )
+        JAPI::TopicPreference.normalize!( params )
+        params[:search] = JAPI::TopicPreference.extract( params )
       end
-    elsif params[:cluster]
+    end
+    if params[:cluster]
       @cluster = JAPI::Cluster.find( :one, :params => { :cluster_id => params[:cluster], :per_page => 1, :page => 1, :user_id => current_user.id } )
       if @cluster
         @related_stories = JAPI::Story.find( :all, :params => { :q => @cluster.top_keywords.join(' '), :language_id => @cluster.language_id, :per_page => 4 } )
@@ -123,10 +120,16 @@ class StoriesController < ApplicationController
         @related_story_params[:topic] = params[:topic]
          @more_results_url = topic_path( @topic )
       end
+    elsif params[:search]
+      @related_stories = JAPI::Story.find( :all, :from => :advance, :params => params[:search].merge!( :per_page => 4, :user_id => current_user.id, :language_id => @story.language_id ) )
+      if @related_stories.any?
+        @more_results_url = search_results_stories_path( :japi_topic_preference => @related_story_params[:japi_topic_preference], :l => @story.language_id )
+      end
     end
     unless @related_stories.blank?
       @related_stories.delete_if{ |s| s.id == @story.id }
       @related_stories.pop if @related_stories.size > 3
+      @related_stories.pop if mobile_device? # Showing two related stories
     end
   end
   

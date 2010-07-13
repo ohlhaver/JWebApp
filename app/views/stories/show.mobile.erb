@@ -1,11 +1,11 @@
 <html>
   <head>
-    <title>Jurnalo - <%= @story.title %></title>
+    <title><%= @story.title %><%=  ( " - " + @story.source.name ) if @story.source %></title>
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <style>
       html{height:100%}
-      body{margin:0;font:75% arial,sans-serif;height:100%;overflow:hidden}
+      body{margin:0;font:100% arial,sans-serif;height:100%;overflow:hidden}
       a,a:visited{color:#00c}
       div{font-size:130%}
       ul#bar{ clear:both; padding:0;}
@@ -25,6 +25,11 @@
       #separator{background:#eaeaea;height:3px}
       table{font-size:100%}
       .ds,.lsbb{display:inline}
+      /*Safari Hack*/
+      @media screen and (-webkit-min-device-pixel-ratio:0) {  
+        ul#bar li.story{ padding-left: 50px; padding-bottom:7px; }
+        ul#bar li.right{ float:right; padding-right: 7px; }
+      }
     </style>
   </head>
   <body>
