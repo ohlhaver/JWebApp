@@ -29,7 +29,8 @@ class StoriesController < ApplicationController
     @topic_params = JAPI::TopicPreference.extract( params_options )
     params_options.merge!( :page => params[:page], :per_page => params[:per_page], @filter => 4 )
     params_options[:user_id] = current_user.id unless current_user.new_record?
-    params_options[:language_id] = news_edition.language_id if current_user.new_record?
+    params_options[:language_id] ||= params[:l] unless params[:l].blank?
+    params_options[:language_id] ||= news_edition.language_id if current_user.new_record?
     @page_data.add do |multi_curb|
       JAPI::Story.async_find( :all, :multi_curb => multi_curb, :params => params_options ){ |results| @stories = results }
       JAPI::Author.async_find( :all, :multi_curb => multi_curb, :params => { :q => params[:q], :per_page => 3, :page => 1 } ){ |results| @authors = results || [] }
@@ -101,9 +102,9 @@ class StoriesController < ApplicationController
     if params[:cluster]
       @cluster = JAPI::Cluster.find( :one, :params => { :cluster_id => params[:cluster], :per_page => 1, :page => 1, :user_id => current_user.id } )
       if @cluster
-        @related_stories = JAPI::Story.find( :all, :params => { :q => @cluster.top_keywords.join(' '), :per_page => 4 } )
+        @related_stories = JAPI::Story.find( :all, :params => { :q => @cluster.top_keywords.join(' '), :language_id => @cluster.language_id, :per_page => 4 } )
         @related_story_params[:cluster] = params[:cluster]
-        @more_results_url = stories_path( :q => @cluster.top_keywords.join(' ') )
+        @more_results_url = stories_path( :q => @cluster.top_keywords.join(' '), :l => @cluster.language_id )
       end
     elsif params[:topic]
       @topic = JAPI::Topic.find( :one, :params => { :topic_id => params[:topic] , :per_page => 4, :page => 1, :user_id => current_user.id } )
