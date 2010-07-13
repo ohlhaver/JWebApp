@@ -91,7 +91,8 @@ class StoriesController < ApplicationController
   end
   
   def set_related_stories
-    @related_story_params = {}
+    @skip_story_ids = ( params[:sk] || '' ).split(',').push( @story.id ).uniq
+    @related_story_params = { :sk => @skip_story_ids.join(',') }
     referer = base_url( request.referer || '/' ).gsub(/http\:\/\/[^\/]+/, '')
     if (match = referer.match(/\/topics\/(\d+)/))
       params[:topic] = match[1]
@@ -109,26 +110,25 @@ class StoriesController < ApplicationController
     if params[:cluster]
       @cluster = JAPI::Cluster.find( :one, :params => { :cluster_id => params[:cluster], :per_page => 1, :page => 1, :user_id => current_user.id } )
       if @cluster
-        @related_stories = JAPI::Story.find( :all, :params => { :q => @cluster.top_keywords.join(' '), :language_id => @cluster.language_id, :per_page => 4 } )
+        @related_stories = JAPI::Story.find( :all, :params => { :q => @cluster.top_keywords.join(' '), :language_id => @cluster.language_id, :per_page => 3, :skip_story_ids => @skip_story_ids } )
         @related_story_params[:cluster] = params[:cluster]
         @more_results_url = stories_path( :q => @cluster.top_keywords.join(' '), :l => @cluster.language_id )
       end
     elsif params[:topic]
-      @topic = JAPI::Topic.find( :one, :params => { :topic_id => params[:topic] , :per_page => 4, :page => 1, :user_id => current_user.id } )
+      @topic = JAPI::Topic.find( :one, :params => { :topic_id => params[:topic] , :per_page => 3, :page => 1, :user_id => current_user.id, :skip_story_ids => @skip_story_ids } )
       if @topic && @topic.stories.any?
         @related_stories = @topic.stories
         @related_story_params[:topic] = params[:topic]
          @more_results_url = topic_path( @topic )
       end
     elsif params[:search]
-      @related_stories = JAPI::Story.find( :all, :from => :advance, :params => params[:search].merge!( :per_page => 4, :user_id => current_user.id, :language_id => @story.language_id ) )
+      @related_stories = JAPI::Story.find( :all, :from => :advance, :params => params[:search].merge!( :per_page => 3, :user_id => current_user.id, :language_id => @story.language_id,
+        :skip_story_ids => @skip_story_ids ) )
       if @related_stories.any?
         @more_results_url = search_results_stories_path( :japi_topic_preference => @related_story_params[:japi_topic_preference], :l => @story.language_id )
       end
     end
     unless @related_stories.blank?
-      @related_stories.delete_if{ |s| s.id == @story.id }
-      @related_stories.pop if @related_stories.size > 3
       @related_stories.pop if mobile_device? # Showing two related stories
     end
   end
