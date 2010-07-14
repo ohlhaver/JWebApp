@@ -6,7 +6,7 @@ class StoriesController < ApplicationController
     @story = JAPI::Story.find( params[:id] )
     if @story && !web_spider?
       set_related_stories
-      if @related_stories.blank?
+      if @related_stories.blank? or mobile_device?
         redirect_to @story.url
       else
         render :action => :show, :layout => false
