@@ -1,12 +1,12 @@
 <% if block.stories.any? %>
 
-  <div id="topic_<%= block.id %>_<%= story.id %>" class='news_block'>
+  <div class='news_block'>
     <h2>
 
 	  <span class="page_label"><%= link_to block.name, topic_path( block.id ) %></span>
     </h2>
     <% block.stories.each do |story| %>
-		<div class='cluster'>
+		<div id="topic_<%= block.id %>_<%= story.id %>" class='cluster'>
         <% if story.cluster && story.cluster.stories.any? %>
 		
           <%= render_cluster_preview( story.cluster, story ) %>
