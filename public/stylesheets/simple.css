@@ -321,7 +321,6 @@ margin-bottom:20px;
 text-transform:uppercase;
 }
 
-
 h2 a {
 	color: #0000b6;	
 }
@@ -341,7 +340,15 @@ h2 a {
   	font-size: 16px;
 	line-height: 19px;
 }
+/* Uncomment these lines if we want to underline the newsblock heading.
+.news_block h2 .page_label a:link {
+  text-decoration: underline;
+}
 
+.news_block h2 .page_label a:visited {
+  text-decoration: underline;
+}
+*/
 .settings_news_block h2 a:visited {
 
  	font-weight: normal;

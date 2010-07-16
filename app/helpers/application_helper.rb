@@ -11,6 +11,13 @@ module ApplicationHelper
     return "grid_4 #{cycle( 'alpha', 'omega', :name => 'cluster_preview' )}" if @content_column_count == 2
   end
   
+  def reset_content_block_clearfix
+    if @content_column_count == 2
+      reset_cycle( 'clearfix_preview' )
+      reset_cycle( 'cluster_preview' )
+    end
+  end
+  
   def content_block_clearfix
     return cycle( '', '<div class="clearfix"></div>', :name => 'clearfix_preview' ) if @content_column_count == 2
   end

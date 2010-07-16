@@ -2,7 +2,7 @@ class StoriesController < ApplicationController
   
   japi_connect_login_optional
   
-  layout 'without_navigation'
+  #layout 'without_navigation'
   
   def show
     @story = JAPI::Story.find( params[:id] )
