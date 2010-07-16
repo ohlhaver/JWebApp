@@ -3,6 +3,10 @@ module ApplicationHelper
   
   include AutoCompleteHelper
   
+  def one_column_layout?
+    @content_column_count == 1
+  end
+  
   def content_block_position
     return "grid_4 #{cycle( 'alpha', 'omega', :name => 'cluster_preview' )}" if @content_column_count == 2
   end
