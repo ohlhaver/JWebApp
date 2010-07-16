@@ -3,6 +3,19 @@ module ApplicationHelper
   
   include AutoCompleteHelper
   
+  def content_block_position
+    return "grid_4 #{cycle( 'alpha', 'omega', :name => 'cluster_preview' )}" if @content_column_count == 2
+  end
+  
+  def content_block_clearfix
+    return cycle( '', '<div class="clearfix"></div>', :name => 'clearfix_preview' ) if @content_column_count == 2
+  end
+  
+  def story_block_with_image_position
+    return 'grid_9 omega' if controller.response.layout =~ /without_navigation/
+    return 'grid_7 omega' if @content_column_count == 1
+  end
+  
   def js_related_links_fragments
     " var elem = $('search_topic_form');
       if ( elem ){ 

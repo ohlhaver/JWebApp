@@ -1090,6 +1090,10 @@ border: 0px;
   text-align: center;
 }
 
+.image{
+  margin-top: 5px;
+  text-align: center;
+}
 .grid_3_image{
  display:inline;
  float:left;

@@ -1,5 +1,5 @@
 <% mouse_over( :dialog ) do |dialogEventClass, dialogItemClass| %>
-<div class='news_block <%= dialogEventClass -%>'>
+<div class='news_block <%= content_block_position %> <%= dialogEventClass -%>'>
   <h2>    
     <span class='dialogBox <%= dialogItemClass%>'>
       <% #Hide functionality is not available for now %>
@@ -16,3 +16,4 @@
   <% end %>
 </div>
 <% end %>
+<%= content_block_clearfix %>

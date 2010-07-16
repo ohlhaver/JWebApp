@@ -27,4 +27,8 @@ class HomeController < ApplicationController
     current_user.home_blocks = @page_data.home_blocks
   end
   
+  def set_content_column_count
+    @content_column_count = mobile_device? ? 1 : 2
+  end
+  
 end

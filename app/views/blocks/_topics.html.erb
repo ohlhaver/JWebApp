@@ -1,6 +1,6 @@
 <% if block.stories.any? %>
   <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
-  <div class='news_block <%= dialogEventClass -%>'>
+  <div class='news_block <%= content_block_position %> <%= dialogEventClass -%>'>
     <h2>
       <span class='dialogBox <%= dialogItemClass -%>'>
         <%= link_to( t('prefs.home_action.edit'), edit_topic_path( block ) ) %>
@@ -30,4 +30,5 @@
     <% end %>
   </div>
   <% end %>
+  <%= content_block_clearfix %>
 <% end %>

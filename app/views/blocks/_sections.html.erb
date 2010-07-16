@@ -1,5 +1,5 @@
 <% mouse_over( :dialog ) do | dialogEventClass, dialogItemClass | %>
-<div class='news_block <%= dialogEventClass -%>'>
+<div class='news_block <%= content_block_position %> <%= dialogEventClass -%>'>
   <h2> 
 	<span class='dialogBox <%= dialogItemClass%>'>
       <%= link_to( image_tag('up.gif'), up_section_path( :id => block.id ) ) %>
@@ -29,3 +29,4 @@
   <% end %>
 </div>
 <% end %>
+<%= content_block_clearfix %>

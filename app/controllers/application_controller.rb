@@ -8,10 +8,10 @@ class ApplicationController < ActionController::Base
   
   include JAPI::Connect
   
-  before_filter :set_filter_var, :set_category_id_var, :reset_per_page, :prepare_for_mobile, :set_facebook_login_url
+  before_filter :set_filter_var, :set_category_id_var, :reset_per_page, :prepare_for_mobile, :set_facebook_login_url, :set_content_column_count
   after_filter :reset_session_params
   
-  layout 'default'
+  layout 'with_navigation'
   
   helper_method :sort_criteria, :subscription_type, :time_span, :video_pref, :blog_pref, :opinion_pref, :cluster_sort_criteria, :mobile_device?
   
@@ -77,6 +77,10 @@ class ApplicationController < ActionController::Base
   end
   
   private
+  
+  def set_content_column_count
+    @content_column_count = 1
+  end
   
   def mobile_device?
     request.user_agent =~ /(Mobile)|(webOS)|(SymbianOS)|(MIDP-\d\.\d)|(PalmSource)|(SAMSUNG-SGH)/
