@@ -45,8 +45,9 @@
         <%= show_wizard( :random ) %>
       </div>
       <div class="pagination_module" class="grid_8">	</div>
-      <%= render :partial => 'shared/lrec' %>
-      </div>
+	  </div>
+
+      
       <div id="module" class="grid_2">
         <div id='home_link' >
           <%= link_to_navigation_item 'Home', root_path %> &nbsp;
@@ -57,6 +58,12 @@
           <%= render :partial => 'shared/navigation' %>
         </div>
       </div>
+	  <div class ="grid_4">
+	  <%= render :partial => 'shared/lrec' %>
+	  </div>
+	  <div class ="grid_4">
+	  <%= render :partial => 'shared/lrec_right' %>
+	  </div>
       <div id="footer" class = "grid_10">
         <%= render :partial => 'shared/footer' %>
       </div>
