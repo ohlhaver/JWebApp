@@ -244,6 +244,16 @@ module ApplicationHelper
     return string
   end
   
+  #rlb - related link bar
+  def render_rlb_filter_link( filter, name, count, html_options = {} )
+    return if count <= 0
+    link = @more_results_url.dup
+    link << "?" unless link.match(/\?/)
+    link << "&" unless link.match(/(\?|\&)$/)
+    link << "#{filter}=1"
+    link_to( t( name, :count => count ), link , html_options )
+  end
+  
   def render_author_preview( author )
     render :partial => 'authors/preview', :locals => { :author => author }
   end

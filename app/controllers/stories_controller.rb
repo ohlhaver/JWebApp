@@ -7,10 +7,10 @@ class StoriesController < ApplicationController
   def show
     @story = JAPI::Story.find( params[:id] )
     if @story && !web_spider?
-      set_related_stories
-      if @related_stories.blank? or mobile_device?
+      if mobile_device?
         redirect_to @story.url
       else
+        set_related_stories
         render :action => :show, :layout => false
       end
     else
@@ -33,6 +33,7 @@ class StoriesController < ApplicationController
     params_options[:user_id] = current_user.id unless current_user.new_record?
     params_options[:language_id] ||= params[:l] unless params[:l].blank?
     params_options[:language_id] ||= news_edition.language_id if current_user.new_record?
+    params_options[:time_span] = params[:ts] unless params[:ts].blank?
     @page_data.add do |multi_curb|
       JAPI::Story.async_find( :all, :multi_curb => multi_curb, :params => params_options ){ |results| @stories = results }
       JAPI::Author.async_find( :all, :multi_curb => multi_curb, :params => { :q => params[:q], :per_page => 3, :page => 1 } ){ |results| @authors = results || [] }
@@ -70,6 +71,7 @@ class StoriesController < ApplicationController
     params_options[:user_id] = current_user.id unless current_user.new_record?
     params_options[:language_id] ||= params[:l] unless params[:l].blank?
     params_options[:language_id] ||= news_edition.language_id if current_user.new_record?
+    params_options[:time_span] = params[:ts] unless params[:ts].blank?
     @page_data.add do |multi_curb|
       JAPI::Story.async_find( :all, :multi_curb => multi_curb, :from => :advance, :params => params_options ){ |results| @stories = results }
     end
@@ -94,7 +96,8 @@ class StoriesController < ApplicationController
   
   def set_related_stories
     @skip_story_ids = ( params[:sk] || '' ).split(',').push( @story.id ).uniq
-    @related_story_params = { :sk => @skip_story_ids.join(',') }
+    @referer = params[:rf].blank? ? request.referer : CGI.unescape( params[:rf] )
+    @related_story_params = { :sk => @skip_story_ids.join(','), :rf => CGI.escape( @referer ) }
     referer = base_url( request.referer || '/' ).gsub(/http\:\/\/[^\/]+/, '')
     if (match = referer.match(/\/topics\/(\d+)/))
       params[:topic] = match[1]
@@ -112,27 +115,49 @@ class StoriesController < ApplicationController
     if params[:cluster]
       @cluster = JAPI::Cluster.find( :one, :params => { :cluster_id => params[:cluster], :per_page => 1, :page => 1, :user_id => current_user.id } )
       if @cluster
-        @related_stories = JAPI::Story.find( :all, :params => { :q => @cluster.top_keywords.join(' '), :language_id => @cluster.language_id, :per_page => 3, :skip_story_ids => @skip_story_ids } )
+        @related_stories = JAPI::Story.find( :all, :params => { :q => @cluster.top_keywords.join(' '), :language_id => @cluster.language_id, :time_span => 24.hours, :per_page => 3, :skip_story_ids => @skip_story_ids } )
+        @facets = @related_stories.facets
         @related_story_params[:cluster] = params[:cluster]
-        @more_results_url = stories_path( :q => @cluster.top_keywords.join(' '), :l => @cluster.language_id )
+        @more_results_url = stories_path( :q => @cluster.top_keywords.join(' '), :l => @cluster.language_id, :ts => 24.hours )
       end
     elsif params[:topic]
-      @topic = JAPI::Topic.find( :one, :params => { :topic_id => params[:topic] , :per_page => 3, :page => 1, :user_id => current_user.id, :skip_story_ids => @skip_story_ids } )
+      @topic = JAPI::Topic.find( :one, :params => { :topic_id => params[:topic] , :time_span => 24.hours, :per_page => 3, :page => 1, :user_id => current_user.id, :skip_story_ids => @skip_story_ids } )
       if @topic && @topic.stories.any?
+        @facets = @topic.facets
         @related_stories = @topic.stories
         @related_story_params[:topic] = params[:topic]
-         @more_results_url = topic_path( @topic )
+         @more_results_url = topic_path( @topic )+ "?ts=#{24.hours}"
       end
     elsif params[:search]
-      @related_stories = JAPI::Story.find( :all, :from => :advance, :params => params[:search].merge!( :per_page => 3, :user_id => current_user.id, :language_id => @story.language_id,
+      @related_stories = JAPI::Story.find( :all, :from => :advance, :params => params[:search].merge!( :time_span => 24.hours, :per_page => 3, :user_id => current_user.id, :language_id => @story.language_id,
         :skip_story_ids => @skip_story_ids ) )
       if @related_stories.any?
-        @more_results_url = search_results_stories_path( :japi_topic_preference => @related_story_params[:japi_topic_preference], :l => @story.language_id )
+        @facets = @related_stories.facets
+        @more_results_url = search_results_stories_path( :japi_topic_preference => @related_story_params[:japi_topic_preference], :l => @story.language_id, :ts => 24.hours )
       end
     end
     unless @related_stories.blank?
       @related_stories.pop if mobile_device? # Showing two related stories
     end
+    # Getting Personalized Stuff for the current story
+    @author_preference = Hash.new
+    @story.authors.each do |author|
+      @author_preference[ author.id ] = JAPI::AuthorPreference.new( :author_id => author.id, :preference => nil, :subscribed => false )
+    end
+    @source_preference = JAPI::SourcePreference.new( :source_id => params[:id], :preference => nil )
+    unless current_user.new_record?
+      multi_curb = Curl::Multi.new
+      @story.authors.each do |author|
+        JAPI::AuthorPreference.find( nil, :multi_curb => multi_curb, :params => { :author_id => author.id,  :user_id => current_user.id } ) do |result|
+          @author_preference[ result.author_id ] = result if result
+        end
+      end
+      JAPI::SourcePreference.find( nil, :muli_curb => multi_curb, :params => { :source_id => @story.source.id, :user_id => current_user.id } ) do |result|
+        @source_preference = result if result
+      end if @story.source
+      multi_curb.perform
+    end
+    
   end
   
   def base_url( url = nil )

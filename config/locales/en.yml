@@ -168,11 +168,19 @@ en:
       found: "No authors found"
   cluster:
     all:
-      blogs: "{{count}} blog(s)"
-      headlines: "all {{count}} headlines"
-      opinions: "{{count}} opinion(s)"
+      blogs: 
+        one: "1 blog"
+        other: "{{count}} blogs"
+      headlines: 
+        one: "all 1 headline" 
+        other: "all {{count}} headlines"
+      opinions: 
+        one: "1 opinion"
+        other: "{{count}} opinions"
       stories: "Related stories"
-      videos: "{{count}} video(s)"
+      videos: 
+        one: "1 video"
+        other: "{{count}} videos"
       label: "all"
     not:
       found: "Group not found."
@@ -331,6 +339,7 @@ en:
     not:
       found: "Source not found."
   stories:
+    this: "This article"
     not:
         found: "No articles found."
         found_for_query: "No articles found for {{query}}."
@@ -381,4 +390,4 @@ en:
   more:
     info: "more info"
     related:
-      stories: "more related stories"
+      stories: "all {{count}} related stories"

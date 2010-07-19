@@ -35,6 +35,7 @@ class TopicsController < ApplicationController
         params_options = { :topic_id => params[:id], :page => params[:page],
           :per_page => params[:per_page], :user_id => current_user.id, 
           :sort_criteria => sort_criteria, :subscription_type => subscription_type, @filter => 4 }
+        params_options[ :time_span ] = params[:ts] unless params[:ts].blank?
         JAPI::Topic.async_find( :one, :multi_curb => multi_curb, :params => params_options ) do |topic|
           @topic = topic
         end
