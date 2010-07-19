@@ -96,7 +96,7 @@ class StoriesController < ApplicationController
   
   def set_related_stories
     @skip_story_ids = ( params[:sk] || '' ).split(',').push( @story.id ).uniq
-    @referer = params[:rf].blank? ? request.referer : CGI.unescape( params[:rf] )
+    @referer = params[:rf].blank? ? ( request.referer || root_path ): CGI.unescape( params[:rf] )
     @related_story_params = { :sk => @skip_story_ids.join(','), :rf => CGI.escape( @referer ) }
     referer = base_url( request.referer || '/' ).gsub(/http\:\/\/[^\/]+/, '')
     if (match = referer.match(/\/topics\/(\d+)/))
