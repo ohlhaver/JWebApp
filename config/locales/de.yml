@@ -391,6 +391,8 @@ de:
     info: "mehr Informationen"
     related:
       stories: "alle {{count}} ähnlichen Artikel"
+  frame:
+    back: "zurück"
       
       
       

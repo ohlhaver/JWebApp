@@ -81,7 +81,7 @@
         <td style="padding-left:10px; padding-top:5px">
           <ul id="bar">
             <li><%= link_to( image_tag( 'logo.gif'), root_path ) %><br/><br/>
-                <%= link_to( '&laquo; back', @referer ) %></li>
+                <%= link_to( '&laquo; ' +  t('frame.back'), @referer ) %></li>
                 
          <!--   <li class="story search" style="padding-top: 5px;">
               <% form_tag( stories_path, :id => 'search_form', :method => :get, :class => 'inline_form' ) do -%>
@@ -111,7 +111,7 @@
               <%= [ render_rlb_filter_link( :video, 'cluster.all.videos', @facets.video_count, :class => 'more inline'),
                 render_rlb_filter_link( :opinion, 'cluster.all.opinions', @facets.opinion_count, :class => 'more inline' ),
                 render_rlb_filter_link( :blog, 'cluster.all.blogs', @facets.blog_count, :class => 'more inline' ) ].select{ |x| !x.nil? }.join(" - ") %>
-            <% end %>
+            <% end %> 
             <div class='.clearfix'></div>
             </li>
             

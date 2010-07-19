@@ -391,3 +391,5 @@ en:
     info: "more info"
     related:
       stories: "all {{count}} related stories"
+  frame:
+    back: "back"
