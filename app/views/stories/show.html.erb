@@ -20,8 +20,8 @@
         font-size: 18px;
         line-height: 21px;
         color: #333333;
-        height: 36px;
-        width: 213px;
+        height: 30px;
+        width: 150px;
         border: 1px solid #999999;
         padding: 7px 5px 0;
         vertical-align: middle;
@@ -31,11 +31,11 @@
         font-family: Arial,Helvetica,sans-serif;
         font-weight: normal;
         text-decoration:none;
-        font-size: 18px;
+        font-size: 15px;
         line-height: 21px;
         color: #FFFFFF;background-color: #0000b6;
         vertical-align: middle;
-        height: 36px;
+        height: 30px;
         min-width: 1;
         border: 0px;
         _width: 10em;
@@ -44,7 +44,7 @@
       }
       ul#bar{ clear:both; padding:0; margin:0; }
       ul#bar li{ float:left; list-style:none; list-style-position:inside; font-size:110%;}
-      ul#bar li.story{ padding-left: 40px; }
+      ul#bar li.story{ padding-left: 20px; }
       ul#bar li.min_width{ max-width: 600px; }
       ul#bar li span.heading{ font-family:Arial,Helvetica,sans-serif; font-size:100%; display:block; padding-bottom:5px; font-weight:bold; }
       ul#bar li span.stories { display:block; padding-top:4px; padding-right:5px;}
@@ -79,7 +79,7 @@
       <tr style="height:1%">
         <td style="padding-left:10px; padding-top:5px">
           <ul id="bar">
-            <li><%= link_to( image_tag( 'logo.gif'), root_path ) %><br/>
+            <li><%= link_to( image_tag( 'logo.gif'), root_path ) %><br/><br/>
                 <%= link_to( '&laquo; back', @referer ) %></li>
                 
             <li class="story search" style="padding-top: 5px;">

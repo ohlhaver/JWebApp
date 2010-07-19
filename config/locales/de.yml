@@ -339,7 +339,7 @@ de:
     not:
       found: "Quelle nicht gefunden."
   stories:
-    this: "Dieser Artikel"
+    this: "Diesen Artikel"
     not:
       found: "Keine Artikel gefunden."
       found_for_query: "Keine Artikel zu {{query}} gefunden."
@@ -390,7 +390,7 @@ de:
   more:
     info: "mehr Informationen"
     related:
-      stories: "alle {{count}} ähnliche Artikel"
+      stories: "alle {{count}} ähnlichen Artikel"
       
       
       
