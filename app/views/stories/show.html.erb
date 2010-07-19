@@ -44,8 +44,8 @@
       }
       ul#bar{ clear:both; padding:0; margin:0; }
       ul#bar li{ float:left; list-style:none; list-style-position:inside; font-size:110%;}
-      ul#bar li.story{ padding-left: 20px; }
-      ul#bar li.min_width{ max-width: 600px; }
+      ul#bar li.story{ padding-left: 40px; }
+      ul#bar li.min_width{ max-width: 620px; }
       ul#bar li span.heading{ font-family:Arial,Helvetica,sans-serif; font-size:100%; display:block; padding-bottom:5px; font-weight:bold; }
       ul#bar li span.stories { display:block; padding-top:4px; padding-right:5px;}
       ul#bar li a,a:visited{ color:#333333; text-decoration:none; font-family:Arial,Helvetica,sans-serif;}
@@ -82,13 +82,13 @@
             <li><%= link_to( image_tag( 'logo.gif'), root_path ) %><br/><br/>
                 <%= link_to( '&laquo; back', @referer ) %></li>
                 
-            <li class="story search" style="padding-top: 5px;">
+         <!--   <li class="story search" style="padding-top: 5px;">
               <% form_tag( stories_path, :id => 'search_form', :method => :get, :class => 'inline_form' ) do -%>
                 <input type="text" title="Search News" autocomplete="off" tabindex="1" name="q" id = 'searchfield' class ="text"  value="<%= params[:q] -%>" />
                 <input type="submit" value="<%= t( 'search.simple' ) -%>" tabindex="2" id = 'searchbutton' class ="button"/>
               <% end -%>
             </li>
-      
+      -->
           <% if @related_stories %>
             <li class="story min_width">
             <span class='stories'>
