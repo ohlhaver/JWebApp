@@ -50,6 +50,7 @@
       ul#bar li span.stories { display:block; padding-top:4px; padding-right:5px;}
       ul#bar li a,a:visited{ color:#333333; text-decoration:none; font-family:Arial,Helvetica,sans-serif;}
       ul#bar li.story a,a:visited{ font-family:Georgia,"Times New Roman",Times,serif; }
+	  ul#bar li.story a:hover{ color:#0000b6; }
       ul#bar li span.arial a,a:visited{ font-family: Arial,Helvetica,sans-serif; }
       ul#bar li.right{ float:right; }
       ul#bar li a.more{ color:#333333; font-family:Arial,Helvetica,sans-serif; padding-top:5px; font-size:100%; display:inline-block;}
@@ -122,13 +123,13 @@
               <% if @story.authors.any? %>
                 <% @story.authors[0,1].each do |author| %>
                 <div>
-                  <span class='grey'><%= link_to( author.name, author_path( author ) ) %></span> <span class="arial">&nbsp;&nbsp;<%= render_author_subscription( @author_preference[ author.id ], author ) %>&nbsp; <!-- - &nbsp; --><%# render_author_rating_form( @author_preference[ author.id ], author ) %></span>
+                  <span class='grey'><%= t('search.advance.filter.author')%> <%= link_to( author.name, author_path( author ) ) %></span> <span class="arial"> <%= render_author_subscription( @author_preference[ author.id ], author ) %>&nbsp; <!-- - &nbsp; --><%# render_author_rating_form( @author_preference[ author.id ], author ) %></span>
                 </div>
                 <div class="clearfix"></div>
                 <% end %>
               <% end %>
               <% if @story.source %>
-                  <div><span class='grey'><%= link_to( @story.source.name, source_path( @story.source ) ) %></span> <span class="right"><%# render_source_rating_form( @source_preference, @story.source ) %></span></div>
+                  <div><span class='grey'><%= t('search.advance.filter.source')%> <%= link_to( @story.source.name, source_path( @story.source ) ) %></span> <span class="right"><%# render_source_rating_form( @source_preference, @story.source ) %></span></div>
                   <div class="clearfix"></div>
               <% end %>
             </li>
