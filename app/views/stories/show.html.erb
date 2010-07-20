@@ -45,7 +45,8 @@
       ul#bar{ clear:both; padding:0; margin:0; }
       ul#bar li{ float:left; list-style:none; list-style-position:inside; font-size:110%;}
       ul#bar li.story{ padding-left: 40px; }
-      ul#bar li.min_width{ max-width: 620px; }
+      ul#bar li.max_width_540px{ max-width: 540px; }
+      ul#bar li.max_width_270px{ max-width: 270px;}
       ul#bar li span.heading{ font-family:Arial,Helvetica,sans-serif; font-size:100%; display:block; padding-bottom:5px; font-weight:bold; }
       ul#bar li span.stories { display:block; padding-top:4px; padding-right:5px;}
       ul#bar li a,a:visited{ color:#333333; text-decoration:none; font-family:Arial,Helvetica,sans-serif;}
@@ -91,7 +92,7 @@
             </li>
       -->
           <% if @related_stories %>
-            <li class="story min_width">
+            <li class="story max_width_540px">
             <span class='stories'>
             <% @related_stories.each do |story| %>
                 <%= link_to( story.title, story_path( @related_story_params.merge( :id => story.to_param ) ) ) %> 
@@ -106,18 +107,19 @@
               <br/>
             <% end %>
             </span>
-            <%= link_to( t('more.related.stories', :count => @facets.count ) + ' &raquo;', @more_results_url, :class => 'more inline bold' ) %>
+            <%= link_to( t('more.related.stories', :count => @facets.count ), @more_results_url, :class => 'more inline bold' ) %>
             <% if @facets %>
-              <%= [ render_rlb_filter_link( :video, 'cluster.all.videos', @facets.video_count, :class => 'more inline'),
-                render_rlb_filter_link( :opinion, 'cluster.all.opinions', @facets.opinion_count, :class => 'more inline' ),
-                render_rlb_filter_link( :blog, 'cluster.all.blogs', @facets.blog_count, :class => 'more inline' ) ].select{ |x| !x.nil? }.join(" - ") %>
+              <%= render_rlb_filter_link( :video, 'cluster.all.videos', @facets.video_count, :class => 'more inline') %>
+              <%= render_rlb_filter_link( :opinion, 'cluster.all.opinions', @facets.opinion_count, :class => 'more inline' ) %>
+              <%= render_rlb_filter_link( :blog, 'cluster.all.blogs', @facets.blog_count, :class => 'more inline' ) %>
             <% end %> 
+            &raquo;
             <div class='.clearfix'></div>
             </li>
             
           <% end %>
 
-            <li class="story">
+            <li class="story max_width_270px">
               <span class='heading stories inline left'><%= t('stories.this') %></span> <span class='left'><%= fb_like_plugin( @story ) %></span>
               <div class='clearfix'></div>
               <% if @story.authors.any? %>

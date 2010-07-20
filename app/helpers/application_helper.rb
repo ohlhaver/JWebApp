@@ -251,7 +251,7 @@ module ApplicationHelper
     link << "?" unless link.match(/\?/)
     link << "&" unless link.match(/(\?|\&)$/)
     link << "#{filter}=1"
-    link_to( t( name, :count => count ), link , html_options )
+    " - " + link_to( t( name, :count => count ), link , html_options )
   end
   
   def render_author_preview( author )
