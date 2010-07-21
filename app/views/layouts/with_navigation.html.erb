@@ -11,6 +11,12 @@
     <meta name="verify-v1" content="uktXEFRkC4oLS3pjPi7ZkolIVksbOF8D7PRiyCDs+fM=" />
     <META name="y_key" content="4b5e881361af8e48">
     <meta name="keywords" content="Jurnalo, Journalo" />
+	<meta property="og:title" content="Jurnalo" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="http://www.jurnalo.com/" />
+	<meta property="og:image" content="http://www.jurnalo.com/images/logo.gif" />
+	<meta property="og:description" content="Blättere in allen Nachrichten!."/>
+	<meta property="fb:admins" content="ohlhaver"/>
     <%= stylesheet_link_tag 'reset', 'grid10', 'simple', 'fb', :cache => 'base10' %>
   </head>
   <body>
@@ -49,9 +55,13 @@
 
       
       <div id="module" class="grid_2">
+		<iframe src="http://www.facebook.com/plugins/like.php?href=www.jurnalo.com&amp;layout=button_count&amp;show_faces=false&amp;width=180&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:180px; height:21px;" allowTransparency="true"></iframe>
+		<ul class= "nav_block"> 
+			<br>
         <div id='home_link' >
           <%= link_to_navigation_item 'Home', root_path %> &nbsp;
         </div>
+		</ul>
       </div>
       <div class = "grid_2">
         <div id="navigation" >
