@@ -1,11 +1,14 @@
 <% content_for :user_actions do -%>
+	<iframe src="http://www.facebook.com/plugins/like.php?href=www.jurnalo.com&amp;layout=button_count&amp;show_faces=false&amp;width=180&amp;action=like&amp;colorscheme=dark&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:180px; height:21px;" allowTransparency="true"></iframe>
   <% if logged_in? -%>
     <%= link_to( t( 'navigation.top.logout', :name => current_user.name ), logout_path ) %> 
 
   <% else -%>
-	<a class="fb_button fb_button_small" rel="nofollow" onclick="facebook_onlogin();return false" href="<%= @facebook_login_url %>" ><span class="fb_button_text"><%= t('jurnalo.login.fb_button') %></span></a> <br> 
+<%= link_to( t( 'navigation.top.login' ), login_path ) -%> - 
+	<a class="fb_button fb_button_small" rel="nofollow" onclick="facebook_onlogin();return false" href="<%= @facebook_login_url %>" ><span class="fb_button_text"><%= t('jurnalo.login.fb_button') %></span></a>
 	
-	<%= link_to( t( 'navigation.top.login' ), login_path ) -%> - <%= link_to( t('navigation.top.register' ), account_path( :action => 'new' ) )%>
+	
+	<!--<%= link_to( t('navigation.top.register' ), account_path( :action => 'new' ) )%> -->
      
   <% end %>
 <% end %>
