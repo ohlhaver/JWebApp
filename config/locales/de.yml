@@ -127,10 +127,10 @@ de:
       reason_3: "Um mehr als einen Autoren zu abonnieren, upgraden Sie bitte auf den Jurnalo Power Plan."
     wizard:
       title: 'Neu hier?'
-      create_topic: "Erstellen Sie ein eigenes Thema!"
-      subscribe_author: "Abonnieren Sie Ihre Lieblingsautoren!"
-      rate_source: "Gewichten Sie Ihre Nachrichten-Quellen!"
-      reading_list: "Speichern Sie interessante Artikel zu Ihrer Leseliste!"
+      create_topic: "Erstellen Sie jetzt Ihr erstes eigenes Thema mit Jurnalo!"
+      subscribe_author: "Abonnieren Sie jetzt Ihren ersten Lieblingsautor mit Jurnalo!"
+      rate_source: "Gewichten Sie jetzt Ihre erste Nachrichten-Quelle mit Jurnalo!"
+      reading_list: "Speichern Sie jetzt den ersten interessanten Artikel zu Ihrer Leseliste mit Jurnalo!"
       whats_that: "Was ist das?"
       free_signup: "oder {{link}}"
       fb_login: "{{link}}"
@@ -329,7 +329,7 @@ de:
       rate_here: "Hier Quellen gewichten!"
     rating:
       howto: "Anleitung:"
-      step_1: "Klicken Sie auf den Namen der Quelle."
+      step_1: "Klicken Sie auf den Namen einer Publikation."
       step_2: "Wählen Sie rechts oben eine Gewichtung:"
       what: "Sie können jeder Publikation eine der folgenden Gewichtungen geben:"
       values: "'nicht gewichtet', 'ignorieren', 'niedrig', 'mittel', oder 'hoch'"
@@ -364,7 +364,7 @@ de:
       why_2: "Die Links zu diesen Artikeln bleiben Ihnen auf Ihrer Leseliste erhalten, bis Sie sie löschen."
       howto: "Anleitung:"
       step_1: "Halten Sie die Maus auf die Überschrift des Artikels."
-      step_2: "Gehen Sie auf das Plussymbol."
+      step_2: "Klicken Sie auf das Plussymbol."
       step_3: "Klicken Sie auf 'zur Leseliste speichern'"
   topic:
     label:

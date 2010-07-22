@@ -127,10 +127,10 @@ en:
       reason_3: "To rate/subscribe to more than one author please upgrade to the Jurnalo Power Account."
     wizard:
       title: 'New to Jurnalo?'
-      create_topic: "Create a personal topic!"
-      subscribe_author: "Subscribe to your favorite authors!"
-      rate_source: "Rate your news sources!"
-      reading_list: "Save interesting articles to your reading list!"
+      create_topic: "Create your first personal topic now with Jurnalo!"
+      subscribe_author: "Subscribe to your first favorite author now with Jurnalo!"
+      rate_source: "Rate your first news publication now with Jurnalo!"
+      reading_list: "Save interesting articles to your reading list now with Jurnalo!"
       whats_that: "What's that?"
       free_signup: "or {{link}}"
       fb_login: "{{link}}"
@@ -364,7 +364,7 @@ en:
       why_2: "The links to these articles will remain you reading list until you delete them."
       howto: "Intstructions:"
       step_1: "Move your mouse over the headline."
-      step_2: "Move your mouse over the plus symbol.'"
+      step_2: "Click the plus symbol.'"
       step_3: "Click 'add to my reading list.'"
   topic:
     label:
