@@ -122,7 +122,10 @@
             <li class="story max_width_270px">
               <span class='heading stories inline left'><%= t('stories.this') %></span> <span class='left'><%= fb_like_plugin( @story ) %></span>
               <div class='clearfix'></div>
-			  
+			  <% if @story.source %>
+                  <div><span class='grey'><%= t('search.advance.filter.source')%> <%= link_to( @story.source.name, source_path( @story.source ) ) %></span> <span class="right"><%# render_source_rating_form( @source_preference, @story.source ) %></span></div>
+                  <div class="clearfix"></div><br>
+              <% end %>
               <% if @story.authors.any? %>
                 <% @story.authors[0,1].each do |author| %>
                 <div>
@@ -131,10 +134,7 @@
                 <div class="clearfix"></div>
                 <% end %>
               <% end %>
-			<% if @story.source %>
-                  <div><span class='grey'><%= t('search.advance.filter.source')%> <%= link_to( @story.source.name, source_path( @story.source ) ) %></span> <span class="right"><%# render_source_rating_form( @source_preference, @story.source ) %></span></div>
-                  <div class="clearfix"></div>
-              <% end %>
+			
 
             </li>
             
