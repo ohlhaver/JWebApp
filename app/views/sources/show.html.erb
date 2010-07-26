@@ -2,7 +2,7 @@
   <div class='news_block'>
     <h2>
 		<div class = "rater">
-		<%= t('prefs.labels.rate') %> &nbsp; <%= render_source_rating_form( @source_preference, @source) %>
+		<%= render_source_rating_form( @source_preference, @source) %>
 		</div>
 		<span class="page_label">
 	      <div class="name"><%= @source.name %></div> <%= fb_like_plugin( @source ) unless @source.new_record? %>

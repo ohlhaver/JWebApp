@@ -1,8 +1,27 @@
-<% form_dom_id = "ap_rating_form_#{author.id}" %>
-<% field_dom_id = "ap_rating_#{author.id}" %>
-<% form_tag( rate_author_path( author ), :id => form_dom_id, :class => 'inline_form' ) do %>
-  <%= select_tag( 'rating',  options_for_select( preference_options( :author_rating, :include_blank => 'prefs.val.nil' ), author_preference.preference ), :id => field_dom_id ) %>
+<% show_down_link = true %>
+<% show_up_link = true %>
+<% if author_preference.preference && author_preference.preference < 2 %>
+  <% show_down_link = false %>
 <% end %>
-<% content_for :custom_javascript do %>
-  <%= observe_field( field_dom_id, :function => "$('#{form_dom_id}').submit();" ) %>
+<% if author_preference.preference && author_preference.preference > 1 %>
+  <% show_up_link = false %>
+<% end %>
+<% if show_up_link %>
+  <% form_dom_id = "tu_ap_rating_form_#{author.id}" %>
+  <% form_tag( rate_author_path( author ), :id => form_dom_id, :class => 'inline_form' ) do %>
+    <%= hidden_field_tag :rating, 3 %>
+    <%= image_submit_tag( 'tupg.png', :class => 'thumb' ) %>
+  <% end %>
+<% else %>
+  <span class='thumb'><%= image_tag( 'tupb.png' ) %></span>
+<% end %>
+<% if show_down_link %>
+  <% form_dom_id = "tu_ap_rating_form_#{author.id}" %>
+  <% field_dom_id = "tu_ap_rating_#{author.id}" %>
+  <% form_tag( rate_author_path( author ), :id => form_dom_id, :class => 'inline_form' ) do %>
+    <%= hidden_field_tag :rating, 1 %>
+    <%= image_submit_tag( 'tdng.png', :class => 'thumb' ) %>
+  <% end %>
+<% else %>
+  <span class='thumb'><%= image_tag( 'tdnb.png' ) %></span>
 <% end %>

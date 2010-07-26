@@ -742,7 +742,7 @@ h2 .rater a:link {
 	font-size: 13px;
 	color: #333333;
 	margin-right: 10px;
-
+  vertical-align: super;
 	
 }
 
@@ -752,6 +752,7 @@ h2 .rater a:visited {
 	font-size: 13px;
 	color: #333333;
 	margin-right: 10px;
+	vertical-align: super;
 	
 }
 
@@ -1125,4 +1126,7 @@ border: 0px;
 ol.numbered{
   list-style-position:inside;
   list-style-type:decimal;
+}
+.thumb {
+  vertical-align:top;
 }
