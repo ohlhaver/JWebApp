@@ -8,7 +8,7 @@ module ApplicationHelper
   end
   
   def content_block_position
-    return "grid_5 #{cycle( 'alpha', 'omega', :name => 'cluster_preview' )}" if @content_column_count == 2
+    return "grid_4 #{cycle( 'alpha', 'omega', :name => 'cluster_preview' )}" if @content_column_count == 2
   end
   
   def reset_content_block_clearfix
