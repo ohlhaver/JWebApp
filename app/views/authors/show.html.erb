@@ -3,8 +3,7 @@
   <div class='news_block'>
     <h2>
       <div class='rater'>
-	    <%= render_author_subscription( @author_preference, @author ) %>-&nbsp;&nbsp;
-        <%= t('prefs.labels.rate') %>&nbsp;<%= render_author_rating_form( @author_preference, @author ) %>
+	    <%= render_author_subscription( @author_preference, @author ) %><%= render_author_rating_form( @author_preference, @author ) %>
       </div>
 	  <span class="page_label">
 	    <div class="name"><%= @author.full_name %></div> <%= fb_like_plugin( @author ) unless @author.new_record? %>

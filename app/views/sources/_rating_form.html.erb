@@ -1,8 +1,26 @@
-<% form_dom_id = "sp_rating_form_#{source.id}" %>
-<% field_dom_id = "sp_rating_#{source.id}" %>
-<% form_tag( rate_source_path( source ), :id => form_dom_id, :class => 'inline_form' ) do %>
-  <%= select_tag( 'rating',  options_for_select( preference_options( :source_rating, :include_blank => 'prefs.val.nil' ), source_preference.preference ), :id => field_dom_id ) %>
+<% show_down_link = true %>
+<% show_up_link = true %>
+<% if source_preference.preference && source_preference.preference < 2 %>
+  <% show_down_link = false %>
 <% end %>
-<% content_for :custom_javascript do %>
-  <%= observe_field( field_dom_id, :function => "$('#{form_dom_id}').submit();" ) %>
+<% if source_preference.preference && source_preference.preference > 1 %>
+  <% show_up_link = false %>
+<% end %>
+<% if show_up_link %>
+  <% form_dom_id = "tu_sp_rating_form_#{source.id}" %>
+  <% form_tag( rate_source_path( source ), :id => form_dom_id, :class => 'inline_form' ) do %>
+    <%= hidden_field_tag :rating, 3 %>
+    <%= image_submit_tag( 'tupg.png', :class => 'thumb' ) %>
+  <% end %>
+<% else %>
+  <span class='thumb'><%= image_tag( 'tupb.png' ) %></span>
+<% end %>
+<% if show_down_link %>
+  <% form_dom_id = "tu_sp_rating_form_#{source.id}" %>
+  <% form_tag( rate_source_path( source ), :id => form_dom_id, :class => 'inline_form' ) do %>
+    <%= hidden_field_tag :rating, 1 %>
+    <%= image_submit_tag( 'tdng.png', :class => 'thumb' ) %>
+  <% end %>
+<% else %>
+  <span class='thumb'><%= image_tag( 'tdnb.png' ) %></span>
 <% end %>
