@@ -185,6 +185,10 @@ class AuthorsController < ApplicationController
   
   protected
   
+  def set_skyscraper
+    @skyscraper = true
+  end
+  
   def page_data_auto_finalize?
     false
   end

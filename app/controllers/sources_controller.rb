@@ -59,6 +59,10 @@ class SourcesController < ApplicationController
   
   protected
   
+  def set_skyscraper
+    @skyscraper = true
+  end
+  
   def correct_param_id
     params[:id] = params[:id].match(/(\d+)/).try(:[], 1) unless params[:id].blank?
   end

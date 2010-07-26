@@ -4,6 +4,7 @@ class StoriesController < ApplicationController
   
   #layout 'without_navigation'
   
+  
   def show
     @story = JAPI::Story.find( params[:id] )
     if @story && !web_spider?
@@ -88,6 +89,10 @@ class StoriesController < ApplicationController
   end
   
   protected
+  
+  def set_skyscraper
+    @skyscraper = true
+  end
   
   def page_data_auto_finalize?
     case(action_name) when 'advanced' : true
