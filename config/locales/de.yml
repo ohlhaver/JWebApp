@@ -412,5 +412,6 @@ de:
         one: "{{percent}}% der Benutzer gefällt dieser Autor"
         other: "{{percent}}% der Benutzer gefällt dieser Autor"
       source:
-        one: "{{percent}}% der Benutzer gefällt dieser Autor"
+        zero: "Sei der erste Benutzer, der diese Publikation bewertet!" 
+        one: "{{percent}}% der Benutzer gefällt dieser Publikation"
         other: "{{percent}}% der Benutzer gefällt diese Publikation"
