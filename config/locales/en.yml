@@ -137,11 +137,11 @@ en:
       do_not_show_again: "Do not show this again."
   author:
     like:
-      info: "like this author"
-      by_you: "you like this author"
+      info: "Prefer articles by this author"
+      by_you: "You prefer articles by this author."
     dislike:
-      info: "dislike this author"
-      by_you: "you dislike this author"
+      info: "Don't prefer articles by this author"
+      by_you: "You don't prefer articles by this author."
     action:
       subscribe: 'subscribe'
       unsubscribe: 'unsubscribe'
@@ -330,11 +330,11 @@ en:
         blog: "Blogs:"
   source:
     like:
-      info: "like this publication"
-      by_you: "you like this publication"
+      info: "Prefer articles by this publication"
+      by_you: "You prefer this publication."
     dislike:
-      info: "dislike this publication"
-      by_you: "you dislike this publication"
+      info: "Don't prefer articles by this publication"
+      by_you: "You don't prefer this publication."
     what:
       label: "Source Rating"
     action:
@@ -408,11 +408,11 @@ en:
   stars:
     info:
       author: 
-        zero: "Be the first user to rate this author!"
-        one: "{{percent}}% of the users like this author"
-        other: "{{percent}}% of the users like this author"
+        zero: "This author has no ratings yet."
+        one: "{{percent}}% of the users prefer this author."
+        other: "{{percent}}% of the users prefer this author."
       source:
-        zero: "Be the first user to rate this publication!"
-        one: "{{percent}}% of the users like this publication"
-        other: "{{percent}}% of the users like this publication"
+        zero: "This publication has no ratings yet."
+        one: "{{percent}}% of the users prefer this publication."
+        other: "{{percent}}% of the users prefer this publication."
         

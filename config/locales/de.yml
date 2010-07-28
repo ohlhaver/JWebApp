@@ -137,11 +137,11 @@ de:
       do_not_show_again: "Bitte nicht nochmal anzeigen."
   author:
     like:
-      info: "dieser Autor gefällt mir"
-      by_you: "Dir gefällt dieser Autor"
+      info: "Artikel dieses Autors bevorzugen"
+      by_you: "Sie bevorzugen diesen Autor."
     dislike:
-      info: "dieser Autor missfällt mir"
-      by_you: "Dir missfällt dieser Autor"
+      info: "Artikel dieses Autors nicht bevorzugen"
+      by_you: "Sie bevorzugen diesen Autor nicht."
     action:
       subscribe: 'abonnieren'
       unsubscribe: 'abbestellen'
@@ -330,11 +330,11 @@ de:
         blog: "Blogs:"
   source:
     like:
-      info: "diese Publikation gefällt mir"
-      by_you: "Dir gefällt diese Publikation"
+      info: "Artikel dieser Publikation bevorzugen"
+      by_you: "Sie bevorzugen diese Publikation."
     dislike:
-      info: "diese Publikation missfällt mir"
-      by_you: "Dir missfällt diese Publikation"
+      info: "Artikel dieser Publikation nicht bevorzugen"
+      by_you: "Sie bevorzugen diese Publikation nicht."
     what:
       label: "Quellen Gewichten"
     action:
@@ -408,10 +408,10 @@ de:
   stars:
     info:
       author: 
-        zero: "Sei der erste Benutzer, der diesen Autor bewertet!"
-        one: "{{percent}}% der Benutzer gefällt dieser Autor"
-        other: "{{percent}}% der Benutzer gefällt dieser Autor"
+        zero: "Dieser Autor hat noch keine Bewertungen."
+        one: "{{percent}}% der Benutzer bevorzugen diesen Autor."
+        other: "{{percent}}% der Benutzer bevorzugen diesen Autor."
       source:
-        zero: "Sei der erste Benutzer, der diese Publikation bewertet!" 
-        one: "{{percent}}% der Benutzer gefällt dieser Publikation"
-        other: "{{percent}}% der Benutzer gefällt diese Publikation"
+        zero: "Diese Publikation hat noch keine Bewertungen." 
+        one: "{{percent}}% der Benutzer bevorzugen diese Publikation."
+        other: "{{percent}}% der Benutzer bevorzugen diese Publikation."

@@ -134,12 +134,7 @@
             <li class="story max_width_270px">
               <span class='heading stories inline left'><%= t('stories.this') %></span> <span class='left'><%= fb_like_plugin( @story ) %></span>
               <div class='clearfix'></div>
-              <% if @source %>
-                  <div><span class='grey'><%= t('search.advance.filter.source')%> <%= link_to( @source.name, source_path( @source ) ) %></span> <span class="arial widgets">
-                  <%= render_rating_stars( @source ) %>
-                  <%= render_source_rating_form( @source_preference, @source ) %></span></div>
-                  <div class="clearfix"></div>
-              <% end %>
+             
               <% if @author %>
                 <div>
                   <span class='grey'><%= t('search.advance.filter.author')%> <%= link_to( @author.name + ' &raquo;', author_path( @author ) ) %> </span> <span class="arial widgets"> 
@@ -148,6 +143,12 @@
                     <%# render_author_subscription( @author_preference, @author ) %></span>
                 </div>
                 <div class="clearfix"></div>
+              <% end %>
+			 <% if @source %>
+                  <div><span class='grey'><%= t('search.advance.filter.source')%> <%= link_to( @source.name, source_path( @source ) ) %></span> <span class="arial widgets">
+                  <%= render_rating_stars( @source ) %>
+                  <%= render_source_rating_form( @source_preference, @source ) %></span></div>
+                  <div class="clearfix"></div>
               <% end %>
             </li>
             
