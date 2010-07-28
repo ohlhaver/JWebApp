@@ -409,7 +409,8 @@ de:
     info:
       author: 
         zero: "Sei der erste Benutzer, der diesen Autor bewertet!"
+        one: "{{percent}}% der Benutzer gefällt dieser Autor"
         other: "{{percent}}% der Benutzer gefällt dieser Autor"
       source:
-        zero: "Sei der erste Benutzer, der diese Publikation bewertet!" 
+        one: "{{percent}}% der Benutzer gefällt dieser Autor"
         other: "{{percent}}% der Benutzer gefällt diese Publikation"
