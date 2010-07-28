@@ -1,4 +1,6 @@
-<span class='stars' title='<%=  t('stars.info', :count => count.to_i, :average => (average.to_f * 100).round/100.00 ) %> '>
+<% percent = ( ( average.to_f - 1 ) / 2 * 100 ).round.to_i %>
+<% percent = 0 if percent < 0 %>
+<span class='stars' title='<%=  t("stars.info.#{source}", :percent => percent, :count => count.to_i) %>'>
 <% if count.nil? || count == 0 %>
   <%= image_tag( 'nostar.png' )*3 -%>
 <% elsif average <= 1.0 %>

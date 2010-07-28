@@ -136,6 +136,12 @@ en:
       fb_login: "{{link}}"
       do_not_show_again: "Do not show this again."
   author:
+    like:
+      info: "like this author"
+      by_you: "you like this author"
+    dislike:
+      info: "dislike this author"
+      by_you: "you dislike this author"
     action:
       subscribe: 'subscribe'
       unsubscribe: 'unsubscribe'
@@ -323,6 +329,12 @@ en:
         opinion: "Opinions:"
         blog: "Blogs:"
   source:
+    like:
+      info: "like this publication"
+      by_you: "you like this publication"
+    dislike:
+      info: "dislike this publication"
+      by_you: "you dislike this publication"
     what:
       label: "Source Rating"
     action:
@@ -395,6 +407,12 @@ en:
     back: "back"
   stars:
     info:
-      zero: "No votes"
-      one: "1 vote with rating {{average}}"
-      other: "{{count}} votes with average rating {{average}}"
+      author: 
+        zero: "Be the first user to rate this author!"
+        one: "{{percent}}% of the users like this author"
+        other: "{{percent}}% of the users like this author"
+      source:
+        zero: "Be the first user to rate this publication!"
+        one: "{{percent}}% of the users like this publication"
+        other: "{{percent}}% of the users like this publication"
+        

@@ -109,7 +109,7 @@ module ApplicationHelper
   #  end
   
   def render_rating_stars( author_or_source )
-    render :partial => 'shared/rating_stars', :locals => { :average => author_or_source.average_user_preference, :count => author_or_source.user_preference_count }
+    render :partial => 'shared/rating_stars', :locals => { :average => author_or_source.average_user_preference, :count => author_or_source.user_preference_count, :source => ( author_or_source.is_a?( JAPI::Author ) ? 'author' : 'source' ) }
   end
   
   def render_cluster_preview( cluster, headline = nil )

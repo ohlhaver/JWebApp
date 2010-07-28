@@ -1139,6 +1139,10 @@ span.thumb {
   vertical-align:top;
   width:16px;
 }
+.listed_rater span.thumb{
+ padding-top:2px;
+ padding-bottom:0; 
+}
 span.stars{
   display:inline-block;
   vertical-align:top;

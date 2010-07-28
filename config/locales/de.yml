@@ -136,6 +136,12 @@ de:
       fb_login: "{{link}}"
       do_not_show_again: "Bitte nicht nochmal anzeigen."
   author:
+    like:
+      info: "dieser Autor gefällt mir"
+      by_you: "Dir gefällt dieser Autor"
+    dislike:
+      info: "dieser Autor missfällt mir"
+      by_you: "Dir missfällt dieser Autor"
     action:
       subscribe: 'abonnieren'
       unsubscribe: 'abbestellen'
@@ -323,6 +329,12 @@ de:
         opinion: "Meinungen:"
         blog: "Blogs:"
   source:
+    like:
+      info: "diese Publikation gefällt mir"
+      by_you: "Dir gefällt diese Publikation"
+    dislike:
+      info: "diese Publikation missfällt mir"
+      by_you: "Dir missfällt diese Publikation"
     what:
       label: "Quellen Gewichten"
     action:
@@ -395,7 +407,9 @@ de:
     back: "zurück"
   stars:
     info:
-      zero: "Nein-Stimmen"
-      one: "1 Stimme mit Benutzerbewertung {{average}}"
-      other: "{{count}} Stimmen mit einer durchschnittlichen Benutzerbewertung {{average}}"
-      
+      author: 
+        zero: "Sei der erste Benutzer, der diesen Autor bewertet!"
+        other: "{{percent}}% der Benutzer gefällt dieser Autor"
+      source:
+        zero: "Sei der erste Benutzer, der diese Publikation bewertet!" 
+        other: "{{percent}}% der Benutzer gefällt diese Publikation"

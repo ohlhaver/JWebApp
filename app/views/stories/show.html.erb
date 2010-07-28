@@ -145,7 +145,7 @@
                   <span class='grey'><%= t('search.advance.filter.author')%> <%= link_to( @author.name + ' &raquo;', author_path( @author ) ) %> </span> <span class="arial widgets"> 
                     <%= render_rating_stars( @author ) %>
                     <%= render_author_rating_form( @author_preference, @author ) %>
-                    <%= render_author_subscription( @author_preference, @author ) %></span>
+                    <%# render_author_subscription( @author_preference, @author ) %></span>
                 </div>
                 <div class="clearfix"></div>
               <% end %>
