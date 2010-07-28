@@ -92,9 +92,7 @@ class AuthorsController < ApplicationController
         JAPI::AuthorPreference.new( :author_id => params[:id] ) )
     pref.prefix_options = { :user_id => current_user.id, :jap => 1 }
     pref.preference = ( Integer( params[:rating] || "" ) rescue nil )
-    if pref.save
-      flash[:notice] = 'Success'
-    else
+    unless pref.save
       flash[:error] = 'Error'
     end
     redirect_back_or_default( :action => :my, :list => 1, :rated => 1 )

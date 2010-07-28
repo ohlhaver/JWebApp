@@ -140,24 +140,25 @@ class StoriesController < ApplicationController
       @related_stories.pop if mobile_device? # Showing two related stories
     end
     # Getting Personalized Stuff for the current story
-    @author_preference = Hash.new
-    @story.authors.each do |author|
-      @author_preference[ author.id ] = JAPI::AuthorPreference.new( :author_id => author.id, :preference => nil, :subscribed => false )
-    end
-    @source_preference = JAPI::SourcePreference.new( :source_id => params[:id], :preference => nil )
+    author = @story.authors.first
+    @author = JAPI::Author.find( author.id ) if author
+    @source = JAPI::Source.find( @story.source.id ) if @story.source
     unless current_user.new_record?
-      multi_curb = Curl::Multi.new
-      @story.authors.each do |author|
-        JAPI::AuthorPreference.find( nil, :multi_curb => multi_curb, :params => { :author_id => author.id,  :user_id => current_user.id } ) do |result|
-          @author_preference[ result.author_id ] = result if result
-        end
-      end
-      JAPI::SourcePreference.find( nil, :muli_curb => multi_curb, :params => { :source_id => @story.source.id, :user_id => current_user.id } ) do |result|
-        @source_preference = result if result
-      end if @story.source
-      multi_curb.perform
+      @source_preference = JAPI::SourcePreference.find( nil, :params => { :source_id => @source.id, :user_id => current_user.id } ) if @source
+      @author_preference = JAPI::AuthorPreference.find( nil, :params => { :author_id => @author.id,  :user_id => current_user.id } ) if @author
     end
-    
+    @author_preference ||= JAPI::AuthorPreference.new( :author_id => @author.id, :preference => nil, :subscribed => false )
+    @source_preference ||= JAPI::SourcePreference.new( :source_id => @source.id, :preference => nil )
+    # multi_curb = Curl::Multi.new
+    # @story.authors.each do |author|
+    #   JAPI::AuthorPreference.find( nil, :multi_curb => multi_curb, :params => { :author_id => author.id,  :user_id => current_user.id } ) do |result|
+    #     @author_preference[ result.author_id ] = result if result
+    #   end
+    # end
+    # JAPI::SourcePreference.find( nil, :muli_curb => multi_curb, :params => { :source_id => @story.source.id, :user_id => current_user.id } ) do |result|
+    #   @source_preference = result if result
+    # end if @story.source
+    # multi_curb.perform
   end
   
   def base_url( url = nil )

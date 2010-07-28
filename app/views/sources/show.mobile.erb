@@ -1,11 +1,9 @@
 <div class='news_group'>
   <div class='news_block'>
     <h2>
-		<div class = "rater">
-		<%= render_source_rating_form( @source_preference, @source) %>
-		</div>
+		<div class = "rater"></div>
 		<span class="page_label">
-	      <div class="name"><%= @source.name %></div> <%= fb_like_plugin( @source ) unless @source.new_record? %>
+	      <div class="name"><%= @source.name %></div> <%= render_rating_stars( @source ) %>&nbsp;<%= render_source_rating_form( @source_preference, @source) %>&nbsp;&nbsp;&nbsp;<%= fb_like_plugin( @source ) unless @source.new_record? %>
 		</span>
 
     </h2>

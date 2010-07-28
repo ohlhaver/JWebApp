@@ -228,6 +228,8 @@ end
 
 JAPI::Author.class_eval do
   
+  fields :average_user_preference, :user_preference_count
+  
   def to_param
     "#{id}-#{name.to_ascii_s.downcase.gsub(/\.|\ /, '-').gsub(/[^\w\-]/, '')}"
   end
@@ -235,6 +237,8 @@ JAPI::Author.class_eval do
 end
 
 JAPI::Source.class_eval do
+  
+  fields :average_user_preference, :user_preference_count
   
   def to_param
     "#{id}-#{name.to_ascii_s.downcase.gsub(/\.|\ /, '-').gsub(/\.|\ /, '-').gsub(/[^\w\-]/, '')}"
@@ -624,6 +628,7 @@ JAPI::Connect::InstanceMethods.class_eval do
     condition = ( options[:if] ? options[:if].call : true ) rescue true
     return_to = session[:return_to]
     session[:return_to] = nil
+    session[:request_url] = nil
     redirect_to( condition && !return_to.blank? ? return_to : default )
   end
   

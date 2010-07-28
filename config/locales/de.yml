@@ -393,6 +393,9 @@ de:
       stories: "alle {{count}} ähnlichen Artikel"
   frame:
     back: "zurück"
-      
-      
+  stars:
+    info:
+      zero: "Nein-Stimmen"
+      one: "1 Stimme mit Benutzerbewertung {{average}}"
+      other: "{{count}} Stimmen mit einer durchschnittlichen Benutzerbewertung {{average}}"
       

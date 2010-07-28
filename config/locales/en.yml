@@ -393,3 +393,8 @@ en:
       stories: "all {{count}} related stories"
   frame:
     back: "back"
+  stars:
+    info:
+      zero: "No votes"
+      one: "1 vote with rating {{average}}"
+      other: "{{count}} votes with average rating {{average}}"

@@ -108,6 +108,10 @@ module ApplicationHelper
   #    concat ? concat( content ) : content
   #  end
   
+  def render_rating_stars( author_or_source )
+    render :partial => 'shared/rating_stars', :locals => { :average => author_or_source.average_user_preference, :count => author_or_source.user_preference_count }
+  end
+  
   def render_cluster_preview( cluster, headline = nil )
     headline ||= cluster.stories.shift
     render :partial => 'clusters/preview', :locals => { :headline => headline, :cluster => cluster }
