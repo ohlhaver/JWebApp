@@ -47,19 +47,23 @@
         <%= yield %>
       <div class="clearfix">&nbsp;</div>
  
-      <!--><div class "alpha grid_8">
-        <%= show_wizard( :random ) unless @content_column_count == 2 %>
+      <!-- <div class "alpha grid_8">
+        <%# show_wizard( :random ) unless @content_column_count == 2 %>
 	</div> -->
-    
+   
       <div class="pagination_module">	</div>
+	 <% if @skyscraper == false %> 
 	  <div class ="alpha grid_5">
 	  <%= render :partial => 'shared/lrec' %>
 	  </div>
 	  <div class ="alpha grid_5">
 	  <%= render :partial => 'shared/lrec_right' %>
 	  </div>
+		<%else%>
+		<%= render :partial => 'shared/leaderboard' %>		
+	<%end%>
 	  </div>
-
+	
       
       <div id="module" class="grid_2">
 	
