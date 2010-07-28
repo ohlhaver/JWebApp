@@ -152,8 +152,8 @@ class StoriesController < ApplicationController
       @source_preference = JAPI::SourcePreference.find( nil, :params => { :source_id => @source.id, :user_id => current_user.id } ) if @source
       @author_preference = JAPI::AuthorPreference.find( nil, :params => { :author_id => @author.id,  :user_id => current_user.id } ) if @author
     end
-    @author_preference ||= JAPI::AuthorPreference.new( :author_id => @author.id, :preference => nil, :subscribed => false )
-    @source_preference ||= JAPI::SourcePreference.new( :source_id => @source.id, :preference => nil )
+    @author_preference ||= JAPI::AuthorPreference.new( :author_id => @author.id, :preference => nil, :subscribed => false ) if @author
+    @source_preference ||= JAPI::SourcePreference.new( :source_id => @source.id, :preference => nil ) if @source
     # multi_curb = Curl::Multi.new
     # @story.authors.each do |author|
     #   JAPI::AuthorPreference.find( nil, :multi_curb => multi_curb, :params => { :author_id => author.id,  :user_id => current_user.id } ) do |result|
