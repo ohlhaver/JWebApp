@@ -197,4 +197,8 @@ class TopicsController < ApplicationController
     [ :what ].include?( action_name.to_sym )
   end
   
+  def set_skyscraper
+    @skyscraper = true
+  end
+  
 end
