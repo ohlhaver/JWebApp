@@ -8,24 +8,40 @@ module ApplicationHelper
   end
   
   def content_block_position
-    return "grid_5 #{cycle( 'alpha', 'omega', :name => 'cluster_preview' )}" if @content_column_count == 2
+    return "grid_4 #{cycle( 'alpha', 'omega', :name => 'cluster_preview' )}" if @content_column_count == 2
   end
   
   def reset_content_block_clearfix
     if @content_column_count == 2
       reset_cycle( 'clearfix_preview' )
       reset_cycle( 'cluster_preview' )
+      # klass = cycle( "start_clearfix", "1", "2", "end_clearfix", :name => 'clearfix_class') 
+      # end_clearfix_div_tag( true ) unless klass == "start_clearfix"
+      # reset_cycle( 'clearfix_class')
     end
   end
   
   def content_block_clearfix
-    return cycle( '', '<div class="clearfix"></div>', :name => 'clearfix_preview' ) if @content_column_count == 2
+    return cycle( '', '<br clear="all"/><div class="clearfix"></div>', :name => 'clearfix_preview' ) if @content_column_count == 2
   end
   
   def story_block_with_image_position
     return 'grid_9 omega' if controller.response.layout =~ /without_navigation/
     return 'grid_7 omega' if @content_column_count == 1
   end
+  
+  # def start_clearfix_div_tag
+  #   return unless @content_column_count == 2
+  #   klass = cycle( "start_clearfix", "1", "2", "end_clearfix", :name => 'clearfix_class') 
+  #   return "<div class='clearfix'>" if klass == "start_clearfix"
+  # end
+  # 
+  # def end_clearfix_div_tag( force = false )
+  #   return unless @content_column_count == 2
+  #   klass = cycle( "start_clearfix", "1", "2", "end_clearfix", :name => 'clearfix_class' )
+  #   return "</div>" if force || klass == "end_clearfix" 
+  # end
+  
   
   def js_related_links_fragments
     " var elem = $('search_topic_form');

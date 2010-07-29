@@ -1,12 +1,12 @@
 <% @story_blocks.keys.each do | group_type | %>
     <% partial = "blocks/#{group_type}" %>
     <% if group_type.to_s == 'sections' %>
-      <div class='clearfix'></div>
+      <%= content_block_clearfix %>
       <% reset_content_block_clearfix %>
     <% end %>
     <% @story_blocks[ group_type ].each do |block| %>
-    <div class='news_group'>
-      <%= render :partial => partial, :locals => { :block => block } %>
-    </div>
+      <div class='news_group'>
+        <%= render :partial => partial, :locals => { :block => block } %>
+      </div>
     <% end %>
 <% end %>

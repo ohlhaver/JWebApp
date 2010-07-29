@@ -111,17 +111,19 @@ font-family: Arial,Helvetica,sans-serif;
 #module {
 	border-top: 7px solid #99CCFF;
 	padding-top: 7px;
-
 	margin-top: 10px;
+	*margin-top: -10px;
 }
 
 #content {
-
-
 	margin-top: 10px;
+	*margin-top: -10px;
 }
 
-
+.news_block{
+  _display:inline-block;
+  border-top: 7px solid #99CCFF;
+}
 
 #navigation_module {
 	border-top: 7px solid #99CCFF;
@@ -159,6 +161,7 @@ span.current{
 }
 
 .nav_block {
+  _display: inline-block;
 	border-top: 1px solid #99CCFF;
 	margin-top: 15px;	
 }
@@ -187,11 +190,6 @@ span.current{
 }
 
 
-
-.news_block {
-	border-top: 7px solid #99CCFF;	
-}
-
 .wizzard{
   background-color: #99CCFF;
   padding: 10px;
@@ -205,13 +203,9 @@ span.current{
 }
 
 .wizzard .cluster a:link{
-		
-
 }
 
 .wizzard .cluster a:visited{
-	
-
 }
 
 .wizzard_text {
@@ -372,7 +366,9 @@ h2 a {
 
 .cluster {
 	margin-top: 24px;
-	margin-bottom: 48px;	
+	margin-bottom: 28px;
+	*margin-bottom: 12px;
+	/* margin-bottom: 48px; */	
 }
 
 .medium_cluster {
@@ -1103,7 +1099,7 @@ border: 0px;
 
 .image{
   margin-top: 5px;
-  margin-right: 20px;
+  margin-right: 10px;
   text-align: center;
 }
 .grid_3_image{
