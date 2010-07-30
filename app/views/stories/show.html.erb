@@ -103,7 +103,7 @@
               <% end -%>
             </li>
       -->
-          <% if @related_stories %>
+          <% if @related_stories && @related_stories.any? %>
             <li class="story max_width_540px">
             <span class='stories'>
             <% @related_stories.each do |story| %>
