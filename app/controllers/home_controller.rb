@@ -1,7 +1,9 @@
 require 'benchmark'
 class HomeController < ApplicationController
   
-  japi_connect_login_optional :except => :index_with_login
+  japi_connect_login_optional :except => :index_with_login do
+    caches_action :index, :cache_path => Proc.new{ |c| c.send(:action_cache_key) }, :expires_in => 5.minutes
+  end
   
   def index
     force_login = params.delete(:fl)
@@ -29,6 +31,15 @@ class HomeController < ApplicationController
   
   def set_content_column_count
     @content_column_count = mobile_device? ? 1 : 2
+  end
+  
+  def action_cache_key
+    if current_user.new_record?
+      [ controller_name, action_name, session[:edition], session[:locale] ].join('-')
+    else
+      current_user.set_preference
+      [ controller_name, action_name, session[:edition], session[:locale], current_user.id, current_user.preference.updated_at.to_s.hash ].join("-")
+    end
   end
   
 end

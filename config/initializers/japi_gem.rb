@@ -125,6 +125,9 @@ JAPI::Model::Base.class_eval do
   
 end
 
+JAPI::Preference.class_eval do
+  fields :updated_at
+end
 
 JAPI::PreferenceOption.class_eval do 
   
@@ -721,7 +724,7 @@ end
 
 JAPI::Connect::ClassMethods.class_eval do
   
-  def japi_connect_login_required( options = {} )
+  def japi_connect_login_required( options = {}, &block )
     before_filter :restore_mem_cache_cas_last_valid_ticket
     before_filter :session_check_for_validation
     if options[:only]
@@ -739,10 +742,11 @@ JAPI::Connect::ClassMethods.class_eval do
     before_filter :set_locale
     before_filter :check_for_new_users, options
     before_filter :redirect_to_activation_page_if_not_active, options
+    block.call if block
     before_filter :after_japi_connect
   end
   
-  def japi_connect_login_optional( options = {} )
+  def japi_connect_login_optional( options = {}, &block )
     before_filter :restore_mem_cache_cas_last_valid_ticket
     before_filter :session_check_for_validation
     if options[:only]
@@ -760,6 +764,7 @@ JAPI::Connect::ClassMethods.class_eval do
     before_filter :set_locale
     before_filter :check_for_new_users, options
     before_filter :redirect_to_activation_page_if_not_active, options
+    block.call if block
     before_filter :after_japi_connect
   end
   
