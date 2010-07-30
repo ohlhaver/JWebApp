@@ -6,28 +6,24 @@
 <% if show_up_link %>
   <% form_tag( rate_source_path( source ), :id => form_dom_id, :class => 'inline_form', :onmouseover => "thumbs_up_highlight('#{form_dom_id}')", :onmouseout => "thumbs_up_reset('#{form_dom_id}')", :title => t('source.like.info') ) do %>
     <%= hidden_field_tag :rating, 3 %>
-    <span class="img1 thumb"><%= image_submit_tag( 'tupg.png' ) %></span>
-    <span class="img2 thumb" style="display:none"><%= image_submit_tag( 'tupb.png' ) %></span>
+    <span class="img1 thumb"><%= image_submit_tag( 'tupg.png' ) -%></span><span class="img2 thumb" style="display:none"><%= image_submit_tag( 'tupb.png' ) -%></span>
   <% end %>
 <% else %>
   <% form_tag( rate_source_path( source ), :id => form_dom_id, :class => 'inline_form', :onmouseover => "thumbs_up_highlight('#{form_dom_id}')", :onmouseout => "thumbs_up_reset('#{form_dom_id}')", :title => t('source.like.by_you') ) do %>
     <%= hidden_field_tag :rating, '' %>
-    <span class="img1 thumb"><%= image_submit_tag( 'tupb.png' ) %></span>
-    <span class="img2 thumb" style="display:none"><%= image_submit_tag( 'tupg.png' ) %></span>
+    <span class="img1 thumb"><%= image_submit_tag( 'tupb.png' ) %></span><span class="img2 thumb" style="display:none"><%= image_submit_tag( 'tupg.png' ) %></span>
   <% end %>
 <% end %>
 <% form_dom_id = "td_sp_rating_form_#{source.id}" %>
 <% if show_down_link %>
   <% form_tag( rate_source_path( source ), :id => form_dom_id, :class => 'inline_form', :onmouseover => "thumbs_up_highlight('#{form_dom_id}')", :onmouseout => "thumbs_up_reset('#{form_dom_id}')", :title => t('source.dislike.info') ) do %>
     <%= hidden_field_tag :rating, 1 %>
-    <span class="img1 thumb"><%= image_submit_tag( 'tdng.png' ) %></span>
-    <span class="img2 thumb" style="display:none"><%= image_submit_tag( 'tdnb.png' ) %></span>
+    <span class="img1 thumb"><%= image_submit_tag( 'tdng.png' ) %></span><span class="img2 thumb" style="display:none"><%= image_submit_tag( 'tdnb.png' ) %></span>
   <% end %>
 <% else %>
   <% form_tag( rate_source_path( source ), :id => form_dom_id, :class => 'inline_form', :onmouseover => "thumbs_up_highlight('#{form_dom_id}')", :onmouseout => "thumbs_up_reset('#{form_dom_id}')", :title => t('source.dislike.by_you') ) do %>
     <%= hidden_field_tag :rating, '' %>
-    <span class="img1 thumb"><%= image_submit_tag( 'tdnb.png' ) %></span>
-    <span class="img2 thumb" style="display:none"><%= image_submit_tag( 'tdng.png' ) %></span>
+    <span class="img1 thumb"><%= image_submit_tag( 'tdnb.png' ) %></span><span class="img2 thumb" style="display:none"><%= image_submit_tag( 'tdng.png' ) %></span>
   <% end %>
 <% end %>
 <% content_for :custom_javascript do %>

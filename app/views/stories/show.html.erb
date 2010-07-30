@@ -45,8 +45,9 @@
       ul#bar{ clear:both; padding:0; margin:0; }
       ul#bar li{ float:left; list-style:none; list-style-position:inside; font-size:110%;}
       ul#bar li.story{ padding-left: 40px; }
-      ul#bar li.max_width_540px{ max-width: 540px; }
-      ul#bar li.max_width_270px{ max-width: 270px;}
+      ul#bar li.nopadding{ padding: 0; }
+      ul#bar li.max_width_540px{ max-width: 530px; width: 530px; *width: 540px; }
+      ul#bar li.max_width_270px{ max-width: 280px; width: 280px; *width: 325px;}
       ul#bar li span.heading{ font-family:Arial,Helvetica,sans-serif; font-size:100%; display:block; padding-bottom:5px; font-weight:bold; }
       ul#bar li span.stories { display:block; padding-top:4px; padding-right:5px;}
       ul#bar li a,a:visited{ color:#333333; text-decoration:none; font-family:Arial,Helvetica,sans-serif;}
@@ -132,27 +133,27 @@
           <% end %>
 
             <li class="story max_width_270px">
-              <span class='heading stories inline left'><%= t('stories.this') %></span> <span class='left'><%= fb_like_plugin( @story ) %></span>
-              <div class='clearfix'></div>
-             
+              <div class='clearfix'>
+                <span class='heading stories inline left'><%= t('stories.this') %></span> <span class='left'><%= fb_like_plugin( @story ) %></span>
+              </div>
               <% if @author %>
-                <div>
+                <div class="clearfix">
                   <span class='grey'><%= t('search.advance.filter.author')%> <%= link_to( @author.name + ' &raquo;', author_path( @author ) ) %> </span> <span class="arial widgets"> 
                     <%= render_rating_stars( @author ) %>
                     <%= render_author_rating_form( @author_preference, @author ) %>
                     <%# render_author_subscription( @author_preference, @author ) %></span>
                 </div>
-                <div class="clearfix"></div>
               <% end %>
-			 <% if @source %>
-                  <div><span class='grey'><%= t('search.advance.filter.source')%> <%= link_to( @source.name, source_path( @source ) ) %></span> <span class="arial widgets">
-                  <%= render_rating_stars( @source ) %>
-                  <%= render_source_rating_form( @source_preference, @source ) %></span></div>
-                  <div class="clearfix"></div>
+              <% if @source %>
+                  <div class="clearfix">
+                    <span class='grey'><%= t('search.advance.filter.source')%> <%= link_to( @source.name, source_path( @source ) ) %></span> <span class="arial widgets">
+                    <%= render_rating_stars( @source ) %>
+                    <%= render_source_rating_form( @source_preference, @source ) %></span>
+                  </div>
               <% end %>
             </li>
             
-            <li class="story right"><a href="<%= @story.url %>"><%= image_tag('close.gif') %></a></li>
+            <li class="story right nopadding"><a href="<%= @story.url %>"><%= image_tag('close.gif') %></a></li>
           </ul>
         </td>
       </tr>
