@@ -42,12 +42,12 @@ de:
         one: 'vor 1 Sekunde'
         other: 'vor {{count}} Sekunden'
       less_than_x_minutes:
-        zero: 'vor weniger als 1 Minute'
-        one: 'vor 1 Minute'
-        other: 'vor {{count}} Minuten'
+        zero: '<span class = "fresh">vor weniger als 1 Minute</span>'
+        one: '<span class = "fresh">vor 1 Minute</span>'
+        other: '<span class = "fresh">vor {{count}} Minuten</span>'
       x_minutes:
-        one: 'vor 1 Minute'
-        other: 'vor {{count}} Minuten'
+        one: '<span class = "fresh">vor 1 Minute</span>'
+        other: '<span class = "fresh">vor {{count}} Minuten</span>'
       about_x_hours:
         one: 'vor etwa 1 Stunde'
         other: 'vor {{count}} Stunden'
