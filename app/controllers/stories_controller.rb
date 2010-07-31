@@ -1,9 +1,8 @@
 class StoriesController < ApplicationController
   
-  japi_connect_login_optional
-  
-  #layout 'without_navigation'
-  
+  japi_connect_login_optional do
+    caches_action :show, :cache_path => Proc.new{ |c| c.send(:action_cache_key) }, :expires_in => 24.hours, :if => Proc.new{ |c| c.send(:current_user).new_record? && c.send(:web_spider?) }
+  end
   
   def show
     @story = JAPI::Story.find( params[:id] )
@@ -169,6 +168,10 @@ class StoriesController < ApplicationController
   def base_url( url = nil )
     url ||= controller.request.url
     url.gsub(/\?.*/, '')
+  end
+  
+  def action_cache_key
+    [ controller_name, action_name, params[:id].to_i ].join('-')
   end
   
 end
