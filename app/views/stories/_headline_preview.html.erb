@@ -1,4 +1,4 @@
-<% erb_cache "stories/headline/#{story.id}-#{hide_image}-#{I18n.locale}-v9", { :expires_in => 24.hours, :locals => { :story => story, :hide_add_to_reading_list => hide_add_to_reading_list } } do %>
+<% erb_cache "stories/headline/#{story.id}-#{hide_image}-#{I18n.locale}-v10", { :expires_in => 24.hours, :locals => { :story => story, :hide_add_to_reading_list => hide_add_to_reading_list } } do %>
 <% render_image_block( story, hide_image ) do -%>
 
   <%% if hide_add_to_reading_list %>
@@ -13,7 +13,7 @@
       <% mouse_over( :menu ) do |menuEventClass, menuItemClass| %>
         <span class='<%= iconItemClass -%> <%= menuEventClass -%> w200px'>
           <%= link_to( image_tag( 'plus.gif', :class => 'inline pb5px', :title => t('prefs.label.add_to_reading_list') ), { :controller => '/reading_list', :action => :create, :id => story.id }, :method => :post, :rel => :nofollow )  %>
-          <%= fb_like_plugin( story ) %>
+          <%# fb_like_plugin( story ) %>
           <!-- div class='<%= menuItemClass -%> actionsBox'></div -->
         </span>
       <% end -%>
