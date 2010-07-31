@@ -43,11 +43,11 @@ en:
         other: '{{count}} seconds ago'
       less_than_x_minutes:
         zero: 'less than a minute ago'
-        one: '1 minute ago'
-        other: '{{count}} minutes ago'
+        one: '<span class = "fresh">1 minute ago</span>'
+        other: '<span class = "fresh">{{count}} minutes ago</span>'
       x_minutes:
-        one: '1 minute ago'
-        other: '{{count}} minutes ago'
+        one: '<span class = "fresh">1 minute ago</span>'
+        other: '<span class = "fresh">{{count}} minutes ago</span>'
       about_x_hours:
         one: 'about 1 hour ago'
         other: '{{count}} hours ago'
