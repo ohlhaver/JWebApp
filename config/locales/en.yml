@@ -49,7 +49,7 @@ en:
         one: '<span class = "fresh">1 minute ago</span>'
         other: '<span class = "fresh">{{count}} minutes ago</span>'
       about_x_hours:
-        one: 'about 1 hour ago'
+        one: '<span class = "fresh">about 1 hour ago</span>'
         other: '{{count}} hours ago'
       x_days:
         one: '1 day ago'
