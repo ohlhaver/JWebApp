@@ -1,7 +1,11 @@
 class SourcesController < ApplicationController
   
   before_filter :store_referer_location, :only => [ :rate ]
-  japi_connect_login_required :except => [ :show, :whats, :page ]
+  
+  japi_connect_login_required :except => [ :show, :whats, :page ] do
+    caches_action :show, :cache_path => Proc.new{ |c| c.send(:action_cache_key) }, :expires_in => 5.minutes, :if => Proc.new{ |c| c.send( :current_user ).new_record? }
+  end
+  
   before_filter :correct_param_id
   
   def whats
@@ -56,6 +60,10 @@ class SourcesController < ApplicationController
   end
   
   protected
+  
+  def action_cache_key
+    [ controller_name, action_name, session[:edition], session[:locale], params[:id].to_i, @category_id, params[:page] || 1 ].join('-')
+  end
   
   def set_skyscraper
     @skyscraper = true

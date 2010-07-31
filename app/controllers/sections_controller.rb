@@ -1,7 +1,10 @@
 class SectionsController < ApplicationController
   
   before_filter :store_referer_location, :only => [ :create, :destroy, :hide, :up, :down ]
-  japi_connect_login_required :except => :show
+  
+  japi_connect_login_required :except => :show do
+    caches_action :show, :cache_path => Proc.new{ |c| c.send(:action_cache_key) }, :expires_in => 5.minutes, :if => Proc.new{ |c| c.send( :current_user ).new_record? }
+  end
   
   def show
     @page_data.add do |multi_curb|
@@ -171,6 +174,10 @@ class SectionsController < ApplicationController
   end
   
   protected
+  
+  def action_cache_key
+    [ controller_name, action_name, session[:edition], session[:locale], params[:id], params[:page] || 1 ].join('-')
+  end
   
   def auto_page_data_finalize?
     false

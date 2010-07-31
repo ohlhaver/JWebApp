@@ -2,7 +2,9 @@ require 'benchmark'
 class HomeController < ApplicationController
   
   japi_connect_login_optional :except => :index_with_login do
-    caches_action :index, :cache_path => Proc.new{ |c| c.send(:action_cache_key) }, :expires_in => 5.minutes
+    before_filter :expire_homepage_cache, :if => Proc.new{ |c| c.params['exec'] == '9999' }
+    caches_action :index, :cache_path => Proc.new{ |c| c.send(:action_cache_key) }, :expires_in => 5.minutes, :if => Proc.new{ |c| !c.send(:current_user).new_record? && c.send( :flash )[:notice].blank? && c.send(:flash)[:error].blank? }
+    caches_action :index, :cache_path => Proc.new{ |c| c.send(:action_cache_key) }, :expires_in => 15.minutes, :if => Proc.new{ |c| c.send(:current_user).new_record? }
   end
   
   def index
@@ -31,6 +33,11 @@ class HomeController < ApplicationController
   
   def set_content_column_count
     @content_column_count = mobile_device? ? 1 : 2
+  end
+  
+  def expire_homepage_cache
+    expire_action( action_cache_key )
+    return true
   end
   
   def action_cache_key

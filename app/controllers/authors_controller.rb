@@ -1,7 +1,11 @@
 class AuthorsController < ApplicationController
   
   before_filter :store_referer_location, :only => [ :rate, :subscribe, :unsubscribe, :hide, :up, :down ]
-  japi_connect_login_required :except => [ :show, :top, :whats, :page, :my ]
+  
+  japi_connect_login_required :except => [ :show, :top, :whats, :page, :my ] do
+    caches_action :show, :cache_path => Proc.new{ |c| c.send(:action_cache_key) }, :expires_in => 5.minutes, :if => Proc.new{ |c| c.send( :current_user ).new_record? }
+  end
+  
   before_filter :correct_param_id
   before_filter :set_author_filter_var
   
@@ -182,6 +186,10 @@ class AuthorsController < ApplicationController
   end
   
   protected
+  
+  def action_cache_key
+    [ controller_name, action_name, session[:edition], session[:locale], params[:id].to_i, params[:page] || 1 ].join('-')
+  end
   
   def set_skyscraper
     @skyscraper = true
