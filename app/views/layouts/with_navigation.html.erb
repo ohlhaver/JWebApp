@@ -51,16 +51,15 @@
       <div id="content" class="grid_8">
         <%= yield %>
         <%= content_block_clearfix %>
-        <div class="pagination_module">	</div>
+  
         <% if @skyscraper == false %> 
+		      <div class="pagination_module">	</div>
         <div class ="alpha grid_4">
           <%= render :partial => 'shared/lrec' %>
         </div>
         <div class ="omega grid_4">
           <%= render :partial => 'shared/lrec_right' %>
         </div>
-        <%else%>
-          <%= render :partial => 'shared/leaderboard' %>
         <%end%>
       </div>
       <div id="module" class="grid_2">
