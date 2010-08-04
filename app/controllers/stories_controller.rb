@@ -36,7 +36,7 @@ class StoriesController < ApplicationController
     params_options[:time_span] = params[:ts] unless params[:ts].blank?
     @page_data.add do |multi_curb|
       JAPI::Story.async_find( :all, :multi_curb => multi_curb, :params => params_options ){ |results| @stories = results }
-      JAPI::Author.async_find( :all, :multi_curb => multi_curb, :params => { :q => params[:q], :per_page => 3, :page => 1 } ){ |results| @authors = results || [] }
+      JAPI::Author.async_find( :all, :multi_curb => multi_curb, :params => { :q => params[:q], :per_page => 3, :page => 1, :cf => 1 } ){ |results| @authors = results || [] }
       JAPI::Source.async_find( :all, :multi_curb => multi_curb, :params => { :q => params[:q], :per_page => 3, :page => 1 } ){ |results| @sources = results || [] }
     end
     page_data_finalize
