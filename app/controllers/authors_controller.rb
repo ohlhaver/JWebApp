@@ -8,6 +8,7 @@ class AuthorsController < ApplicationController
   
   before_filter :correct_param_id
   before_filter :set_author_filter_var
+  skip_before_filter :verify_authenticity_token, :only => [ :subscribe ]
   
   def whats
     page_data_finalize

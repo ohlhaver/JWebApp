@@ -2,6 +2,8 @@ class ReadingListController < ApplicationController
   
   japi_connect_login_required :except => :whats
   
+  skip_before_filter :verify_authenticity_token, :only => [ :create ]
+  
   def whats
     @page_title = "Jurnalo - #{t('reading_list.what.label')}"
   end
