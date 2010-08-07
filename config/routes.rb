@@ -10,6 +10,7 @@ ActionController::Routing::Routes.draw do |map|
   map.top_authors '/authors/top', :controller => 'authors', :action => 'top'
   map.my_authors '/authors/my', :controller => 'authors', :action => 'my'
   map.logout '/logout', :controller => 'application', :action => 'logout'
+  map.home_rss '/home/:edition/:locale/:id.rss', :controller => 'home', :action => 'show', :format => 'rss'
   map.root :controller => 'home', :action => 'index'
   map.connect '/sections/create', :controller => 'sections', :action => :create
   map.resources :sections, :member => [ :up, :down, :hide ]

@@ -3,6 +3,12 @@ module ApplicationHelper
   
   include AutoCompleteHelper
   
+  def block_name( key, block )
+    case( key.to_s ) when 'top_stories', 'sections' : t("navigation.main.#{block.name}")
+    when 'my_authors' : t('navigation.main.my_authors')
+    when 'topics' : block.name  end
+  end
+  
   def one_column_layout?
     @content_column_count == 1
   end

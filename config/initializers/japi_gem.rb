@@ -725,47 +725,55 @@ end
 JAPI::Connect::ClassMethods.class_eval do
   
   def japi_connect_login_required( options = {}, &block )
-    before_filter :restore_mem_cache_cas_last_valid_ticket
-    before_filter :session_check_for_validation
+    filter_options = {}
+    filter_options[:except] = Array( options.delete(:skip) ) if options[:skip]
+    before_filter :restore_mem_cache_cas_last_valid_ticket, filter_options
+    before_filter :session_check_for_validation, filter_options
     if options[:only]
       before_filter :authenticate_using_cas_with_gateway,    :except => options[:only]
       before_filter :authenticate_using_cas_without_gateway, :only => options[:only]
+      skip_before_filter :authenticate_using_cas_with_gateway, :only => filter_options[:except] unless filter_options[:except].blank?
     elsif options[:except]
       before_filter :authenticate_using_cas_with_gateway, :only => options[:except]
       before_filter :authenticate_using_cas_without_gateway, :except => options[:except]
+      skip_before_filter :authenticate_using_cas_without_gateway, :only => filter_options[:except] unless filter_options[:except].blank?
     else
-      before_filter :authenticate_using_cas_without_gateway
+      before_filter :authenticate_using_cas_without_gateway, filter_options
     end
-    before_filter :store_to_mem_cache_cas_last_valid_ticket
-    before_filter :set_current_user
-    before_filter :set_edition
-    before_filter :set_locale
-    before_filter :check_for_new_users, options
-    before_filter :redirect_to_activation_page_if_not_active, options
+    before_filter :store_to_mem_cache_cas_last_valid_ticket, filter_options
+    before_filter :set_current_user, filter_options
+    before_filter :set_edition, filter_options
+    before_filter :set_locale, filter_options
+    before_filter :check_for_new_users, options.merge( filter_options )
+    before_filter :redirect_to_activation_page_if_not_active, options.merge( filter_options )
     block.call if block
-    before_filter :after_japi_connect
+    before_filter :after_japi_connect, filter_options
   end
   
   def japi_connect_login_optional( options = {}, &block )
-    before_filter :restore_mem_cache_cas_last_valid_ticket
-    before_filter :session_check_for_validation
+    filter_options = {}
+    filter_options[:except] = Array( options.delete(:skip) ) if options[:skip]
+    before_filter :restore_mem_cache_cas_last_valid_ticket, filter_options
+    before_filter :session_check_for_validation, filter_options
     if options[:only]
       before_filter :authenticate_using_cas_without_gateway,    :except => options[:only]
       before_filter :authenticate_using_cas_with_gateway, :only => options[:only]
+      skip_before_filter :authenticate_using_cas_without_gateway, :only => filter_options[:except] unless filter_options[:except].blank?
     elsif options[:except]
       before_filter :authenticate_using_cas_without_gateway, :only => options[:except]
       before_filter :authenticate_using_cas_with_gateway, :except => options[:except]
+      skip_before_filter :authenticate_using_cas_with_gateway, :only => filter_options[:except] unless filter_options[:except].blank?
     else
-      before_filter :authenticate_using_cas_with_gateway
+      before_filter :authenticate_using_cas_with_gateway, filter_options
     end
-    before_filter :store_to_mem_cache_cas_last_valid_ticket
-    before_filter :set_current_user
-    before_filter :set_edition
-    before_filter :set_locale
-    before_filter :check_for_new_users, options
-    before_filter :redirect_to_activation_page_if_not_active, options
+    before_filter :store_to_mem_cache_cas_last_valid_ticket, filter_options
+    before_filter :set_current_user, filter_options
+    before_filter :set_edition, filter_options
+    before_filter :set_locale, filter_options
+    before_filter :check_for_new_users, options.merge( filter_options )
+    before_filter :redirect_to_activation_page_if_not_active, options.merge( filter_options )
     block.call if block
-    before_filter :after_japi_connect
+    before_filter :after_japi_connect, filter_options
   end
   
 end

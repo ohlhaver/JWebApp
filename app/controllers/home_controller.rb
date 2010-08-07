@@ -1,7 +1,8 @@
 require 'benchmark'
 class HomeController < ApplicationController
   
-  japi_connect_login_optional :except => :index_with_login do
+  japi_connect_login_optional :except => [ :index_with_login ], :skip => [:show ] do
+    caches_page :show, :cache_path => Proc.new{ |c| c.send(:action_cache_key) }, :expires_in => 15.minutes
     before_filter :expire_homepage_cache, :if => Proc.new{ |c| c.params['exec'] == '9999' }
     caches_action :index, :cache_path => Proc.new{ |c| c.send(:action_cache_key) }, :expires_in => 5.minutes, :if => Proc.new{ |c| !c.send(:current_user).new_record? && c.send( :flash )[:notice].blank? && c.send(:flash)[:error].blank? }
     caches_action :index, :cache_path => Proc.new{ |c| c.send(:action_cache_key) }, :expires_in => 15.minutes, :if => Proc.new{ |c| c.send(:current_user).new_record? }
@@ -13,7 +14,17 @@ class HomeController < ApplicationController
       redirect_to :action => :index_with_login
     else
       @story_blocks = current_user.home_blocks
+      @rss_url = home_rss_url( :edition => session[:edition], :locale => I18n.locale, :id => current_user.id_or_default )
     end
+  end
+  
+  def show
+    set_edition
+    set_locale
+    params[:id] = nil if params[:id] == 'default'
+    current_user = JAPI::User.new( :id => params[:id] )
+    @page_data = PageData.new( current_user, :edition => news_edition, :home => true, :auto_perform => true )
+    @story_blocks = @page_data.home_blocks
   end
   
   def index_with_login
@@ -24,11 +35,15 @@ class HomeController < ApplicationController
   
   def after_japi_connect
     bm = Benchmark.measure { 
-      @page_data = PageData.new( current_user, :edition => news_edition, :navigation => true, :home => true, :auto_perform => true )
+      @page_data = PageData.new( current_user, :edition => news_edition, :navigation => get_navigation?, :home => true, :auto_perform => true )
     }
     logger.info( bm.to_s )
     current_user.navigation_links = @page_data.navigation_links
     current_user.home_blocks = @page_data.home_blocks
+  end
+  
+  def get_navigation?
+    params[:format] != 'rss'
   end
   
   def set_content_column_count

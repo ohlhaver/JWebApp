@@ -11,6 +11,9 @@
     <meta name="verify-v1" content="uktXEFRkC4oLS3pjPi7ZkolIVksbOF8D7PRiyCDs+fM=" />
     <META name="y_key" content="4b5e881361af8e48">
     <meta name="keywords" content="Jurnalo, Journalo" />
+    <% if @rss_url %>
+      <link rel="alternate" type="application/rss+xml" title="RSS" href="<%= @rss_url -%>">
+    <% end %>
     <meta property="og:title" content="Jurnalo" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="http://www.jurnalo.com/" />
