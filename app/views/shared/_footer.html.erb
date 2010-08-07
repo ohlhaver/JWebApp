@@ -3,7 +3,7 @@
 <div class="footer_module" ></div>
 
   <%= link_to t( 'navigation.bottom.about' ), about_path %> -
-<%= link_to 'RSS', @rss_url  %> -
+<%= link_to 'RSS', home_rss_url( :edition => session[:edition], :locale => I18n.locale, :id => current_user.id_or_default )  %> -
 <%= link_to 'Blog', 'http://jurnalo.typepad.com/' %> -
 <%= link_to 'Facebook', 'http://www.facebook.com/pages/Jurnalo/104940249561877' %> -
 <%= link_to 'Twitter', 'http://twitter.com/jurnalo' %> -
