@@ -251,7 +251,7 @@ end
 
 JAPI::Story.class_eval do
   
-  fields :cluster, :is_opinion, :is_video, :is_blog
+  fields :cluster, :is_opinion, :is_video, :is_blog, :reading_list_id
   
 end
 

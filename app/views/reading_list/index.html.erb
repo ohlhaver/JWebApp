@@ -10,8 +10,8 @@
 		<div class='reading_list_block <%= dialogEventClass -%>'>
 		<h2>
 			<span class='dialogBox <%= dialogItemClass%>'>
-			  <%= link_to( image_tag('close.gif'),  { :action => 'destroy', :id => story.id }, :method => :delete, :confirm => 'Are you sure?' ) -%>
-			 <%= link_to( t('prefs.home_action.delete'),  { :action => 'destroy', :id => story.id }, :method => :delete, :confirm => 'Are you sure?' ) -%>
+			  <%= link_to( image_tag('close.gif'),  { :action => 'destroy', :id => story.reading_list_id }, :method => :delete, :confirm => 'Are you sure?' ) -%>
+			 <%= link_to( t('prefs.home_action.delete'),  { :action => 'destroy', :id => story.reading_list_id }, :method => :delete, :confirm => 'Are you sure?' ) -%>
 		    </span>
 		 
 		</h2>

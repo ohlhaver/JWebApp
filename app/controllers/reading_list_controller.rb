@@ -19,6 +19,8 @@ class ReadingListController < ApplicationController
     end
     page_data_finalize
     @stories.pagination = @prefs.pagination
+    prefs_hash = @prefs.inject({}){ |s,x| s[x.story_id] = x.id; s }
+    @stories.collect{ |x| x.reading_list_id = prefs_hash[x.id] }
     @page_title = "Jurnalo - #{I18n.t('navigation.top.reading_list')}"
   end
   
