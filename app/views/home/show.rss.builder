@@ -35,7 +35,7 @@ xml.rss :version => "2.0" do #, 'xmlns:media' => "http://search.yahoo.com/mrss/"
               xml.source( story.source.name, :url => story.url )
               xml.category( block_name( block_key, block ) )
               xml.author( story.authors.first.name ) if story.authors.first
-              xml.enclosure( :url => source.image, :length => "7063", :type => "image/jpeg" ) if story.image
+              xml.enclosure( :url => story.image, :length => "7063", :type => "image/jpeg" ) if story.image
               #xml.tag!( "media:content", :url => story.image, :medium => "image", :height => "80", :width => "80" ) if story.image
             end
           end
