@@ -19,7 +19,8 @@ class SectionsController < ApplicationController
       end
     end
     page_data_finalize
-    @rss_url = section_rss_url( :locale => I18n.locale, :oq => obfuscate_encode( params_options ) )
+    @rss_url = section_rss_url( :locale => I18n.locale, :oq => obfuscate_encode( :cluster_group_id => params[:id], :user_id => current_user.id, 
+      :language_id => news_edition.language_id, :region_id => news_edition.region_id ) )
     @page_title = "Jurnalo - #{I18n.t("navigation.main.#{@section.name}")}"
   end
   

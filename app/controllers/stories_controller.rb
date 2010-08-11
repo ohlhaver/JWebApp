@@ -35,7 +35,7 @@ class StoriesController < ApplicationController
     params_options[:language_id] ||= params[:l] unless params[:l].blank?
     params_options[:language_id] ||= news_edition.language_id if current_user.new_record?
     params_options[:time_span] = params[:ts] unless params[:ts].blank?
-    @rss_url = search_rss_url( :edition => session[:edition], :locale => I18n.locale, :oq => obfuscate_encode( params_options ), :mode => :simple )
+    @rss_url = search_rss_url( :edition => session[:edition], :locale => I18n.locale, :oq => obfuscate_encode( params_options.merge( :page => nil ) ), :mode => :simple )
     @page_data.add do |multi_curb|
       JAPI::Story.async_find( :all, :multi_curb => multi_curb, :params => params_options ){ |results| @stories = results }
       JAPI::Author.async_find( :all, :multi_curb => multi_curb, :params => { :q => params[:q], :per_page => 3, :page => 1, :cf => 1 } ){ |results| @authors = results || [] }
@@ -74,7 +74,7 @@ class StoriesController < ApplicationController
     params_options[:language_id] ||= params[:l] unless params[:l].blank?
     params_options[:language_id] ||= news_edition.language_id if current_user.new_record?
     params_options[:time_span] = params[:ts] unless params[:ts].blank?
-    @rss_url = search_rss_url( :edition => session[:edition], :locale => I18n.locale, :oq => obfuscate_encode( params_options ), :mode => :advance )
+    @rss_url = search_rss_url( :edition => session[:edition], :locale => I18n.locale, :oq => obfuscate_encode( params_options.merge( :page => nil ) ), :mode => :advance )
     @page_data.add do |multi_curb|
       JAPI::Story.async_find( :all, :multi_curb => multi_curb, :from => :advance, :params => params_options ){ |results| @stories = results }
     end

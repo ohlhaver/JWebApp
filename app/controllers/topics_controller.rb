@@ -45,7 +45,7 @@ class TopicsController < ApplicationController
       end
     end
     page_data_finalize
-    @rss_url = topic_rss_url( :locale => I18n.locale, :oq => obfuscate_encode( params_options ) )
+    @rss_url = topic_rss_url( :locale => I18n.locale, :oq => obfuscate_encode( :topic_id => params[:id], :user_id => current_user.id ) )
     @page_title = @page_title = I18n.t( "seo.page.title.search", :query => @topic.name )
   end
   
