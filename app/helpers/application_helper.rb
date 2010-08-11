@@ -15,7 +15,7 @@ module ApplicationHelper
       xml.source( story.source.name, :url => story.url )
       xml.category( block_name( block_key, block ) ) if block && block_key
       xml.description cluster.top_keywords.join(' - ')
-      xml.author( story.authors.first.name ) if story.authors.first
+      #xml.author( story.authors.first.name ) if story.authors.first
       xml.enclosure( :url => cluster.image, :length => "10240", :type => "image/jpeg", :source => cluster.url ) if cluster.image
       #xml.tag!( "media:content", :url => cluster.image, :medium => "image", :height => "80", :width => "80" ) if cluster.image
       #xml.tag!( "media:copyright", "Image Copyright", :url => cluster.url )  if cluster.image

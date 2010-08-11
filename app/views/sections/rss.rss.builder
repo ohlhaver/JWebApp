@@ -3,8 +3,15 @@ xml.rss :version => "2.0" do #, 'xmlns:media' => "http://search.yahoo.com/mrss/"
   xml.channel do
     xml.title @page_title
     xml.link @feed_url
-    for cluster in @section.clusters
-      render_rss_for_cluster( cluster, xml )
+    if @section.respond_to?( :clusters )
+      for cluster in @section.clusters
+        render_rss_for_cluster( cluster, xml )
+      end
+    end
+    if @section.respond_to?( :stories )
+      for story in @section.stories
+        render_rss_for_story( story, xml )
+      end
     end
   end
 end
