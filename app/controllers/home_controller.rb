@@ -2,7 +2,7 @@ require 'benchmark'
 class HomeController < ApplicationController
   
   japi_connect_login_optional :except => [ :index_with_login ], :skip => [:show ] do
-    caches_page :show, :cache_path => Proc.new{ |c| c.send(:action_cache_key) }, :expires_in => 15.minutes
+    caches_action :show, :cache_path => Proc.new{ |c| c.send(:action_cache_key) }, :expires_in => 15.minutes
     before_filter :expire_homepage_cache, :if => Proc.new{ |c| c.params['exec'] == '9999' }
     caches_action :index, :cache_path => Proc.new{ |c| c.send(:action_cache_key) }, :expires_in => 5.minutes, :if => Proc.new{ |c| !c.send(:current_user).new_record? && c.send( :flash )[:notice].blank? && c.send(:flash)[:error].blank? }
     caches_action :index, :cache_path => Proc.new{ |c| c.send(:action_cache_key) }, :expires_in => 15.minutes, :if => Proc.new{ |c| c.send(:current_user).new_record? }
