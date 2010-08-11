@@ -22,7 +22,7 @@ class HomeController < ApplicationController
     set_edition
     set_locale
     params[:id] = nil if params[:id] == 'default'
-    current_user = JAPI::User.new( :id => params[:id] )
+    @current_user = JAPI::User.new( :id => params[:id] )
     @page_data = PageData.new( current_user, :edition => news_edition, :home => true, :auto_perform => true )
     @story_blocks = @page_data.home_blocks
   end
@@ -56,11 +56,11 @@ class HomeController < ApplicationController
   end
   
   def action_cache_key
-    if current_user.nil? || current_user.new_record?
-      [ controller_name, action_name, session[:edition], session[:locale] ].join('-')
+    if current_user.new_record?
+      [ controller_name, action_name, session[:edition], session[:locale], 'v1' ].join('-')
     else
       current_user.set_preference
-      [ controller_name, action_name, session[:edition], session[:locale], current_user.id, current_user.preference.updated_at.to_s.hash ].join("-")
+      [ controller_name, action_name, session[:edition], session[:locale], current_user.id, current_user.preference.updated_at.to_s.hash, 'v1' ].join("-")
     end
   end
   
