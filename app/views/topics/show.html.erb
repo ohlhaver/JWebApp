@@ -9,7 +9,7 @@
 	<%else%>
     <h2>
 	  <span class='links'><%= render_search_preference_form( :sort_criteria, :form_url => form_url, :form_method => form_method  ) %></span>
-      <span class="page_label"><%= t( 'navigation.main.my_topic' )%>: <%= link_to( @topic.name, edit_topic_path( @topic ), :title => t('prefs.home_action.edit')  ) -%></span>  
+      <span class="page_label"><%= t( 'navigation.main.my_topic' )%>: <%= link_to( @topic.name, edit_topic_path( @topic ), :title => t('prefs.home_action.edit')  ) -%></span>&nbsp;&nbsp;<%= link_to( image_tag( 'rss.png'), @rss_url ) %>
 	</h2>
 
 		<div class='result_filter'><%= render_filter_links( @topic.facets, form_url, form_method ) %></div>
