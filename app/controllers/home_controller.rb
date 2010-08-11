@@ -2,6 +2,7 @@ require 'benchmark'
 class HomeController < ApplicationController
   
   japi_connect_login_optional :except => [ :index_with_login ], :skip => [:show ] do
+    before_filter :set_current_user_from_id, :only => [:show]
     caches_action :show, :cache_path => Proc.new{ |c| c.send(:action_cache_key) }, :expires_in => 15.minutes
     before_filter :expire_homepage_cache, :if => Proc.new{ |c| c.params['exec'] == '9999' }
     caches_action :index, :cache_path => Proc.new{ |c| c.send(:action_cache_key) }, :expires_in => 5.minutes, :if => Proc.new{ |c| !c.send(:current_user).new_record? && c.send( :flash )[:notice].blank? && c.send(:flash)[:error].blank? }
@@ -21,8 +22,6 @@ class HomeController < ApplicationController
   def show
     set_edition
     set_locale
-    params[:id] = nil if params[:id] == 'default'
-    @current_user = JAPI::User.new( :id => params[:id] )
     @page_data = PageData.new( current_user, :edition => news_edition, :home => true, :auto_perform => true )
     @story_blocks = @page_data.home_blocks
   end
@@ -62,6 +61,11 @@ class HomeController < ApplicationController
       current_user.set_preference
       [ controller_name, action_name, session[:edition], session[:locale], current_user.id, current_user.preference.updated_at.to_s.hash, 'v1' ].join("-")
     end
+  end
+  
+  def set_current_user_from_id
+    params[:id] = nil if params[:id] == 'default'
+    @current_user = JAPI::User.new( :id => params[:id] )
   end
   
 end
