@@ -1,6 +1,7 @@
 class StoriesController < ApplicationController
   
-  japi_connect_login_optional do
+  japi_connect_login_optional :skip => [ :rss ] do
+    caches_action :rss, :cache_path => Proc.new{ |c| c.send(:rss_cache_key) }, :expires_in => 5.minutes
     caches_action :show, :cache_path => Proc.new{ |c| c.send(:action_cache_key) }, :expires_in => 24.hours, :if => Proc.new{ |c| c.send(:current_user).new_record? && c.send(:web_spider?) }
   end
   
@@ -34,6 +35,7 @@ class StoriesController < ApplicationController
     params_options[:language_id] ||= params[:l] unless params[:l].blank?
     params_options[:language_id] ||= news_edition.language_id if current_user.new_record?
     params_options[:time_span] = params[:ts] unless params[:ts].blank?
+    @rss_url = search_rss_url( :edition => session[:edition], :locale => I18n.locale, :oq => obfuscate_encode( params_options ), :mode => :simple )
     @page_data.add do |multi_curb|
       JAPI::Story.async_find( :all, :multi_curb => multi_curb, :params => params_options ){ |results| @stories = results }
       JAPI::Author.async_find( :all, :multi_curb => multi_curb, :params => { :q => params[:q], :per_page => 3, :page => 1, :cf => 1 } ){ |results| @authors = results || [] }
@@ -72,6 +74,7 @@ class StoriesController < ApplicationController
     params_options[:language_id] ||= params[:l] unless params[:l].blank?
     params_options[:language_id] ||= news_edition.language_id if current_user.new_record?
     params_options[:time_span] = params[:ts] unless params[:ts].blank?
+    @rss_url = search_rss_url( :edition => session[:edition], :locale => I18n.locale, :oq => obfuscate_encode( params_options ), :mode => :advance )
     @page_data.add do |multi_curb|
       JAPI::Story.async_find( :all, :multi_curb => multi_curb, :from => :advance, :params => params_options ){ |results| @stories = results }
     end
@@ -85,6 +88,18 @@ class StoriesController < ApplicationController
     filters.each{ |y| params[ y.first ] = y.last }
     @page_title = I18n.t( "seo.page.title.search", :query => @query )
     render :action => :index
+  end
+  
+  def rss
+    set_edition
+    set_locale
+    obfuscated_query = params.delete(:oq)
+    @param_options = obfuscated_query ? obfuscate_decode( obfuscated_query ) : []
+    @query = [ @param_options[:q], @param_options[:qa], @param_options[:qe], @param_options[:qn] ].select{ |x| !x.blank? }.join(' ')
+    mode = params[:mode] == 'advance' ? :advance : nil
+    @stories = JAPI::Story.find( :all, :from => mode, :params => @param_options )
+    pp @stories
+    @page_title = I18n.t( "seo.page.title.search", :query => @query )
   end
   
   protected
@@ -172,6 +187,10 @@ class StoriesController < ApplicationController
   
   def action_cache_key
     [ controller_name, action_name, params[:id].to_i ].join('-')
+  end
+  
+  def rss_cache_key
+    [ 'search', params[:oq], params[:edition], params[:locale] ].join('-')
   end
   
 end

@@ -1,7 +1,9 @@
 class TopicsController < ApplicationController
   
   before_filter :store_referer_location, :only => [ :destroy, :unhide, :hide, :up, :down ]
-  japi_connect_login_required :except => [ :whats, :create, :index ]
+  japi_connect_login_required :except => [ :whats, :create, :index ], :skip => [ :rss ] do
+    caches_action :rss, :cache_path => Proc.new{ |c| c.send(:rss_cache_key) }, :expires_in => 5.minutes
+  end
   
   def whats
     @topic  = JAPI::TopicPreference.new
@@ -27,6 +29,7 @@ class TopicsController < ApplicationController
   end
   
   def show
+    params_options = {}
     @page_data.add do |multi_curb|
       JAPI::TopicPreference.async_find( params[:id], :multi_curb => multi_curb, :params => { :user_id => current_user.id } ) do |result|
         @topic_preference = result
@@ -42,7 +45,16 @@ class TopicsController < ApplicationController
       end
     end
     page_data_finalize
+    @rss_url = topic_rss_url( :locale => I18n.locale, :oq => obfuscate_encode( params_options ) )
     @page_title = @page_title = I18n.t( "seo.page.title.search", :query => @topic.name )
+  end
+  
+  def rss
+    set_locale
+    params_options = obfuscate_decode( params[:oq] || "" )
+    @topic = JAPI::Topic.find( :one, :params => params_options )
+    @page_title = @page_title = I18n.t( "seo.page.title.search", :query => @topic.name )
+    @feed_url = topic_url( params_options[ :topic_id ], :locale => params[:locale] )
   end
 
   def new
@@ -187,6 +199,10 @@ class TopicsController < ApplicationController
   end
   
   protected
+  
+  def rss_cache_key
+    [ 'topic', params[:oq], params[:locale] ].join('-')
+  end
   
   def cas_filter_allowed?
     case( action_name ) when 'create' : false 

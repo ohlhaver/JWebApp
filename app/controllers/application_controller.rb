@@ -98,4 +98,22 @@ class ApplicationController < ActionController::Base
     @facebook_login_url = fb_login_path
   end
   
+  def set_current_user_from_id
+    params[:id] = nil if params[:id] == 'default'
+    @current_user = JAPI::User.new( :id => params[:id] )
+  end
+  
+  def obfuscate_decode( encoded_string )
+    cipher = encoded_string.tr('-_','+/').unpack('m')
+    data = Marshal.load( cipher.first ) rescue nil
+    raise ActionController::UnknownAction, encoded_string unless data
+    return data
+  end
+  
+  # The string is url safe
+  def obfuscate_encode( object )
+    cipher = [ Marshal.dump( object ) ]
+    cipher.pack('m').tr('+/','-_').gsub("\n",'')
+  end
+  
 end

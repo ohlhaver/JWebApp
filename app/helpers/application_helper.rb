@@ -3,6 +3,41 @@ module ApplicationHelper
   
   include AutoCompleteHelper
   
+  def render_rss_for_cluster( cluster, xml, options = {} )
+    story = cluster.stories.first
+    block = options[:block]
+    block_key = options[:block_key]
+    xml.item do
+      xml.title story.title
+      xml.link cluster_url( cluster, :only_path => false )
+      xml.pubDate story.created_at.to_s(:rfc822)
+      xml.guid cluster_url( cluster, :only_path => false )
+      xml.source( story.source.name, :url => story.url )
+      xml.category( block_name( block_key, block ) ) if block && block_key
+      xml.description cluster.top_keywords.join(' - ')
+      xml.author( story.authors.first.name ) if story.authors.first
+      xml.enclosure( :url => cluster.image, :length => "10240", :type => "image/jpeg", :source => cluster.url ) if cluster.image
+      #xml.tag!( "media:content", :url => cluster.image, :medium => "image", :height => "80", :width => "80" ) if cluster.image
+      #xml.tag!( "media:copyright", "Image Copyright", :url => cluster.url )  if cluster.image
+    end
+  end
+  
+  def render_rss_for_story( story, xml, options = {} )
+    block = options[:block]
+    block_key = options[:block_key]
+    xml.item do
+      xml.title story.title
+      xml.link story_url( story, :only_path => false )
+      xml.pubDate story.created_at.to_s(:rfc822)
+      xml.guid story_url( story, :only_path => false )
+      xml.source( story.source.name, :url => story.url )
+      xml.category( block_name( block_key, block ) ) if block && block_key
+      xml.author( story.authors.first.name ) if story.authors.first
+      xml.enclosure( :url => story.image, :length => "7063", :type => "image/jpeg" ) if story.image
+      #xml.tag!( "media:content", :url => story.image, :medium => "image", :height => "80", :width => "80" ) if story.image
+    end
+  end
+  
   def block_name( key, block )
     case( key.to_s ) when 'top_stories', 'sections' : t("navigation.main.#{block.name}")
     when 'my_authors' : t('navigation.main.my_authors')

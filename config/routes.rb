@@ -11,6 +11,9 @@ ActionController::Routing::Routes.draw do |map|
   map.my_authors '/authors/my', :controller => 'authors', :action => 'my'
   map.logout '/logout', :controller => 'application', :action => 'logout'
   map.home_rss '/home/:edition/:locale/:id.rss', :controller => 'home', :action => 'show', :format => 'rss'
+  map.search_rss '/stories/:edition/:locale/:mode/:oq.rss', :controller => 'stories', :action => 'rss', :format => 'rss'
+  map.section_rss '/sections/:locale/:oq.rss', :controller => 'sections', :action => 'rss', :format => 'rss'
+  map.topic_rss '/topics/:locale/:oq.rss', :controller => 'topics', :action => 'rss', :format => 'rss'
   map.root :controller => 'home', :action => 'index'
   map.connect '/sections/create', :controller => 'sections', :action => :create
   map.resources :sections, :member => [ :up, :down, :hide ]

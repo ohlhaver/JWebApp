@@ -63,9 +63,4 @@ class HomeController < ApplicationController
     end
   end
   
-  def set_current_user_from_id
-    params[:id] = nil if params[:id] == 'default'
-    @current_user = JAPI::User.new( :id => params[:id] )
-  end
-  
 end
