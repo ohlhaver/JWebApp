@@ -91,7 +91,7 @@ en:
       create_topic: "create your own topics"
       add_to_reading_list: "save interesting articles to your reading list"
       topics: "Jurnalo's selection of topics on the homepage is fully automated.<br> It shows which news topics have been covered by the greatest number of different publications over the last 12 hours and is updated every minute."
-      ranking: "The ranking of articles in the search results is based on a combination of relevance, age and objectively calculated journalistic quality."
+      ranking: "The ranking of articles in the search results is based on a combination of relevance, age and automatically estimated journalistic quality."
       selection: "The selection and weighting of sources is based on the sole criteria of journalistic quality."
       credits: "Special thanks go out to the following people without whose open-source contributions this application would not have been possible"
       search_tech: "search technology"
