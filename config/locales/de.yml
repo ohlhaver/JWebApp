@@ -90,8 +90,9 @@ de:
       weight: "Autoren und Quellen gewichten"
       create_topic: "eigene Themen erschaffen"
       add_to_reading_list: "interessante Artikel zu Ihrer Leseliste speichern"
-      ranking: "Jurnalos Sortierung von Artikeln geschieht vollkommen automatisch und basiert auf Relevanz, Qualität und Zeit."
-      selection: "Für die Auswahl und Gewichtung der Quellen ist die journalistische Qualität das ausschließliche Kriterium."
+      topics: "Jurnalos Auswahl von Themen geschieht vollkommen automatisch. <br> Sie richtet sich danach, zu welchen Nachrichten die meisten Publikationen in den letzten 12 Stunden etwas veröffentlicht haben, und wird jede Minute aktualisiert."
+      ranking: "Das Ranking der Artikel in den Suchergebnissen basiert ausschließlich auf der Kombination aus Relevanz, Aktualität und möglichst objektiv errechneter journalistischer Qualität der einzelnen Artikel."
+      selection: "Für die Auswahl und Gewichtung der Quellen ist deren objektiv errechnete journalistische Qualität das ausschließliche Kriterium."
       credits: "Dank gilt insbesondere den folgenden Personen, ohne deren open-source Beiträge diese Seite nicht möglich wäre"
       search_tech: "Suchtechnologie"
     imprint:
