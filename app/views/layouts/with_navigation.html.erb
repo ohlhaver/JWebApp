@@ -33,9 +33,7 @@
         <% form_tag( stories_path, :id => 'search_form', :method => :get, :class => 'inline_form' ) do -%>
           <input type="text" title="Search News" autocomplete="off" tabindex="1" name="q" id = 'searchfield' class ="text"  value="<%= params[:q] -%>" />
           <input type="submit" value="<%= t( 'search.simple' ) -%>" tabindex="2" id = 'searchbutton' class ="button"/>
-          <div class='search-box-link'>
-            <%= link_to( t( 'search.advance.label' ), advanced_stories_path ) %>
-          </div>
+
         <% end -%>
       </div>
       <div id="top_navigation" class="grid_2">

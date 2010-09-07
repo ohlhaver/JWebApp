@@ -654,6 +654,34 @@ h2 .add_topic_link a:visited {
 	
 }
 
+#advanced {
+		display: inline;
+
+}
+
+#advanced a:link {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 12px;
+	color: #999999;
+
+}
+
+#advanced a:hover {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 12px;
+	color: #0000b6;
+
+}
+
+#advanced a:visited {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size: 12px;
+	color: #999999;
+
+}
+
+
+
 h2 .keywords_filter {
 	font-size: 16px;
 	font-family:Arial,Helvetica,sans-serif;
