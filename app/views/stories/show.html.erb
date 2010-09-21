@@ -56,6 +56,7 @@
       ul#bar li span.arial a,a:visited{ font-family: Arial,Helvetica,sans-serif; }
       ul#bar li.right{ float:right; }
       ul#bar li a.more{ color:#333333; font-family:Arial,Helvetica,sans-serif; padding-top:5px; font-size:100%; display:inline-block;}
+		ul#bar li a.this_story{ color:#333333; font-family:Arial,Helvetica,sans-serif; padding-top:0px; font-size:100%; display:inline-block;}
       ul#bar li .inline { display:inline-block; }
       ul#bar li .bold{ font-weight:bold }
       ul#bar li span.grey a { color:#999999; }
@@ -134,7 +135,8 @@
 
             <li class="story max_width_270px">
               <div class='clearfix'>
-                <span class='heading stories inline left'><%= t('stories.this') %></span> <span class='left'><%= fb_like_plugin( @story ) %></span>
+                <span class='heading stories inline left'><%= link_to (t('stories.this'), @story.url, :class => 'this_story bold')  %> &raquo;</span> <span class='left'><%= fb_like_plugin( @story ) %> </span><br><br>
+				<span class='grey'>Url: <%= link_to( @story.url.first(35) + ' ...', @story.url ) %> </span>
               </div>
               <% if @author %>
                 <div class="clearfix">
@@ -146,14 +148,16 @@
               <% end %>
               <% if @source %>
                   <div class="clearfix">
-                    <span class='grey'><%= t('search.advance.filter.source')%> <%= link_to( @source.name, source_path( @source ) ) %></span> <span class="arial widgets">
+                    <span class='grey'><%= t('search.advance.filter.source')%> <%= link_to( @source.name  + ' &raquo;', source_path( @source ) ) %></span> <span class="arial widgets">
                     <%= render_rating_stars( @source ) %>
                     <%= render_source_rating_form( @source_preference, @source ) %></span>
                   </div>
               <% end %>
+			
             </li>
             
             <li class="story right nopadding"><a href="<%= @story.url %>"><%= image_tag('close.gif') %></a></li>
+			
           </ul>
         </td>
       </tr>
