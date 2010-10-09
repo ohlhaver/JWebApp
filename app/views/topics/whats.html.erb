@@ -9,7 +9,7 @@
     <% @topic ||= TopicPreference.new %>
     <% form_for( @topic, :url => topics_path, :html => { :id => 'simple_topic_form' }, :method => :post ) do |f| %>
 	  <%= t('topic.what.info') %> <br>
-      <%= t('topic.what.feature') %>
+      <%= t('topic.what.feature') %><br>
       <span><%= f.text_field(:search_all, :id => 'wizzard_searchfield') %></span> 
       <%= submit_tag( t('topic.action.create_topic'), :class => "wizzard_searchbutton" ) %>&nbsp;&nbsp;
       <%= link_to_function( t('topic.action.test'), "test_topic( 'simple_topic_form' )"  ) %> | 
