@@ -1,6 +1,5 @@
-<% erb_cache "stories/headline/#{story.id}-#{hide_image}-#{I18n.locale}-v10", { :expires_in => 24.hours, :locals => { :story => story, :hide_add_to_reading_list => hide_add_to_reading_list } } do %>
+
 <% render_image_block( story, hide_image ) do -%>
 
-  <span class='age fs80'><%%= time_ago_in_words( story.created_at ) -%></span>
-<% end -%>
+  <span class='age fs80'><%= time_ago_in_words( story.created_at ) -%></span>
 <% end -%>
