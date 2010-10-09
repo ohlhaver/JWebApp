@@ -5,9 +5,6 @@
     <% cluster.stories.each do |story| %>
       <li class='story'><%= render_story_preview( story, :without => :image ) %></li>
     <% end %>
-    <% cache "cluster/#{cluster.id}-info-keywords", :expires_in => 1.hour do -%>
-
-  
-    <% end %>
+    
   </ul>
 <% end -%>

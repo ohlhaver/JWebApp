@@ -6,8 +6,6 @@
   <% cluster.stories.each do |story| %>
     <li class='story'><%= render_story_preview( story, :without => :image ) %></li>
   <% end %>
-  <% cache "cluster-mobi/#{cluster.id}-info-keywords", :expires_in => 1.hour do -%>
- <!-- <li class='keywords'><%= links_to_keywords( *(cluster.top_keywords) ).join(' - ') %></li> -->
-  <% end %>
+
 </ul>
 <% end %>
