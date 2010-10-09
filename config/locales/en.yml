@@ -308,7 +308,7 @@ en:
     simple: "search news"
     simple_mobile: "search"
     advance: 
-      label: "Advanced search"
+      label: "advanced search"
       find: 
         label: "Find results"
         at_least: "with at least one of these words:"
