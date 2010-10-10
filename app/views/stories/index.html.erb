@@ -1,11 +1,10 @@
 <% content_for :page_label do %>
     <% mouse_over( :icon ) do |iconEventClass, iconItemClass| %>
       <span class="page_label <%= iconEventClass -%>">
-        <%= t('search.page.title', :query => "<a>'#{ truncate( @query, 20 ) }'</a>" ) -%></span>&nbsp;&nbsp;<%= link_to( image_tag( 'rss.png'), @rss_url ) %> &nbsp;
-        <%= render :partial => 'topic_form' %>&nbsp;&nbsp;<div id='advanced'>
+        <%= t('search.page.title', :query => "<a>'#{ truncate( @query, 40 ) }'</a>" ) -%></span>&nbsp;&nbsp;<%= link_to( image_tag( 'rss.png'), @rss_url ) %> &nbsp;
+        <%= render :partial => 'topic_form' unless params[:ts] == "86400" %>&nbsp;&nbsp;<div id='advanced'>
           <%= link_to( t( 'search.advance.label' ), advanced_stories_path ) %>
-        </div>
-      
+        </div>      
     <% end %>
 <% end %>
 
@@ -59,14 +58,18 @@
       <div class='result_filter'><%= render_filter_links( @stories.facets, form_url, form_method ) %>  </div>
 
       <% @stories.each do |story| %>
-        <% if story.cluster && story.cluster.stories.any? %>
-        <div class='cluster'>
-          <%= render_cluster_preview( story.cluster, story ) %>
-        <% else %>
+        <% if params[:ts] == "86400" %>
+  	    <div class='medium_cluster'>
+	    <div class='medium_headline'>
+	      <%= render_headline_preview( story ) %>
+	    </div>
+	    </div>
+	<%else%>
         <div class='medium_cluster'>
           <%= render_story_search_preview( story ) %>
-        <% end %>
+       
         </div>
+ <% end %>
       <% end %>
     <% end %>
   </div>

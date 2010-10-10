@@ -3,7 +3,7 @@
     <% mouse_over( :icon ) do |iconEventClass, iconItemClass| %>
       <span class="page_label <%= iconEventClass -%>">
         <%= t('search.page.title', :query => "<a>'#{ truncate( @query, 20 ) }'</a>" ) -%></span> &nbsp;
-        <%= render :partial => 'topic_form' %>
+        <%= render :partial => 'topic_form' unless params[:ts] == "86400" %>
       
     <% end %>
 <% end %>
@@ -68,15 +68,19 @@
       <div class='result_filter'><%= render_filter_links( @stories.facets, form_url, form_method ) %>  </div>
 
     <% @stories.each do |story| %>
-        <% if story.cluster && story.cluster.stories.any? %>
-		<div class='cluster'>
-          <%= render_cluster_preview( story.cluster, story ) %>
-        <% else %>
-		<div class='medium_cluster'>
+        <% if params[:ts] == "86400" %>
+  	    <div class='medium_cluster'>
+	    <div class='medium_headline'>
+	      <%= render_headline_preview( story ) %>
+	    </div>
+	    </div>
+	<%else%>
+        <div class='medium_cluster'>
           <%= render_story_search_preview( story ) %>
-        <% end %>
-      </div>
-    <% end %>
+
+        </div>
+ <% end %>
+      <% end %>
 	
 	<% end %>
   </div>
