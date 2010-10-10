@@ -1,5 +1,5 @@
 <% render_image_block( cluster ) do -%>
-  <div class='headline'><span class='title'><%= link_to (cluster.top_keywords).join(' '), stories_path( :q => cluster.top_keywords.join(' '), :l => cluster.language_id, :ts => 24.hours ), {:title => t( 'cluster.all.headlines', :count => cluster.story_count )} %></span>
+  <div class='headline'><span class='title'><%= link_to (cluster.top_keywords).join(' '), cluster_path( cluster.to_param ), {:title => t( 'cluster.all.headlines', :count => cluster.story_count )} %></span>
 <br><%= render_headline_age( headline, :without => :image ) %></div>
   <ul>
     <% cluster.stories.each do |story| %>
