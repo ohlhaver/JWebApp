@@ -318,14 +318,19 @@ margin-bottom:20px;
 text-transform:uppercase;
 }
 
+h2 .results_label {
+color:#999999;
+font-family:Arial,Helvetica,sans-serif;
+font-size:16px;
+line-height:21px;
+margin-bottom:20px;
+text-transform:uppercase;
+}
+
 h2 a {
 	color: #0000b6;	
 }
 
-h2 a:hover {
-	text-decoration: underline;
-		
-}
 
 
 
@@ -347,6 +352,11 @@ h2 a:hover {
 
 .news_block h2 a:hover {
 	  	text-decoration: underline;
+}
+
+
+.news_block h2 .results_label a:hover {
+	  	text-decoration: none;
 }
 
 
