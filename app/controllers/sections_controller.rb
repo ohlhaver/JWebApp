@@ -199,4 +199,8 @@ class SectionsController < ApplicationController
     false
   end
   
+  def set_skyscraper
+    @skyscraper = true
+  end
+  
 end
