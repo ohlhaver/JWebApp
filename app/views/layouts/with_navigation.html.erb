@@ -20,15 +20,13 @@
     <meta property="og:image" content="http://www.jurnalo.com/images/logo.gif" />
     <meta property="og:description" content="Blättere in allen Nachrichten!."/>
     <meta property="fb:admins" content="ohlhaver"/>
-    <!--[if !lte IE 8]><![IGNORE[--><![IGNORE[]]><%= stylesheet_link_tag 'reset', 'grid10', 'grid10ff', :cache => 'base_g10' %><!--<![endif]-->
-    <!--[if lte IE 8]>
-      <%= stylesheet_link_tag 'reset', 'grid10ie', :cache => 'base_g10ie' %>
-    <![endif]-->
+<%= stylesheet_link_tag 'reset', 'grid8', 'grid10ff', :cache => 'base_g10' %>
+ 
     <%= stylesheet_link_tag 'simple', 'fb', :cache => 'base_app' %>
   </head>
   <body>
-    <div class="container_10">
-      <div id= "top_frame" class = "grid_8">
+    <div class="container_8">
+      <div id= "top_frame" class = "grid_6">
         <%= link_to( image_tag( 'logo.gif'), root_path ) %>
         <% form_tag( stories_path, :id => 'search_form', :method => :get, :class => 'inline_form' ) do -%>
           <input type="text" title="Search News" autocomplete="off" tabindex="1" name="q" id = 'searchfield' class ="text"  value="<%= params[:q] -%>" />
@@ -42,12 +40,13 @@
           <%= render :partial => 'shared/edition' %>
         </div>
       </div>
+	
       <br clear="all" /> <div class="clearfix"></div>
       <% if flash[:notice] %>
-        <div class="flash grid_10" style="color:green" ><%= flash[:notice] %></div>
+        <div class="flash grid_8" style="color:green" ><%= flash[:notice] %></div>
       <% end %>
       <% if flash[:error] %>
-        <div class="flash grid_10" style="color: red"><%= flash[:error] %></div>
+        <div class="flash grid_8" style="color: red"><%= flash[:error] %></div>
       <% end %>
       <div id="content" class="grid_8">
         <%= yield %>
@@ -63,19 +62,8 @@
         </div>
         <%end%>
       </div>
-      <div id="module" class="grid_2">
-        <div id='home_link' >
-          <%= link_to_navigation_item 'Home', root_path %> &nbsp;
-        </div>
-        <div id="navigation" >
-        <% if @skyscraper == false %> 
-          <%= render :partial => 'shared/navigation' %>
-        <%else%>
-          <%= render :partial => 'shared/skyscraper' %>
-        <%end%>
-        </div>
-      </div>
-      <div id="footer" class = "grid_10">
+
+      <div id="footer" class = "grid_8">
         <%= render :partial => 'shared/footer' %>
       </div>
       <%= javascript_include_tag 'prototype', 'effects', 'controls', 'application', :cache => 'jbase' %>
