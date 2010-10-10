@@ -14,7 +14,7 @@ a:visited {
 }
 
 a:hover {
-	text-decoration: none;
+	text-decoration: underline;
 	color:  #0000b6;
 }
 
@@ -26,7 +26,10 @@ img {
 
 .inline_form { 
  display:inline;
+ 
 }
+
+
 
 #top_frame {
 	margin-top: 10px;
@@ -319,6 +322,13 @@ h2 a {
 	color: #0000b6;	
 }
 
+h2 a:hover {
+	text-decoration: underline;
+		
+}
+
+
+
 .news_block h2 a:visited {
 
  	font-weight: normal;
@@ -330,10 +340,17 @@ h2 a {
 .news_block h2 a:link {
 
  	font-weight: normal;
-  	text-decoration: none;
+ 
   	font-size: 16px;
 	line-height: 19px;
 }
+
+.news_block h2 a:hover {
+	  	text-decoration: underline;
+}
+
+
+
 /* Uncomment these lines if we want to underline the newsblock heading.
 .news_block h2 .page_label a:link {
   text-decoration: underline;
@@ -396,6 +413,8 @@ h2 a {
 	line-height: 24px;
 	font-style: normal;
 }
+
+
 
 .medium_headline {
 	font-family: Georgia,"Times New Roman",Times,serif;
@@ -647,11 +666,17 @@ h2 .add_topic_link a:link {
 
 h2 .add_topic_link a:hover {
 	color: #0000b6;
+	text-decoration: underline;
 }
 
 h2 .add_topic_link a:visited {
 	color: #999999;
 	
+}
+
+h2 #advanced a:hover {
+	text-decoration: underline;
+	color: #0000b6;
 }
 
 #advanced {
@@ -1177,3 +1202,6 @@ span.stars{
   display:inline-block;
   vertical-align:top;
 }
+
+
+
