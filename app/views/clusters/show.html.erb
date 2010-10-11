@@ -7,7 +7,7 @@
         <span class="page_label"><%= t("cluster.all.stories") -%></span>
 		<%= render_cluster_preference_form( :cluster_sort_criteria, :form_url => cluster_path( @cluster ), :form_method => :get  ) -%>
 		<div class='keywords_filter'>
-       		(<%= links_to_keywords( *(@cluster.top_keywords) ).join(' - ') %>)
+			<%= link_to (@cluster.top_keywords).join(' '), stories_path( :q => @cluster.top_keywords.join(' '), :l => @cluster.language_id, :ts => 24.hours ), {:title => t( 'search.simple_mobile')} %>
    		</div>
 		</h2>
 		
