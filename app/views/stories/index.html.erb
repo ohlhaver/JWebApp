@@ -2,7 +2,7 @@
     <% mouse_over( :icon ) do |iconEventClass, iconItemClass| %>
       <span class="results_label <%= iconEventClass -%>">
         <%= t('search.page.title', :query => "<a>'#{ truncate( @query, 40 ) }'</a>" ) -%></span>&nbsp;&nbsp;<%= link_to( image_tag( 'rss.png'), @rss_url ) %> &nbsp;
-        <%= render :partial => 'topic_form' unless params[:ts] == "86400" %>&nbsp;&nbsp;<br><div id='advanced'>
+        <%= render :partial => 'topic_form' unless params[:ts] == "86400" %>&nbsp;&nbsp;<div id='advanced'>
           <%= link_to( t( 'search.advance.label' ), advanced_stories_path ) %>
         </div>      
     <% end %>

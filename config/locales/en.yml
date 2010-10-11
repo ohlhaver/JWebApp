@@ -207,8 +207,8 @@ en:
       business: "Business"
       culture: "Culture"
       mixed: "Mixed"
-      my_authors: "My Authors"
-      my_topics: "My Topics"
+      my_authors: "My authors"
+      my_topics: "My topics"
       my_topic: "My topic"
       opinions: "Opinions"
       politics: "Politics"
@@ -304,7 +304,7 @@ en:
       per_page: "show {{count}} results per page"
       sorting: "sort by:"
     topic:
-      add: "add to My Topics"
+      add: "add to my topics"
     simple: "search news"
     simple_mobile: "search"
     advance: 
@@ -381,7 +381,7 @@ en:
       step_3: "Click 'add to my reading list.'"
   topic:
     label:
-      new: 'New Topic'
+      new: 'New topic'
       what: 'Create a search topic'
     action:
       add: 'Add Topic'
