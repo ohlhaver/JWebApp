@@ -135,22 +135,17 @@
 
             <li class="story max_width_270px">
               <div class='clearfix'>
-                <span class='heading stories inline left'><%= link_to (t('stories.this'), @story.url, :class => 'this_story bold')  %> &raquo;</span> <span class='left'><%= fb_like_plugin( @story ) %> </span><br><br>
+                <br>
 				<span class='grey'>Url: <%= link_to( @story.url.first(35) + ' ...', @story.url ) %> </span>
-              </div>
+              </div><br>
               <% if @author %>
                 <div class="clearfix">
-                  <span class='grey'><%= t('search.advance.filter.author')%> <%= link_to( @author.name + ' &raquo;', author_path( @author ) ) %> </span> <span class="arial widgets"> 
-                    <%= render_rating_stars( @author ) %>
-                    <%= render_author_rating_form( @author_preference, @author ) %>
-                    <%# render_author_subscription( @author_preference, @author ) %></span>
+                  <span class='grey'><%= t('search.advance.filter.author')%> <%= link_to( @author.name + ' &raquo;', author_path( @author ) ) %> </span> 
                 </div>
-              <% end %>
+              <% end %><br>
               <% if @source %>
                   <div class="clearfix">
-                    <span class='grey'><%= t('search.advance.filter.source')%> <%= link_to( @source.name  + ' &raquo;', source_path( @source ) ) %></span> <span class="arial widgets">
-                    <%= render_rating_stars( @source ) %>
-                    <%= render_source_rating_form( @source_preference, @source ) %></span>
+                    <span class='grey'><%= t('search.advance.filter.source')%> <%= link_to( @source.name  + ' &raquo;', source_path( @source ) ) %></span> 
                   </div>
               <% end %>
 			
