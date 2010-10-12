@@ -52,7 +52,7 @@
       ul#bar li span.stories { display:block; padding-top:4px; padding-right:5px;}
       ul#bar li a,a:visited{ color:#333333; text-decoration:none; font-family:Arial,Helvetica,sans-serif;}
       ul#bar li.story a,a:visited{ font-family:Georgia,"Times New Roman",Times,serif; }
-	  ul#bar li.story a:hover{ color:#0000b6; }
+	  ul#bar li.story a:hover{ color:#0000b6; text-decoration: underline; }
       ul#bar li span.arial a,a:visited{ font-family: Arial,Helvetica,sans-serif; }
       ul#bar li.right{ float:right; }
       ul#bar li a.more{ color:#333333; font-family:Arial,Helvetica,sans-serif; padding-top:5px; font-size:100%; display:inline-block;}
@@ -134,21 +134,22 @@
           <% end %>
 
             <li class="story max_width_270px">
+				<span class='stories'>
               <div class='clearfix'>
-                <br>
+                
 				<span class='grey'>Url: <%= link_to( @story.url.first(35) + ' ...', @story.url ) %> </span>
-              </div><br>
+              </div>
               <% if @author %>
                 <div class="clearfix">
                   <span class='grey'><%= t('search.advance.filter.author')%> <%= link_to( @author.name + ' &raquo;', author_path( @author ) ) %> </span> 
                 </div>
-              <% end %><br>
+              <% end %>
               <% if @source %>
                   <div class="clearfix">
                     <span class='grey'><%= t('search.advance.filter.source')%> <%= link_to( @source.name  + ' &raquo;', source_path( @source ) ) %></span> 
                   </div>
               <% end %>
-			
+			</span>
             </li>
             
             <li class="story right nopadding"><a href="<%= @story.url %>"><%= image_tag('close.gif') %></a></li>
@@ -158,7 +159,7 @@
       </tr>
       <tr>
         <td>
-          <div id=outer-separator><div id=separator></div></div>
+          <div id=outer-separator></div>
           <iframe scrolling="auto" id="rf" src="<%= @story.url -%>" frameborder="0" allowtransparency="true" style="width:100%;height:100%"></iframe>
         </td>
       </tr>
