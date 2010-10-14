@@ -31,9 +31,13 @@ class StoriesController < ApplicationController
     params_options[:subscription_type] = subscription_type
     @topic_params = JAPI::TopicPreference.extract( params_options )
     params_options.merge!( :page => params[:page], :per_page => params[:per_page], @filter => 4 )
-    params_options[:user_id] = current_user.id unless current_user.new_record?
+    if current_user.new_record?
+      params_options[:user_id] = 10000000 unless news_edition.language_id == 38
+    else  
+      params_options[:user_id] = current_user.id
+    end
     params_options[:language_id] ||= params[:l] unless params[:l].blank?
-    params_options[:language_id] ||= news_edition.language_id if current_user.new_record?
+    #params_options[:language_id] ||= news_edition.language_id if current_user.new_record?
     params_options[:time_span] = params[:ts] unless params[:ts].blank?
     @rss_url = search_rss_url( :edition => session[:edition], :locale => I18n.locale, :oq => obfuscate_encode( params_options.merge( :page => nil ) ), :mode => :simple )
     @page_data.add do |multi_curb|
@@ -70,9 +74,13 @@ class StoriesController < ApplicationController
     @topic_params = params_options.dup
     params_options.merge!( :page => params[:page], :per_page => params[:per_page] )
     params_options[@filter] = 4 unless @filter == :all
-    params_options[:user_id] = current_user.id unless current_user.new_record?
+    if current_user.new_record?
+      params_options[:user_id] = 10000000 unless news_edition.language_id == 38
+    else  
+      params_options[:user_id] = current_user.id
+    end
     params_options[:language_id] ||= params[:l] unless params[:l].blank?
-    params_options[:language_id] ||= news_edition.language_id if current_user.new_record?
+    #params_options[:language_id] ||= news_edition.language_id if current_user.new_record?
     params_options[:time_span] = params[:ts] unless params[:ts].blank?
     @rss_url = search_rss_url( :edition => session[:edition], :locale => I18n.locale, :oq => obfuscate_encode( params_options.merge( :page => nil ) ), :mode => :advance )
     @page_data.add do |multi_curb|
