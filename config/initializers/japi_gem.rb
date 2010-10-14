@@ -177,7 +177,11 @@ JAPI::PreferenceOption.class_eval do
   
   def self.default_country_edition( country_code )
     country_code.try(:downcase!)
-    edition_country_map[ country_code ] || 'int-en'
+    if country_code == 'in' then  'in-en'
+    elsif country_code == 'ch' then  'ch-de'
+    elsif country_code == 'at' then  'at-de'
+    else 'de-de'
+    end
   end
   
   def self.async_load_all
