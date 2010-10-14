@@ -145,7 +145,7 @@ class StoriesController < ApplicationController
         @related_stories = JAPI::Story.find( :all, :params => { :q => @cluster.top_keywords.join(' '), :language_id => @cluster.language_id, :time_span => 24.hours, :per_page => 3, :skip_story_ids => @skip_story_ids } )
         @facets = @related_stories.facets
         @related_story_params[:cluster] = params[:cluster]
-        @more_results_url = stories_path( :q => @cluster.top_keywords.join(' '), :l => @cluster.language_id, :ts => 24.hours )
+        @more_results_url = stories_path( :q => @cluster.top_keywords.join(' '), :ts => 24.hours )
       end
     elsif params[:topic]
       @topic = JAPI::Topic.find( :one, :params => { :topic_id => params[:topic] , :time_span => 24.hours, :per_page => 3, :page => 1, :user_id => current_user.id, :skip_story_ids => @skip_story_ids } )
