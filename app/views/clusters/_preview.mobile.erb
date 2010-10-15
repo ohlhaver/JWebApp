@@ -1,11 +1,18 @@
 <% render_image_block( cluster ) do -%>
-  <div class='headline'><span class='title'><%= link_to (cluster.top_keywords).join(' '), cluster_path( cluster.to_param )%></span>
-<br><%= render_headline_age( headline, :without => :image ) %></div>
+<div class='headline'><%= render_headline_preview( headline, :without => :image ) %></div>
 
-<ul>
-  <% cluster.stories.each do |story| %>
-    <li class='story'><%= render_story_preview( story, :without => :image ) %></li>
-  <% end %>
+  <ul>
+    <% cluster.stories.each do |story| %>
+      <li class='story'><%= render_story_preview( story, :without => :image ) %></li>
+    <% end %>
+	     <% cache "cluster/#{cluster.id}-info-keywords", :expires_in => 1.hour do -%>
 
-</ul>
-<% end %>
+		  	
+
+	     <li class='info'> 
+	        <%= links_to_keywords( *(cluster.top_keywords) ).join(' ') %> - <%= render_cluster_info( cluster ) %>
+      	</li>
+
+    <% end -%>
+  </ul>
+<% end -%>
