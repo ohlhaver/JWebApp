@@ -22,6 +22,7 @@ class HomeController < ApplicationController
   def show
     set_edition
     set_locale
+    
     @page_data = PageData.new( current_user, :edition => news_edition, :home => true, :auto_perform => true )
     @story_blocks = @page_data.home_blocks
   end

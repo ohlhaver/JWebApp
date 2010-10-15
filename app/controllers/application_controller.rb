@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   
   include JAPI::Connect
   
-  before_filter :set_filter_var, :set_category_id_var, :reset_per_page, :prepare_for_mobile, :set_facebook_login_url, :set_content_column_count, :set_skyscraper
+  before_filter :set_clarity, :set_filter_var, :set_category_id_var, :reset_per_page, :prepare_for_mobile, :set_facebook_login_url, :set_content_column_count, :set_skyscraper
   after_filter :reset_session_params
   
   layout 'with_navigation'

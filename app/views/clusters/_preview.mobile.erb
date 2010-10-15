@@ -1,10 +1,17 @@
 <% render_image_block( cluster ) do -%>
+	<% if session[:clarity] == "1"%>
+		<div class='headline'><span class='title'><%= link_to (cluster.top_keywords).join(' '), cluster_path( cluster.to_param ), {:title => t('cluster.all.headlines', :count => cluster.story_count )} %></span>
+	<br><%= render_headline_age( headline, :without => :image ) %></div>
+	<%else%>
+	
 <div class='headline'><%= render_headline_preview( headline, :without => :image ) %></div>
 
   <ul>
     <% cluster.stories.each do |story| %>
       <li class='story'><%= render_story_preview( story, :without => :image ) %></li>
     <% end %>
+<% end %>
+<% unless session[:clarity] == "1"%>
 	     <% cache "cluster/#{cluster.id}-info-keywords", :expires_in => 1.hour do -%>
 
 		  	
@@ -12,7 +19,7 @@
 	     <li class='info'> 
 	        	        <%= link_to ((cluster.top_keywords).join(' ') + " - " +  t( 'cluster.all.headlines', :count => cluster.story_count ) + "  &raquo;"), cluster_path( cluster.to_param )  %>
       	</li>
-
+ 		<% end %>
     <% end -%>
   </ul>
 <% end -%>

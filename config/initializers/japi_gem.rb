@@ -663,6 +663,10 @@ JAPI::Connect::InstanceMethods.class_eval do
     params[:edition] = session[:edition] unless params[:edition].blank?
   end
   
+  def set_clarity
+    session[:clarity] = params[:clarity] unless params[:clarity].blank?
+  end
+  
   def restore_mem_cache_cas_last_valid_ticket
     return unless TICKET_STORE
     @last_cas_ticket = TICKET_STORE.get( session[:session_id] )
