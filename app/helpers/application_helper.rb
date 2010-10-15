@@ -262,7 +262,7 @@ module ApplicationHelper
   end
   
   def links_to_keywords( *keywords )
-    keywords.collect{ |keyword| link_to( keyword, stories_path( :q => keyword ) ) }
+    keywords.collect{ |keyword| link_to( keyword, stories_path( :q => keyword ), {:title => t( 'search.simple_mobile')} ) }
   end
   
   def render_search_preference_form( *attributes )

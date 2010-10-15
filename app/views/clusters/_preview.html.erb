@@ -10,7 +10,7 @@
 		  	
 
 	     <li class='info'> 
-	        <%= links_to_keywords( *(cluster.top_keywords) ).join(' ') %> - <%= render_cluster_info( cluster ) %>
+	        <%= link_to ((cluster.top_keywords).join(' ') + " - " +  t( 'cluster.all.headlines', :count => cluster.story_count ) + "  &raquo;"), cluster_path( cluster.to_param )  %>
       	</li>
 
     <% end -%>
