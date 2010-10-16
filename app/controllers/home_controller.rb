@@ -57,10 +57,10 @@ class HomeController < ApplicationController
   
   def action_cache_key
     if current_user.new_record?
-      [ controller_name, action_name, session[:edition], session[:locale], 'v1' ].join('-')
+      [ controller_name, action_name, session[:edition], session[:locale], session[:clarity], 'v1' ].join('-')
     else
       current_user.set_preference
-      [ controller_name, action_name, session[:edition], session[:locale], current_user.id, current_user.preference.updated_at.to_s.hash, 'v1' ].join("-")
+      [ controller_name, action_name, session[:edition], session[:locale], session[:clarity], current_user.id, current_user.preference.updated_at.to_s.hash, 'v1' ].join("-")
     end
   end
   

@@ -188,7 +188,7 @@ class SectionsController < ApplicationController
   protected
   
   def action_cache_key
-    [ controller_name, action_name, session[:edition], session[:locale], params[:id], params[:page] || 1 ].join('-')
+    [ controller_name, action_name, session[:edition], session[:locale], session[:clarity], params[:id], params[:page] || 1 ].join('-')
   end
   
   def rss_cache_key
