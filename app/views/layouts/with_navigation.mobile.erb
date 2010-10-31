@@ -37,11 +37,7 @@
       <% end %>
       <%= yield %>
       <div>&nbsp;</div>
-<% if params[:controller] == "home" %> 
-	 <div class="pagination_module">  </div>
-	      <%= render :partial => 'shared/lrec' %>	  	
-	 </div>
-	<%end%>
+
     <div id="footer">
       <%= render :partial => 'shared/footer' %>
     </div>
