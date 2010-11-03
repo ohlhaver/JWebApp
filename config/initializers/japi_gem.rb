@@ -200,7 +200,7 @@ JAPI::PreferenceOption.class_eval do
       end
     end
     multi_curb.perform
-    [ 'int-en', 'in-en', 'gb-en', 'us-en', 'de-de', 'at-de', 'ch-de' ].each do |edition|
+    [ 'int-en', 'in-en', 'gb-en', 'us-en', 'de-de', 'at-de', 'ch-de', 'de-en' ].each do |edition|
       edition = JAPI::PreferenceOption.parse_edition( edition )
       hash_key = "#{edition.region}_#{edition.locale}"
       async_find( :all, :params => { :preference_id => :homepage_cluster_groups, :region_id => edition.region_id, :language_id => edition.locale_id }, :multi_curb => multi_curb ) do |object|
