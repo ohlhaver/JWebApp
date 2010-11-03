@@ -180,7 +180,8 @@ JAPI::PreferenceOption.class_eval do
     if country_code == 'in' then  'in-en'
     elsif country_code == 'ch' then  'ch-de'
     elsif country_code == 'at' then  'at-de'
-    else 'de-de'
+    elsif country_code == 'de' then  'de-de'
+    else 'de-en'
     end
   end
   
