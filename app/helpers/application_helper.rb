@@ -130,8 +130,8 @@ module ApplicationHelper
   # Singapore Edition 'sg-en' ClusterGroups Exists but Removing Singapore from the list
   def edition_options
     editions= case I18n.locale 
-    when 'de', :de : ['de-de', 'at-de', 'ch-de']
-    else  [ 'in-en', 'de-de', 'at-de', 'ch-de' ] end
+    when 'de', :de : ['de-de', 'at-de', 'ch-de', 'int-en', 'in-en']
+    else  [ 'de-de', 'at-de', 'ch-de', 'int-en', 'in-en'] end
     editions.collect!{ |e| [ I18n.t( "prefs.edition.#{e.split('-').first}"), e ] }
   end
   
