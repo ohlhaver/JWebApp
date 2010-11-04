@@ -67,7 +67,7 @@ module ApplicationHelper
   end
   
   def story_block_with_image_position
-    return 'grid_3 omega' #if controller.response.layout =~ /without_navigation/
+    return 'grid_3 omega' if @content_column_count == 2
     return 'grid_7 omega' if @content_column_count == 1
   end
   
