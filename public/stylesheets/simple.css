@@ -398,6 +398,14 @@ h2 a {
 	/* margin-bottom: 48px; */	
 }
 
+.top_cluster {
+	margin-top: 24px;
+	margin-bottom: 28px;
+	*margin-bottom: 12px;
+	/* margin-bottom: 48px; */	
+}
+
+
 .medium_cluster {
 	margin-top: 26px;
 	margin-bottom: 15px;	
@@ -421,6 +429,16 @@ h2 a {
   	text-decoration: none;
   	font-size: 19px;
 	line-height: 24px;
+	font-style: normal;
+}
+
+
+.top_cluster .headline .title {
+	font-family:Georgia,"Times New Roman",Times,serif;
+ 	font-weight: normal;
+  	text-decoration: none;
+  	font-size: 26px;
+	line-height: 32px;
 	font-style: normal;
 }
 
