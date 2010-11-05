@@ -1187,11 +1187,18 @@ border: 0px;
   text-align: center;
 }
 
+.top_cluster .image{
+  margin-top: 10px;
+  margin-right: 10px;
+  text-align: center;
+}
+
 .image{
   margin-top: 5px;
   margin-right: 10px;
   text-align: center;
 }
+
 .grid_3_image{
  display:inline;
  float:left;
