@@ -10,10 +10,10 @@
   <%= link_to t( 'navigation.bottom.imprint' ), imprint_path %> -
   <%= link_to t( 'navigation.bottom.contact' ), account_path( :action => 'contact', :jar => logged_in? ? 1 : 0 ) %> 
 - <span class = "fresh"><% if session[:clarity] == "1"%>
+	<%= link_to "mit Überschriften", :controller => "home", :action => "index", :clarity => "0"%>
 	
-	<%= link_to "Klarheit", :controller => "home", :action => "index", :clarity => "0"%>
 	<%else%>
-	<%= link_to "mit Überschriften", :controller => "home", :action => "index", :clarity => "1"%>
+	<%= link_to "Klarheit", :controller => "home", :action => "index", :clarity => "1"%>
 	<%end%>
 	</span>
 	

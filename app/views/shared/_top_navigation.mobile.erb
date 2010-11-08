@@ -4,17 +4,18 @@
 
   <% else -%>
      <%= link_to( t( 'navigation.top.login' ), login_path ) -%>
-     - <a class="fb_button fb_button_small" rel="nofollow" onclick="facebook_onlogin();return false" href="<%= @facebook_login_url %>" ><span class="fb_button_text"><%= t('jurnalo.login.fb_button') %></span></a>
+    
   <% end %>
 <% end %>
 
   <%= yield :user_actions -%>
 
 <br>
+<% if logged_in? -%>
 <% # Reading List Block %>
   <%= link_to( t( 'navigation.top.reading_list' ), :controller => '/reading_list', :action => 'index' ) -%> - <%= link_to( t( 'navigation.top.settings' ), account_path( :jwa => 1, :edition => session[:edition] ) ) -%>
 
-
+<%end%>
 <div id ="edition">
 <%= render :partial => 'shared/edition' %>		
 </div>
