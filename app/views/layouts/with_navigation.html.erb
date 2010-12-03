@@ -36,9 +36,7 @@
       </div>
       <div id="top_navigation" class="grid_2">
         <%= render :partial => 'shared/top_navigation' %>
-        <div id="edition">
-          <%= render :partial => 'shared/edition' %>
-        </div>
+
       </div>
 	<div id = "like_button" class="grid_1">
 		<%= render :partial => 'shared/like' %>	
@@ -58,7 +56,7 @@
       </div>
 
       <div id="footer" class = "grid_8">
-        <%= render :partial => 'shared/footer' %>
+        <%= render :partial => 'shared/footer' %>	   
       </div>
       <%= javascript_include_tag 'prototype', 'effects', 'controls', 'application', :cache => 'jbase' %>
       <script>
@@ -72,6 +70,7 @@
       </script>
       <%= yield :custom_javascript %>
   </div>
+
   <script type="text/javascript">
     function facebook_onlogin(){
       document.location.href = "<%= @facebook_login_url %>";

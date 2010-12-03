@@ -1,7 +1,7 @@
 
 
 <div class="footer_module" ></div>
-
+<div class = "alpha grid_6">
   <%= link_to t( 'navigation.bottom.about' ), about_path %> -
 <%= link_to 'RSS', home_rss_url( :edition => session[:edition], :locale => I18n.locale, :id => current_user.id_or_default )  %> -
 <%= link_to 'Blog', 'http://jurnalo.typepad.com/' %> -
@@ -15,7 +15,10 @@
 	<%= link_to "mit Überschriften", :controller => "home", :action => "index", :clarity => "1"%>
 	<%end%>
 	</span>
-	
+</div>
+<div id = "edition" class = "alpha grid_2">
+	 <%= render :partial => 'shared/edition' %>
+</div>
 <br>
   <span class= "grey">&copy; 2010</span>
 
