@@ -26,7 +26,7 @@
   </head>
   <body>
     <div class="container_8">
-      <div id= "top_frame" class = "grid_6">
+      <div id= "top_frame" class = "grid_5">
         <%= link_to( image_tag( 'logo.gif'), root_path, {:title => "Home"} ) %>
         <% form_tag( stories_path, :id => 'search_form', :method => :get, :class => 'inline_form' ) do -%>
           <input type="text" title="Search News" autocomplete="off" tabindex="1" name="q" id = 'searchfield' class ="text"  value="<%= params[:q] -%>" />
@@ -40,7 +40,9 @@
           <%= render :partial => 'shared/edition' %>
         </div>
       </div>
-	
+	<div id = "like_button" class="grid_1">
+		<%= render :partial => 'shared/like' %>	
+	</div>
       <br clear="all" /> <div class="clearfix"></div>
       <% if flash[:notice] %>
         <div class="flash grid_8" style="color:green" ><%= flash[:notice] %></div>
