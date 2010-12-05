@@ -87,10 +87,12 @@ img {
 }
 
 #top_navigation {
-margin-top: 8px;
+margin-top: 4px;
 font-size: 13px;
 line-height: 21px;
 font-family: Arial,Helvetica,sans-serif;
+float: right;
+text-align: right;
 }
 
 #edition {
